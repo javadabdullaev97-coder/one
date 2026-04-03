@@ -13,6 +13,7 @@ import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import GlassCard from "@/components/GlassCard";
 import AuroraBackground from "@/components/AuroraBackground";
+import CategoryList from "@/components/CategoryList";
 import { servicesData } from "@/lib/services";
 
 const stats = [
@@ -129,27 +130,15 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <HorizontalLine className="mb-0" />
-
-          <div>
-            {servicesData.map((service) => (
-              <AnimatedSection key={service.num}>
-                <Link href={`/expertise/${service.slug}`} className="group block cursor-pointer">
-                  <div className="flex items-center justify-between py-7 border-b border-border hover:border-primary/30 transition-colors">
-                    <div className="flex items-center gap-8">
-                      <span className="text-xs text-muted-dark font-mono w-6">
-                        {service.num}
-                      </span>
-                      <h3 className="text-xl md:text-2xl text-foreground/80 group-hover:text-foreground transition-colors tracking-wide">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <ArrowUpRight className="w-5 h-5 text-muted-dark group-hover:text-primary transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
+          <CategoryList
+            items={servicesData.map((s) => ({
+              id: s.slug,
+              title: s.title,
+              subtitle: s.category,
+              icon: <span className="text-xs font-mono">{s.num}</span>,
+              href: `/expertise/${s.slug}`,
+            }))}
+          />
         </div>
       </section>
 

@@ -1,14 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import SocialIcons from "@/components/SocialIcons";
 
 const footerLinks = {
   Expertise: [
-    { label: "Tax Consulting", href: "/expertise" },
-    { label: "Legal Advisory", href: "/expertise" },
-    { label: "Finance & Accounting", href: "/expertise" },
-    { label: "HR Services", href: "/expertise" },
-    { label: "Marketing", href: "/expertise" },
-    { label: "Funding & Grants", href: "/expertise" },
+    { label: "Tax Consulting", href: "/expertise/tax" },
+    { label: "Legal Advisory", href: "/expertise/legal" },
+    { label: "Finance & Accounting", href: "/expertise/finance" },
+    { label: "HR Services", href: "/expertise/hr" },
+    { label: "Marketing", href: "/expertise/marketing" },
+    { label: "Funding & Grants", href: "/expertise/funding" },
   ],
   Firm: [
     { label: "About", href: "/about" },
@@ -19,19 +20,14 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-border">
+    <footer className="bg-[#0A0A0A] border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Main footer */}
         <div className="py-20 grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
-              <Image
-                src="/logo.svg"
-                alt="Advizen"
-                width={44}
-                height={36}
-              />
+              <Image src="/logo.svg" alt="Advizen" width={44} height={36} />
               <span className="text-lg font-serif tracking-[0.15em] text-foreground">
                 ADVIZEN
               </span>
@@ -88,11 +84,11 @@ export default function Footer() {
                 type="email"
                 placeholder="Email address"
                 aria-label="Email address"
-                className="w-full px-4 py-3 bg-transparent border border-border text-sm text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
+                className="w-full px-4 py-3 bg-transparent border border-white/[0.08] text-sm text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
               />
               <button
                 type="submit"
-                className="w-full px-4 py-3 border border-primary text-[11px] uppercase tracking-[0.15em] font-medium text-foreground hover:bg-primary transition-all duration-300 cursor-pointer"
+                className="shiny-btn w-full px-4 py-3 text-[11px] uppercase tracking-[0.15em] font-medium text-foreground cursor-pointer transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -100,8 +96,13 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Social Icons Bar */}
+        <div className="py-8 border-t border-white/[0.06]">
+          <SocialIcons />
+        </div>
+
         {/* Bottom */}
-        <div className="py-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="py-6 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-dark tracking-wide">
             &copy; {new Date().getFullYear()} Advizen Consulting. All rights
             reserved.

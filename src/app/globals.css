@@ -97,6 +97,65 @@ body {
   width: 100%;
 }
 
+/* Shiny border button */
+@property --shiny-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --shiny-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --shiny-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --shiny-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+.shiny-btn {
+  --shiny-hl: #7A1A1A;
+  --shiny-hl-subtle: #8B2020;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image:
+    linear-gradient(var(--shiny-bg, var(--background)), var(--shiny-bg, var(--background))),
+    conic-gradient(
+      from calc(var(--shiny-angle) - var(--shiny-angle-offset)),
+      transparent,
+      var(--shiny-hl) var(--shiny-percent),
+      var(--shiny-shine) calc(var(--shiny-percent) * 2),
+      var(--shiny-hl) calc(var(--shiny-percent) * 3),
+      transparent calc(var(--shiny-percent) * 4)
+    );
+  animation: shiny-rotate 3s linear infinite;
+  transition: --shiny-angle-offset 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+    --shiny-percent 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+    --shiny-shine 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.shiny-btn:is(:hover, :focus-visible) {
+  --shiny-percent: 20%;
+  --shiny-angle-offset: 95deg;
+  --shiny-shine: var(--shiny-hl-subtle);
+}
+
+@keyframes shiny-rotate {
+  to {
+    --shiny-angle: 360deg;
+  }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {

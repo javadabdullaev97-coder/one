@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode, type MouseEvent } from "react";
 import { motion, useSpring } from "framer-motion";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -22,59 +23,87 @@ export default function MagneticButton({
   type = "button",
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLSpanElement>(null);
   const [hovered, setHovered] = useState(false);
+  const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
 
-  const x = useSpring(0, { stiffness: 200, damping: 20 });
-  const y = useSpring(0, { stiffness: 200, damping: 20 });
-  const innerX = useSpring(0, { stiffness: 300, damping: 25 });
-  const innerY = useSpring(0, { stiffness: 300, damping: 25 });
+  // Magnetic spring physics
+  const mx = useSpring(0, { stiffness: 200, damping: 20 });
+  const my = useSpring(0, { stiffness: 200, damping: 20 });
+  const imx = useSpring(0, { stiffness: 300, damping: 25 });
+  const imy = useSpring(0, { stiffness: 300, damping: 25 });
 
-  function handleMouse(e: React.MouseEvent) {
-    if (!ref.current) return;
+  function handleMouse(e: MouseEvent) {
+    if (!ref.current || !btnRef.current) return;
     const rect = ref.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const dx = e.clientX - cx;
     const dy = e.clientY - cy;
-    x.set(dx * 0.15);
-    y.set(dy * 0.15);
-    innerX.set(dx * 0.08);
-    innerY.set(dy * 0.08);
+    mx.set(dx * 0.15);
+    my.set(dy * 0.15);
+    imx.set(dx * 0.08);
+    imy.set(dy * 0.08);
+
+    // Glow position relative to button
+    const btnRect = btnRef.current.getBoundingClientRect();
+    setGlowPos({
+      x: e.clientX - btnRect.left,
+      y: e.clientY - btnRect.top,
+    });
   }
 
   function handleLeave() {
-    x.set(0);
-    y.set(0);
-    innerX.set(0);
-    innerY.set(0);
+    mx.set(0);
+    my.set(0);
+    imx.set(0);
+    imy.set(0);
     setHovered(false);
   }
 
-  const baseStyles =
-    variant === "primary"
-      ? "bg-primary text-foreground hover:bg-primary/90"
-      : "border border-white/[0.12] text-foreground hover:border-white/[0.25]";
+  const isPrimary = variant === "primary";
 
   const content = (
     <motion.div
       ref={ref}
-      style={{ x, y }}
+      style={{ x: mx, y: my }}
       onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleLeave}
       className="inline-block"
     >
       <motion.span
-        style={{ x: innerX, y: innerY }}
-        animate={{
-          boxShadow: hovered
-            ? "0 0 30px rgba(99, 13, 13, 0.3)"
-            : "0 0 0px rgba(99, 13, 13, 0)",
+        ref={btnRef}
+        style={{
+          x: imx,
+          y: imy,
+          ...(isPrimary ? { "--shiny-bg": "#630D0D" } as React.CSSProperties : {}),
         }}
-        transition={{ duration: 0.3 }}
-        className={`inline-flex items-center gap-2 px-8 py-4 text-sm tracking-wider uppercase transition-colors duration-300 cursor-pointer ${baseStyles} ${className}`}
+        className={cn(
+          "shiny-btn relative inline-flex items-center gap-2 px-8 py-4 text-sm tracking-wider uppercase cursor-pointer overflow-hidden transition-colors duration-300 text-foreground",
+          className,
+        )}
       >
-        {children}
+        {/* Cursor-following glow */}
+        <span
+          className={cn(
+            "absolute w-[180px] h-[180px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out",
+            hovered ? "scale-100" : "scale-0",
+          )}
+          style={{
+            left: glowPos.x,
+            top: glowPos.y,
+            background: isPrimary
+              ? "radial-gradient(circle, rgba(122, 26, 26, 0.6) 0%, transparent 70%)"
+              : "radial-gradient(circle, rgba(99, 13, 13, 0.4) 0%, transparent 70%)",
+            zIndex: 0,
+          }}
+        />
+
+        {/* Content */}
+        <span className="relative z-10 inline-flex items-center gap-2">
+          {children}
+        </span>
       </motion.span>
     </motion.div>
   );
@@ -84,7 +113,14 @@ export default function MagneticButton({
   }
 
   if (as === "button" && type === "submit") {
-    return <button type="submit" className="inline-block bg-transparent border-none p-0 m-0">{content}</button>;
+    return (
+      <button
+        type="submit"
+        className="inline-block bg-transparent border-none p-0 m-0"
+      >
+        {content}
+      </button>
+    );
   }
 
   return content;
