@@ -45,7 +45,8 @@ export default function Navbar() {
             height={30}
             className="transition-opacity group-hover:opacity-80"
           />
-          <span className="text-lg font-serif tracking-[0.15em] text-foreground transition-colors group-hover:text-primary">
+          {/* UPDATED: Premium, minimalist font style, fixed color (no hover color change) */}
+          <span className="text-lg font-light tracking-[0.2em] uppercase text-foreground transition-none">
             ADVIZEN
           </span>
           <span className="hidden sm:block w-px h-5 bg-border" />
@@ -93,32 +94,4 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-[#0D0D0D]/90 backdrop-blur-xl border-b border-white/[0.06] px-6 pb-8 pt-4"
           >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-3 text-foreground/70 hover:text-foreground font-medium tracking-wide transition-colors border-b border-white/[0.06] cursor-pointer"
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="block w-full text-center mt-6 px-6 py-3 bg-primary border border-primary-light/40 text-sm uppercase tracking-widest text-foreground hover:border-primary-light/80 hover:shadow-[0_0_20px_rgba(122,26,26,0.4)] transition-all duration-300 cursor-pointer"
-            >
-              Inquire
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
-  );
-}
+            {nav
