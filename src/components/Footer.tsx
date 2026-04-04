@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SocialIcons from "@/components/SocialIcons";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   Expertise: [
@@ -28,7 +29,8 @@ export default function Footer() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <Image src="/logo.png" alt="Advizen" width={40} height={32} />
-              <span className="text-lg font-serif tracking-[0.15em] text-foreground">
+              {/* UPDATED: Matches the new Navbar logo text styling */}
+              <span className="text-lg font-light tracking-[0.2em] uppercase text-foreground">
                 ADVIZEN
               </span>
             </div>
@@ -37,20 +39,28 @@ export default function Footer() {
               across tax, legal, finance, HR, and marketing — a single point of
               contact for your entire operation.
             </p>
-            <div className="mt-8 space-y-3">
+            <div className="mt-8 space-y-4">
+              {/* Phone with Icon */}
               <a
                 href="tel:+998334884888"
-                className="block text-sm text-muted hover:text-foreground transition-colors cursor-pointer"
+                className="flex items-center gap-3 text-sm text-muted hover:text-foreground transition-colors cursor-pointer w-fit"
               >
+                <Phone className="w-4 h-4 text-primary" />
                 +998 (33) 488 48 88
               </a>
+              {/* Email with Icon */}
               <a
                 href="mailto:info@advizenco.com"
-                className="block text-sm text-muted hover:text-foreground transition-colors cursor-pointer"
+                className="flex items-center gap-3 text-sm text-muted hover:text-foreground transition-colors cursor-pointer w-fit"
               >
+                <Mail className="w-4 h-4 text-primary" />
                 info@advizenco.com
               </a>
-              <p className="text-sm text-muted-dark">Tashkent, Uzbekistan</p>
+              {/* Location with Icon */}
+              <p className="flex items-center gap-3 text-sm text-muted-dark w-fit">
+                <MapPin className="w-4 h-4 text-primary" />
+                Tashkent, Uzbekistan
+              </p>
             </div>
           </div>
 
