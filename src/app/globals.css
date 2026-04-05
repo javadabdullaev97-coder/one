@@ -227,7 +227,14 @@ body {
   letter-spacing: 0.5em;
   text-indent: 0.5em;
   text-transform: uppercase;
-  color: var(--foreground);
+  background: linear-gradient(
+    to bottom,
+    #F5F5F5 40%,
+    rgba(122, 26, 26, 0.4) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: cosmicTitleIn 3s ease-out forwards, cosmicTitlePulse 6s ease-in-out 3s infinite;
   opacity: 0;
 }
