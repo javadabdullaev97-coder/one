@@ -229,8 +229,8 @@ body {
   text-transform: uppercase;
   background: linear-gradient(
     to bottom,
-    #F5F5F5 40%,
-    rgba(122, 26, 26, 0.4) 100%
+    #F5F5F5 60%,
+    rgba(122, 26, 26, 0.2) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
