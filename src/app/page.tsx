@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import AnimatedSection, {
   FadeIn,
   HorizontalLine,
@@ -18,72 +19,84 @@ import ClientsBar from "@/components/ClientsBar";
 import { servicesData } from "@/lib/services";
 
 const stats = [
-  { value: "8+", label: "Years" },
-  { value: "50+", label: "Clients" },
-  { value: "70+", label: "Projects" },
-  { value: "15+", label: "Industries" },
+  { value: 8, suffix: "+", label: "Years" },
+  { value: 50, suffix: "+", label: "Clients" },
+  { value: 70, suffix: "+", label: "Projects" },
+  { value: 15, suffix: "+", label: "Industries" },
 ];
+
+function CountUp({ target, suffix, duration = 2 }: { target: number; suffix: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const step = target / (duration * 60);
+    let frame: number;
+    const animate = () => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        return;
+      }
+      setCount(Math.floor(start));
+      frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, target, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
       {/* ADDED pt-36 md:pt-48 here to push the hero content below the transparent nav */}
-      <CosmicParallaxBg className="pt-36 md:pt-48 pb-24 md:pb-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-          <div className="max-w-4xl">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="tracking-luxury text-muted mb-8"
-            >
-              Premier Advisory &middot; Uzbekistan
-            </motion.p>
+      <CosmicParallaxBg className="flex items-center justify-center min-h-screen">
+        <div className="relative z-10 w-full text-center px-6">
+          {/* Title — template-style CSS animation */}
+          <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">
+            ADVIZEN
+          </h1>
 
-            <TextReveal
-              text="Counsel for businesses that shape markets"
-              as="h1"
-              className="heading-luxury text-5xl md:text-7xl lg:text-[5.5rem] text-foreground leading-[1.08] mb-8"
-              delay={0.4}
-            />
+          {/* Subtitle */}
+          <p className="cosmic-subtitle text-sm md:text-base mt-6">
+            Consulting &amp; Advisory
+          </p>
 
-            <RevealLine delay={0.7}>
-              <p className="text-lg md:text-xl text-muted max-w-xl leading-relaxed mb-12">
-                Integrated tax, legal, finance, and human capital advisory.
-                One firm, one point of contact, across Central Asia.
-              </p>
-            </RevealLine>
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+          >
+            <MagneticButton variant="primary" as="a" href="/contact">
+              Begin a conversation
+              <ArrowRight className="w-4 h-4" />
+            </MagneticButton>
+            <MagneticButton variant="outline" as="a" href="/expertise">
+              View expertise
+            </MagneticButton>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <MagneticButton variant="primary" as="a" href="/contact">
-                Begin a conversation
-                <ArrowRight className="w-4 h-4" />
-              </MagneticButton>
-              <MagneticButton variant="outline" as="a" href="/expertise">
-                View expertise
-              </MagneticButton>
-            </motion.div>
-          </div>
-
-          {/* Stats row */}
+          {/* Stats — centered, bigger, count-up */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.3 }}
-            className="mt-20 pt-8 border-t border-white/[0.08] flex gap-12 md:gap-16"
+            transition={{ duration: 1, delay: 3 }}
+            className="mt-20 pt-8 border-t border-white/[0.08] flex justify-center gap-12 md:gap-20"
           >
             {stats.map((stat) => (
-              <div key={stat.label}>
-                <span className="text-2xl md:text-3xl font-serif text-foreground">
-                  {stat.value}
+              <div key={stat.label} className="text-center">
+                <span className="text-4xl md:text-5xl font-extralight text-foreground tracking-wider">
+                  <CountUp target={stat.value} suffix={stat.suffix} />
                 </span>
-                <span className="block text-xs text-muted-dark uppercase tracking-widest mt-1">
+                <span className="block text-xs text-muted-dark uppercase tracking-[0.2em] mt-2">
                   {stat.label}
                 </span>
               </div>
@@ -94,7 +107,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
-            transition={{ duration: 1, delay: 2 }}
+            transition={{ duration: 1, delay: 3.5 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           >
             <span className="text-[10px] uppercase tracking-[0.3em] text-muted">Scroll</span>
