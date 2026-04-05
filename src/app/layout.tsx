@@ -77,12 +77,12 @@ export default function RootLayout({
         <GradientDots />
 
         {/* Architectural Grid — faint vertical lines */}
-        <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="fixed inset-0 z-40 pointer-events-none" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full flex justify-between">
-            <div className="w-px bg-white/[0.03]" />
-            <div className="w-px bg-white/[0.03]" />
-            <div className="w-px bg-white/[0.03]" />
-            <div className="w-px bg-white/[0.03]" />
+            <div className="w-px bg-white/[0.04]" />
+            <div className="w-px bg-white/[0.04]" />
+            <div className="w-px bg-white/[0.04]" />
+            <div className="w-px bg-white/[0.04]" />
           </div>
         </div>
 
