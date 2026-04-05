@@ -60,16 +60,16 @@ export default function Home() {
     <>
       {/* Hero */}
       {/* ADDED pt-36 md:pt-48 here to push the hero content below the transparent nav */}
-      <CosmicParallaxBg className="relative min-h-screen">
-        {/* ADVIZEN title — positioned just above earth curve */}
-        <div className="absolute left-0 right-0 z-20 text-center" style={{ bottom: '42%' }}>
+      <CosmicParallaxBg className="relative h-screen">
+        {/* ADVIZEN title — just above earth curve */}
+        <div className="absolute left-0 right-0 z-20 text-center top-[38%]">
           <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">
             ADVIZEN
           </h1>
         </div>
 
-        {/* Subtitle + Stats — below the earth curve */}
-        <div className="absolute left-0 right-0 z-20 text-center px-6" style={{ bottom: '10%' }}>
+        {/* Subtitle + Stats — on the earth surface below curve */}
+        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[62%]">
           <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-10">
             Consulting &amp; Advisory
           </p>
