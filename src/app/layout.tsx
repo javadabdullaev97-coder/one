@@ -75,6 +75,17 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col relative">
         <GradientDots />
+
+        {/* Architectural Grid — faint vertical lines */}
+        <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full flex justify-between">
+            <div className="w-px bg-white/[0.03]" />
+            <div className="w-px bg-white/[0.03]" />
+            <div className="w-px bg-white/[0.03]" />
+            <div className="w-px bg-white/[0.03]" />
+          </div>
+        </div>
+
         <Navbar />
         <main className="flex-1 relative z-10">{children}</main>
         <div className="relative z-10">
