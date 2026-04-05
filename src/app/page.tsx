@@ -61,19 +61,19 @@ export default function Home() {
       {/* Hero */}
       {/* ADDED pt-36 md:pt-48 here to push the hero content below the transparent nav */}
       <CosmicParallaxBg className="relative min-h-screen">
-        {/* All hero content — above earth */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pt-[5vh]">
-          {/* Title — close above the earth curve */}
-          <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl mb-[18vh]">
+        {/* ADVIZEN title — positioned just above earth curve */}
+        <div className="absolute left-0 right-0 z-20 text-center" style={{ bottom: '42%' }}>
+          <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">
             ADVIZEN
           </h1>
+        </div>
 
-          {/* Subtitle — below the curve with spacing */}
-          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-12">
+        {/* Subtitle + Stats — below the earth curve */}
+        <div className="absolute left-0 right-0 z-20 text-center px-6" style={{ bottom: '10%' }}>
+          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-10">
             Consulting &amp; Advisory
           </p>
 
-          {/* Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
