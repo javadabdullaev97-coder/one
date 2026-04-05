@@ -244,8 +244,8 @@ body {
 @keyframes cosmicTitleIn {
   0% {
     opacity: 0;
-    letter-spacing: 1em;
-    transform: translateY(40px);
+    letter-spacing: 0em;
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
@@ -257,8 +257,8 @@ body {
 @keyframes cosmicSubtitleIn {
   0% {
     opacity: 0;
-    letter-spacing: 0.6em;
-    transform: translateY(20px);
+    letter-spacing: 0.05em;
+    transform: translateY(10px);
   }
   100% {
     opacity: 0.6;

@@ -29,8 +29,10 @@ export default function Navbar() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.2 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 bg-[#0D0D0D]/80 backdrop-blur-2xl border-b border-white/[0.06] ${
-        scrolled ? "shadow-[0_4px_30px_rgba(0,0,0,0.3)]" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        scrolled
+          ? "bg-[#0D0D0D]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">

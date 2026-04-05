@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import AnimatedSection, {
   FadeIn,
   HorizontalLine,
@@ -25,13 +25,17 @@ const stats = [
   { value: 15, suffix: "+", label: "Industries" },
 ];
 
-function CountUp({ target, suffix, duration = 2 }: { target: number; suffix: string; duration?: number }) {
+function CountUp({ target, suffix, duration = 1.5, delay = 3 }: { target: number; suffix: string; duration?: number; delay?: number }) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
+    const timeout = setTimeout(() => setStarted(true), delay * 1000);
+    return () => clearTimeout(timeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
     let start = 0;
     const step = target / (duration * 60);
     let frame: number;
@@ -46,9 +50,9 @@ function CountUp({ target, suffix, duration = 2 }: { target: number; suffix: str
     };
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, [inView, target, duration]);
+  }, [started, target, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span>{count}{suffix}</span>;
 }
 
 export default function Home() {
@@ -89,7 +93,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 3 }}
-            className="mt-20 pt-8 border-t border-white/[0.08] flex justify-center gap-12 md:gap-20"
+            className="mt-16 flex justify-center gap-12 md:gap-20"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
