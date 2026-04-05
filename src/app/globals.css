@@ -225,6 +225,7 @@ body {
   font-family: var(--font-sans);
   font-weight: 300;
   letter-spacing: 0.5em;
+  text-indent: 0.5em;
   text-transform: uppercase;
   color: var(--foreground);
   animation: cosmicTitleIn 3s ease-out forwards;
@@ -235,6 +236,7 @@ body {
   font-family: var(--font-sans);
   font-weight: 300;
   letter-spacing: 0.3em;
+  text-indent: 0.3em;
   text-transform: uppercase;
   color: rgba(245, 245, 245, 0.6);
   animation: cosmicSubtitleIn 2s ease-out 1s forwards;
