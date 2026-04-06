@@ -56,11 +56,11 @@ export default function AuroraBackground({
                 transparent 12%,
                 rgba(178, 34, 34, 0.1) 16%),
               repeating-linear-gradient(100deg,
-                #B22222 10%,
-                #8B0000 15%,
-                #DC143C 20%,
-                #B22222 25%,
-                #A0153E 30%)
+                #A01C1C 10%,
+                #7A0A0A 15%,
+                #C41A2A 20%,
+                #A01C1C 25%,
+                #8A1230 30%)
             `,
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
