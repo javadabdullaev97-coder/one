@@ -20,75 +20,60 @@ export default function AuroraBackground({
         className,
       )}
     >
-      {/* Aurora Gradient Layer 1 — deep sweep */}
-      <div className="absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
-        <motion.div
-          className="absolute inset-[-100%]"
-          style={{
-            background: `
-              repeating-linear-gradient(100deg,
-                #630D0D 10%,
-                #4A0808 15%,
-                #8B2020 20%,
-                #630D0D 25%,
-                #3A0606 30%)
-            `,
-            backgroundSize: "300% 100%",
-            filter: "blur(50px)",
-          }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-
-        {/* Aurora Gradient Layer 2 — texture + difference blend */}
-        <motion.div
-          className="absolute inset-[-10px]"
-          style={{
-            background: `
-              repeating-linear-gradient(100deg,
-                rgba(99, 13, 13, 0.1) 0%,
-                rgba(99, 13, 13, 0.1) 7%,
-                transparent 10%,
-                transparent 12%,
-                rgba(99, 13, 13, 0.1) 16%),
-              repeating-linear-gradient(100deg,
-                #630D0D 10%,
-                #4A0808 15%,
-                #7A1A1A 20%,
-                #630D0D 25%,
-                #2A0505 30%)
-            `,
-            backgroundSize: "200%, 100%",
-            backgroundPosition: "50% 50%, 50% 50%",
-            mixBlendMode: "soft-light",
-          }}
-          animate={{
-            backgroundPosition: [
-              "50% 50%, 50% 50%",
-              "100% 50%, 150% 50%",
-              "50% 50%, 50% 50%",
-            ],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </div>
-
-      {/* Vignette — pushes aurora to edges */}
-      <div
-        className="absolute inset-0 pointer-events-none"
+      {/* Aurora glow — large animated blobs */}
+      <motion.div
+        className="absolute top-[-40%] left-[-20%] w-[70%] h-[140%] rounded-full"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 0%, rgba(13, 13, 13, 0.6) 100%)",
+            "radial-gradient(circle, rgba(139,32,32,0.45) 0%, rgba(99,13,13,0.2) 40%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+        animate={{
+          x: ["0%", "15%", "0%"],
+          y: ["0%", "10%", "0%"],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        aria-hidden="true"
+      />
+
+      <motion.div
+        className="absolute top-[-30%] right-[-15%] w-[60%] h-[130%] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(122,26,26,0.35) 0%, rgba(74,8,8,0.15) 40%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+        animate={{
+          x: ["0%", "-12%", "0%"],
+          y: ["0%", "8%", "0%"],
+        }}
+        transition={{
+          duration: 16,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        aria-hidden="true"
+      />
+
+      <motion.div
+        className="absolute bottom-[-20%] left-[20%] w-[50%] h-[80%] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(139,32,32,0.3) 0%, rgba(58,6,6,0.1) 50%, transparent 70%)",
+          filter: "blur(50px)",
+        }}
+        animate={{
+          x: ["0%", "10%", "0%"],
+          y: ["0%", "-10%", "0%"],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: "easeInOut",
         }}
         aria-hidden="true"
       />
