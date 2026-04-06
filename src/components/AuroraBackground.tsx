@@ -21,7 +21,7 @@ export default function AuroraBackground({
       )}
     >
       {/* Aurora Gradient Layer 1 — deep sweep */}
-      <div className="absolute inset-0 overflow-hidden opacity-30" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
         <motion.div
           className="absolute inset-[-100%]"
           style={{
@@ -34,7 +34,7 @@ export default function AuroraBackground({
                 #3A0606 30%)
             `,
             backgroundSize: "300% 100%",
-            filter: "blur(80px)",
+            filter: "blur(50px)",
           }}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -66,7 +66,7 @@ export default function AuroraBackground({
             `,
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
-            mixBlendMode: "difference",
+            mixBlendMode: "soft-light",
           }}
           animate={{
             backgroundPosition: [
@@ -88,7 +88,7 @@ export default function AuroraBackground({
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 0%, rgba(13, 13, 13, 0.85) 100%)",
+            "radial-gradient(ellipse at center, transparent 0%, rgba(13, 13, 13, 0.6) 100%)",
         }}
         aria-hidden="true"
       />
