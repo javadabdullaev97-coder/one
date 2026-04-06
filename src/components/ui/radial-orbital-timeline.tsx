@@ -166,14 +166,17 @@ export default function RadialOrbitalTimeline({
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
         >
-          {/* Center orb — oxblood themed */}
-          <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-primary-light via-primary to-primary-dark animate-pulse flex items-center justify-center z-10">
-            <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
-            <div
-              className="absolute w-24 h-24 rounded-full border border-white/10 animate-ping opacity-50"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
-            <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
+          {/* Center sun with radiating glow */}
+          <div className="absolute flex items-center justify-center z-10">
+            {/* Outer glow layers */}
+            <div className="absolute w-40 h-40 rounded-full opacity-20" style={{ background: "radial-gradient(circle, rgba(122,26,26,0.6) 0%, transparent 70%)" }}></div>
+            <div className="absolute w-28 h-28 rounded-full opacity-30" style={{ background: "radial-gradient(circle, rgba(139,32,32,0.5) 0%, transparent 70%)" }}></div>
+            {/* Core sun */}
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-200/90 via-orange-300/80 to-primary-light flex items-center justify-center shadow-[0_0_40px_rgba(255,180,50,0.3),0_0_80px_rgba(122,26,26,0.2)]">
+              <div className="absolute w-24 h-24 rounded-full border border-amber-200/20 animate-ping opacity-40"></div>
+              <div className="absolute w-32 h-32 rounded-full border border-orange-300/10 animate-ping opacity-20" style={{ animationDelay: "0.7s" }}></div>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/90 to-amber-100/80 backdrop-blur-md shadow-[0_0_20px_rgba(255,200,100,0.5)]"></div>
+            </div>
           </div>
 
           {/* Orbit ring */}
@@ -220,7 +223,7 @@ export default function RadialOrbitalTimeline({
 
                 <div
                   className={`
-                  w-10 h-10 rounded-full flex items-center justify-center
+                  w-14 h-14 rounded-full flex items-center justify-center
                   ${
                     isExpanded
                       ? "bg-primary text-white"
@@ -237,15 +240,15 @@ export default function RadialOrbitalTimeline({
                       : "border-white/40"
                   }
                   transition-all duration-300 transform
-                  ${isExpanded ? "scale-150" : ""}
+                  ${isExpanded ? "scale-125" : ""}
                 `}
                 >
-                  <Icon size={16} />
+                  <Icon size={20} />
                 </div>
 
                 <div
                   className={`
-                  absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap
+                  absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap
                   text-xs font-semibold tracking-wider uppercase
                   transition-all duration-300
                   ${isExpanded ? "text-white scale-110" : "text-white/60"}
@@ -255,7 +258,7 @@ export default function RadialOrbitalTimeline({
                 </div>
 
                 {isExpanded && (
-                  <Card className="absolute top-20 left-1/2 -translate-x-1/2 w-72 bg-black/90 backdrop-blur-lg border-white/20 shadow-xl shadow-primary/10 overflow-visible">
+                  <Card className="absolute top-24 left-1/2 -translate-x-1/2 w-72 bg-black/90 backdrop-blur-lg border-white/20 shadow-xl shadow-primary/10 overflow-visible">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white/50"></div>
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-center">
