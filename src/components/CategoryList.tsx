@@ -4,7 +4,7 @@ import { useRef, useState, type ReactNode, type MouseEvent } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { staggerContainer, staggerItem } from "@/lib/animations";
+import { luxuryEase } from "@/lib/animations";
 
 export interface CategoryItem {
   id: string | number;
@@ -20,6 +20,25 @@ interface CategoryListProps {
   items: CategoryItem[];
   className?: string;
 }
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: luxuryEase },
+  },
+};
 
 function CategoryRow({ item }: { item: CategoryItem }) {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -41,33 +60,35 @@ function CategoryRow({ item }: { item: CategoryItem }) {
       onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex items-center justify-between py-7 md:py-8 px-4 md:px-6 overflow-hidden cursor-pointer transition-colors duration-300"
+      className="relative flex items-center justify-between py-8 md:py-10 px-4 md:px-6 overflow-hidden cursor-pointer"
     >
-      {/* Cursor-following glow — same as MagneticButton */}
+      {/* Cursor-following glow */}
       <span
-        className={cn(
-          "absolute w-[400px] h-[400px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 opacity-50 transition-transform duration-300 ease-out",
-          hovered ? "scale-100" : "scale-0",
-        )}
+        className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 ease-out"
         style={{
           left: glowPos.x,
           top: glowPos.y,
-          background: "radial-gradient(circle, rgba(200,200,200,0.08) 0%, transparent 70%)",
+          width: 500,
+          height: 500,
+          background: "radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%)",
+          transform: `translate(-50%, -50%) scale(${hovered ? 1 : 0})`,
+          opacity: hovered ? 1 : 0,
+          zIndex: 0,
         }}
       />
 
       {/* Left: number + title */}
       <div className="relative z-10 flex items-center gap-6 md:gap-8">
         {item.icon && (
-          <span className="text-muted-dark text-sm w-6 text-right">
+          <span className="text-white/20 text-sm w-6 text-right font-mono">
             {item.icon}
           </span>
         )}
         <h3
           className={cn(
-            "font-serif tracking-wide text-gray-400 transition-all duration-300 ease-out origin-left",
+            "font-serif tracking-wide transition-all duration-300 ease-out origin-left",
             item.featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
-            hovered && "text-white scale-[1.02]",
+            hovered ? "text-white scale-[1.02]" : "text-white/30",
           )}
         >
           {item.title}
@@ -77,7 +98,12 @@ function CategoryRow({ item }: { item: CategoryItem }) {
       {/* Right: category + arrow */}
       <div className="relative z-10 flex items-center gap-6 md:gap-8">
         {item.subtitle && (
-          <span className="hidden sm:block text-sm text-gray-500 uppercase tracking-wider">
+          <span
+            className={cn(
+              "hidden sm:block text-sm uppercase tracking-wider transition-colors duration-300",
+              hovered ? "text-white/40" : "text-white/15",
+            )}
+          >
             {item.subtitle}
           </span>
         )}
@@ -86,7 +112,7 @@ function CategoryRow({ item }: { item: CategoryItem }) {
             "w-5 h-5 shrink-0 transition-all duration-300",
             hovered
               ? "text-primary translate-x-1 -translate-y-1"
-              : "text-gray-600",
+              : "text-white/20",
           )}
           fill="none"
           viewBox="0 0 24 24"
@@ -107,16 +133,16 @@ function CategoryRow({ item }: { item: CategoryItem }) {
 export default function CategoryList({ items, className }: CategoryListProps) {
   return (
     <motion.div
-      variants={staggerContainer}
+      variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
-      className={cn("divide-y divide-white/[0.06]", className)}
+      viewport={{ once: true, margin: "-60px" }}
+      className={cn("divide-y divide-white/10", className)}
     >
       {items.map((item) => (
         <motion.div
           key={item.id}
-          variants={staggerItem}
+          variants={rowVariants}
           onClick={item.onClick}
         >
           {item.href ? (
