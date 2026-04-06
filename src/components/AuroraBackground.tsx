@@ -27,11 +27,11 @@ export default function AuroraBackground({
           style={{
             background: `
               repeating-linear-gradient(100deg,
-                #B22222 10%,
-                #8B0000 15%,
-                #DC143C 20%,
-                #B22222 25%,
-                #A0153E 30%)
+                #6B1010 10%,
+                #4A0808 15%,
+                #8B1A1A 20%,
+                #6B1010 25%,
+                #3D0707 30%)
             `,
             backgroundSize: "300% 100%",
             filter: "blur(80px)",
@@ -50,21 +50,21 @@ export default function AuroraBackground({
           style={{
             background: `
               repeating-linear-gradient(100deg,
-                rgba(178, 34, 34, 0.1) 0%,
-                rgba(178, 34, 34, 0.1) 7%,
+                rgba(107, 16, 16, 0.15) 0%,
+                rgba(107, 16, 16, 0.15) 7%,
                 transparent 10%,
                 transparent 12%,
-                rgba(178, 34, 34, 0.1) 16%),
+                rgba(107, 16, 16, 0.15) 16%),
               repeating-linear-gradient(100deg,
-                #B22222 10%,
-                #8B0000 15%,
-                #DC143C 20%,
-                #B22222 25%,
-                #A0153E 30%)
+                #6B1010 10%,
+                #4A0808 15%,
+                #8B1A1A 20%,
+                #6B1010 25%,
+                #3D0707 30%)
             `,
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
-            mixBlendMode: "screen",
+            mixBlendMode: "overlay",
           }}
           animate={{
             backgroundPosition: [
