@@ -93,33 +93,24 @@ function CategoryRow({ item, index }: { item: CategoryItem; index: number }) {
             {item.subtitle}
           </span>
         )}
-        <div
+        <svg
           className={cn(
-            "flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300",
+            "w-5 h-5 shrink-0 transition-all duration-300",
             hovered
-              ? "bg-white/[0.06] scale-110"
-              : "bg-transparent",
+              ? "text-primary translate-x-1"
+              : "text-[#999]/40",
           )}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.5}
         >
-          <svg
-            className={cn(
-              "w-4 h-4 shrink-0 transition-all duration-300",
-              hovered
-                ? "text-primary translate-x-0.5 -translate-y-0.5"
-                : "text-[#999]/40",
-            )}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-            />
-          </svg>
-        </div>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+          />
+        </svg>
       </div>
     </motion.div>
   );
