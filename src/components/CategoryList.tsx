@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -22,88 +22,45 @@ interface CategoryListProps {
 }
 
 export default function CategoryList({ items, className }: CategoryListProps) {
-  const [hoveredId, setHoveredId] = useState<string | number | null>(null);
-
   return (
     <motion.div
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      className={cn("space-y-3", className)}
+      className={cn("divide-y divide-white/[0.06]", className)}
     >
       {items.map((item) => {
-        const isHovered = hoveredId === item.id;
-
         const card = (
-          <div
-            className={cn(
-              "relative overflow-hidden border transition-all duration-300 ease-in-out cursor-pointer",
-              isHovered
-                ? "h-32 border-primary shadow-lg shadow-primary/20 bg-primary/[0.04]"
-                : "h-24 border-white/[0.06] hover:border-primary/40 bg-surface/40"
-            )}
-          >
-            {/* Corner brackets on hover */}
-            {isHovered && (
-              <>
-                <div className="absolute top-3 left-3 w-6 h-6">
-                  <div className="absolute top-0 left-0 w-4 h-[1px] bg-primary" />
-                  <div className="absolute top-0 left-0 w-[1px] h-4 bg-primary" />
-                </div>
-                <div className="absolute bottom-3 right-3 w-6 h-6">
-                  <div className="absolute bottom-0 right-0 w-4 h-[1px] bg-primary" />
-                  <div className="absolute bottom-0 right-0 w-[1px] h-4 bg-primary" />
-                </div>
-              </>
-            )}
-
-            {/* Content */}
-            <div className="flex items-center justify-between h-full px-6 md:px-8">
-              <div className="flex items-center gap-5 flex-1">
-                {item.icon && (
-                  <span
-                    className={cn(
-                      "transition-colors duration-300",
-                      isHovered ? "text-primary" : "text-muted-dark"
-                    )}
-                  >
-                    {item.icon}
-                  </span>
+          <div className="group/row flex items-center justify-between py-7 md:py-8 px-2 md:px-4 transition-colors duration-300 hover:bg-white/[0.02] cursor-pointer">
+            {/* Left: number + title */}
+            <div className="flex items-center gap-6 md:gap-8">
+              {item.icon && (
+                <span className="text-muted-dark text-sm w-6 text-right">
+                  {item.icon}
+                </span>
+              )}
+              <h3
+                className={cn(
+                  "font-serif tracking-wide text-foreground transition-colors duration-300",
+                  item.featured
+                    ? "text-2xl md:text-3xl"
+                    : "text-xl md:text-2xl",
                 )}
-                <div>
-                  <h3
-                    className={cn(
-                      "font-serif tracking-wide transition-colors duration-300",
-                      item.featured
-                        ? "text-2xl md:text-3xl"
-                        : "text-xl md:text-2xl",
-                      isHovered ? "text-primary-light" : "text-foreground"
-                    )}
-                  >
-                    {item.title}
-                  </h3>
-                  {item.subtitle && (
-                    <p
-                      className={cn(
-                        "mt-1 text-sm transition-colors duration-300",
-                        isHovered ? "text-foreground/80" : "text-muted-dark"
-                      )}
-                    >
-                      {item.subtitle}
-                    </p>
-                  )}
-                </div>
-              </div>
+              >
+                {item.title}
+              </h3>
+            </div>
 
-              {/* Arrow on hover */}
-              <motion.svg
-                initial={{ opacity: 0, x: -8 }}
-                animate={
-                  isHovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }
-                }
-                transition={{ duration: 0.2 }}
-                className="w-5 h-5 text-primary shrink-0"
+            {/* Right: category + arrow */}
+            <div className="flex items-center gap-6 md:gap-8">
+              {item.subtitle && (
+                <span className="hidden sm:block text-sm text-gray-500 uppercase tracking-wider">
+                  {item.subtitle}
+                </span>
+              )}
+              <svg
+                className="w-5 h-5 text-gray-600 group-hover/row:text-primary group-hover/row:translate-x-1 group-hover/row:-translate-y-1 transition-all duration-300 shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -114,7 +71,7 @@ export default function CategoryList({ items, className }: CategoryListProps) {
                   strokeLinejoin="round"
                   d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
                 />
-              </motion.svg>
+              </svg>
             </div>
           </div>
         );
@@ -123,9 +80,6 @@ export default function CategoryList({ items, className }: CategoryListProps) {
           <motion.div
             key={item.id}
             variants={staggerItem}
-            className="relative group"
-            onMouseEnter={() => setHoveredId(item.id)}
-            onMouseLeave={() => setHoveredId(null)}
             onClick={item.onClick}
           >
             {item.href ? (
