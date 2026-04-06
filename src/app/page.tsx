@@ -135,6 +135,8 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
       {/* About Preview */}
       <section className="py-28 md:py-36 bg-black">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -182,6 +184,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* Library Preview */}
       <section className="py-28 md:py-36 bg-black">
@@ -249,6 +253,8 @@ export default function Home() {
           </StaggerContainer>
         </div>
       </section>
+
+      <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* CTA */}
       <section className="py-28 md:py-36 bg-black relative overflow-hidden">
