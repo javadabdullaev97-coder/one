@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode, type MouseEvent } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -24,16 +24,6 @@ function CategoryRow({ item, index }: { item: CategoryItem; index: number }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const inView = useInView(rowRef, { once: true, margin: "-80px" });
   const [hovered, setHovered] = useState(false);
-  const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
-
-  function handleMouse(e: MouseEvent) {
-    if (!rowRef.current) return;
-    const rect = rowRef.current.getBoundingClientRect();
-    setGlowPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  }
 
   return (
     <motion.div
@@ -49,29 +39,13 @@ function CategoryRow({ item, index }: { item: CategoryItem; index: number }) {
         delay: index * 0.15,
         ease: [0.16, 1, 0.3, 1],
       }}
-      onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex items-center justify-between py-8 md:py-10 px-4 md:px-6 overflow-hidden cursor-pointer border-b border-white/10"
+      className={cn(
+        "relative flex items-center justify-between py-8 md:py-10 px-4 md:px-6 cursor-pointer border-b border-white/10 transition-all duration-500",
+        hovered && "bg-white/[0.03] shadow-[inset_0_0_60px_rgba(255,255,255,0.03)]",
+      )}
     >
-      {/* Cursor-following glow */}
-      <div
-        className="absolute pointer-events-none rounded-full"
-        style={{
-          left: glowPos.x,
-          top: glowPos.y,
-          width: 600,
-          height: 600,
-          marginLeft: -300,
-          marginTop: -300,
-          opacity: hovered ? 1 : 0,
-          transform: `scale(${hovered ? 1 : 0})`,
-          transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 30%, transparent 60%)",
-          zIndex: 0,
-        }}
-      />
 
       {/* Animated left accent line */}
       <div
