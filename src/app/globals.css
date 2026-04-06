@@ -29,6 +29,8 @@
   --color-muted-dark: var(--muted-dark);
   --color-border: var(--border);
   --color-border-light: var(--border-light);
+  --color-card: #000000;
+  --color-card-foreground: var(--foreground);
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Shield, Users, Lightbulb, Target, Handshake } from "lucide-react";
 import { useEffect, useState } from "react";
 import AnimatedSection, {
   FadeIn,
@@ -17,6 +17,65 @@ import CosmicParallaxBg from "@/components/CosmicParallaxBg";
 import CategoryList from "@/components/CategoryList";
 import ClientsBar from "@/components/ClientsBar";
 import { servicesData } from "@/lib/services";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
+
+const firmValues = [
+  {
+    id: 1,
+    title: "One-Stop Shop",
+    date: "",
+    content: "Tax, legal, finance, HR, and marketing — all under one roof. No need to juggle multiple firms. One partner, one point of contact, complete coverage.",
+    category: "Core Value",
+    icon: Target,
+    relatedIds: [2, 3],
+    status: "completed" as const,
+    energy: 100,
+  },
+  {
+    id: 2,
+    title: "Client-First",
+    date: "",
+    content: "Every engagement is tailored to your business. We listen before we advise, and we measure our success by yours. Your goals become our mission.",
+    category: "Philosophy",
+    icon: Handshake,
+    relatedIds: [1, 5],
+    status: "completed" as const,
+    energy: 95,
+  },
+  {
+    id: 3,
+    title: "Local Expertise",
+    date: "",
+    content: "Deep knowledge of Uzbekistan's regulatory landscape and Central Asian markets. We navigate the complexities so you can focus on growth.",
+    category: "Advantage",
+    icon: Lightbulb,
+    relatedIds: [1, 4],
+    status: "completed" as const,
+    energy: 90,
+  },
+  {
+    id: 4,
+    title: "Trusted Team",
+    date: "",
+    content: "A multidisciplinary team of seasoned professionals across tax, law, finance, and consulting. Coordinated expertise, unified strategy.",
+    category: "Strength",
+    icon: Users,
+    relatedIds: [3, 5],
+    status: "completed" as const,
+    energy: 85,
+  },
+  {
+    id: 5,
+    title: "Integrity",
+    date: "",
+    content: "Transparency and ethical standards are non-negotiable. We build relationships on trust, delivering honest counsel even when it's not the easiest path.",
+    category: "Foundation",
+    icon: Shield,
+    relatedIds: [2, 4],
+    status: "completed" as const,
+    energy: 100,
+  },
+];
 
 const stats = [
   { value: 8, suffix: "+", label: "Years" },
@@ -137,51 +196,35 @@ export default function Home() {
 
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      {/* About Preview */}
+      {/* About Preview — Orbital Values */}
       <section className="py-28 md:py-36 bg-black">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <AnimatedSection>
+          <AnimatedSection>
+            <div className="text-center mb-8">
               <p className="tracking-luxury text-muted-dark mb-4">The Firm</p>
               <TextReveal
-                text="A tradition of precision & trust"
+                text="What we stand for"
                 as="h2"
-                className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-8"
+                className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-4"
               />
               <RevealLine delay={0.1}>
-                <p className="text-muted leading-relaxed mb-6">
-                  Founded in 2016, Advizen Consulting has grown into one of
-                  Uzbekistan&apos;s most trusted integrated advisory firms. We serve as
-                  the single point of contact for businesses navigating the
-                  complexities of Central Asian markets.
+                <p className="text-muted leading-relaxed max-w-xl mx-auto">
+                  Click each node to explore our core values
                 </p>
               </RevealLine>
-              <RevealLine delay={0.2}>
-                <p className="text-muted leading-relaxed mb-10">
-                  Our multidisciplinary approach ensures that every aspect of your
-                  business — from tax and compliance to talent and brand — receives
-                  coordinated, expert attention.
-                </p>
-              </RevealLine>
+            </div>
+          </AnimatedSection>
+
+          <RadialOrbitalTimeline timelineData={firmValues} />
+
+          <AnimatedSection delay={0.3}>
+            <div className="flex justify-center mt-8">
               <MagneticButton variant="outline" as="a" href="/about">
                 About the firm
                 <ArrowRight className="w-4 h-4" />
               </MagneticButton>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <GlassCard className="p-10 md:p-14" hover={false}>
-                <blockquote className="font-serif text-2xl md:text-3xl text-foreground/90 leading-relaxed italic mb-8">
-                  &ldquo;We don&apos;t just advise — we integrate into the fabric
-                  of your operations.&rdquo;
-                </blockquote>
-                <div className="w-12 h-px bg-primary mb-4" />
-                <p className="tracking-luxury text-muted-dark">
-                  Advizen Consulting
-                </p>
-              </GlassCard>
-            </AnimatedSection>
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

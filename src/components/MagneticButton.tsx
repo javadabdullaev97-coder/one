@@ -48,13 +48,13 @@ export default function MagneticButton({
       {/* Cursor-following glow */}
       <span
         className={cn(
-          "absolute w-[200px] h-[200px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 opacity-50 transition-transform duration-300 ease-out",
-          hovered ? "scale-125" : "scale-0",
+          "absolute w-[250px] h-[250px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out",
+          hovered ? "scale-125 opacity-100" : "scale-0 opacity-0",
         )}
         style={{
           left: glowPos.x,
           top: glowPos.y,
-          background: "radial-gradient(circle, rgba(200,200,200,0.15) 10%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)",
           zIndex: 0,
         }}
       />
