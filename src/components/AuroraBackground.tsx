@@ -20,60 +20,73 @@ export default function AuroraBackground({
         className,
       )}
     >
-      {/* Aurora glow — large animated blobs */}
-      <motion.div
-        className="absolute top-[-40%] left-[-20%] w-[70%] h-[140%] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(139,32,32,0.45) 0%, rgba(99,13,13,0.2) 40%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-        animate={{
-          x: ["0%", "15%", "0%"],
-          y: ["0%", "10%", "0%"],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        aria-hidden="true"
-      />
+      {/* Aurora Gradient Background */}
+      <div className="absolute inset-0 overflow-hidden opacity-40" aria-hidden="true">
+        <motion.div
+          className="absolute inset-[-100%]"
+          style={{
+            background: `
+              repeating-linear-gradient(100deg,
+                #B22222 10%,
+                #8B0000 15%,
+                #DC143C 20%,
+                #B22222 25%,
+                #A0153E 30%)
+            `,
+            backgroundSize: "300% 100%",
+            filter: "blur(80px)",
+          }}
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute inset-[-10px]"
+          style={{
+            background: `
+              repeating-linear-gradient(100deg,
+                rgba(178, 34, 34, 0.1) 0%,
+                rgba(178, 34, 34, 0.1) 7%,
+                transparent 10%,
+                transparent 12%,
+                rgba(178, 34, 34, 0.1) 16%),
+              repeating-linear-gradient(100deg,
+                #B22222 10%,
+                #8B0000 15%,
+                #DC143C 20%,
+                #B22222 25%,
+                #A0153E 30%)
+            `,
+            backgroundSize: "200%, 100%",
+            backgroundPosition: "50% 50%, 50% 50%",
+            mixBlendMode: "difference",
+          }}
+          animate={{
+            backgroundPosition: [
+              "50% 50%, 50% 50%",
+              "100% 50%, 150% 50%",
+              "50% 50%, 50% 50%",
+            ],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </div>
 
-      <motion.div
-        className="absolute top-[-30%] right-[-15%] w-[60%] h-[130%] rounded-full"
+      {/* Vignette Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(122,26,26,0.35) 0%, rgba(74,8,8,0.15) 40%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-        animate={{
-          x: ["0%", "-12%", "0%"],
-          y: ["0%", "8%", "0%"],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        aria-hidden="true"
-      />
-
-      <motion.div
-        className="absolute bottom-[-20%] left-[20%] w-[50%] h-[80%] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(139,32,32,0.3) 0%, rgba(58,6,6,0.1) 50%, transparent 70%)",
-          filter: "blur(50px)",
-        }}
-        animate={{
-          x: ["0%", "10%", "0%"],
-          y: ["0%", "-10%", "0%"],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
+            "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%)",
         }}
         aria-hidden="true"
       />
