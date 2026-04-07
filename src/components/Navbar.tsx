@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -52,15 +54,27 @@ export default function Navbar() {
 
         {/* Desktop Nav — centered */}
         <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="hover-line text-[13px] font-medium tracking-wide text-muted hover:text-foreground transition-colors cursor-pointer"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative hover-line text-[13px] font-medium tracking-wide transition-colors cursor-pointer ${
+                  isActive ? "text-foreground" : "text-muted hover:text-foreground"
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute bottom-[-2px] left-0 right-0 h-px bg-primary"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Inquire button — right side */}
@@ -100,7 +114,9 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block py-3 text-foreground/70 hover:text-foreground font-medium tracking-wide transition-colors border-b border-white/[0.06] cursor-pointer"
+                  className={`block py-3 font-medium tracking-wide transition-colors border-b border-white/[0.06] cursor-pointer ${
+                    pathname === link.href ? "text-foreground" : "text-foreground/70 hover:text-foreground"
+                  }`}
                 >
                   {link.label}
                 </Link>

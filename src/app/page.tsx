@@ -210,13 +210,8 @@ export default function Home() {
                 <TextReveal
                   text="What we stand for"
                   as="h2"
-                  className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-4"
+                  className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight"
                 />
-                <RevealLine delay={0.1}>
-                  <p className="text-muted leading-relaxed max-w-xl mx-auto">
-                    Click each node to explore our core values
-                  </p>
-                </RevealLine>
               </div>
             </AnimatedSection>
           </Parallax>
