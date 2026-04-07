@@ -203,7 +203,7 @@ export default function RadialOrbitalTimeline({
                 className="absolute cursor-pointer"
                 style={{
                   ...nodeStyle,
-                  transition: autoRotate ? "opacity 0.3s ease" : "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease",
+                  transition: autoRotate ? "opacity 0.3s ease" : "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease",
                   willChange: "transform, opacity",
                 }}
                 onClick={(e) => {
