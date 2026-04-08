@@ -201,32 +201,43 @@ export default function Home() {
       {/* About Preview — Orbital Values */}
       <section className="py-20 md:py-28 bg-black">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Parallax offset={15}>
-            <AnimatedSection>
-              <div className="text-center mb-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left — Text Card */}
+            <div>
+              <AnimatedSection>
                 <p className="tracking-luxury text-muted-dark mb-4">The Firm</p>
                 <TextReveal
                   text="What we stand for"
                   as="h2"
-                  className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-4"
+                  className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-6"
                 />
-                <p className="text-white/50 leading-relaxed max-w-xl mx-auto text-sm">
-                  Tap a node to explore our core values
+              </AnimatedSection>
+              <AnimatedSection delay={0.15}>
+                <p className="text-white/50 leading-relaxed mb-4">
+                  Advizen is a one-stop business advisory partner in Uzbekistan — offering integrated
+                  consulting across tax, legal, finance, HR, and marketing under a single point of contact.
                 </p>
-              </div>
-            </AnimatedSection>
-          </Parallax>
-
-          <RadialOrbitalTimeline timelineData={firmValues} />
-
-          <AnimatedSection delay={0.3}>
-            <div className="flex justify-center mt-8">
-              <MagneticButton variant="outline" as="a" href="/about">
-                About the firm
-                <ArrowRight className="w-4 h-4" />
-              </MagneticButton>
+                <p className="text-white/40 leading-relaxed mb-10">
+                  We combine deep local expertise with international standards, helping businesses
+                  navigate Central Asia&apos;s regulatory landscape while focusing on growth.
+                </p>
+              </AnimatedSection>
+              <AnimatedSection delay={0.3}>
+                <p className="text-white/30 text-sm mb-8 italic">
+                  Tap a node to explore our core values →
+                </p>
+                <MagneticButton variant="outline" as="a" href="/about">
+                  About the firm
+                  <ArrowRight className="w-4 h-4" />
+                </MagneticButton>
+              </AnimatedSection>
             </div>
-          </AnimatedSection>
+
+            {/* Right — Orbital Timeline */}
+            <div>
+              <RadialOrbitalTimeline timelineData={firmValues} />
+            </div>
+          </div>
         </div>
       </section>
 
