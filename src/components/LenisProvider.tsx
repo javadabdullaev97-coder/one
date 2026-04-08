@@ -7,7 +7,7 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
   return (
     <ReactLenis
       root
-      options={{ lerp: 0.05, smoothWheel: true }}
+      options={{ lerp: 0.12, smoothWheel: true }}
     >
       {children}
     </ReactLenis>
