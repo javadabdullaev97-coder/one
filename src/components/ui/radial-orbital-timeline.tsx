@@ -159,6 +159,7 @@ export default function RadialOrbitalTimeline({
       className="w-full aspect-square max-w-[600px] mx-auto flex items-center justify-center overflow-visible relative"
       ref={containerRef}
       onClick={handleContainerClick}
+      data-lenis-prevent
     >
       <div className="relative w-full h-full flex items-center justify-center">
         <div

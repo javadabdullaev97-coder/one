@@ -28,7 +28,7 @@ export default function GlassCard({
       >
         <div className="glow-card-spinner" />
         <div className="glow-card-backdrop" />
-        <div className={`glow-card-content h-[calc(100%-3px)] ${className}`}>
+        <div className={`glow-card-content ${className}`}>
           <div className="glow-card-glow" />
           {children}
         </div>
