@@ -229,7 +229,7 @@ export default function RadialOrbitalTimeline({
                       ? "border-white/30 animate-pulse"
                       : "border-white/20"
                   }
-                  transition-all duration-300 transform
+                  transition-colors duration-300
                   ${isExpanded ? "scale-125" : ""}
                   ${isPulsing ? "animate-pulse" : ""}
                   ${!isExpanded && !isRelated && !isPulsing && !activeNodeId ? "orbital-node-idle" : ""}
