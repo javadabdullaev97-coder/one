@@ -329,9 +329,9 @@ body {
   top: 50%;
   left: 50%;
   width: 200px;
-  height: 400px;
+  height: 800px;
   margin-left: -100px;
-  margin-top: -200px;
+  margin-top: -400px;
   background: linear-gradient(
     90deg,
     transparent 10%,
