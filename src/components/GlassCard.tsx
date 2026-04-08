@@ -24,10 +24,11 @@ export default function GlassCard({
         viewport={{ once: true, margin: "-5%" }}
         whileHover={{ y: -4, scale: 1.02 }}
         transition={{ duration: 0.3 }}
-        className="glow-card"
+        className="glow-card h-full"
       >
         <div className="glow-card-spinner" />
-        <div className={`glow-card-content ${className}`}>
+        <div className="glow-card-backdrop" />
+        <div className={`glow-card-content h-[calc(100%-3px)] ${className}`}>
           <div className="glow-card-glow" />
           {children}
         </div>
