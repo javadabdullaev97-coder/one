@@ -30,6 +30,7 @@ export default function RadialOrbitalTimeline({
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const rotationAngleRef = useRef<number>(0);
   const [rotationAngle, setRotationAngle] = useState<number>(0);
+  const [isVisible, setIsVisible] = useState(false);
   const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
   const [centerOffset] = useState<{ x: number; y: number }>({
     x: 0,
@@ -82,19 +83,29 @@ export default function RadialOrbitalTimeline({
     });
   };
 
+  // Pause all animation when component is off-screen
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     let frameId: number;
     let lastTime: number | null = null;
     let frameCount = 0;
     const speed = 6; // degrees per second
 
-    if (autoRotate) {
+    if (autoRotate && isVisible) {
       const animate = (time: number) => {
         if (lastTime !== null) {
           const delta = (time - lastTime) / 1000;
           rotationAngleRef.current = (rotationAngleRef.current + speed * delta) % 360;
           frameCount++;
-          // Sync to React state every 3 frames to reduce re-renders
           if (frameCount % 3 === 0) {
             setRotationAngle(rotationAngleRef.current);
           }
@@ -108,7 +119,7 @@ export default function RadialOrbitalTimeline({
     return () => {
       if (frameId) cancelAnimationFrame(frameId);
     };
-  }, [autoRotate]);
+  }, [autoRotate, isVisible]);
 
   const centerViewOnNode = (nodeId: number) => {
     if (!nodeRefs.current[nodeId]) return;
@@ -166,7 +177,6 @@ export default function RadialOrbitalTimeline({
       className="w-full aspect-square max-w-[600px] mx-auto flex items-center justify-center overflow-visible relative"
       ref={containerRef}
       onClick={handleContainerClick}
-      data-lenis-prevent
     >
       <div className="relative w-full h-full flex items-center justify-center">
         <div

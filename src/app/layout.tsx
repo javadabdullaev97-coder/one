@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import LenisProvider from "@/components/LenisProvider";
+
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -76,7 +76,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col relative">
-        <LenisProvider>
           <ScrollProgress />
           <Navbar />
           <main className="flex-1 relative z-10">{children}</main>
@@ -84,7 +83,6 @@ export default function RootLayout({
             <Footer />
           </div>
           <ScrollToTop />
-        </LenisProvider>
       </body>
     </html>
   );
