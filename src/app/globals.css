@@ -97,6 +97,24 @@ body {
   width: 100%;
 }
 
+/* ── Clients Marquee ── */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-items {
+  display: flex;
+  align-items: center;
+  animation: marqueeScroll 30s linear infinite;
+}
+
 /* ── Cosmic Parallax Stars ── */
 .cosmic-parallax-container {
   background: radial-gradient(ellipse at bottom, #1a0505 0%, #0D0D0D 100%);

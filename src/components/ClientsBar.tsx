@@ -1,26 +1,18 @@
 "use client";
 
-import AutoScroll from "embla-carousel-auto-scroll";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-
-interface ClientLogo {
-  id: string;
-  name: string;
-}
-
-const clients: ClientLogo[] = [
-  { id: "1", name: "Artel Electronics" },
-  { id: "2", name: "UzAuto Motors" },
-  { id: "3", name: "Hamkorbank" },
-  { id: "4", name: "Ucell" },
-  { id: "5", name: "Orient Group" },
-  { id: "6", name: "Coca-Cola Uzbekistan" },
-  { id: "7", name: "Nestlé Central Asia" },
-  { id: "8", name: "Hilton Tashkent" },
-  { id: "9", name: "PwC Uzbekistan" },
-  { id: "10", name: "Deloitte Central Asia" },
-  { id: "11", name: "EBRD" },
-  { id: "12", name: "IFC" },
+const clients = [
+  "Artel Electronics",
+  "UzAuto Motors",
+  "Hamkorbank",
+  "Ucell",
+  "Orient Group",
+  "Coca-Cola Uzbekistan",
+  "Nestlé Central Asia",
+  "Hilton Tashkent",
+  "PwC Uzbekistan",
+  "Deloitte Central Asia",
+  "EBRD",
+  "IFC",
 ];
 
 export default function ClientsBar() {
@@ -31,28 +23,24 @@ export default function ClientsBar() {
           Trusted by leading organizations
         </p>
       </div>
-      <div className="relative mx-auto flex items-center justify-center lg:max-w-5xl">
-        <Carousel
-          opts={{ loop: true, dragFree: true }}
-          plugins={[AutoScroll({ playOnInit: true, speed: 0.5, stopOnInteraction: false })]}
-        >
-          <CarouselContent className="ml-0">
-            {clients.map((client) => (
-              <CarouselItem
-                key={client.id}
-                className="flex basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
-              >
-                <div className="mx-6 md:mx-10 flex shrink-0 items-center justify-center">
-                  <span className="text-sm md:text-base font-light tracking-[0.1em] text-white/30 hover:text-white transition-colors duration-300 whitespace-nowrap uppercase select-none cursor-default">
-                    {client.name}
-                  </span>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none" />
+      <div className="relative overflow-hidden">
+        <div className="marquee-track">
+          {/* Two copies for seamless loop */}
+          {[0, 1].map((copy) => (
+            <div key={copy} className="marquee-items" aria-hidden={copy === 1}>
+              {clients.map((name) => (
+                <span
+                  key={name}
+                  className="mx-8 md:mx-12 text-sm md:text-base font-light tracking-[0.1em] text-white/30 hover:text-white transition-colors duration-300 whitespace-nowrap uppercase select-none cursor-default"
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
