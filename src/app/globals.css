@@ -302,6 +302,16 @@ body {
   }
 }
 
+/* Orbital node idle hint — gentle breathe */
+@keyframes nodeBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.orbital-node-idle {
+  animation: nodeBreath 3s ease-in-out infinite;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {

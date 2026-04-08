@@ -52,7 +52,7 @@ export default function Footer() {
                 ADVIZEN
               </span>
             </div>
-            <p className="mt-6 text-sm text-muted leading-relaxed max-w-sm">
+            <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-sm">
               Premier business advisory in Uzbekistan. Integrated consulting
               across tax, legal, finance, HR, and marketing — a single point of
               contact for your entire operation.
@@ -61,7 +61,7 @@ export default function Footer() {
               {/* Phone with Icon */}
               <a
                 href="tel:+998334884888"
-                className="flex items-center gap-3 text-sm text-muted hover:text-foreground transition-colors cursor-pointer w-fit"
+                className="flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer w-fit"
               >
                 <Phone className="w-4 h-4 text-primary" />
                 +998 (33) 488 48 88
@@ -69,7 +69,7 @@ export default function Footer() {
               {/* Email with Icon */}
               <a
                 href="mailto:info@advizenco.com"
-                className="flex items-center gap-3 text-sm text-muted hover:text-foreground transition-colors cursor-pointer w-fit"
+                className="flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer w-fit"
               >
                 <Mail className="w-4 h-4 text-primary" />
                 info@advizenco.com
@@ -98,7 +98,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted hover:text-foreground transition-colors cursor-pointer"
+                      className="text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer"
                     >
                       {link.label}
                     </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
             className="md:col-span-3"
           >
             <h3 className="tracking-luxury text-muted-dark mb-6">Newsletter</h3>
-            <p className="text-sm text-muted mb-4">
+            <p className="text-sm text-white/50 mb-4">
               Insights on doing business in Central Asia.
             </p>
             <form className="space-y-3">

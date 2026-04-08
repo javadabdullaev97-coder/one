@@ -232,6 +232,7 @@ export default function RadialOrbitalTimeline({
                   transition-all duration-300 transform
                   ${isExpanded ? "scale-125" : ""}
                   ${isPulsing ? "animate-pulse" : ""}
+                  ${!isExpanded && !isRelated && !isPulsing && !activeNodeId ? "orbital-node-idle" : ""}
                 `}
                 >
                   <Icon size={20} />
