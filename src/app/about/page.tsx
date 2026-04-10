@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, useState, type ReactNode } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
@@ -74,178 +82,248 @@ const industries = [
   "Dairy & Food", "Logistics", "Retail", "Legal Services",
 ];
 
-/* ── Principles Pinned Section ─────────────────────────── */
+/* ── Principles: Pinned Scrollytelling ────────────────────
 
-function PrincipleItem({
+   Implementation:
+   - The section is N * 100vh tall; a sticky child fills the viewport and
+     stays pinned for the full (N-1)*100vh of scroll distance.
+   - useScroll tracks progress (0 → 1) through the section.
+   - Active index is derived from progress and drives the left label swap.
+   - Each card on the right is absolutely positioned inside a container and
+     reads scroll progress directly via useTransform, sliding up from below
+     and covering the previous card. Once entered, it stays at y:0 and the
+     next card covers it — producing a stacked reveal.
+   - Respects prefers-reduced-motion by rendering a plain vertical list. */
+
+function PrinciplesPinned() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const shouldReduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  const [active, setActive] = useState(0);
+  const N = principles.length;
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const idx = Math.max(0, Math.min(N - 1, Math.floor(v * N)));
+    setActive((prev) => (prev === idx ? prev : idx));
+  });
+
+  if (shouldReduce) return <PrinciplesFallbackList />;
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative bg-black"
+      style={{ height: `${N * 100}vh` }}
+      aria-label="Our principles"
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Ambient glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="ambient-glow ambient-glow-warm w-[700px] h-[700px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
+        </div>
+
+        <div className="relative h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start lg:items-center">
+              {/* Left — pinned label, stays put while cards scroll */}
+              <div className="lg:col-span-5">
+                <div className="mb-8 lg:mb-14">
+                  <p className="tracking-luxury text-muted-dark mb-3">Our Principles</p>
+                  <h2 className="font-serif text-xl md:text-2xl text-white/65 leading-snug max-w-xs">
+                    What guides every engagement
+                  </h2>
+                </div>
+
+                <p className="font-mono text-[11px] text-primary-light tracking-[0.2em] mb-4">
+                  PRINCIPLE {principles[active].num} /{" "}
+                  {String(N).padStart(2, "0")}
+                </p>
+                <div className="relative min-h-[52px] md:min-h-[64px]">
+                  <AnimatePresence mode="wait">
+                    <motion.h3
+                      key={active}
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-x-0 font-serif text-3xl md:text-4xl text-foreground tracking-tight leading-[1.1]"
+                    >
+                      {principles[active].title}
+                    </motion.h3>
+                  </AnimatePresence>
+                </div>
+
+                <div className="mt-10 flex items-center gap-3">
+                  {principles.map((_, j) => (
+                    <button
+                      key={j}
+                      type="button"
+                      aria-label={`Go to principle ${j + 1}`}
+                      onClick={() => {
+                        const el = sectionRef.current;
+                        if (!el) return;
+                        // Scroll to the start of this principle's segment
+                        const rect = el.getBoundingClientRect();
+                        const top = window.scrollY + rect.top + (el.offsetHeight * j) / N;
+                        window.scrollTo({ top, behavior: "smooth" });
+                      }}
+                      className="group flex items-center"
+                    >
+                      <span
+                        className={cn(
+                          "h-px transition-all duration-500 ease-out",
+                          active === j
+                            ? "w-12 bg-primary-light"
+                            : "w-6 bg-white/15 group-hover:bg-white/40",
+                        )}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right — stacking cards */}
+              <div className="lg:col-span-7">
+                <div className="relative h-[55vh] md:h-[62vh] lg:h-[68vh]">
+                  {principles.map((p, i) => (
+                    <PrincipleStackCard
+                      key={p.num}
+                      item={p}
+                      index={i}
+                      total={N}
+                      scrollYProgress={scrollYProgress}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PrincipleStackCard({
   item,
   index,
-  onInView,
+  total,
+  scrollYProgress,
 }: {
   item: (typeof principles)[number];
   index: number;
-  onInView: (i: number) => void;
+  total: number;
+  scrollYProgress: MotionValue<number>;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  // Detection band = middle 30% of the viewport. An item is "active" while
-  // its center is near the viewport center.
-  const inView = useInView(ref, { margin: "-35% 0px -35% 0px" });
-  const shouldReduce = useReducedMotion();
+  const segment = 1 / total;
+  const start = index * segment;
+  const entryEnd = start + segment * 0.55;
 
-  useEffect(() => {
-    if (inView) onInView(index);
-  }, [inView, index, onInView]);
+  // Card 0 is visible from the start. Subsequent cards slide up from below
+  // during their entry window, then stay at y:0 (covered by the next card).
+  const y = useTransform(
+    scrollYProgress,
+    [Math.max(0, start - 0.001), start, entryEnd],
+    index === 0 ? ["0%", "0%", "0%"] : ["106%", "100%", "0%"],
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [Math.max(0, start - 0.02), start, entryEnd],
+    index === 0 ? [1, 1, 1] : [0, 0.15, 1],
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [start, entryEnd],
+    [index === 0 ? 1 : 0.97, 1],
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      initial={shouldReduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
-      whileInView={shouldReduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20% 0px" }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-16 md:py-24 first:pt-0 last:pb-0 border-b border-white/[0.06] last:border-b-0"
+    <motion.article
+      style={{ y, opacity, scale, zIndex: index + 1 }}
+      className="absolute inset-0 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl p-7 md:p-10 lg:p-12 overflow-hidden shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)]"
     >
-      {/* Per-principle header — on mobile shows num + title; on desktop the
-          overlay owns the title, so we keep only a subtle numbered marker to
-          anchor the column without duplicating the big display text. */}
-      <div className="mb-6 flex items-baseline gap-4">
+      {/* Decorative top accent */}
+      <span
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-light/40 to-transparent"
+        aria-hidden="true"
+      />
+
+      <div className="flex items-center justify-between mb-7 md:mb-9 pb-5 border-b border-white/[0.06]">
         <span className="font-mono text-[11px] text-primary-light tracking-[0.2em]">
           {item.num}
         </span>
-        <h3 className="font-serif text-2xl text-foreground tracking-wide lg:sr-only">
-          {item.title}
-        </h3>
+        <span className="font-mono text-[11px] text-white/30 tracking-[0.2em]">
+          {String(index + 1).padStart(2, "0")} /{" "}
+          {String(total).padStart(2, "0")}
+        </span>
       </div>
-      <p className="font-serif italic text-xl md:text-2xl text-foreground/90 leading-snug mb-6 max-w-xl">
+
+      <p className="font-serif italic text-xl md:text-2xl lg:text-[1.625rem] text-foreground/90 leading-snug mb-7 md:mb-9 max-w-2xl">
         {item.summary}
       </p>
-      <div className="space-y-4 max-w-xl">
+
+      <div className="space-y-4 md:space-y-5 max-w-2xl">
         {item.body.map((p, i) => (
-          <p key={i} className="text-[15px] text-white/55 leading-relaxed">
+          <p
+            key={i}
+            className="text-[14px] md:text-[15px] text-white/55 leading-relaxed"
+          >
             {p}
           </p>
         ))}
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
-/**
- * Principles section with a "pinned" label on the left that updates as you
- * scroll through the principles on the right.
- *
- * Implementation note: we avoid `position: sticky` here because it silently
- * breaks under a number of common conditions (ancestor overflow-hidden, CSS
- * grid row stretching, transform-ed ancestors, etc.). Instead we render a
- * `position: fixed` overlay that appears only while the grid is engaged,
- * toggled by an IntersectionObserver on the content column. This is
- * bulletproof across browsers and parent layouts.
- */
-function PrinciplesPinned() {
-  const [active, setActive] = useState(0);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [pinned, setPinned] = useState(false);
-
-  useEffect(() => {
-    const el = gridRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setPinned(entry.isIntersecting),
-      // Detection zone = middle 60% of the viewport. The overlay appears
-      // once the principles grid enters that zone and disappears when it
-      // fully leaves it.
-      { rootMargin: "-20% 0px -20% 0px", threshold: 0 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const activePrinciple = principles[active];
-
+/** Reduced-motion fallback — plain vertical list. */
+function PrinciplesFallbackList() {
   return (
-    <section className="py-24 md:py-36 bg-black relative">
+    <section className="py-24 md:py-32 bg-black relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
       </div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <AnimatedSection className="mb-16 md:mb-24">
-          <p className="tracking-luxury text-muted-dark mb-4">Our Principles</p>
-          <TextReveal
-            text="What guides every engagement"
-            as="h2"
-            className="heading-luxury text-3xl md:text-5xl text-foreground"
-          />
-        </AnimatedSection>
-
-        {/* Grid — left column is just a layout spacer on desktop; the
-            visible left label is rendered as a fixed overlay below. */}
-        <div
-          ref={gridRef}
-          className="grid lg:grid-cols-12 gap-8 lg:gap-16"
-        >
-          <div className="hidden lg:block lg:col-span-5" aria-hidden="true" />
-          <div className="lg:col-span-7">
-            {principles.map((p, i) => (
-              <PrincipleItem key={p.num} item={p} index={i} onInView={setActive} />
-            ))}
-          </div>
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+        <div className="mb-16">
+          <p className="tracking-luxury text-muted-dark mb-3">Our Principles</p>
+          <h2 className="heading-luxury text-3xl md:text-4xl text-foreground leading-tight">
+            What guides every engagement
+          </h2>
         </div>
-      </div>
-
-      {/* Fixed pinned label — only rendered on lg+ screens and only while the
-          grid is within the detection zone. Uses the same max-w-7xl container
-          and 5/12 column width so it visually aligns with the grid's left
-          column. pointer-events: none so it never blocks scrolling. */}
-      <div
-        className={cn(
-          "fixed inset-0 pointer-events-none z-20 hidden lg:flex items-center transition-opacity duration-500",
-          pinned ? "opacity-100" : "opacity-0",
-        )}
-        aria-hidden={!pinned}
-      >
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="lg:w-5/12 lg:pr-16">
-            <div className="relative h-[260px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activePrinciple.num}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0"
-                >
-                  <p className="font-mono text-[11px] text-primary-light tracking-[0.2em] mb-5">
-                    PRINCIPLE {activePrinciple.num} /{" "}
-                    {String(principles.length).padStart(2, "0")}
-                  </p>
-                  <h3 className="font-serif text-[clamp(2.25rem,4.5vw,4rem)] leading-[1] text-foreground tracking-tight">
-                    {activePrinciple.title}
-                  </h3>
-                  <p className="font-serif italic text-base text-white/55 mt-5 max-w-md leading-relaxed">
-                    {activePrinciple.summary}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Progress ticks — always visible, independent of the
-                  AnimatePresence swap so there's no stutter. */}
-              <div className="absolute left-0 bottom-0 flex items-center gap-3">
-                {principles.map((_, j) => (
-                  <span
+        <div className="space-y-16">
+          {principles.map((p, i) => (
+            <article key={p.num}>
+              <p className="font-mono text-[11px] text-primary-light tracking-[0.2em] mb-3">
+                PRINCIPLE {p.num} /{" "}
+                {String(principles.length).padStart(2, "0")}
+              </p>
+              <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide mb-5">
+                {p.title}
+              </h3>
+              <p className="font-serif italic text-xl text-foreground/90 mb-5 max-w-xl leading-snug">
+                {p.summary}
+              </p>
+              <div className="space-y-4 max-w-xl">
+                {p.body.map((para, j) => (
+                  <p
                     key={j}
-                    className={cn(
-                      "h-px transition-all duration-500 ease-out",
-                      active === j
-                        ? "w-12 bg-primary-light"
-                        : "w-6 bg-white/15",
-                    )}
-                  />
+                    className="text-[15px] text-white/55 leading-relaxed"
+                  >
+                    {para}
+                  </p>
                 ))}
               </div>
-            </div>
-          </div>
+              {i < principles.length - 1 && (
+                <div className="mt-16 h-px bg-white/[0.06]" />
+              )}
+            </article>
+          ))}
         </div>
       </div>
     </section>
