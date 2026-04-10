@@ -86,7 +86,9 @@ function PrincipleItem({
   onInView: (i: number) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  // Detection band = middle 30% of the viewport. An item is "active" while
+  // its center is near the viewport center.
+  const inView = useInView(ref, { margin: "-35% 0px -35% 0px" });
   const shouldReduce = useReducedMotion();
 
   useEffect(() => {
@@ -100,11 +102,16 @@ function PrincipleItem({
       whileInView={shouldReduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20% 0px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 md:py-32 first:pt-0 last:pb-0 border-b border-white/[0.06] last:border-b-0"
+      className="py-16 md:py-24 first:pt-0 last:pb-0 border-b border-white/[0.06] last:border-b-0"
     >
-      <div className="lg:hidden mb-6 flex items-baseline gap-4">
-        <span className="font-mono text-xs text-primary-light">{item.num}</span>
-        <h3 className="font-serif text-2xl text-foreground tracking-wide">
+      {/* Per-principle header — always visible on mobile, and kept as a
+          small marker on desktop so the right column is never anonymous
+          even mid-transition. */}
+      <div className="mb-6 flex items-baseline gap-4">
+        <span className="font-mono text-xs text-primary-light tracking-widest">
+          {item.num}
+        </span>
+        <h3 className="font-serif text-2xl text-foreground tracking-wide lg:text-lg lg:text-white/60 lg:uppercase lg:tracking-[0.2em]">
           {item.title}
         </h3>
       </div>
@@ -126,9 +133,14 @@ function PrinciplesPinned() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-24 md:py-36 bg-black relative overflow-hidden">
-      <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
+    // NOTE: this section intentionally does NOT use overflow-hidden at the
+    // section level — any ancestor overflow-hidden breaks position: sticky.
+    // Ambient glows live inside their own clipped absolute container below.
+    <section className="py-24 md:py-36 bg-black relative">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <AnimatedSection className="mb-16 md:mb-24">
@@ -144,15 +156,15 @@ function PrinciplesPinned() {
           {/* Left — Sticky active principle indicator */}
           <div className="hidden lg:block lg:col-span-5">
             <div className="sticky top-32">
-              <div className="relative h-[340px]">
+              <div className="relative h-[360px]">
                 {principles.map((p, i) => (
                   <motion.div
                     key={p.num}
                     animate={{
                       opacity: active === i ? 1 : 0,
-                      y: active === i ? 0 : 12,
+                      y: active === i ? 0 : 16,
                     }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0"
                   >
                     <p className="font-mono text-xs text-primary-light tracking-widest mb-6">
@@ -161,7 +173,10 @@ function PrinciplesPinned() {
                     <h3 className="font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-foreground tracking-tight">
                       {p.title}
                     </h3>
-                    <div className="mt-8 flex items-center gap-4">
+                    <p className="font-serif italic text-xl text-white/55 mt-6 max-w-md">
+                      {p.summary}
+                    </p>
+                    <div className="mt-10 flex items-center gap-3">
                       {principles.map((_, j) => (
                         <span
                           key={j}
