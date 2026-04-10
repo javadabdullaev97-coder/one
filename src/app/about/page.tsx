@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
@@ -129,13 +129,39 @@ function PrincipleItem({
   );
 }
 
+/**
+ * Principles section with a "pinned" label on the left that updates as you
+ * scroll through the principles on the right.
+ *
+ * Implementation note: we avoid `position: sticky` here because it silently
+ * breaks under a number of common conditions (ancestor overflow-hidden, CSS
+ * grid row stretching, transform-ed ancestors, etc.). Instead we render a
+ * `position: fixed` overlay that appears only while the grid is engaged,
+ * toggled by an IntersectionObserver on the content column. This is
+ * bulletproof across browsers and parent layouts.
+ */
 function PrinciplesPinned() {
   const [active, setActive] = useState(0);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [pinned, setPinned] = useState(false);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setPinned(entry.isIntersecting),
+      // Detection zone = middle 60% of the viewport. The overlay appears
+      // once the principles grid enters that zone and disappears when it
+      // fully leaves it.
+      { rootMargin: "-20% 0px -20% 0px", threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const activePrinciple = principles[active];
 
   return (
-    // NOTE: this section intentionally does NOT use overflow-hidden at the
-    // section level — any ancestor overflow-hidden breaks position: sticky.
-    // Ambient glows live inside their own clipped absolute container below.
     <section className="py-24 md:py-36 bg-black relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
@@ -152,54 +178,73 @@ function PrinciplesPinned() {
           />
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-          {/* Left — Sticky active principle indicator */}
-          <div className="hidden lg:block lg:col-span-5">
-            <div className="sticky top-32">
-              <div className="relative h-[360px]">
-                {principles.map((p, i) => (
-                  <motion.div
-                    key={p.num}
-                    animate={{
-                      opacity: active === i ? 1 : 0,
-                      y: active === i ? 0 : 16,
-                    }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0"
-                  >
-                    <p className="font-mono text-xs text-primary-light tracking-widest mb-6">
-                      PRINCIPLE {p.num} / {String(principles.length).padStart(2, "0")}
-                    </p>
-                    <h3 className="font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-foreground tracking-tight">
-                      {p.title}
-                    </h3>
-                    <p className="font-serif italic text-xl text-white/55 mt-6 max-w-md">
-                      {p.summary}
-                    </p>
-                    <div className="mt-10 flex items-center gap-3">
-                      {principles.map((_, j) => (
-                        <span
-                          key={j}
-                          className={cn(
-                            "h-px transition-all duration-500 ease-out",
-                            active === j
-                              ? "w-12 bg-primary-light"
-                              : "w-6 bg-white/15",
-                          )}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right — Scrolling principles */}
+        {/* Grid — left column is just a layout spacer on desktop; the
+            visible left label is rendered as a fixed overlay below. */}
+        <div
+          ref={gridRef}
+          className="grid lg:grid-cols-12 gap-8 lg:gap-16"
+        >
+          <div className="hidden lg:block lg:col-span-5" aria-hidden="true" />
           <div className="lg:col-span-7">
             {principles.map((p, i) => (
               <PrincipleItem key={p.num} item={p} index={i} onInView={setActive} />
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Fixed pinned label — only rendered on lg+ screens and only while the
+          grid is within the detection zone. Uses the same max-w-7xl container
+          and 5/12 column width so it visually aligns with the grid's left
+          column. pointer-events: none so it never blocks scrolling. */}
+      <div
+        className={cn(
+          "fixed inset-0 pointer-events-none z-20 hidden lg:flex items-center transition-opacity duration-500",
+          pinned ? "opacity-100" : "opacity-0",
+        )}
+        aria-hidden={!pinned}
+      >
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="lg:w-5/12 lg:pr-16">
+            <div className="relative h-[360px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activePrinciple.num}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0"
+                >
+                  <p className="font-mono text-xs text-primary-light tracking-widest mb-6">
+                    PRINCIPLE {activePrinciple.num} /{" "}
+                    {String(principles.length).padStart(2, "0")}
+                  </p>
+                  <h3 className="font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-foreground tracking-tight">
+                    {activePrinciple.title}
+                  </h3>
+                  <p className="font-serif italic text-xl text-white/55 mt-6 max-w-md">
+                    {activePrinciple.summary}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Progress ticks — always visible, independent of the
+                  AnimatePresence swap so there's no stutter. */}
+              <div className="absolute left-0 bottom-0 flex items-center gap-3">
+                {principles.map((_, j) => (
+                  <span
+                    key={j}
+                    className={cn(
+                      "h-px transition-all duration-500 ease-out",
+                      active === j
+                        ? "w-12 bg-primary-light"
+                        : "w-6 bg-white/15",
+                    )}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
