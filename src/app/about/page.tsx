@@ -117,7 +117,7 @@ function PrinciplesPinned() {
     <section
       ref={sectionRef}
       className="relative bg-black"
-      style={{ height: `${N * 100}vh` }}
+      style={{ height: `${N * 75}vh` }}
       aria-label="Our principles"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -127,53 +127,30 @@ function PrinciplesPinned() {
           <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
         </div>
 
-        <div className="relative h-full flex items-center">
+        <div className="relative h-full flex items-start pt-[18vh] md:pt-[20vh]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-              {/* Left — static label, only the title swaps */}
+              {/* Left — minimal: eyebrow + swapping title */}
               <div className="lg:col-span-5">
-                <div className="mb-10 lg:mb-12">
-                  <p className="tracking-luxury text-muted-dark mb-3">Our Principles</p>
-                  <h2 className="font-serif text-xl md:text-2xl text-white/70 leading-snug max-w-xs">
-                    What guides every engagement
-                  </h2>
-                </div>
-
-                <p className="font-mono text-[11px] text-primary-light tracking-[0.2em] mb-4">
-                  PRINCIPLE {current.num} / {String(N).padStart(2, "0")}
-                </p>
-                <div className="relative min-h-[44px] md:min-h-[52px] mb-10">
+                <p className="tracking-luxury text-muted-dark mb-6">Our Principles</p>
+                <div className="relative min-h-[56px] md:min-h-[72px]">
                   <AnimatePresence mode="wait">
                     <motion.h3
                       key={active}
-                      initial={{ opacity: 0, y: 12 }}
+                      initial={{ opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-x-0 font-serif text-2xl md:text-3xl text-foreground tracking-tight leading-[1.1]"
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-x-0 font-serif text-3xl md:text-4xl text-foreground tracking-tight leading-[1.05]"
                     >
                       {current.title}
                     </motion.h3>
                   </AnimatePresence>
                 </div>
-
-                <div className="flex items-center gap-3">
-                  {principles.map((_, j) => (
-                    <span
-                      key={j}
-                      className={cn(
-                        "h-px transition-all duration-500 ease-out",
-                        active === j
-                          ? "w-12 bg-primary-light"
-                          : "w-6 bg-white/15",
-                      )}
-                    />
-                  ))}
-                </div>
               </div>
 
               {/* Right — active principle content, one at a time */}
-              <div className="lg:col-span-7 relative min-h-[360px] md:min-h-[400px]">
+              <div className="lg:col-span-7 relative min-h-[340px] md:min-h-[380px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={active}
