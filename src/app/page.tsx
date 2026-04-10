@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Shield, Users, Lightbulb, Target, Handshake, Mail, Phone } from "lucide-react";
 import Parallax from "@/components/Parallax";
-import { useEffect, useState } from "react";
 import AnimatedSection, {
   StaggerContainer,
   StaggerItem,
@@ -15,6 +14,7 @@ import GlassCard from "@/components/GlassCard";
 import CosmicParallaxBg from "@/components/CosmicParallaxBg";
 import CategoryList from "@/components/CategoryList";
 import ClientsBar from "@/components/ClientsBar";
+import CountUp from "@/components/CountUp";
 import { servicesData } from "@/lib/services";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 
@@ -77,41 +77,11 @@ const firmValues = [
 ];
 
 const stats = [
-  { value: 8, suffix: "+", label: "Years" },
-  { value: 50, suffix: "+", label: "Clients" },
-  { value: 70, suffix: "+", label: "Projects" },
+  { value: 8, suffix: "+", label: "Experience" },
+  { value: 6, suffix: "", label: "Disciplines" },
   { value: 15, suffix: "+", label: "Industries" },
+  { value: 3, suffix: "", label: "Languages" },
 ];
-
-function CountUp({ target, suffix, duration = 1.2, delay = 1.2 }: { target: number; suffix: string; duration?: number; delay?: number }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setStarted(true), delay * 1000);
-    return () => clearTimeout(timeout);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!started) return;
-    let start = 0;
-    const step = target / (duration * 60);
-    let frame: number;
-    const animate = () => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        return;
-      }
-      setCount(Math.floor(start));
-      frame = requestAnimationFrame(animate);
-    };
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
-  }, [started, target, duration]);
-
-  return <span>{count}{suffix}</span>;
-}
 
 export default function Home() {
   return (
