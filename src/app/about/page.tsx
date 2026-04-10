@@ -117,7 +117,7 @@ function PrinciplesPinned() {
     <section
       ref={sectionRef}
       className="relative bg-black"
-      style={{ height: `${N * 75}vh` }}
+      style={{ height: `${N * 60}vh` }}
       aria-label="Our principles"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -127,13 +127,13 @@ function PrinciplesPinned() {
           <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
         </div>
 
-        <div className="relative h-full flex items-start pt-[18vh] md:pt-[20vh]">
+        <div className="relative h-full flex items-center">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-              {/* Left — minimal: eyebrow + swapping title */}
+              {/* Left — eyebrow + swapping title + ticks */}
               <div className="lg:col-span-5">
                 <p className="tracking-luxury text-muted-dark mb-6">Our Principles</p>
-                <div className="relative min-h-[56px] md:min-h-[72px]">
+                <div className="relative min-h-[56px] md:min-h-[72px] mb-8">
                   <AnimatePresence mode="wait">
                     <motion.h3
                       key={active}
@@ -147,10 +147,23 @@ function PrinciplesPinned() {
                     </motion.h3>
                   </AnimatePresence>
                 </div>
+                <div className="flex items-center gap-3">
+                  {principles.map((_, j) => (
+                    <span
+                      key={j}
+                      className={cn(
+                        "h-px transition-all duration-500 ease-out",
+                        active === j
+                          ? "w-12 bg-primary-light"
+                          : "w-6 bg-white/15",
+                      )}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Right — active principle content, one at a time */}
-              <div className="lg:col-span-7 relative min-h-[340px] md:min-h-[380px]">
+              <div className="lg:col-span-7 relative min-h-[320px] md:min-h-[360px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={active}
