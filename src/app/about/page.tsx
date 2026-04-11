@@ -276,52 +276,48 @@ function PrinciplesFallbackList() {
 
 /* ── Disciplines Integration Panel ─────────────────────
    Left: Advizen mark. Right: auto-cycling discipline icon + label.
-   Middle: three horizontal beams with traveling pulses, as if the
-   firm is "rendering" the service. On every cycle the right tile
-   swaps to the next discipline. */
+   Middle: three horizontal beams with red pulses that emerge from
+   behind the Advizen tile and travel into the service tile. The
+   LAST pulse's onAnimationComplete advances the active discipline,
+   so the swap is perfectly synced with the pulse arrival. */
 function DisciplinesIntegration() {
   const [active, setActive] = useState(0);
   const shouldReduce = useReducedMotion();
   const N = disciplines.length;
-  const CYCLE_MS = 2800;
+  const PULSE_MS = 2600;
 
+  // Reduced-motion fallback: plain interval cycling, no pulses.
   useEffect(() => {
-    if (shouldReduce) return;
+    if (!shouldReduce) return;
     const id = setInterval(() => {
       setActive((p) => (p + 1) % N);
-    }, CYCLE_MS);
+    }, PULSE_MS);
     return () => clearInterval(id);
   }, [shouldReduce, N]);
+
+  const advance = () => setActive((p) => (p + 1) % N);
 
   const current = disciplines[active];
   const Icon = current.icon;
 
   return (
     <div className="relative mx-auto max-w-3xl rounded-[1.75rem] border border-white/[0.08] bg-[#0A0A0A]/70 backdrop-blur-xl overflow-hidden">
-      {/* Inner ambient wash */}
+      {/* Inner ambient wash (behind everything) */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="ambient-glow ambient-glow-warm w-[520px] h-[520px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-70" />
-        <div className="ambient-glow ambient-glow-oxblood w-[360px] h-[360px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60" />
       </div>
 
-      <div className="relative px-8 md:px-14 py-12 md:py-16">
-        <div className="flex items-start justify-between gap-6 md:gap-10">
+      <div className="relative px-10 md:px-16 py-12 md:py-16">
+        <div className="flex items-start">
           {/* LEFT — Advizen tile */}
-          <div className="flex flex-col items-center gap-5 shrink-0">
-            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.015] flex items-center justify-center overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(122,26,26,0.35), transparent 65%)",
-                }}
-              />
+          <div className="relative z-10 flex flex-col items-center gap-5 shrink-0">
+            <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl border border-white/10 bg-[#0D0D0D] flex items-center justify-center overflow-hidden">
               <Image
                 src="/logo.png"
                 alt="Advizen"
-                width={52}
-                height={44}
-                className="relative z-10 opacity-95"
+                width={56}
+                height={48}
+                className="opacity-95"
               />
             </div>
             <span className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-white/60">
@@ -329,61 +325,60 @@ function DisciplinesIntegration() {
             </span>
           </div>
 
-          {/* MIDDLE — beams */}
+          {/* MIDDLE — beam track.
+              Negative horizontal margin pulls the container under each
+              tile by half-a-tile, so the beam lines start at the left
+              tile's center and end at the right tile's center. Tiles
+              are z-10 with opaque bg, so the pulses are hidden behind
+              them at the endpoints and visually emerge / vanish. */}
           <div
-            className="relative flex-1 self-stretch min-h-[6rem] md:min-h-[7rem]"
+            className="relative flex-1 h-28 md:h-32 z-0 -mx-14 md:-mx-16"
             aria-hidden="true"
           >
-            {/* Static base lines */}
+            {/* 3 static hairlines spanning the full (extended) width */}
             {[0, 1, 2].map((i) => (
               <div
                 key={`line-${i}`}
-                className="absolute inset-x-0 h-px bg-white/[0.07]"
-                style={{ top: `calc(38% + ${i * 12}px)` }}
+                className="absolute inset-x-0 h-px bg-white/[0.06]"
+                style={{ top: `calc(50% + ${(i - 1) * 12}px - 0.5px)` }}
               />
             ))}
-            {/* Traveling pulses */}
+            {/* Traveling pulses — restart on every `active` change so
+                each cycle is one clean traversal; the last pulse drives
+                the advance, locking icon swap to pulse arrival. */}
             {!shouldReduce &&
               [0, 1, 2].map((i) => (
                 <motion.div
-                  key={`pulse-${i}`}
-                  className="absolute h-px w-20 md:w-28"
+                  key={`pulse-${active}-${i}`}
+                  className="absolute h-px w-20 md:w-24 -ml-10 md:-ml-12"
                   style={{
-                    top: `calc(38% + ${i * 12}px)`,
+                    top: `calc(50% + ${(i - 1) * 12}px - 0.5px)`,
                     background:
                       "linear-gradient(90deg, transparent 0%, rgba(237,88,99,0.95) 50%, transparent 100%)",
                     boxShadow: "0 0 14px rgba(237,88,99,0.55)",
                   }}
-                  initial={{ x: "-30%" }}
-                  animate={{ x: "130%" }}
+                  initial={{ left: "0%" }}
+                  animate={{ left: "100%" }}
                   transition={{
-                    duration: 2.6,
-                    ease: [0.55, 0.05, 0.45, 1],
-                    repeat: Infinity,
-                    delay: i * 0.22,
+                    duration: PULSE_MS / 1000,
+                    ease: [0.42, 0, 0.58, 1],
+                    delay: i * 0.1,
                   }}
+                  onAnimationComplete={i === 2 ? advance : undefined}
                 />
               ))}
           </div>
 
           {/* RIGHT — cycling service tile */}
-          <div className="flex flex-col items-center gap-5 shrink-0">
-            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.015] flex items-center justify-center overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(circle at center, rgba(237,88,99,0.22), transparent 65%)",
-                }}
-              />
+          <div className="relative z-10 flex flex-col items-center gap-5 shrink-0">
+            <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl border border-white/10 bg-[#0D0D0D] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
                   initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   exit={{ opacity: 0, scale: 0.7, rotate: 8 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative z-10"
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Icon
                     className="w-10 h-10 md:w-11 md:h-11 text-primary-light"
