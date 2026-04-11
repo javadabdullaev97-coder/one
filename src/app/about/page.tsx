@@ -13,7 +13,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   BedDouble,
-  Bitcoin,
   BookOpen,
   Building2,
   Calculator,
@@ -93,6 +92,29 @@ const principles = [
 
 type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
+/* Custom angular Bitcoin glyph — straight lines, no curves */
+function BitcoinSquare(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1}
+      strokeLinecap="square"
+      strokeLinejoin="miter"
+      {...props}
+    >
+      <path d="M7 4 V20" />
+      <path d="M7 4 H15 L17 6 V10 L15 12 H7" />
+      <path d="M7 12 H16 L18 14 V18 L16 20 H7" />
+      <path d="M10 2 V4" />
+      <path d="M14 2 V4" />
+      <path d="M10 20 V22" />
+      <path d="M14 20 V22" />
+    </svg>
+  );
+}
+
 const disciplines: {
   num: string;
   title: string;
@@ -111,7 +133,7 @@ const disciplines: {
 const industries: { name: string; icon: LucideIcon }[] = [
   { name: "Agriculture", icon: Sprout },
   { name: "Banking & Finance", icon: Landmark },
-  { name: "Blockchain & Crypto", icon: Bitcoin },
+  { name: "Blockchain & Crypto", icon: BitcoinSquare },
   { name: "Commerce & Retail", icon: Store },
   { name: "Construction & Real Estate", icon: Building2 },
   { name: "Education", icon: BookOpen },
