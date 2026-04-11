@@ -13,7 +13,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   BedDouble,
-  Blocks,
+  Bitcoin,
   BookOpen,
   Building2,
   Calculator,
@@ -111,7 +111,7 @@ const disciplines: {
 const industries: { name: string; icon: LucideIcon }[] = [
   { name: "Agriculture", icon: Sprout },
   { name: "Banking & Finance", icon: Landmark },
-  { name: "Blockchain & Crypto", icon: Blocks },
+  { name: "Blockchain & Crypto", icon: Bitcoin },
   { name: "Commerce & Retail", icon: Store },
   { name: "Construction & Real Estate", icon: Building2 },
   { name: "Education", icon: BookOpen },
