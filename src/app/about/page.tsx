@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ComponentType, type ReactNode, type SVGProps } from "react";
+import Image from "next/image";
 import {
   AnimatePresence,
   motion,
@@ -8,7 +9,18 @@ import {
   useReducedMotion,
   useScroll,
 } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Calculator,
+  Landmark,
+  LineChart,
+  Mail,
+  Megaphone,
+  Phone,
+  Scale,
+  Users,
+} from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -64,13 +76,21 @@ const principles = [
   },
 ];
 
-const disciplines = [
-  { num: "01", title: "Tax", blurb: "Strategy, compliance, and cross-border structuring." },
-  { num: "02", title: "Legal", blurb: "Corporate, contract, and regulatory counsel." },
-  { num: "03", title: "Finance & Accounting", blurb: "Reporting, controls, and advisory to IFRS standards." },
-  { num: "04", title: "HR", blurb: "Employer of record, talent, and labour compliance." },
-  { num: "05", title: "Marketing", blurb: "Brand, positioning, and market-entry strategy." },
-  { num: "06", title: "Funding & Grants", blurb: "Access to capital, IFI programmes, and incentives." },
+type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+const disciplines: {
+  num: string;
+  title: string;
+  short: string;
+  blurb: string;
+  icon: LucideIcon;
+}[] = [
+  { num: "01", title: "Tax", short: "Tax", blurb: "Strategy, compliance, and cross-border structuring.", icon: Calculator },
+  { num: "02", title: "Legal", short: "Legal", blurb: "Corporate, contract, and regulatory counsel.", icon: Scale },
+  { num: "03", title: "Finance & Accounting", short: "Finance", blurb: "Reporting, controls, and advisory to IFRS standards.", icon: LineChart },
+  { num: "04", title: "HR", short: "HR", blurb: "Employer of record, talent, and labour compliance.", icon: Users },
+  { num: "05", title: "Marketing", short: "Marketing", blurb: "Brand, positioning, and market-entry strategy.", icon: Megaphone },
+  { num: "06", title: "Funding & Grants", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },
 ];
 
 const industries = [
@@ -251,6 +271,158 @@ function PrinciplesFallbackList() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── Disciplines Integration Panel ─────────────────────
+   Left: Advizen mark. Right: auto-cycling discipline icon + label.
+   Middle: three horizontal beams with traveling pulses, as if the
+   firm is "rendering" the service. On every cycle the right tile
+   swaps to the next discipline. */
+function DisciplinesIntegration() {
+  const [active, setActive] = useState(0);
+  const shouldReduce = useReducedMotion();
+  const N = disciplines.length;
+  const CYCLE_MS = 2800;
+
+  useEffect(() => {
+    if (shouldReduce) return;
+    const id = setInterval(() => {
+      setActive((p) => (p + 1) % N);
+    }, CYCLE_MS);
+    return () => clearInterval(id);
+  }, [shouldReduce, N]);
+
+  const current = disciplines[active];
+  const Icon = current.icon;
+
+  return (
+    <div className="relative mx-auto max-w-3xl rounded-[1.75rem] border border-white/[0.08] bg-[#0A0A0A]/70 backdrop-blur-xl overflow-hidden">
+      {/* Inner ambient wash */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="ambient-glow ambient-glow-warm w-[520px] h-[520px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-70" />
+        <div className="ambient-glow ambient-glow-oxblood w-[360px] h-[360px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60" />
+      </div>
+
+      <div className="relative px-8 md:px-14 py-12 md:py-16">
+        <div className="flex items-start justify-between gap-6 md:gap-10">
+          {/* LEFT — Advizen tile */}
+          <div className="flex flex-col items-center gap-5 shrink-0">
+            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.015] flex items-center justify-center overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(122,26,26,0.35), transparent 65%)",
+                }}
+              />
+              <Image
+                src="/logo.png"
+                alt="Advizen"
+                width={52}
+                height={44}
+                className="relative z-10 opacity-95"
+              />
+            </div>
+            <span className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-white/60">
+              Advizen
+            </span>
+          </div>
+
+          {/* MIDDLE — beams */}
+          <div
+            className="relative flex-1 self-stretch min-h-[6rem] md:min-h-[7rem]"
+            aria-hidden="true"
+          >
+            {/* Static base lines */}
+            {[0, 1, 2].map((i) => (
+              <div
+                key={`line-${i}`}
+                className="absolute inset-x-0 h-px bg-white/[0.07]"
+                style={{ top: `calc(38% + ${i * 12}px)` }}
+              />
+            ))}
+            {/* Traveling pulses */}
+            {!shouldReduce &&
+              [0, 1, 2].map((i) => (
+                <motion.div
+                  key={`pulse-${i}`}
+                  className="absolute h-px w-20 md:w-28"
+                  style={{
+                    top: `calc(38% + ${i * 12}px)`,
+                    background:
+                      "linear-gradient(90deg, transparent 0%, rgba(237,88,99,0.95) 50%, transparent 100%)",
+                    boxShadow: "0 0 14px rgba(237,88,99,0.55)",
+                  }}
+                  initial={{ x: "-30%" }}
+                  animate={{ x: "130%" }}
+                  transition={{
+                    duration: 2.6,
+                    ease: [0.55, 0.05, 0.45, 1],
+                    repeat: Infinity,
+                    delay: i * 0.22,
+                  }}
+                />
+              ))}
+          </div>
+
+          {/* RIGHT — cycling service tile */}
+          <div className="flex flex-col items-center gap-5 shrink-0">
+            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.015] flex items-center justify-center overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(237,88,99,0.22), transparent 65%)",
+                }}
+              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.7, rotate: 8 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative z-10"
+                >
+                  <Icon
+                    className="w-10 h-10 md:w-11 md:h-11 text-primary-light"
+                    strokeWidth={1.25}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <div className="relative h-5 min-w-[108px] md:min-w-[132px]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={active}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-x-0 text-center text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-white/70 whitespace-nowrap"
+                >
+                  {current.short}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+
+        {/* Discipline progress ticks */}
+        <div className="mt-10 flex items-center justify-center gap-2">
+          {disciplines.map((_, j) => (
+            <span
+              key={j}
+              className={cn(
+                "h-px transition-all duration-500 ease-out",
+                active === j ? "w-10 bg-primary-light" : "w-5 bg-white/15",
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -440,53 +612,26 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      {/* Disciplines Grid */}
-      <section className="py-28 md:py-36 bg-black relative overflow-hidden">
+      {/* Disciplines Integration Showcase */}
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -left-32 opacity-40" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <AnimatedSection className="mb-16">
+          <AnimatedSection className="mb-14 md:mb-16 text-center">
             <p className="tracking-luxury text-muted-dark mb-4">Integrated Coverage</p>
             <TextReveal
               text="Six disciplines, one mandate"
               as="h2"
               className="heading-luxury text-3xl md:text-5xl text-foreground"
             />
+            <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
+              One partner, rendering every service your business depends on — in concert.
+            </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-white/[0.06]">
-            {disciplines.map((d, i) => (
-              <motion.div
-                key={d.num}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: (i % 3) * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={cn(
-                  "group relative p-8 md:p-10 border-b border-white/[0.06]",
-                  "md:[&:nth-child(odd)]:border-r lg:[&:nth-child(odd)]:border-r-0",
-                  "lg:[&:not(:nth-child(3n))]:border-r",
-                )}
-              >
-                <span className="font-mono text-xs text-primary-light/80">{d.num}</span>
-                <h3 className="mt-3 font-serif text-2xl md:text-3xl text-foreground tracking-wide">
-                  {d.title}
-                </h3>
-                <p className="mt-3 text-sm text-white/45 leading-relaxed">
-                  {d.blurb}
-                </p>
-                {/* Hover accent line */}
-                <span
-                  className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary-light to-transparent transition-all duration-500 ease-out group-hover:w-full"
-                  aria-hidden="true"
-                />
-              </motion.div>
-            ))}
-          </div>
+          <AnimatedSection delay={0.1}>
+            <DisciplinesIntegration />
+          </AnimatedSection>
         </div>
       </section>
 
