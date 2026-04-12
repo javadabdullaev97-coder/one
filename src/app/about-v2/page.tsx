@@ -61,13 +61,13 @@ const principles = [
     num: "02",
     title: "Partnership",
     summary: "Embedded, not transactional.",
-    body: "Our best engagements feel like an extension of your leadership team — present in the room when decisions are made, accountable for outcomes, and invested in the long arc of your business.",
+    body: "Our best engagements feel like an extension of your leadership team. Present in the room when decisions are made, accountable for outcomes, and invested in the long arc of your business.",
   },
   {
     num: "03",
     title: "Local Mastery",
     summary: "International calibre, local fluency.",
-    body: "Uzbekistan is not a market you can consult on from abroad. Our operators have spent years building first-hand fluency with the legal code, bureaucratic rhythm, and unwritten norms — then paired it with international standards.",
+    body: "Uzbekistan is not a market you can consult on from abroad. Our operators have spent years building first-hand fluency with the legal code, bureaucratic rhythm, and unwritten norms, then paired it with international standards.",
   },
 ];
 
@@ -151,6 +151,36 @@ const team = [
   },
 ];
 
+const caseStudies = [
+  {
+    sector: "Fintech",
+    headline: "Market-entry structuring for a European fintech",
+    result: "Operational in 90 days",
+    disciplines: ["Tax", "Legal", "HR"],
+  },
+  {
+    sector: "Agriculture",
+    headline: "Cross-border supply chain advisory for a major exporter",
+    result: "30% reduction in compliance overhead",
+    disciplines: ["Tax", "Finance", "Legal"],
+  },
+  {
+    sector: "Energy",
+    headline: "IFI grant programme navigation for a renewables venture",
+    result: "$2.5M in secured funding",
+    disciplines: ["Funding", "Legal", "Finance"],
+  },
+];
+
+const credentials = [
+  "Member, American Chamber of Commerce in Uzbekistan",
+  "ACCA-qualified finance practitioners",
+  "Registered tax advisory licence, Republic of Uzbekistan",
+  "IFRS implementation partner",
+  "IFI programme consultants (ADB, EBRD, IFC)",
+  "ISO 9001-aligned internal processes",
+];
+
 const howWeWork = [
   {
     num: "01",
@@ -160,7 +190,7 @@ const howWeWork = [
   {
     num: "02",
     title: "Strategy",
-    desc: "Our team builds an integrated plan across every relevant discipline — tax, legal, finance, HR — with clear deliverables and timelines.",
+    desc: "Our team builds an integrated plan across every relevant discipline with clear deliverables and timelines.",
   },
   {
     num: "03",
@@ -175,7 +205,7 @@ function DisciplinesIntegration() {
   const shouldReduce = useReducedMotion();
   const [hovered, setHovered] = useState(false);
   const N = disciplines.length;
-  const PULSE_MS = 1400;
+  const PULSE_MS = 1000;
 
   useEffect(() => {
     if (!shouldReduce && !hovered) return;
@@ -283,6 +313,9 @@ function DisciplinesIntegration() {
                 {current.short}
               </motion.span>
             </AnimatePresence>
+            <span className="sr-only" aria-live="polite">
+              Current discipline: {current.title}
+            </span>
           </div>
         </div>
       </div>
@@ -358,7 +391,7 @@ export default function AboutV2Page() {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
                   className="tracking-luxury text-white/50 mb-6"
                 >
                   About the Firm
@@ -373,7 +406,7 @@ export default function AboutV2Page() {
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-wrap gap-4"
                 >
                   <MagneticButton variant="primary" as="a" href="/contact">
@@ -391,15 +424,15 @@ export default function AboutV2Page() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="relative inline-flex flex-col items-start lg:items-end"
                 >
-                  <span className="tracking-luxury text-white/40 mb-2">Since</span>
+                  <span className="tracking-luxury text-white/50 mb-2">Since</span>
                   <span className="font-serif text-5xl md:text-6xl text-foreground leading-none tabular-nums font-light">
                     2024
                   </span>
                   <div className="mt-4 h-px w-24 bg-gradient-to-r from-primary-light/80 to-transparent" />
-                  <span className="mt-3 text-xs text-white/40 tracking-[0.2em] uppercase">
+                  <span className="mt-3 text-xs text-white/50 tracking-[0.2em] uppercase">
                     Tashkent, Uzbekistan
                   </span>
                 </motion.div>
@@ -445,7 +478,7 @@ export default function AboutV2Page() {
                     Uzbekistan is among the fastest-growing economies in Central
                     Asia and among the most complex to operate in. For years,
                     businesses navigated this environment through a patchwork of
-                    specialists: a tax firm here, a law firm there, an HR vendor
+                    specialists. A tax firm here, a law firm there, an HR vendor
                     somewhere else. The cost of coordination often exceeded the
                     value of the advice.
                   </p>
@@ -455,7 +488,7 @@ export default function AboutV2Page() {
                     Advizen was founded to change that. One firm covering every
                     discipline your business depends on, staffed by operators who
                     understand Uzbekistan&apos;s legal code, bureaucratic rhythm,
-                    and unwritten norms — and who hold every engagement to
+                    and unwritten norms. Every engagement held to
                     international standards.
                   </p>
                 </RevealLine>
@@ -490,7 +523,7 @@ export default function AboutV2Page() {
                       <span
                         className={cn(
                           "font-mono text-xs tracking-[0.2em] transition-colors duration-300",
-                          activePrinciple === i ? "text-primary-light" : "text-white/30",
+                          activePrinciple === i ? "text-primary-light" : "text-white/50",
                         )}
                       >
                         {p.num}
@@ -534,7 +567,7 @@ export default function AboutV2Page() {
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0"
                 >
-                  <p className="font-serif italic text-xl md:text-2xl text-foreground/90 leading-snug mb-6 max-w-2xl">
+                  <p className="text-xl md:text-2xl text-foreground/90 leading-snug mb-6 max-w-2xl font-light tracking-tight">
                     {principles[activePrinciple].summary}
                   </p>
                   <p className="text-[15px] md:text-base text-white/55 leading-relaxed max-w-2xl">
@@ -559,7 +592,7 @@ export default function AboutV2Page() {
               One partner, every discipline
             </h2>
             <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
-              Tax, legal, finance, HR, marketing, and funding — working in
+              Tax, legal, finance, HR, marketing, and funding. Working in
               concert on a shared view of your business.
             </p>
           </AnimatedSection>
@@ -584,12 +617,15 @@ export default function AboutV2Page() {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5" role="list">
             {industries.map((ind, i) => {
               const IconComp = ind.icon;
               return (
-                <motion.div
+                <motion.button
                   key={ind.name}
+                  role="listitem"
+                  tabIndex={0}
+                  aria-label={ind.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
@@ -599,7 +635,7 @@ export default function AboutV2Page() {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   whileHover={{ y: -4, scale: 1.03 }}
-                  className="glow-card aspect-[5/4]"
+                  className="glow-card aspect-[5/4] cursor-default"
                 >
                   <div className="glow-card-spinner" />
                   <div className="glow-card-backdrop" />
@@ -613,7 +649,7 @@ export default function AboutV2Page() {
                       {ind.name}
                     </span>
                   </div>
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
@@ -708,6 +744,115 @@ export default function AboutV2Page() {
 
       <SectionDivider />
 
+      {/* ====== CASE STUDIES (TEMPLATE) ====== */}
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden border-y border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <AnimatedSection className="mb-14 md:mb-16 text-center">
+            <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
+            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
+              Selected engagements
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {caseStudies.map((cs, i) => (
+              <motion.div
+                key={cs.sector}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="rounded-xl border border-white/[0.08] bg-white/[0.015] p-8 md:p-10 flex flex-col"
+              >
+                <span className="text-xs tracking-[0.2em] uppercase text-primary-light/80 mb-4">
+                  {cs.sector}
+                </span>
+                <h3 className="text-lg text-foreground mb-4 leading-snug font-light">
+                  {cs.headline}
+                </h3>
+                <p className="text-sm text-white/50 mb-6">{cs.result}</p>
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {cs.disciplines.map((d) => (
+                    <span
+                      key={d}
+                      className="text-xs tracking-[0.12em] uppercase text-white/50 border border-white/[0.08] rounded-full px-3 py-1"
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== CREDENTIALS & AFFILIATIONS (TEMPLATE) ====== */}
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+          <AnimatedSection className="mb-14 md:mb-16 text-center">
+            <p className="tracking-luxury text-white/50 mb-4">Credentials</p>
+            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
+              Affiliations and qualifications
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6 max-w-3xl mx-auto">
+            {credentials.map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.04,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex items-start gap-3 py-3 border-b border-white/[0.06]"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-light/60 mt-1.5 shrink-0" />
+                <span className="text-sm text-white/60 leading-relaxed">{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ====== GEOGRAPHY ====== */}
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 relative text-center">
+          <AnimatedSection>
+            <p className="tracking-luxury text-white/50 mb-4">Where We Operate</p>
+            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
+              Based in Tashkent, serving all of Uzbekistan
+            </h2>
+            <p className="text-white/55 max-w-2xl mx-auto leading-relaxed mb-8">
+              Our primary office is located in Tashkent. We serve clients across
+              all regions of Uzbekistan, with additional reach into neighbouring
+              Central Asian markets including Kazakhstan, Kyrgyzstan, and Tajikistan.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs tracking-[0.16em] uppercase text-white/50">
+              <span>Tashkent (HQ)</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span>Samarkand</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span>Bukhara</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span>Fergana Valley</span>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <SectionDivider />
+
       {/* ====== CTA — stronger copy ====== */}
       <section className="py-28 md:py-36 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
@@ -738,14 +883,14 @@ export default function AboutV2Page() {
                 href="mailto:info@advizenco.com"
                 className="group inline-flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors outline-none focus-visible:text-foreground"
               >
-                <Mail className="w-4 h-4 text-white/30 group-hover:text-primary-light transition-colors" />
+                <Mail className="w-4 h-4 text-white/50 group-hover:text-primary-light transition-colors" />
                 info@advizenco.com
               </a>
               <a
                 href="tel:+998334884888"
                 className="group inline-flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors outline-none focus-visible:text-foreground"
               >
-                <Phone className="w-4 h-4 text-white/30 group-hover:text-primary-light transition-colors" />
+                <Phone className="w-4 h-4 text-white/50 group-hover:text-primary-light transition-colors" />
                 +998 33 488 4888
               </a>
             </div>
