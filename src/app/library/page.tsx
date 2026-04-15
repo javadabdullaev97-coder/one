@@ -45,6 +45,8 @@ const publications: {
   description: string;
   year: string;
   pages: number;
+  hasDownload?: boolean;
+  hasRead?: boolean;
 }[] = [
   {
     tag: "Tax Briefing",
@@ -54,6 +56,7 @@ const publications: {
       "An analysis of recent tax reforms, key changes in legislation, and strategic implications for domestic and foreign-invested entities.",
     year: "2024",
     pages: 24,
+    hasRead: true,
   },
   {
     tag: "HR Insight",
@@ -63,6 +66,7 @@ const publications: {
       "How foreign companies can hire and manage talent in Uzbekistan without establishing a local legal entity.",
     year: "2024",
     pages: 18,
+    hasRead: true,
   },
   {
     tag: "Legal Brief",
@@ -72,6 +76,8 @@ const publications: {
       "An overview of legal guarantees, bilateral treaties, and dispute resolution mechanisms available to foreign investors.",
     year: "2023",
     pages: 20,
+    hasRead: true,
+    hasDownload: true,
   },
   {
     tag: "Market Report",
@@ -81,6 +87,7 @@ const publications: {
       "Sector analysis of Uzbekistan's agricultural market, export potential, and investment pathways.",
     year: "2023",
     pages: 32,
+    hasRead: true,
   },
   {
     tag: "Compliance Guide",
@@ -90,6 +97,8 @@ const publications: {
       "Practical guidance on transitioning from National Accounting Standards to International Financial Reporting Standards.",
     year: "2023",
     pages: 28,
+    hasRead: true,
+    hasDownload: true,
   },
   {
     tag: "HR Guide",
@@ -99,6 +108,7 @@ const publications: {
       "A detailed breakdown of payroll taxes, social contributions, and reporting obligations for employers in Uzbekistan.",
     year: "2022",
     pages: 16,
+    hasRead: true,
   },
 ];
 
@@ -384,11 +394,23 @@ export default function LibraryPage() {
 
                         {/* Footer */}
                         <div className="mt-auto pt-6 border-t border-white/[0.06] flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-white/40 hover:text-foreground transition-colors duration-200 group/dl">
-                            <Download className="w-3.5 h-3.5 group-hover/dl:text-primary-light transition-colors duration-200" />
-                            <span className="text-xs uppercase tracking-[0.15em]">
-                              Download PDF
-                            </span>
+                          <div className="flex items-center gap-4">
+                            {pub.hasRead && (
+                              <div className="flex items-center gap-2 text-white/40 hover:text-foreground transition-colors duration-200 group/rd">
+                                <BookOpen className="w-3.5 h-3.5 group-hover/rd:text-primary-light transition-colors duration-200" />
+                                <span className="text-xs uppercase tracking-[0.15em]">
+                                  Read
+                                </span>
+                              </div>
+                            )}
+                            {pub.hasDownload && (
+                              <div className="flex items-center gap-2 text-white/40 hover:text-foreground transition-colors duration-200 group/dl">
+                                <Download className="w-3.5 h-3.5 group-hover/dl:text-primary-light transition-colors duration-200" />
+                                <span className="text-xs uppercase tracking-[0.15em]">
+                                  PDF
+                                </span>
+                              </div>
+                            )}
                           </div>
                           <span className="font-mono text-xs text-white/25">
                             {pub.pages}p
