@@ -118,18 +118,6 @@ export default function UzbekistanMap() {
             style={{ pointerEvents: "none" }}
           />
 
-          {/* Outer country boundary — drawn first so region fills sit on top */}
-          {REGIONS.map((r) => (
-            <path
-              key={"outline-" + r.id}
-              d={r.d}
-              fill="none"
-              stroke="rgba(255,255,255,0.18)"
-              strokeWidth={0.7}
-              style={{ pointerEvents: "none" }}
-            />
-          ))}
-
           {/* Region paths */}
           {REGIONS.map((r) => {
             const active = r.id === activeId;
@@ -141,8 +129,8 @@ export default function UzbekistanMap() {
                 onPointerEnter={() => setHovered(r.id)}
                 style={{
                   fill: active ? "rgba(122,26,26,0.50)" : "rgba(255,255,255,0.07)",
-                  stroke: active ? "rgba(200,60,60,0.75)" : "rgba(255,255,255,0.09)",
-                  strokeWidth: 0.7,
+                  stroke: active ? "rgba(200,60,60,0.75)" : "rgba(255,255,255,0.10)",
+                  strokeWidth: 0.5,
                   filter: active ? "url(#uz-region-glow)" : "none",
                   transform: isHovered ? "scale(1.025)" : "scale(1)",
                   transformOrigin: "center",

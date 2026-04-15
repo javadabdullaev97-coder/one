@@ -504,11 +504,13 @@ export default function AboutV2Page() {
       {/* ====== PRINCIPLES — click-driven tabs, no scroll-jack ====== */}
       <section className="py-24 md:py-32 bg-black relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <AnimatedSection>
+            <p className="tracking-luxury text-white/50 mb-8">Our Principles</p>
+          </AnimatedSection>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-            {/* Left — eyebrow + tab buttons */}
+            {/* Left — tab buttons */}
             <div className="lg:col-span-5">
               <AnimatedSection>
-                <p className="tracking-luxury text-white/50 mb-6">Our Principles</p>
                 <div className="space-y-1">
                   {principles.map((p, i) => (
                     <button
