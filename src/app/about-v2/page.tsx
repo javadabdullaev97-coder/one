@@ -845,19 +845,6 @@ export default function AboutV2Page() {
 
             {/* Animated map */}
             <UzbekistanMap />
-
-            {/* City labels row */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs tracking-[0.16em] uppercase text-white/40 mt-8">
-              <span className="text-white/70">Tashkent (HQ)</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span>Samarkand</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span>Bukhara</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span>Fergana Valley</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span>Urgench</span>
-            </div>
           </AnimatedSection>
         </div>
       </section>
