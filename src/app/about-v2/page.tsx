@@ -39,6 +39,7 @@ import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AuroraBackground from "@/components/AuroraBackground";
 import CountUp from "@/components/CountUp";
+import UzbekistanMap from "@/components/UzbekistanMap";
 import { cn } from "@/lib/utils";
 
 /* ── Data ─────────────────────────────────────────────── */
@@ -827,25 +828,35 @@ export default function AboutV2Page() {
 
       {/* ====== GEOGRAPHY ====== */}
       <section className="py-24 md:py-32 bg-black relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 relative text-center">
+        <div className="ambient-glow ambient-glow-oxblood w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
+        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection>
-            <p className="tracking-luxury text-white/50 mb-4">Where We Operate</p>
-            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
-              Based in Tashkent, serving all of Uzbekistan
-            </h2>
-            <p className="text-white/55 max-w-2xl mx-auto leading-relaxed mb-8">
-              Our primary office is located in Tashkent. We serve clients across
-              all regions of Uzbekistan, with additional reach into neighbouring
-              Central Asian markets including Kazakhstan, Kyrgyzstan, and Tajikistan.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs tracking-[0.16em] uppercase text-white/50">
-              <span>Tashkent (HQ)</span>
+            <div className="text-center mb-12">
+              <p className="tracking-luxury text-white/50 mb-4">Where We Operate</p>
+              <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
+                Based in Tashkent, serving all of Uzbekistan
+              </h2>
+              <p className="text-white/55 max-w-2xl mx-auto leading-relaxed">
+                Our primary office is located in Tashkent. We serve clients across
+                all regions of Uzbekistan, with additional reach into neighbouring
+                Central Asian markets including Kazakhstan, Kyrgyzstan, and Tajikistan.
+              </p>
+            </div>
+
+            {/* Animated map */}
+            <UzbekistanMap />
+
+            {/* City labels row */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs tracking-[0.16em] uppercase text-white/40 mt-8">
+              <span className="text-white/70">Tashkent (HQ)</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <span>Samarkand</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <span>Bukhara</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <span>Fergana Valley</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span>Urgench</span>
             </div>
           </AnimatedSection>
         </div>
