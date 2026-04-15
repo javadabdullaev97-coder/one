@@ -109,11 +109,11 @@ export default function UzbekistanMap() {
             style={{ pointerEvents: "all" }}
           />
 
-          {/* Aral Sea */}
+          {/* Aral Sea (water) */}
           <path
             d={ARAL_D}
-            fill="rgba(99,13,13,0.10)"
-            stroke="rgba(99,13,13,0.22)"
+            fill="rgba(40,100,160,0.08)"
+            stroke="rgba(60,130,190,0.15)"
             strokeWidth={0.5}
             style={{ pointerEvents: "none" }}
           />
@@ -128,8 +128,8 @@ export default function UzbekistanMap() {
                 d={r.d}
                 onPointerEnter={() => setHovered(r.id)}
                 style={{
-                  fill: active ? "rgba(122,26,26,0.50)" : "rgba(255,255,255,0.03)",
-                  stroke: active ? "rgba(200,60,60,0.75)" : "rgba(255,255,255,0.10)",
+                  fill: active ? "rgba(122,26,26,0.50)" : "rgba(255,255,255,0.07)",
+                  stroke: active ? "rgba(200,60,60,0.75)" : "rgba(255,255,255,0.18)",
                   strokeWidth: 0.7,
                   filter: active ? "url(#uz-region-glow)" : "none",
                   transform: isHovered ? "scale(1.025)" : "scale(1)",
