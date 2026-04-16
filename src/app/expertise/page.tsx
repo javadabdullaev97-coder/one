@@ -383,10 +383,7 @@ export default function ExpertisePage() {
             <div>
               <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
               <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
-                Selected engagements{" "}
-                <span className="font-sans text-xl md:text-2xl text-white/30 font-light tracking-normal">
-                  of our team members
-                </span>
+                Selected engagements of our team members
               </h2>
             </div>
           </AnimatedSection>
