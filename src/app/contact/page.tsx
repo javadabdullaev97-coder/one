@@ -45,11 +45,21 @@ export default function ContactPage() {
       <AuroraBackground>
         <section className="relative pt-36 pb-24 md:pt-44 md:pb-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            {/* Watermark */}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.025 }}
+              transition={{ duration: 2.5, delay: 0.6 }}
+              className="absolute top-8 right-0 md:right-8 font-serif text-[18rem] md:text-[26rem] leading-none text-foreground select-none pointer-events-none"
+            >
+              ✦
+            </motion.span>
+
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="tracking-luxury text-muted-dark mb-6"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="tracking-luxury text-white/50 mb-6"
             >
               Contact
             </motion.p>
@@ -61,7 +71,7 @@ export default function ContactPage() {
               delay={0.3}
             />
             <RevealLine delay={0.6}>
-              <p className="text-lg text-muted max-w-2xl mt-8 leading-relaxed">
+              <p className="text-lg text-white/50 max-w-2xl mt-8 leading-relaxed">
                 Every engagement starts with understanding. Reach out and our team
                 will respond within 24 hours.
               </p>
@@ -70,26 +80,29 @@ export default function ContactPage() {
         </section>
       </AuroraBackground>
 
+      {/* Gradient divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+
       {/* Contact Info Bar */}
-      <section className="bg-surface border-y border-white/[0.06]">
+      <section className="bg-surface border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/[0.06]">
             {contactInfo.map((item) => (
               <StaggerItem key={item.title}>
                 <div className="py-8 px-6 text-center">
-                  <item.icon className="w-5 h-5 text-primary mx-auto mb-3" />
-                  <p className="tracking-luxury text-muted-dark mb-2">
+                  <item.icon className="w-5 h-5 text-white/40 mx-auto mb-3" />
+                  <p className="tracking-luxury text-white/35 mb-2">
                     {item.title}
                   </p>
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-sm text-foreground/80 hover:text-primary transition-colors cursor-pointer"
+                      className="text-sm text-white/60 hover:text-white/90 transition-colors duration-200 cursor-pointer"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-sm text-foreground/80">{item.value}</p>
+                    <p className="text-sm text-white/60">{item.value}</p>
                   )}
                 </div>
               </StaggerItem>
@@ -99,12 +112,16 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Sidebar */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+        {/* Ambient glows */}
+        <div className="absolute top-0 right-1/3 w-[600px] h-[600px] ambient-glow ambient-glow-oxblood opacity-40 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] ambient-glow ambient-glow-warm pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16">
             {/* Form */}
             <AnimatedSection className="lg:col-span-7">
-              <p className="tracking-luxury text-muted-dark mb-4">Inquiry</p>
+              <p className="tracking-luxury text-white/35 mb-4">Inquiry</p>
               <TextReveal
                 text="Send us a message"
                 as="h2"
@@ -116,28 +133,28 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="firstName"
-                      className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                      className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                     >
                       First Name
                     </label>
                     <input
                       id="firstName"
                       type="text"
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300"
                       placeholder="John"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="lastName"
-                      className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                      className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                     >
                       Last Name
                     </label>
                     <input
                       id="lastName"
                       type="text"
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300"
                       placeholder="Doe"
                     />
                   </div>
@@ -146,14 +163,14 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                    className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                   >
                     Email
                   </label>
                   <input
                     id="email"
                     type="email"
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -161,14 +178,14 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="company"
-                    className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                    className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                   >
                     Company
                   </label>
                   <input
                     id="company"
                     type="text"
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300"
                     placeholder="Company name"
                   />
                 </div>
@@ -176,13 +193,13 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="service"
-                    className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                    className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                   >
                     Area of Interest
                   </label>
                   <select
                     id="service"
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground focus:outline-none focus:border-white/50 transition-colors duration-300 cursor-pointer"
                   >
                     <option value="" className="bg-surface">Select a service</option>
                     <option value="tax" className="bg-surface">Tax Consulting</option>
@@ -198,14 +215,14 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-xs uppercase tracking-widest text-muted-dark mb-3"
+                    className="block text-xs uppercase tracking-widest text-white/35 mb-3"
                   >
                     Message
                   </label>
                   <textarea
                     id="message"
                     rows={5}
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors resize-none"
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300 resize-none"
                     placeholder="Tell us about your project or question..."
                   />
                 </div>
@@ -222,7 +239,7 @@ export default function ContactPage() {
             {/* Sidebar */}
             <AnimatedSection delay={0.2} className="lg:col-span-5">
               <GlassCard className="p-10 md:p-12 mb-8" hover={false}>
-                <p className="tracking-luxury text-muted-dark mb-6">
+                <p className="tracking-luxury text-white/35 mb-6">
                   What to Expect
                 </p>
                 <div className="space-y-6">
@@ -252,14 +269,14 @@ export default function ContactPage() {
                       key={step.num}
                       className="flex gap-4 pb-6 border-b border-white/[0.06] last:border-0 last:pb-0"
                     >
-                      <span className="text-xs font-mono text-primary mt-0.5">
+                      <span className="text-xs font-mono text-white/30 mt-0.5 tabular-nums">
                         {step.num}
                       </span>
                       <div>
-                        <h4 className="text-sm font-medium text-foreground mb-1">
+                        <h4 className="text-sm font-medium text-foreground/85 mb-1">
                           {step.title}
                         </h4>
-                        <p className="text-sm text-muted">{step.text}</p>
+                        <p className="text-sm text-white/50">{step.text}</p>
                       </div>
                     </div>
                   ))}
@@ -269,11 +286,11 @@ export default function ContactPage() {
               {/* Location card */}
               <GlassCard className="p-10" hover={false}>
                 <div className="flex items-center gap-3 mb-6">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <p className="tracking-luxury text-muted-dark">Our Office</p>
+                  <MapPin className="w-5 h-5 text-white/40" />
+                  <p className="tracking-luxury text-white/35">Our Office</p>
                 </div>
-                <p className="text-foreground mb-2">Tashkent, Uzbekistan</p>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-foreground/85 mb-2">Tashkent, Uzbekistan</p>
+                <p className="text-sm text-white/50 leading-relaxed">
                   Located in the heart of Tashkent, serving businesses across
                   Uzbekistan and the broader Central Asian region.
                 </p>
