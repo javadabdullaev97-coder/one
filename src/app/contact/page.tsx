@@ -112,10 +112,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Sidebar */}
-      <section className="py-24 md:py-32 bg-background relative overflow-hidden">
-        {/* Ambient glows */}
-        <div className="absolute top-0 right-1/3 w-[600px] h-[600px] ambient-glow ambient-glow-oxblood opacity-40 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] ambient-glow ambient-glow-warm pointer-events-none" />
+      <section className="py-24 md:py-32 bg-background">
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16">
