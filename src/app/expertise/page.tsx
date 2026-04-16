@@ -83,22 +83,85 @@ const filters: { label: string; value: Category }[] = [
 
 const caseStudies = [
   {
-    sector: "Fintech",
-    headline: "Market-entry structuring for a European fintech",
-    result: "Operational in 90 days",
-    disciplines: ["Tax", "Legal", "HR"],
-  },
-  {
-    sector: "Agriculture",
-    headline: "Cross-border supply chain advisory for a major exporter",
-    result: "30% reduction in compliance overhead",
-    disciplines: ["Tax", "Finance", "Legal"],
-  },
-  {
     sector: "Energy",
-    headline: "IFI grant programme navigation for a renewables venture",
-    result: "$2.5M in secured funding",
-    disciplines: ["Funding", "Legal", "Finance"],
+    headline:
+      "Tax structuring of a nuclear power plant construction for a Russian enterprise",
+    result: "Project budget > $10 billion",
+    disciplines: ["Tax", "Finance"],
+  },
+  {
+    sector: "FMCG",
+    headline: "M&A of a large Uzbek bottler company",
+    result: "Transaction amount ~ $250 million",
+    disciplines: ["Tax", "Legal"],
+  },
+  {
+    sector: "Fintech",
+    headline:
+      "Two major restructuring projects of an international digital bank in its Uzbek subsidiaries",
+    result: "Transaction amount ~ $200 million",
+    disciplines: ["Tax", "Legal"],
+  },
+  {
+    sector: "Manufacturing",
+    headline:
+      "M&A and corporate restructuring of a large Uzbek cement producer",
+    result: "Transaction amount ~ $20 million",
+    disciplines: ["Tax", "Legal", "Finance"],
+  },
+  {
+    sector: "Technology",
+    headline:
+      "Tax structuring and ad-hoc consulting of a major Russian IT company during market launch in Uzbekistan",
+    result: "Investment amount ~ $5 million",
+    disciplines: ["Tax", "Legal"],
+  },
+  {
+    sector: "Retail",
+    headline: "M&A and structuring for a major local retailer",
+    result: "Transaction amount ~ $5 million",
+    disciplines: ["Tax", "Legal", "Finance"],
+  },
+  {
+    sector: "Public Sector",
+    headline: "Reorganization project of an Uzbek state-owned investment fund",
+    result: "Full restructuring advisory",
+    disciplines: ["Legal", "Finance"],
+  },
+  {
+    sector: "Pharmaceuticals",
+    headline:
+      "Advising several international pharmaceutical companies on structuring Uzbek trading activities",
+    result: "Regulatory compliance achieved",
+    disciplines: ["Tax", "Legal"],
+  },
+  {
+    sector: "Capital Markets",
+    headline:
+      "Advising a major international management consulting firm on capital market legislation development",
+    result: "Legislative framework advisory",
+    disciplines: ["Legal", "Finance"],
+  },
+  {
+    sector: "Banking",
+    headline:
+      "Advising a major international financial institution on banking legislation, derivatives and REPO transactions",
+    result: "Regulatory development support",
+    disciplines: ["Legal", "Finance"],
+  },
+  {
+    sector: "Islamic Finance",
+    headline:
+      "Advising a major international consulting firm on integration of Islamic finance tools to Uzbek legislation",
+    result: "Legislative integration advisory",
+    disciplines: ["Legal", "Finance"],
+  },
+  {
+    sector: "Cross-Industry",
+    headline:
+      "Advising multiple international companies from various industries on incorporation in Uzbekistan",
+    result: "End-to-end market entry",
+    disciplines: ["Tax", "Legal", "HR"],
   },
 ];
 
@@ -350,40 +413,60 @@ export default function ExpertisePage() {
 
       {/* ====== TRACK RECORD ====== */}
       <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+        <div className="ambient-glow ambient-glow-oxblood w-[600px] h-[600px] top-0 right-0 translate-x-1/3 -translate-y-1/3 opacity-20" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-14 md:mb-16 text-center">
             <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
-            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
+            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-5">
               Selected engagements
             </h2>
+            <p className="text-sm text-white/35 max-w-2xl mx-auto leading-relaxed">
+              These projects reflect the collective experience of our leadership
+              team across their careers — not all engagements were conducted
+              under the Advizen name.
+            </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {caseStudies.map((cs, i) => (
               <motion.div
-                key={cs.sector}
+                key={cs.headline}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{
                   duration: 0.5,
-                  delay: i * 0.06,
+                  delay: (i % 3) * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="rounded-xl border border-white/[0.08] bg-white/[0.015] p-8 md:p-10 flex flex-col"
+                className="group rounded-xl border border-white/[0.06] bg-white/[0.015] p-7 md:p-8 flex flex-col hover:border-white/[0.12] hover:bg-white/[0.025] transition-colors duration-300"
               >
-                <span className="text-xs tracking-[0.2em] uppercase text-primary-light/80 mb-4">
-                  {cs.sector}
-                </span>
-                <h3 className="text-lg text-foreground mb-4 leading-snug font-light">
+                {/* Sector tag + index */}
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-xs tracking-[0.2em] uppercase text-primary-light/70">
+                    {cs.sector}
+                  </span>
+                  <span className="font-mono text-xs text-white/15">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* Headline */}
+                <h3 className="text-[15px] text-foreground/85 mb-4 leading-snug font-light group-hover:text-foreground transition-colors duration-300">
                   {cs.headline}
                 </h3>
-                <p className="text-sm text-white/50 mb-6">{cs.result}</p>
-                <div className="mt-auto flex flex-wrap gap-2">
+
+                {/* Result */}
+                <p className="text-sm text-white/45 mb-6 font-mono">
+                  {cs.result}
+                </p>
+
+                {/* Disciplines */}
+                <div className="mt-auto flex flex-wrap gap-1.5">
                   {cs.disciplines.map((d) => (
                     <span
                       key={d}
-                      className="text-xs tracking-[0.12em] uppercase text-white/50 border border-white/[0.08] rounded-full px-3 py-1"
+                      className="text-[10px] tracking-[0.12em] uppercase text-white/40 border border-white/[0.07] rounded-full px-2.5 py-0.5"
                     >
                       {d}
                     </span>
