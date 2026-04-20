@@ -20,6 +20,7 @@ import {
   LineChart,
   Medal,
   Megaphone,
+  Plus,
   Scale,
   Sprout,
   Stethoscope,
@@ -192,6 +193,189 @@ const serviceShortNames: Record<string, string> = {
   tax: "Tax", legal: "Legal", finance: "Finance",
   hr: "HR", marketing: "Marketing", funding: "Funding",
 };
+
+function ServicesSection() {
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+
+  return (
+    <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+      <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -left-32 opacity-[0.18]" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <AnimatedSection className="mb-14 md:mb-16">
+          <p className="tracking-luxury text-white/50 mb-4">Practice Areas</p>
+          <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
+            Six disciplines, one team
+          </h2>
+          <p className="mt-5 text-white/45 max-w-2xl leading-relaxed">
+            From regulatory compliance to strategic growth — integrated advisory
+            built for the complexities of Central Asian markets.
+          </p>
+        </AnimatedSection>
+
+        {/* Accordion rows */}
+        <div className="border-t border-white/[0.08]">
+          {servicesData.map((service, i) => {
+            const isExpanded = expandedSlug === service.slug;
+            const Icon = serviceIcons[service.slug] ?? ArrowUpRight;
+            return (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className={cn(
+                  "border-b border-white/[0.08] transition-colors duration-500",
+                  isExpanded && "bg-white/[0.015]"
+                )}
+              >
+                {/* Row header — clickable */}
+                <button
+                  type="button"
+                  onClick={() => setExpandedSlug(isExpanded ? null : service.slug)}
+                  className="w-full flex items-center gap-5 md:gap-8 py-6 md:py-7 text-left group cursor-pointer"
+                >
+                  {/* Number */}
+                  <span
+                    className={cn(
+                      "font-serif text-3xl md:text-4xl tabular-nums w-12 md:w-14 shrink-0 text-right transition-colors duration-300",
+                      isExpanded ? "text-primary" : "text-white/10 group-hover:text-white/22"
+                    )}
+                  >
+                    {service.num}
+                  </span>
+
+                  {/* Icon box */}
+                  <span
+                    className={cn(
+                      "w-9 h-9 rounded-md flex items-center justify-center shrink-0 border transition-all duration-300",
+                      isExpanded
+                        ? "bg-primary/10 border-primary/25"
+                        : "bg-white/[0.02] border-white/[0.06] group-hover:border-white/[0.14] group-hover:bg-white/[0.04]"
+                    )}
+                  >
+                    <Icon
+                      className={cn(
+                        "w-4 h-4 transition-colors duration-300",
+                        isExpanded ? "text-primary" : "text-white/28 group-hover:text-white/50"
+                      )}
+                      strokeWidth={1.5}
+                    />
+                  </span>
+
+                  {/* Title */}
+                  <h3
+                    className={cn(
+                      "font-serif text-xl md:text-2xl flex-1 tracking-wide transition-colors duration-300",
+                      isExpanded ? "text-foreground" : "text-white/45 group-hover:text-white/78"
+                    )}
+                  >
+                    {service.title}
+                  </h3>
+
+                  {/* Capabilities count badge — visible when collapsed */}
+                  <span
+                    className={cn(
+                      "hidden md:block text-[10px] tracking-[0.12em] uppercase transition-all duration-300 shrink-0",
+                      isExpanded ? "text-white/20" : "text-white/18 group-hover:text-white/35"
+                    )}
+                  >
+                    {service.capabilities.length} capabilities
+                  </span>
+
+                  {/* Expand indicator: + rotates to × */}
+                  <span
+                    className={cn(
+                      "w-8 h-8 flex items-center justify-center shrink-0 border rounded-full transition-all duration-400",
+                      isExpanded
+                        ? "border-primary/30 bg-primary/[0.06] rotate-45"
+                        : "border-white/[0.08] group-hover:border-white/[0.2]"
+                    )}
+                  >
+                    <Plus
+                      className={cn(
+                        "w-3.5 h-3.5 transition-colors duration-300",
+                        isExpanded ? "text-primary" : "text-white/25 group-hover:text-white/50"
+                      )}
+                      strokeWidth={1.5}
+                    />
+                  </span>
+                </button>
+
+                {/* Expandable detail panel */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pl-[4.25rem] md:pl-[5.5rem] pb-8 md:pb-10 pt-2 pr-4 md:pr-8">
+                        <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12">
+                          {/* Left: descriptions + link */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.08, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <p className="text-[14px] text-white/52 leading-relaxed mb-3">
+                              {service.description[0]}
+                            </p>
+                            <p className="text-[13px] text-white/32 leading-relaxed mb-7">
+                              {service.description[1]}
+                            </p>
+                            <Link
+                              href={`/expertise/${service.slug}`}
+                              className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-primary/80 hover:text-primary transition-colors group/link"
+                            >
+                              View full practice
+                              <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-250" />
+                            </Link>
+                          </motion.div>
+
+                          {/* Right: capabilities */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.16, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <p className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5">
+                              Capabilities
+                            </p>
+                            <div className="space-y-2">
+                              {service.capabilities.map((cap, ci) => (
+                                <motion.div
+                                  key={cap}
+                                  initial={{ opacity: 0, x: 8 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    delay: 0.2 + ci * 0.04,
+                                    duration: 0.3,
+                                    ease: [0.16, 1, 0.3, 1],
+                                  }}
+                                  className="flex items-center gap-2.5 text-[12px] text-white/48"
+                                >
+                                  <span className="w-[5px] h-[5px] rounded-full bg-primary/45 shrink-0" />
+                                  {cap}
+                                </motion.div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -419,87 +603,7 @@ export default function ExpertisePage() {
       </AuroraBackground>
 
       {/* ====== SERVICES ====== */}
-      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
-        <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -left-32 opacity-[0.18]" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-
-          <AnimatedSection className="mb-14 md:mb-16">
-            <p className="tracking-luxury text-white/50 mb-4">Practice Areas</p>
-            <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-              Six disciplines, one team
-            </h2>
-            <p className="mt-5 text-white/45 max-w-2xl leading-relaxed">
-              From regulatory compliance to strategic growth — integrated advisory built for the complexities of Central Asian markets.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {servicesData.map((service, i) => {
-              const Icon = serviceIcons[service.slug] ?? ArrowUpRight;
-              return (
-                <motion.div
-                  key={service.num}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link href={`/expertise/${service.slug}`} className="group glow-card block h-full cursor-pointer">
-                    <div className="glow-card-spinner" />
-                    <div className="glow-card-backdrop" />
-                    <div className="glow-card-content p-6 md:p-7 flex flex-col h-full">
-                      <div className="glow-card-glow" />
-
-                      {/* Header: icon + number */}
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-9 h-9 rounded-md border border-white/[0.08] bg-white/[0.02] flex items-center justify-center shrink-0 transition-colors duration-400 group-hover:border-primary/30 group-hover:bg-primary/[0.05]">
-                          <Icon
-                            className="w-4 h-4 text-white/35 glow-card-icon transition-colors duration-400"
-                            strokeWidth={1.25}
-                          />
-                        </div>
-                        <span className="font-mono text-[10px] tracking-[0.2em] text-white/15 tabular-nums glow-card-title">
-                          {service.num}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="font-serif text-xl md:text-2xl text-foreground/65 leading-snug mb-3 glow-card-title tracking-wide">
-                        {service.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-[13px] text-white/30 leading-relaxed flex-1 glow-card-desc line-clamp-2">
-                        {service.description[0]}
-                      </p>
-
-                      {/* Footer: capabilities + arrow */}
-                      <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-end justify-between gap-3">
-                        <div className="flex flex-wrap gap-1">
-                          {service.capabilities.slice(0, 3).map((cap) => (
-                            <span
-                              key={cap}
-                              className="text-[10px] text-white/20 border border-white/[0.05] rounded-sm px-1.5 py-0.5 group-hover:text-white/38 group-hover:border-white/[0.09] transition-colors duration-300"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                          {service.capabilities.length > 3 && (
-                            <span className="text-[10px] text-white/12 px-1 py-0.5">
-                              +{service.capabilities.length - 3}
-                            </span>
-                          )}
-                        </div>
-                        <ArrowUpRight className="w-4 h-4 shrink-0 text-white/10 group-hover:text-white/55 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-250" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* ====== INDUSTRIES ====== */}
       <IndustriesSection />
