@@ -17,7 +17,6 @@ const footerLinks = {
     { label: "Funding & Grants", href: "/expertise/funding" },
   ],
   Firm: [
-    { label: "About", href: "/about" },
     { label: "The Library", href: "/library" },
     { label: "Contact", href: "/contact" },
   ],
