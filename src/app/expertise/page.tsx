@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ComponentType, type SVGProps } from "react";
+import { useState, useEffect, type ComponentType, type SVGProps } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -281,6 +281,12 @@ function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
 
+  useEffect(() => {
+    industryGroups.forEach(({ image }) => {
+      if (image) new window.Image().src = image;
+    });
+  }, []);
+
   return (
     <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
@@ -371,6 +377,7 @@ function IndustriesSection() {
                       src={active.image}
                       alt={active.name}
                       className="absolute inset-0 w-full h-full object-cover"
+                      fetchPriority="high"
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                     />
                   )}
