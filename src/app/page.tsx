@@ -281,9 +281,12 @@ export default function Home() {
           <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-5">
             The Business Advisory Firm for Uzbekistan
           </p>
-          <p className="text-white/35 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/35 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-6">
             Integrated counsel across tax, legal, finance, HR, marketing, and funding —
             one partner for every challenge your business faces in Central Asia.
+          </p>
+          <p className="text-white/25 text-xs tracking-[0.22em] uppercase">
+            Tashkent, Uzbekistan
           </p>
         </div>
       </CosmicParallaxBg>
