@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         {/* Inquire button — right side */}
-        <div className="hidden md:block">
+        <div className="hidden md:block ml-auto">
           <MagneticButton as="a" href="/contact" className="px-6 py-2.5 text-[12px]">
             Inquire
           </MagneticButton>

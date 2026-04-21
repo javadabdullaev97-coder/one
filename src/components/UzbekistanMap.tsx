@@ -70,8 +70,8 @@ export default function UzbekistanMap({ onActiveChange }: { onActiveChange?: (id
         style={{ display: "block", overflow: "hidden" }}
       >
         <defs>
-          <filter id="uz-region-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="7" result="blur" />
+          <filter id="uz-region-glow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -111,18 +111,17 @@ export default function UzbekistanMap({ onActiveChange }: { onActiveChange?: (id
           {/* Region paths */}
           {REGIONS.map((r) => {
             const active = r.id === activeId;
-            const isHovered = r.id === hovered;
             return (
               <path
                 key={r.id}
                 d={r.d}
                 onPointerEnter={() => setHovered(r.id)}
                 style={{
-                  fill: active ? "rgba(122,26,26,0.50)" : "rgba(255,255,255,0.07)",
-                  stroke: active ? "rgba(200,60,60,0.75)" : "rgba(255,255,255,0.10)",
-                  strokeWidth: 0.5,
+                  fill: active ? "rgba(160,30,30,0.45)" : "rgba(255,255,255,0.06)",
+                  stroke: active ? "rgba(237,88,99,0.85)" : "rgba(255,255,255,0.18)",
+                  strokeWidth: active ? 1.5 : 1,
                   filter: active ? "url(#uz-region-glow)" : "none",
-                  transition: "fill 280ms ease, stroke 280ms ease",
+                  transition: "fill 280ms ease, stroke 280ms ease, stroke-width 280ms ease",
                   cursor: "default",
                   pointerEvents: "all",
                 }}
