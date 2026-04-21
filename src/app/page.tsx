@@ -278,12 +278,12 @@ export default function Home() {
           <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">ADVIZEN</h1>
         </div>
         <div className="absolute left-0 right-0 z-20 text-center px-6 top-[67%]">
-          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-8">
+          <p className="cosmic-subtitle text-lg md:text-xl lg:text-2xl mb-8">
             Business Advisory in Uzbekistan
           </p>
           <div className="flex items-center justify-center gap-4">
             <div className="h-px w-8 bg-white/25" />
-            <p className="text-white/40 text-[11px] tracking-[0.25em] uppercase">
+            <p className="text-white/40 text-[13px] tracking-[0.25em] uppercase">
               Tashkent, Uzbekistan
             </p>
             <div className="h-px w-8 bg-white/25" />
