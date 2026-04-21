@@ -273,14 +273,24 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <CosmicParallaxBg className="relative h-screen">
+      <CosmicParallaxBg className="relative h-[80vh]">
         <div className="absolute left-0 right-0 z-20 text-center top-[38%]">
           <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">ADVIZEN</h1>
         </div>
         <div className="absolute left-0 right-0 z-20 text-center px-6 top-[62%]">
-          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl">
+          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-10">
             The Business Advisory Firm for Uzbekistan
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <MagneticButton variant="primary" as="a" href="/contact">
+              Schedule a consultation
+              <ArrowRight className="w-4 h-4" />
+            </MagneticButton>
+            <MagneticButton variant="outline" as="a" href="/expertise">
+              Explore our expertise
+              <ArrowUpRight className="w-4 h-4" />
+            </MagneticButton>
+          </div>
         </div>
       </CosmicParallaxBg>
 
