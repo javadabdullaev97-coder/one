@@ -277,13 +277,17 @@ export default function Home() {
         <div className="absolute left-0 right-0 z-20 text-center top-[38%]">
           <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">ADVIZEN</h1>
         </div>
-        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[64%]">
-          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-4">
-            The Business Advisory Firm for Uzbekistan
+        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[67%]">
+          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-8">
+            Business Advisory in Uzbekistan
           </p>
-          <p className="text-white/40 text-[11px] tracking-[0.25em] uppercase">
-            Tashkent, Uzbekistan
-          </p>
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-8 bg-white/25" />
+            <p className="text-white/40 text-[11px] tracking-[0.25em] uppercase">
+              Tashkent, Uzbekistan
+            </p>
+            <div className="h-px w-8 bg-white/25" />
+          </div>
         </div>
       </CosmicParallaxBg>
 
