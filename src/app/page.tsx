@@ -390,18 +390,18 @@ export default function Home() {
 
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      {/* ── Library Preview ── */}
+      {/* ── Insights Preview ── */}
       <section className="py-28 md:py-36 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -right-32 opacity-40" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <Parallax offset={20} fade>
             <AnimatedSection>
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
                 <div>
-                  <p className="tracking-luxury text-muted-dark mb-4">The Library</p>
+                  <p className="tracking-luxury text-muted-dark mb-4">Insights</p>
                   <TextReveal
-                    text="Knowledge & publications"
+                    text="Research, guides & analysis"
                     as="h2"
                     className="heading-luxury text-4xl md:text-5xl text-foreground"
                   />
@@ -417,39 +417,83 @@ export default function Home() {
             </AnimatedSection>
           </Parallax>
 
-          <StaggerContainer className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                tag: "Flagship Guide",
-                title: "Doing Business in Uzbekistan",
-                desc: "A comprehensive guide to market entry, regulatory frameworks, and operational best practices in Uzbekistan.",
-              },
-              {
-                tag: "Tax Briefing",
-                title: "Tax Landscape 2024–2025",
-                desc: "Key changes in Uzbekistan's tax legislation and strategic implications for foreign investors.",
-              },
-              {
-                tag: "HR Insight",
-                title: "Employer of Record in Central Asia",
-                desc: "How foreign companies can establish talent presence without a local legal entity.",
-              },
-            ].map((pub) => (
-              <StaggerItem key={pub.title}>
-                <Link href="/library" className="group block h-full cursor-pointer">
-                  <GlassCard className="p-8 h-full flex flex-col">
-                    <p className="tracking-luxury text-primary mb-4">{pub.tag}</p>
-                    <h3 className="font-serif text-xl leading-snug min-h-[3.5rem] glow-card-title">{pub.title}</h3>
-                    <p className="text-sm leading-relaxed flex-1 glow-card-desc">{pub.desc}</p>
-                    <div className="mt-6 pt-6 border-t border-white/[0.06] flex items-center justify-between">
-                      <span className="text-xs text-muted-dark uppercase tracking-wider">Read more</span>
-                      <ArrowUpRight className="w-4 h-4 text-muted-dark group-hover:text-primary transition-colors" />
+          {/* Asymmetric grid — featured left, stack right */}
+          <div className="grid lg:grid-cols-[7fr_5fr] gap-5">
+            {/* Featured */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link href="/library/uzbekistan-tax-landscape-2024" className="group block h-full">
+                <div className="relative h-full min-h-[380px] border border-white/[0.07] bg-[#0c0c0c] rounded-2xl p-9 md:p-11 flex flex-col overflow-hidden hover:border-white/[0.14] transition-colors duration-300">
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                    style={{ background: "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(122,26,26,0.09) 0%, transparent 70%)" }} />
+                  <span className="absolute right-8 bottom-8 font-serif text-[160px] leading-none text-white/[0.025] select-none pointer-events-none">01</span>
+
+                  <p className="tracking-luxury text-primary mb-6 relative z-10">Flagship Guide</p>
+                  <h3 className="font-serif text-3xl md:text-4xl leading-tight text-foreground mb-5 relative z-10 max-w-xs group-hover:text-white transition-colors duration-200">
+                    Doing Business in Uzbekistan
+                  </h3>
+                  <p className="text-white/45 text-sm leading-relaxed flex-1 relative z-10 max-w-sm">
+                    A comprehensive guide to market entry, regulatory frameworks, and operational best practices. The definitive resource for foreign investors entering Uzbekistan.
+                  </p>
+                  <div className="relative z-10 mt-10 pt-6 border-t border-white/[0.06] flex items-center justify-between">
+                    <span className="text-xs text-white/30 uppercase tracking-wider">Read the guide</span>
+                    <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Stack */}
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  num: "02",
+                  tag: "Tax Briefing",
+                  title: "Tax Landscape 2024–2025",
+                  desc: "Key changes in Uzbekistan's tax legislation and strategic implications for foreign investors.",
+                  href: "/library/uzbekistan-tax-landscape-2024",
+                },
+                {
+                  num: "03",
+                  tag: "HR Insight",
+                  title: "Employer of Record in Central Asia",
+                  desc: "How foreign companies can establish talent presence without a local legal entity.",
+                  href: "/library/employer-of-record-central-asia",
+                },
+              ].map((pub, i) => (
+                <motion.div
+                  key={pub.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex-1"
+                >
+                  <Link href={pub.href} className="group block h-full">
+                    <div className="relative h-full border border-white/[0.07] bg-[#0c0c0c] rounded-2xl p-7 flex flex-col overflow-hidden hover:border-white/[0.14] transition-colors duration-300">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                      <span className="absolute right-6 bottom-5 font-serif text-[80px] leading-none text-white/[0.03] select-none pointer-events-none">{pub.num}</span>
+
+                      <p className="tracking-luxury text-primary mb-4 text-xs relative z-10">{pub.tag}</p>
+                      <h3 className="font-serif text-xl md:text-2xl leading-snug text-foreground mb-3 relative z-10 group-hover:text-white transition-colors duration-200">
+                        {pub.title}
+                      </h3>
+                      <p className="text-white/40 text-sm leading-relaxed flex-1 relative z-10">{pub.desc}</p>
+                      <div className="relative z-10 mt-6 pt-5 border-t border-white/[0.06] flex items-center justify-between">
+                        <span className="text-xs text-white/25 uppercase tracking-wider">Read more</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-white/18 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                      </div>
                     </div>
-                  </GlassCard>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
