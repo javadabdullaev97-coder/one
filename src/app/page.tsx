@@ -273,19 +273,38 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <CosmicParallaxBg className="relative h-[80vh]">
+      <CosmicParallaxBg className="relative h-[75vh]">
         <div className="absolute left-0 right-0 z-20 text-center top-[38%]">
           <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">ADVIZEN</h1>
         </div>
-        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[68%]">
-          <p className="cosmic-subtitle text-base md:text-lg lg:text-xl mb-5">
-            The Business Advisory Firm for Uzbekistan
-          </p>
-          <p className="text-white/35 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-6">
+        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[64%]">
+          {/* Ruled subtitle */}
+          <div className="flex items-center justify-center gap-5 mb-6">
+            <div className="h-px bg-white/20 w-12 md:w-20 shrink-0" />
+            <p className="cosmic-subtitle text-xs md:text-sm lg:text-base whitespace-nowrap">
+              The Business Advisory Firm for Uzbekistan
+            </p>
+            <div className="h-px bg-white/20 w-12 md:w-20 shrink-0" />
+          </div>
+
+          {/* Description — serif italic for editorial weight */}
+          <p className="font-serif italic font-light text-white/45 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-7">
             Integrated counsel across tax, legal, finance, HR, marketing, and funding —
             one partner for every challenge your business faces in Central Asia.
           </p>
-          <p className="text-white/25 text-xs tracking-[0.22em] uppercase">
+
+          {/* Discipline strip */}
+          <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-2 mb-7">
+            {["Tax", "Legal", "Finance", "HR", "Marketing", "Funding"].map((s, i, arr) => (
+              <span key={s} className="flex items-center gap-4">
+                <span className="text-[9px] tracking-[0.22em] uppercase text-white/28">{s}</span>
+                {i < arr.length - 1 && <span className="text-white/15 text-xs">·</span>}
+              </span>
+            ))}
+          </div>
+
+          {/* Location */}
+          <p className="text-white/20 text-[9px] tracking-[0.3em] uppercase">
             Tashkent, Uzbekistan
           </p>
         </div>
