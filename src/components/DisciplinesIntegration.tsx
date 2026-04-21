@@ -14,7 +14,7 @@ const disciplines: { num: string; title: string; short: string; blurb: string; i
   { num: "03", title: "Finance & Accounting", short: "Finance", blurb: "Reporting, controls, and advisory to IFRS standards.", icon: LineChart },
   { num: "04", title: "HR", short: "HR", blurb: "Employer of record, talent, and labour compliance.", icon: Users },
   { num: "05", title: "Marketing", short: "Marketing", blurb: "Brand, positioning, and market-entry strategy.", icon: Megaphone },
-  { num: "06", title: "Funding & Grants", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },
+  { num: "06", title: "Funding", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },
 ];
 
 export default function DisciplinesIntegration() {

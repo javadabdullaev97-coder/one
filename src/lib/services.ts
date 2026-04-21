@@ -95,7 +95,7 @@ export const servicesData: ServiceData[] = [
   {
     slug: "marketing",
     num: "05",
-    title: "Strategic Marketing",
+    title: "Marketing",
     category: "Growth",
     headline: "Brand presence across\nCentral Asian markets",
     description: [
@@ -116,7 +116,7 @@ export const servicesData: ServiceData[] = [
   {
     slug: "funding",
     num: "06",
-    title: "Funding & Grants",
+    title: "Funding",
     category: "Growth",
     headline: "Securing capital\nfor ambitious ventures",
     description: [
