@@ -29,7 +29,7 @@ const TASHKENT = { cx: 612, cy: 264 };
 /* Geographic sweep: west to east */
 const CYCLE_ORDER = ["UZ-QR", "UZ-XO", "UZ-NW", "UZ-BU", "UZ-SA", "UZ-QA", "UZ-SU", "UZ-JI", "UZ-SI", "UZ-TO", "UZ-NG", "UZ-FA", "UZ-AN"];
 
-export default function UzbekistanMap() {
+export default function UzbekistanMap({ onActiveChange }: { onActiveChange?: (id: string) => void }) {
   const reduced = useReducedMotion();
   const [hovered, setHovered] = useState<string | null>(null);
   const [cycleIdx, setCycleIdx] = useState(0);
@@ -51,6 +51,10 @@ export default function UzbekistanMap() {
 
   const activeId = hovered ?? CYCLE_ORDER[cycleIdx];
   const regionName = REGIONS.find(r => r.id === activeId)?.name ?? "";
+
+  useEffect(() => {
+    onActiveChange?.(activeId);
+  }, [activeId, onActiveChange]);
 
   return (
     <div

@@ -10,7 +10,6 @@ import MagneticButton from "@/components/MagneticButton";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/expertise", label: "Expertise" },
   { href: "/library", label: "The Library" },
   { href: "/contact", label: "Contact" },
