@@ -40,7 +40,7 @@ export default function Footer() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.1 } },
           }}
-          className="py-20 grid grid-cols-1 md:grid-cols-12 gap-12"
+          className="py-20 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_1.6fr] gap-10"
         >
           {/* Brand */}
           <motion.div
@@ -48,7 +48,6 @@ export default function Footer() {
               hidden: { opacity: 0, y: 24 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
             }}
-            className="md:col-span-4"
           >
             <div className="flex items-center gap-3">
               <Image src="/logo.png" alt="Advizen" width={40} height={32} />
@@ -94,7 +93,6 @@ export default function Footer() {
                 hidden: { opacity: 0, y: 24 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
               }}
-              className="md:col-span-2"
             >
               <h3 className="tracking-luxury text-muted-dark mb-6">{title}</h3>
               <ul className="space-y-3">
@@ -118,7 +116,6 @@ export default function Footer() {
               hidden: { opacity: 0, y: 24 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
             }}
-            className="md:col-span-2"
           >
             <h3 className="tracking-luxury text-muted-dark mb-6">Newsletter</h3>
             <p className="text-sm text-white/50 mb-4">
