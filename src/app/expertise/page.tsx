@@ -12,7 +12,6 @@ import {
   Flame,
   Landmark,
   LineChart,
-  Megaphone,
   Scale,
   Stethoscope,
   Store,
@@ -99,7 +98,6 @@ const serviceIcons: Record<string, LucideIcon> = {
   legal: Scale,
   finance: LineChart,
   hr: Users,
-  marketing: Megaphone,
   funding: Landmark,
 };
 
@@ -122,7 +120,7 @@ const allEngagements = [
 ];
 
 const heroStats = [
-  { value: "6", label: "Disciplines" },
+  { value: "5", label: "Disciplines" },
   { value: "6", label: "Sectors" },
   { value: "8+", label: "Years" },
   { value: "$10B+", label: "Deals advised" },
@@ -139,7 +137,7 @@ function ServicesSection() {
         <AnimatedSection className="mb-14 md:mb-16">
           <p className="tracking-luxury text-white/50 mb-4">Practice Areas</p>
           <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-            Six disciplines, one team
+            Five disciplines, one team
           </h2>
           <p className="mt-5 text-white/45 max-w-2xl leading-relaxed">
             From regulatory compliance to strategic growth — integrated advisory
@@ -460,7 +458,7 @@ export default function ExpertisePage() {
 
             <RevealLine delay={0.5}>
               <p className="text-lg text-white/50 max-w-2xl mt-8 leading-relaxed">
-                Six core disciplines. Six industry sectors. One cohesive advisory
+                Five core disciplines. Six industry sectors. One cohesive advisory
                 practice built for the complexities of Central Asian markets.
               </p>
             </RevealLine>
