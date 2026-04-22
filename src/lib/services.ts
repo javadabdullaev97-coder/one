@@ -53,7 +53,7 @@ export const servicesData: ServiceData[] = [
   {
     slug: "finance",
     num: "03",
-    title: "Finance & Accounting",
+    title: "Accounting",
     category: "Operations",
     headline: "Financial clarity\nfor decisive leadership",
     description: [

@@ -201,7 +201,7 @@ export default function ContactPage() {
                     <option value="" className="bg-surface">Select a service</option>
                     <option value="tax" className="bg-surface">Tax Consulting</option>
                     <option value="legal" className="bg-surface">Legal Advisory</option>
-                    <option value="finance" className="bg-surface">Finance &amp; Accounting</option>
+                    <option value="finance" className="bg-surface">Accounting</option>
                     <option value="hr" className="bg-surface">Human Resources</option>
                     <option value="marketing" className="bg-surface">Strategic Marketing</option>
                     <option value="funding" className="bg-surface">Funding &amp; Grants</option>

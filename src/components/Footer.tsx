@@ -11,7 +11,7 @@ const footerLinks = {
   Expertise: [
     { label: "Tax Consulting", href: "/expertise/tax" },
     { label: "Legal Advisory", href: "/expertise/legal" },
-    { label: "Finance & Accounting", href: "/expertise/finance" },
+    { label: "Accounting", href: "/expertise/finance" },
     { label: "HR Services", href: "/expertise/hr" },
     { label: "Marketing", href: "/expertise/marketing" },
     { label: "Funding", href: "/expertise/funding" },

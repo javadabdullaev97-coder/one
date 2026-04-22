@@ -11,7 +11,7 @@ type LucideIcon = React.ComponentType<LucideProps>;
 const disciplines: { num: string; title: string; short: string; blurb: string; icon: LucideIcon }[] = [
   { num: "01", title: "Tax", short: "Tax", blurb: "Strategy, compliance, and cross-border structuring.", icon: Calculator },
   { num: "02", title: "Legal", short: "Legal", blurb: "Corporate, contract, and regulatory counsel.", icon: Scale },
-  { num: "03", title: "Finance & Accounting", short: "Finance", blurb: "Reporting, controls, and advisory to IFRS standards.", icon: LineChart },
+  { num: "03", title: "Accounting", short: "Accounting", blurb: "Reporting, controls, and advisory to IFRS standards.", icon: LineChart },
   { num: "04", title: "HR", short: "HR", blurb: "Talent, payroll, and labour compliance.", icon: Users },
   { num: "05", title: "Marketing", short: "Marketing", blurb: "Brand, positioning, and market-entry strategy.", icon: Megaphone },
   { num: "06", title: "Funding", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },

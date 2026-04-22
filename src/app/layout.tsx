@@ -49,7 +49,7 @@ const jsonLd = {
   serviceType: [
     "Tax Consulting",
     "Legal Advisory",
-    "Finance & Accounting",
+    "Accounting",
     "HR Services",
     "Marketing",
     "Funding",
