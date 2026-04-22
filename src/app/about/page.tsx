@@ -10,11 +10,12 @@ import {
 import {
   ArrowRight,
   ArrowUpRight,
+  Briefcase,
   Calculator,
   Landmark,
+  LayoutDashboard,
   LineChart,
   Mail,
-  Megaphone,
   Phone,
   Scale,
   Users,
@@ -31,7 +32,7 @@ import { cn } from "@/lib/utils";
 
 const metrics = [
   { value: 8, suffix: "+", label: "Years in Uzbekistan Market" },
-  { value: 6, suffix: "", label: "Practice Areas" },
+  { value: 7, suffix: "", label: "Practice Areas" },
   { value: 15, suffix: "+", label: "Industries Served" },
   { value: 3, suffix: "", label: "Languages: EN / RU / UZ" },
 ];
@@ -71,8 +72,9 @@ const disciplines: {
   { num: "02", title: "Legal", short: "Legal", blurb: "Corporate, contract, and regulatory counsel.", icon: Scale },
   { num: "03", title: "Accounting", short: "Accounting", blurb: "Reporting, controls, and advisory to IFRS standards.", icon: LineChart },
   { num: "04", title: "HR", short: "HR", blurb: "Employer of record, talent, and labour compliance.", icon: Users },
-  { num: "05", title: "Marketing", short: "Marketing", blurb: "Brand, positioning, and market-entry strategy.", icon: Megaphone },
-  { num: "06", title: "Funding & Grants", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },
+  { num: "05", title: "Funding", short: "Funding", blurb: "Access to capital, IFI programmes, and incentives.", icon: Landmark },
+  { num: "06", title: "Corporate Services", short: "Corporate", blurb: "Formation, nominal director, EOR, and company admin.", icon: Briefcase },
+  { num: "07", title: "Entity Management", short: "Entity Mgmt", blurb: "Full-service outsourced management of your UZ entity.", icon: LayoutDashboard },
 ];
 
 
@@ -474,7 +476,7 @@ export default function AboutPage() {
               One partner, every discipline
             </h2>
             <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
-              Tax, legal, finance, HR, marketing, and funding. Working in
+              Tax, legal, finance, HR, funding, and more — working in
               concert on a shared view of your business.
             </p>
           </AnimatedSection>
