@@ -309,10 +309,10 @@ function IndustriesSection() {
                   type="button"
                   onClick={() => setActiveIndex(i)}
                   className={cn(
-                    "relative w-full flex flex-1 items-center gap-3.5 px-5 text-left transition-all duration-250 group outline-none",
+                    "relative w-full flex flex-1 items-center gap-4 px-6 text-left transition-all duration-250 group outline-none",
                     isActive
                       ? "bg-white/[0.04] text-foreground"
-                      : "text-white/38 hover:text-white/68 hover:bg-white/[0.02]"
+                      : "text-white/45 hover:text-white/75 hover:bg-white/[0.02]"
                   )}
                 >
                   {/* Active left border */}
@@ -326,25 +326,25 @@ function IndustriesSection() {
                   {/* Icon box */}
                   <span
                     className={cn(
-                      "w-7 h-7 rounded flex items-center justify-center shrink-0 transition-all duration-250",
+                      "w-9 h-9 rounded flex items-center justify-center shrink-0 transition-all duration-250",
                       isActive ? "bg-primary/10" : "bg-white/[0.03] group-hover:bg-white/[0.06]"
                     )}
                   >
                     <IconComp
-                      className={cn("w-3.5 h-3.5 shrink-0 transition-colors duration-250",
-                        isActive ? "text-primary" : "text-white/30 group-hover:text-white/50"
+                      className={cn("w-[18px] h-[18px] shrink-0 transition-colors duration-250",
+                        isActive ? "text-primary" : "text-white/40 group-hover:text-white/65"
                       )}
                       strokeWidth={1.5}
                     />
                   </span>
 
-                  <span className={cn("text-[11.5px] tracking-[0.09em] uppercase transition-all duration-250", isActive ? "font-medium" : "")}>
+                  <span className={cn("text-[13px] tracking-[0.07em] uppercase transition-all duration-250", isActive ? "font-semibold" : "font-medium")}>
                     {ind.name}
                   </span>
 
                   <ArrowRight
                     className={cn(
-                      "ml-auto w-3.5 h-3.5 shrink-0 transition-all duration-250",
+                      "ml-auto w-4 h-4 shrink-0 transition-all duration-250",
                       isActive ? "text-primary opacity-100 translate-x-0" : "opacity-0 -translate-x-1"
                     )}
                   />
@@ -355,18 +355,20 @@ function IndustriesSection() {
 
           {/* Right — detail panel */}
           <div className="relative bg-[#080808] h-full overflow-hidden">
-            {/* Content — absolute so it never drives the container height */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.name}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 p-6 md:p-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 p-6 md:p-8 overflow-y-auto"
               >
                 {/* Industry image */}
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="relative w-full h-44 md:h-52 rounded-xl overflow-hidden mb-6"
                   style={{
                     background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
@@ -381,25 +383,31 @@ function IndustriesSection() {
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                     />
                   )}
-                  {/* Fallback icon — visible when image hasn't loaded */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <active.icon className="w-14 h-14 text-white/[0.06]" strokeWidth={0.6} />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-3">
-                  <active.icon
-                    className="w-5 h-5 text-primary shrink-0"
-                    strokeWidth={1.25}
-                  />
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-3 mb-3"
+                >
+                  <active.icon className="w-5 h-5 text-primary shrink-0" strokeWidth={1.25} />
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide leading-tight">
                     {active.name}
                   </h3>
-                </div>
+                </motion.div>
 
                 {/* Sector chips */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-wrap gap-1.5 mb-5"
+                >
                   {active.sectors.map((s) => (
                     <span
                       key={s}
@@ -408,26 +416,39 @@ function IndustriesSection() {
                       {s}
                     </span>
                   ))}
-                </div>
+                </motion.div>
 
                 {/* Description */}
-                <p className="text-[14px] text-white/52 leading-relaxed mb-6">
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[14px] text-white/52 leading-relaxed mb-6"
+                >
                   {active.description}
-                </p>
+                </motion.p>
 
                 {/* Offerings */}
-                <p className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5">
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.25 }}
+                  className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5"
+                >
                   What we offer
-                </p>
+                </motion.p>
                 <div className="flex flex-wrap gap-2">
-                  {active.offerings.map((item) => (
-                    <span
+                  {active.offerings.map((item, oi) => (
+                    <motion.span
                       key={item}
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.28, delay: 0.28 + oi * 0.04, ease: [0.16, 1, 0.3, 1] }}
                       className="flex items-center gap-2 px-3 py-2 border border-white/[0.07] bg-white/[0.02] text-[12px] text-white/52 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-white/80 transition-all duration-250 cursor-default"
                     >
                       <span className="w-[5px] h-[5px] rounded-full bg-primary/50 shrink-0" />
                       {item}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
