@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Advizen Consulting | Premier Business Advisory",
     description:
-      "One-stop business consulting partner in Uzbekistan. Tax, legal, finance, HR, and marketing under one roof.",
+      "One-stop business consulting partner in Uzbekistan. Tax, legal, finance, and HR under one roof.",
     type: "website",
     locale: "en_US",
     siteName: "Advizen Consulting",
@@ -33,7 +33,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "Advizen Consulting",
   description:
-    "Premier business consulting firm in Uzbekistan offering integrated tax, legal, finance, accounting, HR, and marketing services.",
+    "Premier business consulting firm in Uzbekistan offering integrated tax, legal, finance, accounting, and HR services.",
   url: "https://www.advizenco.com",
   telephone: "+998334884888",
   email: "info@advizenco.com",
@@ -51,7 +51,6 @@ const jsonLd = {
     "Legal Advisory",
     "Accounting",
     "HR Services",
-    "Marketing",
     "Funding",
     "Corporate Services",
     "Entity Management",

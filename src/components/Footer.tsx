@@ -13,7 +13,6 @@ const footerLinks = {
     { label: "Legal Advisory", href: "/expertise/legal" },
     { label: "Accounting", href: "/expertise/finance" },
     { label: "HR Services", href: "/expertise/hr" },
-    { label: "Marketing", href: "/expertise/marketing" },
     { label: "Funding", href: "/expertise/funding" },
   ],
   "Managed Services": [
@@ -57,7 +56,7 @@ export default function Footer() {
             </div>
             <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-sm">
               Premier business advisory in Uzbekistan. Integrated consulting
-              across tax, legal, finance, HR, and marketing — a single point of
+              across tax, legal, finance, and HR — a single point of
               contact for your entire operation.
             </p>
             <div className="mt-8 space-y-4">
