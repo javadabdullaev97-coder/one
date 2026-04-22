@@ -7,3 +7,16 @@ This version has breaking changes — APIs, conventions, and file structure may 
 # Deployment workflow
 
 **Always commit and push directly to `main`.** Do not create feature branches. Every push to `main` deploys automatically.
+
+## Pushing changes — ALWAYS use MCP, never `git push`
+
+The local git proxy is read-only. `git push` always fails with HTTP 503. **Never attempt `git push`.**
+
+After committing locally with `git commit`, push using the `mcp__github__push_files` tool:
+- owner: `javadabdullaev97-coder`
+- repo: `One`
+- branch: `main`
+- files: every file changed in the commit (read each one and pass its full content)
+- message: same message as the local commit
+
+After a successful MCP push, run `git fetch origin main && git reset --hard origin/main` to sync local state with remote.
