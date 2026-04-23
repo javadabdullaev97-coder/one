@@ -45,7 +45,7 @@ export const industryGroups: IndustryGroup[] = [
     name: "Real Estate & Infrastructure",
     icon: Building2,
     accent: "71,85,105",
-    image: "/industries/construction.jpg",
+    image: "/industries/real-estate.jpg",
     description: "Large-scale property and infrastructure projects demand careful tax and legal planning from the outset. We advise developers, contractors, and investors on project structuring, permitting, and compliance.",
     sectors: ["Commercial Real Estate", "Residential Development", "Construction", "Infrastructure"],
     offerings: ["Project tax optimisation", "Contract architecture and review", "Labour law and workforce compliance", "Permitting and regulatory advisory", "Investment structuring for developers"],
