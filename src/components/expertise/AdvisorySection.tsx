@@ -179,14 +179,14 @@ export default function AdvisorySection() {
                   transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
                   className="flex items-center gap-3 mb-6"
                 >
-                  <span className="w-9 h-9 rounded-lg flex items-center justify-center border border-primary/22 bg-primary/[0.07]">
-                    <ActiveIcon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                  <span className="w-9 h-9 rounded-lg flex items-center justify-center border border-white/[0.10] bg-white/[0.05]">
+                    <ActiveIcon className="w-4 h-4 text-white/70" strokeWidth={1.5} />
                   </span>
                   <div>
                     <h3 className="heading-luxury text-xl md:text-[1.35rem] text-foreground leading-tight">
                       {active.title}
                     </h3>
-                    <p className="text-[9px] tracking-[0.18em] uppercase text-primary/45 mt-1">
+                    <p className="text-[9px] tracking-[0.18em] uppercase text-white/28 mt-1">
                       Advisory
                     </p>
                   </div>
@@ -235,13 +235,13 @@ export default function AdvisorySection() {
                 <div className="mt-auto pt-4 border-t border-white/[0.05] flex items-center justify-between">
                   <Link
                     href={`/expertise/${active.slug}`}
-                    className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-primary/65 hover:text-primary transition-colors duration-200"
+                    className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-white/40 hover:text-white/80 transition-colors duration-200"
                   >
                     Full service overview
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </Link>
                   <span className="font-serif text-sm text-white/[0.12] tabular-nums">
-                    {String(activeIndex + 1).padStart(2, "00")}&thinsp;/&thinsp;{String(advisoryServices.length).padStart(2, "00")}
+                    {String(activeIndex + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(advisoryServices.length).padStart(2, "0")}
                   </span>
                 </div>
               </motion.div>
