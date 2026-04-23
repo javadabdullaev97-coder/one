@@ -64,20 +64,15 @@ export default function AdvisorySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
 
         <AnimatedSection className="mb-14 md:mb-16">
-          <div className="flex items-end justify-between gap-8">
-            <div>
-              <p className="tracking-luxury text-white/50 mb-4">Advisory</p>
-              <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-                You consult &mdash; we counsel
-              </h2>
-              <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-                Strategic guidance across tax, legal, finance, HR, funding, M&amp;A, and due diligence.
-                You make the decisions; we provide the depth.
-              </p>
-            </div>
-            <span className="hidden md:block font-serif text-5xl text-white/[0.06] tabular-nums shrink-0 leading-none pb-1">
-              {String(activeIndex + 1).padStart(2, "0")}
-            </span>
+          <div>
+            <p className="tracking-luxury text-white/50 mb-4">Advisory</p>
+            <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
+              You consult &mdash; we counsel
+            </h2>
+            <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
+              Strategic guidance across tax, legal, finance, HR, funding, M&amp;A, and due diligence.
+              You make the decisions; we provide the depth.
+            </p>
           </div>
         </AnimatedSection>
 
@@ -110,14 +105,6 @@ export default function AdvisorySection() {
                         isActive ? "bg-primary" : "bg-transparent"
                       )}
                     />
-                    <span
-                      className={cn(
-                        "font-serif tabular-nums text-sm w-5 shrink-0 transition-colors duration-200",
-                        isActive ? "text-primary" : "text-white/18 group-hover:text-white/38"
-                      )}
-                    >
-                      {service.num}
-                    </span>
                     <span
                       className={cn(
                         "w-8 h-8 rounded flex items-center justify-center shrink-0 border transition-all duration-250",
@@ -185,11 +172,6 @@ export default function AdvisorySection() {
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 p-8 md:p-10 flex flex-col overflow-y-auto"
               >
-                {/* Ghost number */}
-                <span className="absolute bottom-0 right-5 font-serif text-[9rem] md:text-[12rem] text-white/[0.022] leading-none select-none pointer-events-none tabular-nums">
-                  {active.num}
-                </span>
-
                 {/* Header */}
                 <motion.div
                   initial={{ opacity: 0, y: 6 }}
