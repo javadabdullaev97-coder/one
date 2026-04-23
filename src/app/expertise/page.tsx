@@ -24,7 +24,8 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
-import { advisoryServices, operationsServices } from "@/lib/services";
+import AdvisorySection from "@/components/expertise/AdvisorySection";
+import { operationsServices } from "@/lib/services";
 import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
@@ -48,170 +49,6 @@ const serviceIcons: Record<string, LucideIcon> = {
   compliance: ShieldCheck,
 };
 
-// ─── Advisory: hover-driven split panel ────────────────────────────────────
-
-function AdvisorySection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const active = advisoryServices[activeIndex];
-  const ActiveIcon = serviceIcons[active.slug] ?? ArrowUpRight;
-
-  return (
-    <section className="py-24 md:py-32 bg-black relative overflow-hidden">
-      <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -left-32 opacity-[0.15]" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-
-        <AnimatedSection className="mb-14 md:mb-16">
-          <p className="tracking-luxury text-white/50 mb-4">Advisory</p>
-          <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-            You consult — we counsel
-          </h2>
-          <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-            Strategic guidance across tax, legal, finance, HR, funding, M&A, and due diligence.
-            You make the decisions; we provide the depth.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-[5fr_7fr] border border-white/[0.07] overflow-hidden">
-
-          {/* Left: service list */}
-          <div className="border-r border-white/[0.07] divide-y divide-white/[0.04]">
-            {advisoryServices.map((service, i) => {
-              const isActive = i === activeIndex;
-              const ItemIcon = serviceIcons[service.slug] ?? ArrowUpRight;
-              return (
-                <motion.button
-                  key={service.slug}
-                  type="button"
-                  onMouseEnter={() => setActiveIndex(i)}
-                  onClick={() => setActiveIndex(i)}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: i * 0.055, ease: [0.16, 1, 0.3, 1] }}
-                  className={cn(
-                    "group relative w-full flex items-center gap-4 px-6 py-5 text-left transition-colors duration-200",
-                    isActive ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "absolute left-0 top-0 bottom-0 w-[2px] transition-colors duration-300",
-                      isActive ? "bg-primary" : "bg-transparent"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "font-serif tabular-nums text-base w-6 shrink-0 text-right transition-colors duration-200",
-                      isActive ? "text-primary" : "text-white/18 group-hover:text-white/35"
-                    )}
-                  >
-                    {service.num}
-                  </span>
-                  <span
-                    className={cn(
-                      "w-8 h-8 rounded flex items-center justify-center shrink-0 border transition-all duration-250",
-                      isActive
-                        ? "border-primary/25 bg-primary/[0.08]"
-                        : "border-white/[0.06] bg-white/[0.02] group-hover:border-white/[0.12] group-hover:bg-white/[0.04]"
-                    )}
-                  >
-                    <ItemIcon
-                      className={cn(
-                        "w-3.5 h-3.5 transition-colors duration-250",
-                        isActive ? "text-primary" : "text-white/30 group-hover:text-white/55"
-                      )}
-                      strokeWidth={1.5}
-                    />
-                  </span>
-                  <span
-                    className={cn(
-                      "flex-1 text-[13px] tracking-[0.03em] transition-colors duration-200",
-                      isActive ? "text-foreground" : "text-white/45 group-hover:text-white/75"
-                    )}
-                  >
-                    {service.title}
-                  </span>
-                  <ArrowRight
-                    className={cn(
-                      "w-3.5 h-3.5 shrink-0 transition-all duration-200",
-                      isActive
-                        ? "text-primary opacity-100 translate-x-0"
-                        : "opacity-0 -translate-x-1"
-                    )}
-                  />
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {/* Right: active service detail */}
-          <div className="relative bg-[#080808] min-h-[400px] md:min-h-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.slug}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 p-8 md:p-10 flex flex-col overflow-y-auto"
-              >
-                {/* Decorative number */}
-                <span className="absolute bottom-4 right-6 font-serif text-[9rem] md:text-[11rem] text-white/[0.025] leading-none select-none pointer-events-none tabular-nums">
-                  {active.num}
-                </span>
-
-                <div className="flex items-center gap-3 mb-7">
-                  <span className="w-9 h-9 rounded-lg flex items-center justify-center border border-primary/20 bg-primary/[0.07]">
-                    <ActiveIcon className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                  </span>
-                  <h3 className="heading-luxury text-xl md:text-2xl text-foreground">
-                    {active.title}
-                  </h3>
-                </div>
-
-                <p className="text-[14px] text-white/55 leading-relaxed mb-3">
-                  {active.description[0]}
-                </p>
-                <p className="text-[13px] text-white/32 leading-relaxed mb-8">
-                  {active.description[1]}
-                </p>
-
-                <p className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-4">
-                  Capabilities
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {active.capabilities.map((cap, ci) => (
-                    <motion.span
-                      key={cap}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: ci * 0.03, duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-[11px] text-white/42 border border-white/[0.07] px-3 py-1.5 hover:border-primary/25 hover:text-white/65 transition-colors duration-200 cursor-default"
-                    >
-                      {cap}
-                    </motion.span>
-                  ))}
-                </div>
-
-                <div className="mt-auto pt-4 border-t border-white/[0.05]">
-                  <Link
-                    href={`/expertise/${active.slug}`}
-                    className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-primary/65 hover:text-primary transition-colors duration-200"
-                  >
-                    Full service overview
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </Link>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── Operations: flagship banner + wipe-reveal cards ───────────────────────
 
 function OperationsSection() {
@@ -226,10 +63,10 @@ function OperationsSection() {
         <AnimatedSection className="mb-14 md:mb-16">
           <p className="tracking-luxury text-white/50 mb-4">Operations</p>
           <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-            You delegate — we execute
+            You delegate &mdash; we execute
           </h2>
           <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-            Fully managed services where we handle execution on your behalf — from entity
+            Fully managed services where we handle execution on your behalf &mdash; from entity
             management and payroll to immigration and compliance monitoring.
           </p>
         </AnimatedSection>
@@ -246,10 +83,8 @@ function OperationsSection() {
             href={`/expertise/${flagship.slug}`}
             className="group relative block overflow-hidden border border-primary/[0.15] bg-primary/[0.025] hover:border-primary/[0.30] transition-colors duration-400 p-8 md:p-12"
           >
-            {/* Hover fill */}
             <div className="absolute inset-0 bg-primary/[0.04] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
 
-            {/* Decorative number */}
             <span className="absolute bottom-2 right-8 font-serif text-[11rem] text-white/[0.022] leading-none select-none pointer-events-none tabular-nums group-hover:text-primary/[0.045] transition-colors duration-500">
               01
             </span>
@@ -307,7 +142,6 @@ function OperationsSection() {
                 transition={{ duration: 0.45, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative bg-black overflow-hidden"
               >
-                {/* Wipe from bottom */}
                 <div className="absolute inset-0 bg-white/[0.028] translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]" />
 
                 <div className="relative p-7 md:p-8 flex flex-col h-full">
