@@ -21,8 +21,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Strategic tax counsel\nfor complex markets",
     description: [
-      "Our tax practice navigates Uzbekistan's evolving fiscal landscape with precision. We design structures that optimize your position while maintaining full regulatory compliance.",
-      "From cross-border transactions to local VAT obligations, our team brings deep technical knowledge paired with practical commercial awareness.",
+      "Our tax practice navigates Uzbekistan's evolving fiscal landscape with precision — designing structures that optimise your position while maintaining full regulatory compliance across cross-border transactions, local VAT obligations, and everything in between.",
     ],
     capabilities: [
       "Tax planning & optimization",
@@ -43,8 +42,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Full-spectrum legal\ncounsel & protection",
     description: [
-      "Our legal team provides end-to-end counsel for businesses operating in Uzbekistan — from entity formation and contract architecture to regulatory compliance and corporate structuring.",
-      "We protect your interests with the rigour and attention to detail that complex, multi-jurisdictional operations demand.",
+      "Our legal team provides end-to-end counsel for businesses operating in Uzbekistan — from entity formation and contract architecture to regulatory compliance and corporate structuring — protecting your interests with the rigour that complex, multi-jurisdictional operations demand.",
     ],
     capabilities: [
       "Company formation & licensing",
@@ -64,8 +62,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Financial clarity\nfor decisive leadership",
     description: [
-      "We deliver full-cycle financial management — precise bookkeeping, transparent reporting, and strategic advisory that transforms your numbers into actionable intelligence.",
-      "Our team ensures compliance with both National Accounting Standards and IFRS, giving international stakeholders the confidence they require.",
+      "We deliver full-cycle financial management — precise bookkeeping, transparent reporting, and strategic advisory that transforms your numbers into actionable intelligence, with full compliance across National Accounting Standards and IFRS.",
     ],
     capabilities: [
       "Bookkeeping & accounting",
@@ -86,8 +83,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Strategic HR counsel\nfor growing enterprises",
     description: [
-      "Our HR advisory practice covers the strategic and compliance dimensions of human capital — from organisational design and executive search to HR audits and labour law guidance.",
-      "We advise on the frameworks and policies that underpin a compliant, high-performing workforce in Uzbekistan.",
+      "Our HR advisory practice covers the strategic and compliance dimensions of human capital — from organisational design and executive search to HR audits and labour law guidance — advising on the frameworks that underpin a compliant, high-performing workforce in Uzbekistan.",
     ],
     capabilities: [
       "Recruitment & executive search",
@@ -107,8 +103,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Securing capital\nfor ambitious ventures",
     description: [
-      "We guide businesses through the landscape of available funding — grants, investment readiness, donor engagement, and financial structuring for growth.",
-      "Our team has deep relationships across the institutional funding ecosystem in Central Asia, connecting the right capital with the right opportunities.",
+      "We guide businesses through the landscape of available funding — grants, investment readiness, donor engagement, and financial structuring for growth — drawing on deep relationships across the institutional funding ecosystem in Central Asia.",
     ],
     capabilities: [
       "Grant identification & applications",
@@ -129,8 +124,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Transaction counsel\nfrom origination to close",
     description: [
-      "Our M&A practice guides buyers and sellers through every stage of a transaction in Uzbekistan — from structuring and due diligence to negotiation and post-deal integration.",
-      "With a track record spanning $250M+ transactions across FMCG, fintech, energy, and manufacturing, we bring the technical depth and market knowledge that complex deals demand.",
+      "Our M&A practice guides buyers and sellers through every stage of a transaction in Uzbekistan — from structuring and due diligence to negotiation and post-deal integration — with a track record spanning $250M+ deals across FMCG, fintech, energy, and manufacturing.",
     ],
     capabilities: [
       "Buy-side & sell-side advisory",
@@ -151,8 +145,7 @@ export const advisoryServices: ServiceData[] = [
     type: "advisory",
     headline: "Complete risk assessment\nbefore you commit",
     description: [
-      "Our due diligence practice provides comprehensive tax, legal, and financial assessment of Uzbek targets — giving acquirers, investors, and lenders a clear picture of what they are buying.",
-      "With 30+ tax and legal due diligences completed across energy, mining, FMCG, and manufacturing, our team identifies risks others miss.",
+      "Our due diligence practice provides comprehensive tax, legal, and financial assessment of Uzbek targets — giving acquirers, investors, and lenders a clear picture of what they are buying, with 30+ engagements completed across energy, mining, FMCG, and manufacturing.",
     ],
     capabilities: [
       "Tax due diligence",

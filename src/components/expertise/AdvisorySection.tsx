@@ -198,11 +198,8 @@ export default function AdvisorySection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.28, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="text-[14px] text-white/55 leading-relaxed mb-3">
+                  <p className="text-[14px] text-white/55 leading-relaxed mb-7">
                     {active.description[0]}
-                  </p>
-                  <p className="text-[13px] text-white/30 leading-relaxed mb-7">
-                    {active.description[1]}
                   </p>
                 </motion.div>
 
@@ -244,7 +241,7 @@ export default function AdvisorySection() {
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </Link>
                   <span className="font-serif text-sm text-white/[0.12] tabular-nums">
-                    {String(activeIndex + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(advisoryServices.length).padStart(2, "0")}
+                    {String(activeIndex + 1).padStart(2, "00")}&thinsp;/&thinsp;{String(advisoryServices.length).padStart(2, "00")}
                   </span>
                 </div>
               </motion.div>
