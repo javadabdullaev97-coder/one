@@ -1,208 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, type ComponentType, type SVGProps } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Briefcase,
-  Calculator,
-  Globe,
-  Handshake,
-  Landmark,
-  LayoutDashboard,
-  LineChart,
-  MapPin,
-  Scale,
-  ScanSearch,
-  ShieldCheck,
-  UserCheck,
-  Users,
-  Wallet,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AdvisorySection from "@/components/expertise/AdvisorySection";
-import { operationsServices } from "@/lib/services";
+import OperationsSection from "@/components/expertise/OperationsSection";
 import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
-type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
-
-const serviceIcons: Record<string, LucideIcon> = {
-  tax: Calculator,
-  legal: Scale,
-  finance: LineChart,
-  hr: Users,
-  funding: Landmark,
-  "ma-advisory": Handshake,
-  "due-diligence": ScanSearch,
-  "entity-management": LayoutDashboard,
-  corporate: Briefcase,
-  eor: UserCheck,
-  payroll: Wallet,
-  immigration: Globe,
-  "virtual-office": MapPin,
-  compliance: ShieldCheck,
-};
-
-// ─── Operations: flagship banner + wipe-reveal cards ───────────────────────
-
-function OperationsSection() {
-  const [flagship, ...rest] = operationsServices;
-  const FlagshipIcon = serviceIcons[flagship.slug] ?? ArrowUpRight;
-
-  return (
-    <section className="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/[0.06]">
-      <div className="ambient-glow ambient-glow-warm w-[700px] h-[700px] top-1/4 right-0 translate-x-1/2 opacity-[0.06]" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-
-        <AnimatedSection className="mb-14 md:mb-16">
-          <p className="tracking-luxury text-white/50 mb-4">Operations</p>
-          <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-            You delegate &mdash; we execute
-          </h2>
-          <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-            Fully managed services where we handle execution on your behalf &mdash; from entity
-            management and payroll to immigration and compliance monitoring.
-          </p>
-        </AnimatedSection>
-
-        {/* ── Flagship ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-px"
-        >
-          <Link
-            href={`/expertise/${flagship.slug}`}
-            className="group relative block overflow-hidden border border-primary/[0.15] bg-primary/[0.025] hover:border-primary/[0.30] transition-colors duration-400 p-8 md:p-12"
-          >
-            <div className="absolute inset-0 bg-primary/[0.04] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-
-            <span className="absolute bottom-2 right-8 font-serif text-[11rem] text-white/[0.022] leading-none select-none pointer-events-none tabular-nums group-hover:text-primary/[0.045] transition-colors duration-500">
-              01
-            </span>
-
-            <div className="relative grid md:grid-cols-[5fr_7fr] gap-10 md:gap-16 items-start">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="w-10 h-10 rounded-lg flex items-center justify-center border border-primary/25 bg-primary/[0.08] group-hover:border-primary/40 group-hover:bg-primary/[0.14] transition-all duration-300">
-                    <FlagshipIcon className="w-[18px] h-[18px] text-primary" strokeWidth={1.5} />
-                  </span>
-                  <span className="text-[10px] tracking-[0.22em] uppercase text-primary/55 group-hover:text-primary/80 transition-colors duration-300">
-                    Flagship service
-                  </span>
-                </div>
-                <h3 className="heading-luxury text-2xl md:text-3xl text-foreground mb-5">
-                  {flagship.title}
-                </h3>
-                <p className="text-[14px] text-white/48 leading-relaxed mb-3">
-                  {flagship.description[0]}
-                </p>
-                <p className="text-[13px] text-white/28 leading-relaxed mb-8">
-                  {flagship.description[1]}
-                </p>
-                <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-primary/60 group-hover:text-primary transition-colors duration-200">
-                  Full details
-                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-2 content-start pt-1">
-                {flagship.capabilities.map((cap) => (
-                  <span
-                    key={cap}
-                    className="flex items-center gap-2 text-[12px] text-white/40 border border-white/[0.07] px-3 py-2 group-hover:border-white/[0.13] group-hover:text-white/58 transition-all duration-300"
-                  >
-                    <span className="w-[4px] h-[4px] rounded-full bg-primary/55 shrink-0" />
-                    {cap}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Link>
-        </motion.div>
-
-        {/* ── Remaining 6 ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.05]">
-          {rest.map((service, i) => {
-            const Icon = serviceIcons[service.slug] ?? ArrowUpRight;
-            return (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-black overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-white/[0.028] translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-
-                <div className="relative p-7 md:p-8 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-6">
-                    <span
-                      className={cn(
-                        "w-9 h-9 rounded-md flex items-center justify-center shrink-0 border transition-all duration-300",
-                        "border-white/[0.07] bg-white/[0.02] group-hover:border-primary/25 group-hover:bg-primary/[0.07]"
-                      )}
-                    >
-                      <Icon
-                        className="w-4 h-4 text-white/35 group-hover:text-primary transition-colors duration-300"
-                        strokeWidth={1.5}
-                      />
-                    </span>
-                    <span className="font-serif text-xl text-white/[0.07] group-hover:text-white/[0.15] transition-colors tabular-nums">
-                      {service.num}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif text-lg text-white/68 mb-3 group-hover:text-foreground transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-[12px] text-white/33 leading-relaxed mb-5 flex-1 line-clamp-3">
-                    {service.description[0]}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {service.capabilities.slice(0, 3).map((cap) => (
-                      <span
-                        key={cap}
-                        className="text-[10px] text-white/25 border border-white/[0.05] px-2.5 py-1 group-hover:border-white/[0.1] group-hover:text-white/42 transition-all duration-300"
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                    {service.capabilities.length > 3 && (
-                      <span className="text-[10px] text-white/14 border border-white/[0.04] px-2.5 py-1">
-                        +{service.capabilities.length - 3}
-                      </span>
-                    )}
-                  </div>
-
-                  <Link
-                    href={`/expertise/${service.slug}`}
-                    className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-white/24 group-hover:text-primary transition-colors duration-300 w-fit"
-                  >
-                    Explore <ArrowUpRight className="w-3 h-3" />
-                  </Link>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-// ─── Industries ────────────────────────────────────────────────────────────
+// ─── Industries ──────────────────────────────────────────────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -387,7 +198,7 @@ function IndustriesSection() {
   );
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────
+// ─── Page ──────────────────────────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
