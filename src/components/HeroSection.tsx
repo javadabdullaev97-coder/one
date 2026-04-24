@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import MagneticButton from "@/components/MagneticButton";
 
 const ROCKS = [
   {
@@ -68,7 +68,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
       <StarField />
 
-      {/* Oxblood orb — mirrors the reference's planet glow */}
+      {/* Oxblood orb */}
       <div
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
@@ -149,13 +149,10 @@ export default function HeroSection() {
           transition={{ duration: 0.55, delay: 0.82 }}
           className="mt-10"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-8 py-3.5 border border-primary/30 text-white/55 text-[11px] tracking-[0.22em] uppercase hover:border-primary/60 hover:text-white/85 hover:bg-primary/[0.06] transition-all duration-300"
-          >
+          <MagneticButton variant="primary" as="a" href="/contact">
             Schedule a consultation
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+            <ArrowRight className="w-4 h-4" />
+          </MagneticButton>
         </motion.div>
       </div>
 
