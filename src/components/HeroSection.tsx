@@ -73,14 +73,14 @@ export default function HeroSection() {
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
         style={{
-          top: -220,
-          width: 720,
-          height: 720,
+          top: -320,
+          width: 1300,
+          height: 560,
           background:
-            "radial-gradient(circle at 50% 46%, rgba(140,20,20,0.55) 0%, rgba(99,13,13,0.28) 30%, rgba(60,8,8,0.08) 58%, transparent 74%)",
+            "radial-gradient(ellipse at 50% 46%, rgba(140,20,20,0.60) 0%, rgba(99,13,13,0.30) 35%, rgba(60,8,8,0.08) 62%, transparent 78%)",
           boxShadow:
-            "0 0 220px 100px rgba(99,13,13,0.18), 0 80px 200px rgba(99,13,13,0.25)",
-          border: "1px solid rgba(120,18,18,0.18)",
+            "0 0 180px 80px rgba(99,13,13,0.16), 0 60px 160px rgba(99,13,13,0.28)",
+          border: "1px solid rgba(120,18,18,0.16)",
         }}
       />
 
