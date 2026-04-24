@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useCallback, type ComponentType } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -200,11 +201,13 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               {/* Placeholder image */}
               <div className="relative h-44 rounded-xl overflow-hidden mb-5 border border-white/[0.06]"
                 style={{ background: "linear-gradient(135deg, rgba(122,26,26,0.22) 0%, #080808 65%)" }}>
-                <img
-                  src={REGION_IMAGE[activeId ?? ""] ?? ""}
+                <Image
+                  src={REGION_IMAGE[activeId ?? ""] ?? "/Regions/Andijan.png"}
                   alt={region.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) calc(100vw - 3rem), 480px"
+                  quality={72}
                 />
                 {/* bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#080808]/70 to-transparent pointer-events-none" />
