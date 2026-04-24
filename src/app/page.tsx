@@ -162,6 +162,23 @@ const REGION_DATA: Record<string, RegionData> = {
   },
 };
 
+const REGION_IMAGE: Record<string, string> = {
+  "UZ-AN": "/Regions/Andijan.png",
+  "UZ-BU": "/Regions/Bukhara.png",
+  "UZ-FA": "/Regions/Fergana.png",
+  "UZ-JI": "/Regions/Jizzakh.png",
+  "UZ-QR": "/Regions/Karakalpakstan.png",
+  "UZ-QA": "/Regions/Kashkadarya.png",
+  "UZ-XO": "/Regions/Khiva.png",
+  "UZ-NG": "/Regions/Namangan.png",
+  "UZ-NW": "/Regions/Navoi.png",
+  "UZ-SA": "/Regions/Samarkand.png",
+  "UZ-SU": "/Regions/Surkhandarya.png",
+  "UZ-SI": "/Regions/Syrdarya.png",
+  "UZ-TK": "/Regions/Tashkent%20City.png",
+  "UZ-TO": "/Regions/Tashkent%20region.png",
+};
+
 /* ── Region info panel ─────────────────────── */
 
 function RegionInfoPanel({ activeId }: { activeId: string | null }) {
@@ -184,20 +201,11 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               <div className="relative h-44 rounded-xl overflow-hidden mb-5 border border-white/[0.06]"
                 style={{ background: "linear-gradient(135deg, rgba(122,26,26,0.22) 0%, #080808 65%)" }}>
                 <img
-                  src={`/regions/${activeId}.jpg`}
+                  src={REGION_IMAGE[activeId ?? ""] ?? ""}
                   alt={region.name}
                   className="absolute inset-0 w-full h-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
-                {/* placeholder label */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 pointer-events-none">
-                  <span className="font-serif text-4xl text-white/[0.04] uppercase tracking-widest select-none">
-                    {region.name}
-                  </span>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-white/20 border border-white/[0.06] px-2 py-0.5">
-                    Image coming soon
-                  </span>
-                </div>
                 {/* bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#080808]/70 to-transparent pointer-events-none" />
               </div>
