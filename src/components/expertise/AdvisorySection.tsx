@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, type ComponentType, type SVGProps } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -162,7 +161,7 @@ export default function AdvisorySection() {
           </div>
 
           {/* Right: active service detail */}
-          <div className="relative bg-[#070707] min-h-[480px] md:h-[530px]">
+          <div className="relative bg-[#070707] min-h-[500px] md:h-[560px]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={active.slug}
@@ -170,76 +169,81 @@ export default function AdvisorySection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: direction * -10 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 p-8 md:p-10 flex flex-col overflow-y-auto"
+                className="absolute inset-0 p-10 md:p-14 flex flex-col"
               >
-                {/* Header */}
+                {/* Small icon + label */}
                 <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 mb-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-2.5 mb-10"
                 >
-                  <span className="w-11 h-11 rounded-lg flex items-center justify-center border border-white/[0.10] bg-white/[0.05]">
-                    <ActiveIcon className="w-5 h-5 text-white/70" strokeWidth={1.5} />
+                  <span className="w-7 h-7 rounded flex items-center justify-center border border-white/[0.08] bg-white/[0.03]">
+                    <ActiveIcon className="w-3.5 h-3.5 text-white/40" strokeWidth={1.5} />
                   </span>
-                  <div>
-                    <h3 className="heading-luxury text-xl md:text-[1.35rem] text-foreground leading-tight">
-                      {active.title}
-                    </h3>
-                    <p className="text-[9px] tracking-[0.18em] uppercase text-white/28 mt-1">
-                      Advisory
-                    </p>
-                  </div>
+                  <p className="text-[9px] tracking-[0.22em] uppercase text-white/22">Advisory</p>
                 </motion.div>
 
-                {/* Description */}
+                {/* Hero headline */}
                 <motion.div
-                  initial={{ opacity: 0, y: 6 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.28, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.3, delay: 0.03, ease: [0.16, 1, 0.3, 1] }}
+                  className="mb-2"
                 >
-                  <p className="text-[14px] text-white/55 leading-relaxed mb-7">
-                    {active.description[0]}
-                  </p>
+                  <h3 className="heading-luxury text-3xl md:text-[2.15rem] text-foreground leading-[1.18]">
+                    {active.headline.split("\n").map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
+                  </h3>
                 </motion.div>
+
+                {/* Service name as subtitle */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2, delay: 0.07 }}
+                  className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-8"
+                >
+                  {active.title}
+                </motion.p>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.26, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[13.5px] text-white/50 leading-relaxed"
+                >
+                  {active.description[0]}
+                </motion.p>
 
                 {/* Capabilities */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.2, delay: 0.12 }}
+                  transition={{ duration: 0.2, delay: 0.15 }}
+                  className="mt-auto flex flex-wrap gap-1.5"
                 >
-                  <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-3">
-                    Capabilities
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {active.capabilities.map((cap, ci) => (
-                      <motion.span
-                        key={cap}
-                        initial={{ opacity: 0, scale: 0.93 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          delay: 0.13 + ci * 0.022,
-                          duration: 0.2,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                        className="text-[11px] text-white/38 border border-white/[0.07] px-3 py-1.5 hover:border-primary/28 hover:text-white/65 hover:bg-primary/[0.04] transition-all duration-200 cursor-default"
-                      >
-                        {cap}
-                      </motion.span>
-                    ))}
-                  </div>
+                  {active.capabilities.map((cap, ci) => (
+                    <motion.span
+                      key={cap}
+                      initial={{ opacity: 0, scale: 0.93 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        delay: 0.16 + ci * 0.022,
+                        duration: 0.2,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="text-[11px] text-white/35 border border-white/[0.07] px-3 py-1.5 hover:border-primary/28 hover:text-white/62 hover:bg-primary/[0.04] transition-all duration-200 cursor-default"
+                    >
+                      {cap}
+                    </motion.span>
+                  ))}
                 </motion.div>
 
-                {/* Footer */}
-                <div className="mt-auto pt-4 border-t border-white/[0.05] flex items-center justify-between">
-                  <Link
-                    href={`/expertise/${active.slug}`}
-                    className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-white/40 hover:text-white/80 transition-colors duration-200"
-                  >
-                    Full service overview
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </Link>
+                {/* Counter */}
+                <div className="mt-6 pt-4 border-t border-white/[0.05] flex justify-end">
                   <span className="font-serif text-sm text-white/[0.12] tabular-nums">
                     {String(activeIndex + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(advisoryServices.length).padStart(2, "0")}
                   </span>
