@@ -13,7 +13,7 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/Ani
 import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import GlassCard from "@/components/GlassCard";
-import CosmicParallaxBg from "@/components/CosmicParallaxBg";
+import HeroSection from "@/components/HeroSection";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import UzbekistanMap from "@/components/UzbekistanMap";
 import DisciplinesIntegration from "@/components/DisciplinesIntegration";
@@ -273,23 +273,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <CosmicParallaxBg className="relative h-[75vh]">
-        <div className="absolute left-0 right-0 z-20 text-center top-[38%]">
-          <h1 className="cosmic-title text-5xl md:text-7xl lg:text-8xl">ADVIZEN</h1>
-        </div>
-        <div className="absolute left-0 right-0 z-20 text-center px-6 top-[67%]">
-          <p className="cosmic-subtitle text-lg md:text-xl lg:text-2xl mb-8">
-            Business Advisory in Uzbekistan
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-px w-8 bg-white/25" />
-            <p className="text-white/40 text-[13px] tracking-[0.25em] uppercase">
-              Tashkent, Uzbekistan
-            </p>
-            <div className="h-px w-8 bg-white/25" />
-          </div>
-        </div>
-      </CosmicParallaxBg>
+      <HeroSection />
 
       {/* ── Geography ── */}
       <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
