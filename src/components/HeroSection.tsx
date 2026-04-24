@@ -17,7 +17,7 @@ export default function HeroSection() {
         quality={100}
         sizes="100vw"
         className="object-cover"
-        style={{ objectPosition: "50% 0%", transform: "scale(1.35)", transformOrigin: "50% 0%" }}
+        style={{ objectPosition: "50% 0%", transform: "scale(1.5) translateY(-18%)", transformOrigin: "50% 50%" }}
         aria-hidden
       />
 
