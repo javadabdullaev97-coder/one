@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 
 type LucideIcon = ComponentType<LucideProps>;
 
-/* ── Orbital values data ──────────────────── */
+/* ── Orbital values data ─────────────────────────── */
 
 const firmValues = [
   {
@@ -66,7 +66,7 @@ const REGION_DATA: Record<string, RegionData> = {
     name: "Andijan",
     population: "3.1M",
     gdp: "~$3.0B",
-    sezs: ["Andijan SEZ", "Qo'rg'ontepa FEZ"],
+    sezs: ["Andijan SEZ", "Qo’rg‘ontepa FEZ"],
     industries: ["Automotive", "Textiles", "Chemicals", "Food Processing", "Engineering"],
   },
   "UZ-BU": {
@@ -162,7 +162,7 @@ const REGION_DATA: Record<string, RegionData> = {
   },
 };
 
-/* ── Region info panel ──────────────────── */
+/* ── Region info panel ─────────────────────── */
 
 function RegionInfoPanel({ activeId }: { activeId: string | null }) {
   const region = activeId ? REGION_DATA[activeId] : null;
@@ -262,7 +262,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
   );
 }
 
-/* ── Page ─────────────────────────────────── */
+/* ── Page ──────────────────────────────────────────── */
 
 export default function Home() {
   const [activeRegionId, setActiveRegionId] = useState<string | null>("UZ-TK");
@@ -276,7 +276,7 @@ export default function Home() {
       <HeroSection />
 
       {/* ── Geography ── */}
-      <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
+      <section className="py-14 md:py-20 bg-black relative overflow-hidden border-y border-white/[0.06]">
         <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 opacity-30" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-10 md:mb-12">
@@ -303,12 +303,12 @@ export default function Home() {
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* ── Integrated Coverage ── */}
-      <section className="py-28 md:py-36 bg-black relative overflow-hidden">
+      <section className="py-14 md:py-20 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -right-32 opacity-40" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <Parallax offset={20} fade>
-            <AnimatedSection className="mb-14 md:mb-16 text-center">
+            <AnimatedSection className="mb-8 md:mb-10 text-center">
               <p className="tracking-luxury text-muted-dark mb-4">Integrated Coverage</p>
               <TextReveal
                 text="One partner, every discipline"
@@ -337,7 +337,7 @@ export default function Home() {
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* ── What We Stand For — Orbital Values ── */}
-      <section className="py-20 md:py-28 bg-black relative overflow-hidden">
+      <section className="py-14 md:py-20 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -left-32 opacity-40" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
@@ -375,7 +375,7 @@ export default function Home() {
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* ── Insights Preview ── */}
-      <section className="py-28 md:py-36 bg-black relative overflow-hidden">
+      <section className="py-14 md:py-20 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -right-32 opacity-40" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
@@ -484,7 +484,7 @@ export default function Home() {
       <div className="w-full max-w-7xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       {/* ── CTA ── */}
-      <section className="py-28 md:py-36 bg-black relative overflow-hidden">
+      <section className="py-14 md:py-20 bg-black relative overflow-hidden">
         <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -left-32 opacity-40" />
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
