@@ -181,6 +181,27 @@ const REGION_IMAGE: Record<string, string> = {
   "UZ-TO": "/Regions/Tashkent region.png",
 };
 
+/* ── Region image preloader ─────────────────────── */
+
+function RegionImagePreloader() {
+  return (
+    <div aria-hidden="true" style={{ position: "fixed", left: -9999, top: -9999, pointerEvents: "none" }}>
+      {Object.values(REGION_IMAGE).map((src) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={src}
+          src={regionImageLoader({ src, width: 480, quality: 75 })}
+          alt=""
+          width={1}
+          height={1}
+          // @ts-expect-error fetchPriority not yet in all TS defs
+          fetchPriority="low"
+        />
+      ))}
+    </div>
+  );
+}
+
 /* ── Region info panel ─────────────────────── */
 
 function RegionInfoPanel({ activeId }: { activeId: string | null }) {
@@ -285,6 +306,7 @@ export default function Home() {
 
   return (
     <>
+      <RegionImagePreloader />
       {/* ── Hero ── */}
       <HeroSection />
 
