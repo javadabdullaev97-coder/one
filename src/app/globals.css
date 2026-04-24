@@ -1,14 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Deltha";
-  src: url("/fonts/Deltha.otf") format("opentype"),
-       url("/fonts/Deltha.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* Quiet Luxury Palette */
   --background: #0D0D0D;

@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
+import { Syne } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
+
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["800"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Advizen Consulting | Premier Business Advisory in Uzbekistan",
@@ -69,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`h-full antialiased ${syne.variable}`}>
       <head>
         <script
           type="application/ld+json"
