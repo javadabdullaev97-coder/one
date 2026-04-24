@@ -65,10 +65,10 @@ function StarField() {
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-black overflow-hidden flex flex-col items-center justify-center" style={{ minHeight: "100vh" }}>
+    <section className="relative overflow-hidden flex flex-col items-center justify-center" style={{ minHeight: "100vh", background: "#1B1B1E" }}>
       <StarField />
 
-      {/* Oxblood orb — wide ellipse ring, filled glow arc */}
+      {/* Deep red orb — wide ellipse ring, filled glow arc */}
       <div
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
@@ -78,9 +78,9 @@ export default function HeroSection() {
           height: 1440,
           borderRadius: "50%",
           background:
-            "radial-gradient(ellipse at 50% 50%, transparent 0%, transparent 46%, rgba(80,10,10,0.12) 56%, rgba(120,16,16,0.52) 67%, rgba(160,22,22,0.88) 76%, rgba(130,18,18,0.70) 83%, rgba(80,10,10,0.28) 90%, transparent 97%)",
+            "radial-gradient(ellipse at 50% 50%, transparent 0%, transparent 46%, rgba(215,38,61,0.12) 56%, rgba(215,38,61,0.52) 67%, rgba(215,38,61,0.88) 76%, rgba(180,32,51,0.70) 83%, rgba(140,25,40,0.28) 90%, transparent 97%)",
           boxShadow:
-            "0 0 200px 80px rgba(120,16,16,0.35), 0 0 500px 200px rgba(80,10,10,0.18)",
+            "0 0 200px 80px rgba(215,38,61,0.35), 0 0 500px 200px rgba(180,32,51,0.18)",
         }}
       />
 
@@ -104,7 +104,7 @@ export default function HeroSection() {
                 width: rock.w,
                 height: rock.h,
                 clipPath: rock.clip,
-                background: `linear-gradient(${138 + rock.rotate * 0.6}deg, #2a1414 0%, #160b0b 48%, #0b0606 100%)`,
+                background: `linear-gradient(${138 + rock.rotate * 0.6}deg, #2a2a2e 0%, #1b1b1e 48%, #141416 100%)`,
                 filter:
                   "drop-shadow(0 10px 28px rgba(0,0,0,0.92)) drop-shadow(0 2px 8px rgba(0,0,0,0.65))",
               }}
