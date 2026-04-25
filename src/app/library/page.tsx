@@ -295,14 +295,15 @@ export default function LibraryPage() {
 
           {/* Heading + filter + search */}
           <AnimatedSection className="mb-14 md:mb-16">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-6">
-              <div>
-                <p className="tracking-luxury text-white/50 mb-4">Publications</p>
-                <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-                  Briefings &amp; guides
-                </h2>
-              </div>
+            <div className="mb-8">
+              <p className="tracking-luxury text-white/50 mb-4">Publications</p>
+              <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
+                Briefings &amp; guides
+              </h2>
+            </div>
 
+            {/* Filter pills + search bar on same row */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               {/* Filter pills */}
               <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1 w-fit shrink-0 flex-wrap">
                 {filters.map((f) => (
@@ -331,26 +332,26 @@ export default function LibraryPage() {
                   </button>
                 ))}
               </div>
-            </div>
 
-            {/* Search bar */}
-            <div className="relative max-w-md">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by keyword…"
-                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full pl-11 pr-10 py-2.5 text-sm text-white/80 placeholder-white/25 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-200"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors duration-150 cursor-pointer"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
+              {/* Search bar */}
+              <div className="relative sm:flex-1 sm:max-w-xs">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by keyword…"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full pl-11 pr-10 py-2.5 text-sm text-white/80 placeholder-white/25 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-200"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors duration-150 cursor-pointer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
             </div>
           </AnimatedSection>
 
