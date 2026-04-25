@@ -63,66 +63,37 @@ const stats = [
 
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/* ── Article Card ───────────────────────────────────────── */
+/* ── Article Row ───────────────────────────────────────── */
 
-function ArticleCard({ pub }: { pub: Publication }) {
+function ArticleRow({ pub }: { pub: Publication }) {
   return (
-    <motion.div
-      whileHover={{ y: -3 }}
-      transition={{ duration: 0.28, ease: luxuryEase }}
-      className="group relative flex flex-col h-full rounded-xl overflow-hidden border border-white/[0.07] hover:border-white/[0.13] transition-colors duration-400 cursor-pointer"
-    >
-      {/* Top accent line — brightens on hover */}
-      <div className="h-px w-full shrink-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent group-hover:via-primary-light/40 transition-all duration-500" />
+    <div className="group relative flex items-start gap-6 md:gap-10 py-6 md:py-8 border-b border-white/[0.07] hover:bg-white/[0.02] transition-colors duration-200 cursor-pointer">
+      {/* Left accent — slides down on hover */}
+      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary-light/50 origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
 
-      <div className="flex flex-col flex-1 p-7 bg-white/[0.015] group-hover:bg-white/[0.03] transition-colors duration-300">
-        {/* Meta */}
-        <div className="flex items-center justify-between mb-5">
-          <span className="text-[10px] tracking-[0.16em] uppercase text-primary-light/65 border border-primary-light/15 rounded-full px-2.5 py-0.5 shrink-0">
-            {pub.tag}
-          </span>
-          <span className="font-mono text-[10px] text-white/[0.28] tabular-nums ml-3 shrink-0">
-            {formatDate(pub.date, pub.year)}
-          </span>
-        </div>
+      {/* Left column: tag + date */}
+      <div className="w-28 md:w-44 shrink-0 pt-0.5 pl-4">
+        <span className="inline-block text-[10px] tracking-[0.14em] uppercase text-primary-light/60 border border-primary-light/15 rounded-full px-2.5 py-0.5">
+          {pub.tag}
+        </span>
+        <p className="font-mono text-[10px] text-white/[0.28] mt-2.5 tabular-nums">
+          {formatDate(pub.date, pub.year)}
+        </p>
+      </div>
 
-        {/* Title — capped at 2 lines */}
-        <h3 className="font-serif text-[1.15rem] text-foreground/85 leading-snug line-clamp-2 mb-3 group-hover:text-foreground transition-colors duration-200">
+      {/* Right column: title + description */}
+      <div className="flex-1 min-w-0">
+        <h3 className="font-serif text-lg md:text-xl text-foreground/80 leading-snug line-clamp-1 mb-1.5 group-hover:text-foreground transition-colors duration-200">
           {pub.title}
         </h3>
-
-        {/* Description — 2 lines */}
-        <p className="text-sm text-white/[0.42] leading-relaxed line-clamp-2 flex-1">
+        <p className="text-[13px] text-white/[0.38] leading-relaxed line-clamp-1 hidden sm:block">
           {pub.description}
         </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/[0.05]">
-          <div className="flex items-center gap-3">
-            {pub.hasRead && (
-              <div className="flex items-center gap-1.5 text-white/[0.32]">
-                <BookOpen className="w-3 h-3" />
-                <span className="text-[11px] uppercase tracking-[0.13em]">Read</span>
-              </div>
-            )}
-            {pub.hasDownload && (
-              <a
-                href={`/downloads/${pub.slug}.pdf`}
-                onClick={(e) => e.stopPropagation()}
-                className="relative z-10 flex items-center gap-1.5 text-white/[0.32] hover:text-foreground transition-colors duration-200"
-              >
-                <Download className="w-3 h-3" />
-                <span className="text-[11px] uppercase tracking-[0.13em]">PDF</span>
-              </a>
-            )}
-          </div>
-          <span className="flex items-center gap-1 text-[11px] text-white/[0.28] group-hover:text-white/[0.65] transition-colors duration-200">
-            <span className="hidden sm:inline tracking-[0.12em] uppercase">Article</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
-          </span>
-        </div>
       </div>
-    </motion.div>
+
+      {/* Arrow */}
+      <ArrowRight className="hidden md:block shrink-0 self-center w-4 h-4 text-white/20 group-hover:text-white/55 group-hover:translate-x-0.5 transition-all duration-200" />
+    </div>
   );
 }
 
@@ -355,7 +326,7 @@ export default function LibraryPage() {
             </div>
           </AnimatedSection>
 
-          {/* Cards */}
+          {/* Article list */}
           <AnimatePresence mode="wait">
             {filtered.length === 0 ? (
               <motion.div
@@ -382,31 +353,30 @@ export default function LibraryPage() {
             ) : (
               <motion.div
                 key={activeFilter + searchQuery}
-                className="grid md:grid-cols-2 xl:grid-cols-3 gap-5"
+                className="border-t border-white/[0.07]"
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+                variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
               >
                 {filtered.map((pub) => (
                   <motion.div
                     key={pub.slug}
                     variants={{
-                      hidden: { opacity: 0, y: 24 },
+                      hidden: { opacity: 0, x: -16 },
                       visible: {
                         opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.45, ease: luxuryEase },
+                        x: 0,
+                        transition: { duration: 0.4, ease: luxuryEase },
                       },
                     }}
-                    className="h-full"
                   >
                     {pub.hasRead ? (
-                      <Link href={`/library/${pub.slug}`} className="block h-full">
-                        <ArticleCard pub={pub} />
+                      <Link href={`/library/${pub.slug}`} className="block">
+                        <ArticleRow pub={pub} />
                       </Link>
                     ) : (
-                      <ArticleCard pub={pub} />
+                      <ArticleRow pub={pub} />
                     )}
                   </motion.div>
                 ))}
