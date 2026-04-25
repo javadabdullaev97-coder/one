@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -9,6 +9,8 @@ import {
   Download,
   BookOpen,
   FileText,
+  Search,
+  X,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
@@ -17,7 +19,7 @@ import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 import { publications } from "@/lib/publications";
 
-/* ── Data ─────────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -46,18 +48,31 @@ const stats = [
   { value: "7", label: "Publications" },
   { value: "Free", label: "Access" },
   { value: "EN / RU", label: "Languages" },
-  { value: "2024", label: "Latest edition" },
+  { value: "2026", label: "Latest edition" },
 ];
 
-/* ── Page ─────────────────────────────────────────────── */
+/* ── Page ────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered =
-    activeFilter === "All"
-      ? publications
-      : publications.filter((p) => p.category === activeFilter);
+  const filtered = useMemo(() => {
+    let result = [...publications].sort((a, b) => Number(b.year) - Number(a.year));
+    if (activeFilter !== "All") {
+      result = result.filter((p) => p.category === activeFilter);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.tag.toLowerCase().includes(q),
+      );
+    }
+    return result;
+  }, [activeFilter, searchQuery]);
 
   return (
     <>
@@ -206,9 +221,9 @@ export default function LibraryPage() {
       <section className="py-24 md:py-32 bg-black border-t border-white/[0.06] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-          {/* Heading + filter */}
+          {/* Heading + filter + search */}
           <AnimatedSection className="mb-14 md:mb-16">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-6">
               <div>
                 <p className="tracking-luxury text-white/50 mb-4">Publications</p>
                 <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
@@ -245,6 +260,26 @@ export default function LibraryPage() {
                 ))}
               </div>
             </div>
+
+            {/* Search bar */}
+            <div className="relative max-w-md">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by keyword…"
+                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full pl-11 pr-10 py-2.5 text-sm text-white/80 placeholder-white/25 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-200"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors duration-150 cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </AnimatedSection>
 
           {/* Cards — individually staggered */}
@@ -260,18 +295,20 @@ export default function LibraryPage() {
               >
                 <FileText className="w-10 h-10 text-white/20 mx-auto mb-4" />
                 <p className="text-white/40 text-sm">
-                  No publications in this category yet.
+                  {searchQuery.trim()
+                    ? `No results for "${searchQuery}"`
+                    : "No publications in this category yet."}
                 </p>
                 <button
-                  onClick={() => setActiveFilter("All")}
+                  onClick={() => { setActiveFilter("All"); setSearchQuery(""); }}
                   className="mt-4 text-xs text-primary-light/70 hover:text-primary-light underline underline-offset-4 transition-colors cursor-pointer"
                 >
-                  View all publications
+                  Clear filters
                 </button>
               </motion.div>
             ) : (
               <motion.div
-                key={activeFilter}
+                key={activeFilter + searchQuery}
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
                 initial="hidden"
                 animate="visible"
