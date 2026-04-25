@@ -105,6 +105,18 @@ export const publications: Publication[] = [
     pages: 6,
     hasRead: true,
   },
+  {
+    slug: "permanent-establishment-uzbekistan",
+    tag: "Tax Briefing",
+    category: "Tax",
+    title: "Uzbekistan Permanent Establishment (PE): A Practical Guide",
+    description:
+      "Essential insights for foreign investors to understand and fulfil Permanent Establishment requirements in Uzbekistan, including registration, taxation, and deductible expenses.",
+    year: "2025",
+    date: "2025-01-15",
+    pages: 8,
+    hasRead: true,
+  },
 ];
 
 export function getPublicationBySlug(slug: string): Publication | undefined {

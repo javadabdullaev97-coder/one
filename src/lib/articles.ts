@@ -6,6 +6,7 @@ import escrow from "./articles/escrow-accounts-uzbekistan";
 import payroll from "./articles/payroll-social-contributions";
 import creativeIndustryPark from "./articles/creative-industry-park-uzbekistan";
 import onlineGambling from "./articles/online-gambling-uzbekistan";
+import permanentEstablishment from "./articles/permanent-establishment-uzbekistan";
 
 function build(slug: string, extra: Omit<PublicationArticle, keyof typeof publications[0]>): PublicationArticle {
   const pub = publications.find((p) => p.slug === slug)!;
@@ -20,6 +21,7 @@ export const articles: Record<string, PublicationArticle> = {
   "payroll-social-contributions": build("payroll-social-contributions", payroll),
   "creative-industry-park-uzbekistan": build("creative-industry-park-uzbekistan", creativeIndustryPark),
   "online-gambling-uzbekistan": build("online-gambling-uzbekistan", onlineGambling),
+  "permanent-establishment-uzbekistan": build("permanent-establishment-uzbekistan", permanentEstablishment),
 };
 
 export function getArticleBySlug(slug: string): PublicationArticle | undefined {
