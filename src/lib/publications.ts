@@ -90,9 +90,138 @@ export const publications: Publication[] = [
     pages: 16,
     hasRead: true,
   },
+  {
+    slug: "escrow-accounts-uzbekistan",
+    tag: "Legal Briefing",
+    category: "Legal",
+    title: "Escrow Accounts in Uzbekistan: New Rules for Property and Vehicle Transactions",
+    description:
+      "From April 2026, escrow accounts are mandatory for all real estate and vehicle transactions. We break down the legislative changes, timelines, and what buyers and sellers must know.",
+    year: "2026",
+    pages: 10,
+    hasRead: true,
+  },
 ];
 
 export const articles: Record<string, PublicationArticle> = {
+  "escrow-accounts-uzbekistan": {
+    ...publications.find((p) => p.slug === "escrow-accounts-uzbekistan")!,
+    subtitle: "What the 2025–2026 legislative reforms mean for buyers, sellers, and developers",
+    author: "Advizen Legal Practice",
+    readTime: "9 min read",
+    content: [
+      {
+        type: "p",
+        text: "Uzbekistan has introduced mandatory escrow accounts for real estate and vehicle transactions in two legislative waves. The first wave — targeting shared construction (off-plan housing) — came into force on January 1, 2026. The second wave extended escrow requirements to all real estate and qualifying vehicle transactions from April 1, 2026. Taken together, these reforms fundamentally change how property and asset purchases are structured and funded in the country.",
+      },
+      { type: "h2", text: "Background: Why Escrow?" },
+      {
+        type: "p",
+        text: "Prior to these reforms, buyers of off-plan apartments and other real estate transferred funds directly to developers and sellers with limited legal protection if construction stalled or the seller defaulted. The government's stated objective — articulated in the Presidential Decree on the 'Single Housing Lifecycle' concept — is to protect buyer funds, increase market transparency, and align Uzbekistan's property market practices with international standards.",
+      },
+      { type: "h2", text: "Part 1: Shared Construction Escrow (Effective January 1, 2026)" },
+      {
+        type: "p",
+        text: "Under the Presidential Decree introducing the 'Single Housing Lifecycle' principle, developers selling off-plan residential units are now required to collect buyer funds through bank escrow accounts rather than directly. The transition was phased:",
+      },
+      {
+        type: "ul",
+        items: [
+          "July 1 – December 31, 2025: parallel operation of the old and new systems; developers could use either model",
+          "From January 1, 2026: escrow-only model mandatory for all new shared construction agreements",
+        ],
+      },
+      {
+        type: "p",
+        text: "Under the escrow model, buyer funds are held in a designated account at an authorised bank and are only released to the developer once the property is formally handed over to the buyer. This creates a strong incentive for timely project completion and eliminates the risk of developers using advance payments for purposes unrelated to the specific project.",
+      },
+      { type: "h3", text: "Key Requirements for Developers" },
+      {
+        type: "ul",
+        items: [
+          "Developers must contribute a minimum of 30% of their own funds before project financing can be drawn",
+          "The interest rate on project financing is linked to the balance held in escrow — the higher the accumulated buyer deposits, the lower the effective rate",
+          "Escrow funds cannot be arrested, suspended, or seized in connection with claims against the developer; they are ring-fenced for buyer protection",
+          "If a developer delays handover by more than 6 months beyond the contractual date, the buyer acquires the right to terminate the agreement and recover all deposited funds in full",
+        ],
+      },
+      { type: "h2", text: "Part 2: General Property and Vehicle Escrow (Effective April 1, 2026)" },
+      {
+        type: "p",
+        text: "A separate decree dated December 10, 2025 extended escrow requirements beyond shared construction to cover secondary real estate transactions and the sale of qualifying vehicles. From April 1, 2026, escrow accounts became mandatory for:",
+      },
+      {
+        type: "ul",
+        items: [
+          "All purchase and sale transactions involving real estate (residential and commercial)",
+          "Vehicles not older than 10 years falling within categories M, N, O, and G",
+        ],
+      },
+      {
+        type: "p",
+        text: "The mechanism is straightforward: at the time of signing the purchase agreement before a notary, the buyer transfers the transaction amount into an escrow account at the notary's partner bank. Funds are held until the ownership transfer is registered with the relevant state registry. Once registration is confirmed, the bank releases the funds to the seller.",
+      },
+      { type: "h3", text: "Fee Structure" },
+      {
+        type: "p",
+        text: "The legislation fixes escrow service fees at a statutory cap, replacing the previous ad hoc bank commissions that could reach 0.5% of transaction value — a significant cost on large property deals:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Real estate transactions: 206,000 UZS per transaction (fixed, regardless of value)",
+          "Vehicle transactions: 103,000 UZS per transaction (fixed)",
+        ],
+      },
+      {
+        type: "blockquote",
+        text: "For a property sold at 500,000 USD, the old 0.5% commission model would have cost approximately 2,500 USD. Under the new fixed-fee regime, the same transaction costs approximately 15 USD equivalent — a reduction of over 99%.",
+      },
+      { type: "h3", text: "Infrastructure: Notaries and Banks" },
+      {
+        type: "p",
+        text: "To support the rollout, 1,130 notaries across Uzbekistan have been integrated into the banking system's escrow infrastructure. Bank staff are now stationed at notary offices to process account opening and fund transfers on-site at the time of transaction signing. This eliminates the need for buyers to visit a bank branch separately and reduces the administrative friction of the new requirement.",
+      },
+      { type: "h2", text: "Compliance Considerations and Key Risks" },
+      {
+        type: "p",
+        text: "While the reforms are buyer-protective by design, they introduce new compliance considerations for both parties to a transaction.",
+      },
+      { type: "h3", text: "Understating Contract Price" },
+      {
+        type: "p",
+        text: "A practice that historically allowed parties to reduce tax exposure by declaring a lower transaction price in the notarised contract now carries significantly elevated risk. Because escrow funds must match the stated contract price — and those funds flow through a regulated bank — any divergence between the declared price and actual consideration creates an evidentiary paper trail. Tax authorities and financial intelligence units have direct visibility. Buyers who agree to declare a lower price expose themselves to potential liability under tax and anti-money laundering legislation.",
+      },
+      { type: "h3", text: "Foreign Currency Transactions" },
+      {
+        type: "p",
+        text: "Real estate transactions in Uzbekistan are denominated in Uzbek som for official purposes. Parties negotiating in USD or other currencies must account for exchange rate movements between agreement signing and registration completion, as the escrow amount is fixed in som at the time of deposit.",
+      },
+      { type: "h3", text: "Developer Due Diligence" },
+      {
+        type: "p",
+        text: "For investors and buyers of off-plan units, the escrow framework provides meaningful protection — but only if the developer is operating under an authorised bank escrow arrangement as required. Buyers should verify that the developer's sales contract references a specific escrow account at a licensed bank before signing and transferring funds.",
+      },
+      { type: "divider" },
+      { type: "h2", text: "Summary of Key Dates and Rules" },
+      {
+        type: "ul",
+        items: [
+          "January 1, 2026: escrow mandatory for all new shared construction (off-plan) agreements",
+          "April 1, 2026: escrow mandatory for all real estate and qualifying vehicle sale transactions",
+          "Developer minimum equity: 30% own funds required before project financing",
+          "Buyer exit right: 6-month delay beyond contracted handover date triggers full refund right",
+          "Escrow fee (real estate): 206,000 UZS fixed",
+          "Escrow fee (vehicles): 103,000 UZS fixed",
+          "Escrow funds: ring-fenced, cannot be arrested or seized against developer",
+        ],
+      },
+      {
+        type: "p",
+        text: "Advizen's legal and tax practices advise buyers, sellers, and developers on structuring transactions under the new escrow framework — including contract review, tax implications of the new price transparency requirements, and developer compliance with the shared construction financing rules.",
+      },
+    ],
+  },
   "payroll-social-contributions": {
     ...publications.find((p) => p.slug === "payroll-social-contributions")!,
     subtitle: "A practical guide for employers operating in Uzbekistan",
