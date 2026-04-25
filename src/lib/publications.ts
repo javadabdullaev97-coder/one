@@ -137,8 +137,8 @@ export const publications: Publication[] = [
     title: "Licensing Crypto-Asset Service Providers in Uzbekistan",
     description:
       "A practical guide to obtaining a licence as a crypto exchange, mining pool, depository, or crypto shop in Uzbekistan — requirements, fees, and ongoing obligations.",
-    year: "2026",
-    date: "2026-04-25",
+    year: "2025",
+    date: "2025-04-25",
     pages: 10,
     hasRead: true,
   },
