@@ -36,6 +36,18 @@ export const publications: Publication[] = [
     hasRead: true,
   },
   {
+    slug: "accounting-policy-tax-purposes",
+    tag: "Tax Briefing",
+    category: "Tax",
+    title: "Developing an Accounting Policy for Tax Purposes in Uzbekistan",
+    description:
+      "Navigate Uzbekistan's tax complexities with a well-defined Accounting Policy for Tax Purposes. Essential for legal entities and individual entrepreneurs.",
+    year: "2024",
+    date: "2024-04-24",
+    pages: 10,
+    hasRead: true,
+  },
+  {
     slug: "payroll-social-contributions",
     tag: "HR Guide",
     category: "HR",
@@ -77,7 +89,7 @@ export const articles: Record<string, PublicationArticle> = {
       },
       {
         type: "p",
-        text: "The effectiveness of outsourcing has been proven in practice, embraced by businesses of all sizes — from agile startups to major multinational corporations. By entrusting specific functions to external specialists, a company can reduce its internal headcount, thereby lowering expenses related to salaries, taxes, and the establishment and maintenance of physical workstations. This collaboration is formalised through a service agreement, where the outsourcing firm assumes responsibility for executing specified functions and accountability for its personnel's work.",
+        text: "The effectiveness of outsourcing has been proven in practice, embraced by businesses of all sizes — from agile startups to major multinational corporations. By entrusting specific functions to external specialists, a company can reduce its internal headcount, thereby lowering expenses related to salaries, taxes, and the establishment and maintenance of physical workstations.",
       },
       { type: "h2", text: "The Power of Outsourced Services: A Closer Look" },
       {
@@ -87,22 +99,88 @@ export const articles: Record<string, PublicationArticle> = {
       {
         type: "ul",
         items: [
-          "Access to Elite Expertise and Quality Assurance: Your business gains immediate access to highly qualified specialists who are experts in their respective fields — accounting, tax law, labour legislation. These professionals possess deep knowledge of current legislation, continuously upgrade their skills, and adhere to best practices, ensuring top-tier service quality.",
-          "Enhanced Focus on Core Business Operations: Free your internal teams from the burden of complex administrative tasks and specialised compliance functions. With experts managing these responsibilities, your employees can concentrate on their core duties, driving productivity and innovation directly related to your primary business goals.",
-          "Optimised Resource Allocation and Cost Savings: Eliminate the significant overheads associated with maintaining internal departments — salaries, social contributions, office space, software licences, and training. Outsourcing converts these fixed costs into flexible, predictable service fees, leading to substantial savings and more efficient resource management.",
-          "Uninterrupted Service and Reliability: Unlike internal staff, outsourced professionals do not take sick leave, go on vacation, or take maternity leave that could disrupt critical operations. Your services remain consistent and reliable, ensuring continuous support for your business.",
-          "Mitigated Risk and Robust Compliance: Staying updated with Uzbekistan's constantly evolving regulatory landscape — from tax codes to labour laws and licensing requirements — is a complex challenge. An outsourcing partner bears the responsibility for ensuring your compliance, significantly reducing your legal and financial risks.",
-          "Scalability and Flexibility: Outsourced services can be easily scaled up or down to match your business's fluctuating needs, whether you're expanding rapidly or navigating a period of consolidation.",
+          "Access to Elite Expertise and Quality Assurance: Immediate access to highly qualified specialists — accounting, tax law, labour legislation — who continuously upgrade their skills and adhere to best practices.",
+          "Enhanced Focus on Core Business Operations: Free your internal teams from complex administrative tasks so employees can concentrate on core duties, driving productivity and innovation.",
+          "Optimised Resource Allocation and Cost Savings: Eliminate overheads associated with internal departments — salaries, social contributions, office space, software licences, and training.",
+          "Uninterrupted Service and Reliability: Unlike internal staff, outsourced professionals do not take sick leave or vacation that could disrupt critical operations.",
+          "Mitigated Risk and Robust Compliance: An outsourcing partner bears the responsibility for ensuring your compliance with Uzbekistan's constantly evolving regulatory landscape.",
+          "Scalability and Flexibility: Outsourced services can be easily scaled up or down to match your business's fluctuating needs without the complexities of internal hiring or downsizing.",
         ],
       },
       { type: "h2", text: "Choosing Your Strategic Outsourcing Partner" },
       {
         type: "p",
-        text: "While many firms offer operational outsourcing services today, selecting a partner who provides genuinely high-quality solutions, acts as a reliable ally, and delivers effective strategies for business development is paramount. At Advizen, we offer professional, high-level services in tax and legal consulting, accounting, customs, financial, and HR services. Our seasoned and highly qualified experts are dedicated to helping you optimise your operations, uncover hidden reserves, and elevate your company's success through our integrated 'one-stop shop' approach.",
+        text: "At Advizen, we offer professional, high-level services in tax and legal consulting, accounting, customs, financial, and HR services. Our seasoned and highly qualified experts are dedicated to helping you optimise your operations, uncover hidden reserves, and elevate your company's success through our integrated 'one-stop shop' approach.",
       },
       {
         type: "blockquote",
         text: "By partnering with Advizen, you can leverage our comprehensive expertise to save resources and empower your company to develop faster and more dynamically in the promising Uzbek market.",
+      },
+    ],
+  },
+  "accounting-policy-tax-purposes": {
+    ...publications.find((p) => p.slug === "accounting-policy-tax-purposes")!,
+    subtitle: "Why every legal entity and individual entrepreneur in Uzbekistan needs a well-structured Accounting Policy for Tax Purposes.",
+    author: "Advizen Tax Practice",
+    readTime: "8 min read",
+    content: [
+      {
+        type: "p",
+        text: "In Uzbekistan's evolving business and tax environment, achieving compliance and optimising tax liabilities requires more than just diligent bookkeeping. It demands a clear, well-structured approach to how your business calculates and reports its tax obligations. As stipulated by Chapter 7 of Uzbekistan's Tax Code, all taxpayers are mandated to approve an Accounting Policy for Tax Purposes — a foundational document that dictates the conceptual framework for calculating your tax base, assessing tax liabilities, and preparing accurate tax reports.",
+      },
+      { type: "h2", text: "Why is a Policy Crucial?" },
+      {
+        type: "p",
+        text: "The Accounting Policy for Tax Purposes serves several critical functions for your business and its interactions with tax authorities:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Demonstrates Calculation Methodology: It clearly outlines the specific methods and procedures used to calculate various taxes, providing transparency on how tax liabilities were arrived at.",
+          "Provides Justification and Rationale: The Policy offers the documented reasoning behind your chosen tax accounting methods — particularly vital when the Tax Code provides taxpayers with options or allows for independent decisions.",
+          "Ensures Consistency and Reduces Errors: By establishing uniform calculation approaches over time, the Policy helps minimise errors and inconsistencies in tax reporting — key to avoiding disputes during tax audits.",
+          "Minimises Tax Disputes: A highly detailed and well-articulated Policy acts as a robust defence mechanism during tax inspections. It is the document you will appeal to when communicating with tax inspectors.",
+        ],
+      },
+      { type: "h2", text: "Key Aspects to Address When Developing Your Policy" },
+      { type: "h3", text: "Deductible and Non-Deductible Expenses" },
+      {
+        type: "p",
+        text: "Clearly define which expenses can reduce your corporate income tax base. This is a frequent area of contention between taxpayers and tax authorities.",
+      },
+      { type: "h3", text: "Loss Carryforward and Expense Reserves" },
+      {
+        type: "p",
+        text: "Outline the methodology for carrying forward past losses to reduce future taxable income, and detail how your company forms and utilises reserves for anticipated expenses.",
+      },
+      { type: "h3", text: "Depreciation and Amortisation" },
+      {
+        type: "p",
+        text: "The Tax Code sets specific depreciation rates for tax purposes, which may differ from those used for financial accounting. Your Policy must reconcile these differences and specify the methods applied for tax purposes.",
+      },
+      { type: "h3", text: "Value Added Tax (VAT) Accounting" },
+      {
+        type: "p",
+        text: "As one of the most complex taxes, your Policy should meticulously describe: conditions for offsetting previously paid VAT on goods and services; specific rules for VAT offsets when dealing with foreign legal entities; and the methodology for separate accounting if your business has activities subject to different VAT rates or VAT-exempt operations.",
+      },
+      { type: "h3", text: "Tax Registers and Document Management" },
+      {
+        type: "p",
+        text: "Describe the forms and procedures for independently developed tax registers used to accumulate and systematise information for tax assessment and reporting. Clarify whether documents are maintained in paper and/or electronic form, and specify the terms of storage.",
+      },
+      { type: "h2", text: "Important Considerations for Your Policy" },
+      {
+        type: "ul",
+        items: [
+          "Approval and Changes: Your Policy is approved by an order or directive from the company's head. Generally, it should not be changed within a calendar year — exceptions are made only if there are changes in tax or accounting legislation, with such changes typically coming into effect from January 1 of the following year.",
+          "Integration with Financial Accounting Policy: The Policy can be a standalone document or integrated as a separate section within your overall financial accounting policy. There is no single approved form.",
+          "Fiscal Focus in Uzbekistan: Uzbekistan's accounting standards often have a strong fiscal orientation. Many organisations incorporate methods that bring accounting and tax data closer — a practice generally supported by tax authorities.",
+        ],
+      },
+      { type: "h2", text: "Advizen: Your Expert Partner in Tax Policy Development" },
+      {
+        type: "p",
+        text: "Developing a robust and compliant Accounting Policy for Tax Purposes requires a deep understanding of Uzbekistan's intricate tax legislation and accounting standards. Our experienced tax advisors specialise in assisting businesses with this critical task — ensuring your Policy is accurately drafted, fully compliant with current Uzbek tax law, reflects your business's unique operations, and provides clear, defensible methodologies for tax calculations that minimise potential disputes with tax authorities.",
       },
     ],
   },
@@ -114,28 +192,20 @@ export const articles: Record<string, PublicationArticle> = {
     content: [
       {
         type: "p",
-        text: "Uzbekistan has introduced mandatory escrow accounts for real estate and vehicle transactions in two legislative waves. The first wave — targeting shared construction (off-plan housing) — came into force on January 1, 2026. The second wave extended escrow requirements to all real estate and qualifying vehicle transactions from April 1, 2026. Taken together, these reforms fundamentally change how property and asset purchases are structured and funded in the country.",
+        text: "Uzbekistan has introduced mandatory escrow accounts for real estate and vehicle transactions in two legislative waves. The first wave — targeting shared construction (off-plan housing) — came into force on January 1, 2026. The second wave extended escrow requirements to all real estate and qualifying vehicle transactions from April 1, 2026.",
       },
       { type: "h2", text: "Background: Why Escrow?" },
       {
         type: "p",
-        text: "Prior to these reforms, buyers of off-plan apartments and other real estate transferred funds directly to developers and sellers with limited legal protection if construction stalled or the seller defaulted. The government's stated objective — articulated in the Presidential Decree on the 'Single Housing Lifecycle' concept — is to protect buyer funds, increase market transparency, and align Uzbekistan's property market practices with international standards.",
+        text: "Prior to these reforms, buyers of off-plan apartments and other real estate transferred funds directly to developers and sellers with limited legal protection. The government's stated objective — articulated in the Presidential Decree on the 'Single Housing Lifecycle' concept — is to protect buyer funds, increase market transparency, and align Uzbekistan's property market practices with international standards.",
       },
       { type: "h2", text: "Part 1: Shared Construction Escrow (Effective January 1, 2026)" },
       {
-        type: "p",
-        text: "Under the Presidential Decree introducing the 'Single Housing Lifecycle' principle, developers selling off-plan residential units are now required to collect buyer funds through bank escrow accounts rather than directly. The transition was phased:",
-      },
-      {
         type: "ul",
         items: [
-          "July 1 – December 31, 2025: parallel operation of the old and new systems; developers could use either model",
+          "July 1 – December 31, 2025: parallel operation of the old and new systems",
           "From January 1, 2026: escrow-only model mandatory for all new shared construction agreements",
         ],
-      },
-      {
-        type: "p",
-        text: "Under the escrow model, buyer funds are held in a designated account at an authorised bank and are only released to the developer once the property is formally handed over to the buyer.",
       },
       { type: "h3", text: "Key Requirements for Developers" },
       {
@@ -168,12 +238,12 @@ export const articles: Record<string, PublicationArticle> = {
       { type: "h3", text: "Understating Contract Price" },
       {
         type: "p",
-        text: "Escrow funds must match the stated contract price and flow through a regulated bank, creating an evidentiary paper trail. Tax authorities and financial intelligence units have direct visibility. Buyers who agree to declare a lower price expose themselves to potential liability under tax and anti-money laundering legislation.",
+        text: "Escrow funds must match the stated contract price and flow through a regulated bank, creating an evidentiary paper trail visible to tax authorities and financial intelligence units.",
       },
       { type: "h3", text: "Foreign Currency Transactions" },
       {
         type: "p",
-        text: "Real estate transactions in Uzbekistan are denominated in Uzbek som for official purposes. Parties negotiating in USD must account for exchange rate movements between agreement signing and registration completion.",
+        text: "Real estate transactions in Uzbekistan are denominated in Uzbek som. Parties negotiating in USD must account for exchange rate movements between agreement signing and registration completion.",
       },
       { type: "divider" },
       { type: "h2", text: "Summary of Key Dates and Rules" },
@@ -203,7 +273,7 @@ export const articles: Record<string, PublicationArticle> = {
       { type: "h2", text: "Personal Income Tax" },
       {
         type: "p",
-        text: "Since January 2023, Uzbekistan applies a flat personal income tax (PIT) rate of 12% on all employment income. This replaced the previous progressive scale and represents one of the lowest PIT rates in Central Asia. The tax is withheld at source by the employer and remitted monthly to the State Tax Committee.",
+        text: "Since January 2023, Uzbekistan applies a flat personal income tax (PIT) rate of 12% on all employment income. The tax is withheld at source by the employer and remitted monthly to the State Tax Committee.",
       },
       {
         type: "ul",
@@ -215,10 +285,6 @@ export const articles: Record<string, PublicationArticle> = {
         ],
       },
       { type: "h2", text: "Unified Social Payment (USP)" },
-      {
-        type: "p",
-        text: "Employers are required to make a Unified Social Payment (USP) of 12% of gross payroll. This contribution funds the state pension system, social insurance, and the employment fund.",
-      },
       {
         type: "blockquote",
         text: "The USP is an employer-borne cost, not deducted from the employee's salary. It is calculated on top of gross compensation.",
@@ -235,7 +301,7 @@ export const articles: Record<string, PublicationArticle> = {
       { type: "h2", text: "Individual Accumulative Pension Contribution" },
       {
         type: "p",
-        text: "Employees contribute 0.1% of their gross salary to an individual accumulative pension account. This deduction is included within the PIT calculation and withheld by the employer as part of the overall income tax remittance.",
+        text: "Employees contribute 0.1% of their gross salary to an individual accumulative pension account. This deduction is included within the PIT calculation and withheld by the employer.",
       },
       { type: "h2", text: "Reporting Obligations" },
       {
