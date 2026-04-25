@@ -123,7 +123,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
 
       {/* ── Hero ─────────────────────────────────────── */}
       <AuroraBackground>
-        <section className="relative pt-36 pb-20 md:pt-44 md:pb-28">
+        <section className="relative pt-24 pb-12 md:pt-28 md:pb-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             {/* Same grid as body so hero content aligns with article column */}
             <div className="grid lg:grid-cols-[220px_1fr] gap-12 lg:gap-20">
