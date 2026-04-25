@@ -49,7 +49,7 @@ export const publications: Publication[] = [
   },
   {
     slug: "franchising-uzbekistan",
-    tag: "Legal Brief",
+    tag: "Legal Briefing",
     category: "Legal",
     title: "Franchising in Uzbekistan: A Simple Guide for Business Owners",
     description:
@@ -84,7 +84,7 @@ export const publications: Publication[] = [
   },
   {
     slug: "creative-industry-park-uzbekistan",
-    tag: "Legal Brief",
+    tag: "Legal Briefing",
     category: "Legal",
     title: "Strategic Benefits for Residents of Creative Industry Park",
     description:
@@ -96,7 +96,7 @@ export const publications: Publication[] = [
   },
   {
     slug: "online-gambling-uzbekistan",
-    tag: "Legal Brief",
+    tag: "Legal Briefing",
     category: "Legal",
     title: "Regulating Online Gambling, Lotteries, and Betting in Uzbekistan",
     description:
