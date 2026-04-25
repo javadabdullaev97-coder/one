@@ -10,6 +10,7 @@ import MagneticButton from "@/components/MagneticButton";
 import AdvisorySection from "@/components/expertise/AdvisorySection";
 import OperationsSection from "@/components/expertise/OperationsSection";
 import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
+import regionImageLoader from "@/lib/image-loader";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,7 @@ function IndustriesSection() {
 
   useEffect(() => {
     industryGroups.forEach(({ image }) => {
-      if (image) new window.Image().src = image;
+      if (image) new window.Image().src = regionImageLoader({ src: image, width: 800, quality: 75 });
     });
   }, []);
 
@@ -111,8 +112,9 @@ function IndustriesSection() {
                   }}
                 >
                   {active.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={active.image}
+                      src={regionImageLoader({ src: active.image, width: 800, quality: 75 })}
                       alt={active.name}
                       className="absolute inset-0 w-full h-full object-cover"
                       fetchPriority="high"
