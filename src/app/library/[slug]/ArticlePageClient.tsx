@@ -44,7 +44,7 @@ function ReadingProgress() {
   );
 }
 
-/* ── Page ─────────────────────────────────────────────── */
+/* ── Page ────────────────────────────────────────────── */
 
 export default function ArticlePageClient({ slug }: { slug: string }) {
   /* Hooks must be declared before any early return */
@@ -58,7 +58,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
       .filter((b) => b.type === "h2" && b.text)
       .map((b) => ({ id: slugify(b.text!), text: b.text! })) ?? [];
 
-  /* ── Scroll-spy via IntersectionObserver ─────────────── */
+  /* ── Scroll-spy via IntersectionObserver ─────────────────── */
   useEffect(() => {
     if (toc.length === 0) return;
 
@@ -101,8 +101,10 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
     );
   }
 
-  /* ── Adjacent articles ─────────────────────────────── */
-  const readablePublications = publications.filter((p) => p.hasRead);
+  /* ── Adjacent articles ───────────────────────────────── */
+  const readablePublications = publications
+    .filter((p) => p.hasRead)
+    .sort((a, b) => Number(b.year) - Number(a.year));
   const currentIndex = readablePublications.findIndex((p) => p.slug === slug);
   const prev = currentIndex > 0 ? readablePublications[currentIndex - 1] : null;
   const next =
@@ -110,18 +112,18 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
       ? readablePublications[currentIndex + 1]
       : null;
 
-  /* ── Counters reset each render ─────────────────────── */
+  /* ── Counters reset each render ─────────────────────────── */
   let h2Counter = 0;
   const firstParagraphIndex = article.content.findIndex((b) => b.type === "p");
 
-  /* ── Related services (first 5) ─────────────────────── */
+  /* ── Related services (first 5) ─────────────────────────── */
   const relatedServices = servicesData.slice(0, 5);
 
   return (
     <>
       <ReadingProgress />
 
-      {/* ── Hero ─────────────────────────────────────── */}
+      {/* ── Hero ───────────────────────────────────────────── */}
       <AuroraBackground>
         <section className="relative pt-24 pb-12 md:pt-28 md:pb-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
@@ -200,12 +202,12 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
       {/* Gradient divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
-      {/* ── Article Body + Sidebar ───────────────────── */}
+      {/* ── Article Body + Sidebar ────────────────────────────── */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-[220px_1fr] gap-12 lg:gap-20">
 
-            {/* ── Sidebar ──────────────────────────── */}
+            {/* ── Sidebar ──────────────────────────────────── */}
             <aside className="hidden lg:block">
               <motion.div
                 className="sticky top-28 space-y-10"
@@ -306,7 +308,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
               </motion.div>
             </aside>
 
-            {/* ── Article content ──────────────────── */}
+            {/* ── Article content ───────────────────────────────── */}
             <article className="max-w-3xl">
               {article.content.map((block, i) => {
                 const delay = Math.min(i * 0.03, 0.3);
@@ -409,7 +411,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* ── Download CTA ─────────────────────────────── */}
+      {/* ── Download CTA ──────────────────────────────────────── */}
       {article.hasDownload && (
         <section className="py-16 bg-surface border-y border-white/[0.06]">
           <div className="max-w-3xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -433,7 +435,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* ── Adjacent Article Nav ──────────────────────── */}
+      {/* ── Adjacent Article Nav ─────────────────────────────────── */}
       <section className="bg-surface border-y border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-0 divide-x divide-white/[0.06]">
@@ -477,7 +479,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────── */}
+      {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="py-28 md:py-36 bg-background">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
