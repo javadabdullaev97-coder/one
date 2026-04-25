@@ -134,7 +134,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="flex items-center gap-3 mb-10"
+                  className="flex items-center gap-3 mb-7"
                 >
                   <Link
                     href="/library"
@@ -149,23 +149,13 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                   </span>
                 </motion.div>
 
-                {/* Category pill */}
-                <motion.span
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="inline-block text-xs tracking-[0.2em] uppercase text-white/50 border border-white/[0.12] rounded-full px-3.5 py-1 mb-8"
-                >
-                  {article.category}
-                </motion.span>
-
                 {/* Title */}
                 <TextReveal
                   text={article.title}
                   as="h1"
                   mode="line"
-                  className="heading-luxury text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.08]"
-                  delay={0.4}
+                  className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.08]"
+                  delay={0.3}
                 />
 
                 {/* Subtitle */}
@@ -179,7 +169,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
 
                 {/* Meta row */}
                 <RevealLine delay={0.7}>
-                  <div className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-white/[0.06]">
+                  <div className="flex flex-wrap items-center gap-6 mt-5 pt-5 border-t border-white/[0.06]">
                     {article.author && (
                       <div className="flex items-center gap-2 text-white/40">
                         <User className="w-3.5 h-3.5" />
