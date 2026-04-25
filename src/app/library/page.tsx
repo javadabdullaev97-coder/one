@@ -17,9 +17,19 @@ import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
-import { publications } from "@/lib/publications";
+import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Data ────────────────────────────────────────────── */
+/* ── Helpers ────────────────────────────────────── */
+
+function formatDate(dateStr?: string, year?: string): string {
+  if (dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  }
+  return year ?? "";
+}
+
+/* ── Data ──────────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -40,25 +50,90 @@ const flagship = {
   ],
 };
 
-type FilterTag = "All" | "Tax" | "HR" | "Legal" | "Market" | "Compliance";
+type FilterTag = "All" | "Advisory" | "Tax" | "HR" | "Legal" | "Market" | "Compliance";
 
-const filters: FilterTag[] = ["All", "Tax", "HR", "Legal", "Market", "Compliance"];
+const filters: FilterTag[] = ["All", "Advisory", "Tax", "HR", "Legal", "Market", "Compliance"];
 
 const stats = [
-  { value: "7", label: "Publications" },
+  { value: "10", label: "Publications" },
   { value: "Free", label: "Access" },
   { value: "EN / RU", label: "Languages" },
   { value: "2026", label: "Latest edition" },
 ];
 
-/* ── Page ────────────────────────────────────────────── */
+const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+/* ── Article Card ───────────────────────────────────────── */
+
+function ArticleCard({ pub }: { pub: Publication }) {
+  return (
+    <motion.div
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.28, ease: luxuryEase }}
+      className="group relative flex flex-col h-full rounded-xl overflow-hidden border border-white/[0.07] hover:border-white/[0.13] transition-colors duration-400 cursor-pointer"
+    >
+      {/* Top accent line — brightens on hover */}
+      <div className="h-px w-full shrink-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent group-hover:via-primary-light/40 transition-all duration-500" />
+
+      <div className="flex flex-col flex-1 p-7 bg-white/[0.015] group-hover:bg-white/[0.03] transition-colors duration-300">
+        {/* Meta */}
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-[10px] tracking-[0.16em] uppercase text-primary-light/65 border border-primary-light/15 rounded-full px-2.5 py-0.5 shrink-0">
+            {pub.tag}
+          </span>
+          <span className="font-mono text-[10px] text-white/[0.28] tabular-nums ml-3 shrink-0">
+            {formatDate(pub.date, pub.year)}
+          </span>
+        </div>
+
+        {/* Title — capped at 2 lines */}
+        <h3 className="font-serif text-[1.15rem] text-foreground/85 leading-snug line-clamp-2 mb-3 group-hover:text-foreground transition-colors duration-200">
+          {pub.title}
+        </h3>
+
+        {/* Description — 2 lines */}
+        <p className="text-sm text-white/[0.42] leading-relaxed line-clamp-2 flex-1">
+          {pub.description}
+        </p>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/[0.05]">
+          <div className="flex items-center gap-3">
+            {pub.hasRead && (
+              <div className="flex items-center gap-1.5 text-white/[0.32]">
+                <BookOpen className="w-3 h-3" />
+                <span className="text-[11px] uppercase tracking-[0.13em]">Read</span>
+              </div>
+            )}
+            {pub.hasDownload && (
+              <a
+                href={`/downloads/${pub.slug}.pdf`}
+                onClick={(e) => e.stopPropagation()}
+                className="relative z-10 flex items-center gap-1.5 text-white/[0.32] hover:text-foreground transition-colors duration-200"
+              >
+                <Download className="w-3 h-3" />
+                <span className="text-[11px] uppercase tracking-[0.13em]">PDF</span>
+              </a>
+            )}
+          </div>
+          <span className="flex items-center gap-1 text-[11px] text-white/[0.28] group-hover:text-white/[0.65] transition-colors duration-200">
+            <span className="hidden sm:inline tracking-[0.12em] uppercase">Article</span>
+            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Page ─────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = useMemo(() => {
-    let result = [...publications].sort((a, b) => Number(b.year) - Number(a.year));
+    let result = sortedPublications(publications);
     if (activeFilter !== "All") {
       result = result.filter((p) => p.category === activeFilter);
     }
@@ -126,14 +201,12 @@ export default function LibraryPage() {
         <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-30" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection>
-            {/* Section label */}
             <p className="tracking-luxury text-white/50 mb-12">Featured Publication</p>
 
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
               <div className="grid lg:grid-cols-2">
                 {/* Left — content */}
                 <div className="p-10 md:p-14 lg:p-16 relative">
-                  {/* Watermark */}
                   <span className="absolute top-8 right-8 font-serif text-[8rem] leading-none font-light text-white/[0.03] select-none pointer-events-none">
                     01
                   </span>
@@ -152,7 +225,6 @@ export default function LibraryPage() {
                     {flagship.description}
                   </p>
 
-                  {/* Metadata row */}
                   <div className="flex flex-wrap gap-6 mb-10 pb-10 border-b border-white/[0.06]">
                     {[
                       { label: "Year", value: flagship.year },
@@ -197,7 +269,7 @@ export default function LibraryPage() {
                         transition={{
                           duration: 0.4,
                           delay: i * 0.07,
-                          ease: [0.16, 1, 0.3, 1],
+                          ease: luxuryEase,
                         }}
                         className="flex items-start gap-5 py-5 border-b border-white/[0.05] group cursor-default"
                       >
@@ -231,7 +303,7 @@ export default function LibraryPage() {
                 </h2>
               </div>
 
-              {/* Sliding filter */}
+              {/* Filter pills */}
               <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1 w-fit shrink-0 flex-wrap">
                 {filters.map((f) => (
                   <button
@@ -282,7 +354,7 @@ export default function LibraryPage() {
             </div>
           </AnimatedSection>
 
-          {/* Cards — individually staggered */}
+          {/* Cards */}
           <AnimatePresence mode="wait">
             {filtered.length === 0 ? (
               <motion.div
@@ -309,98 +381,34 @@ export default function LibraryPage() {
             ) : (
               <motion.div
                 key={activeFilter + searchQuery}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid md:grid-cols-2 xl:grid-cols-3 gap-5"
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
+                variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
               >
-                {filtered.map((pub) => {
-                  const cardContent = (
-                    <motion.div
-                      whileHover={{ y: -5, scale: 1.015 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="glow-card h-full cursor-pointer"
-                    >
-                      <div className="glow-card-spinner" />
-                      <div className="glow-card-backdrop" />
-                      <div className="glow-card-content p-8 flex flex-col h-full">
-                        <div className="glow-card-glow" />
-
-                        {/* Header */}
-                        <div className="flex items-center justify-between mb-6">
-                          <span className="text-xs tracking-[0.14em] uppercase text-primary-light/70 border border-primary-light/20 rounded-full px-3 py-1">
-                            {pub.tag}
-                          </span>
-                          <span className="font-mono text-xs text-white/30">
-                            {pub.year}
-                          </span>
-                        </div>
-
-                        {/* Title */}
-                        <h3 className="font-serif text-xl text-foreground mb-4 leading-snug tracking-wide line-clamp-2">
-                          {pub.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-sm text-white/50 leading-relaxed mb-8 line-clamp-3 flex-1">
-                          {pub.description}
-                        </p>
-
-                        {/* Footer */}
-                        <div className="mt-auto pt-6 border-t border-white/[0.06] flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            {pub.hasRead && (
-                              <div className="flex items-center gap-2 text-white/40">
-                                <BookOpen className="w-3.5 h-3.5" />
-                                <span className="text-xs uppercase tracking-[0.15em]">
-                                  Read
-                                </span>
-                              </div>
-                            )}
-                            {pub.hasDownload && (
-                              <a
-                                href={`/downloads/${pub.slug}.pdf`}
-                                onClick={(e) => e.stopPropagation()}
-                                className="relative z-10 flex items-center gap-2 text-white/40 hover:text-foreground transition-colors duration-200 group/dl"
-                              >
-                                <Download className="w-3.5 h-3.5 group-hover/dl:text-primary-light transition-colors duration-200" />
-                                <span className="text-xs uppercase tracking-[0.15em]">
-                                  PDF
-                                </span>
-                              </a>
-                            )}
-                          </div>
-                          <span className="font-mono text-xs text-white/25">
-                            {pub.pages}p
-                          </span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-
-                  return (
-                    <motion.div
-                      key={pub.title}
-                      variants={{
-                        hidden: { opacity: 0, y: 28 },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-                        },
-                      }}
-                    >
-                      {pub.hasRead ? (
-                        <Link href={`/library/${pub.slug}`} className="block h-full">
-                          {cardContent}
-                        </Link>
-                      ) : (
-                        cardContent
-                      )}
-                    </motion.div>
-                  );
-                })}
+                {filtered.map((pub) => (
+                  <motion.div
+                    key={pub.slug}
+                    variants={{
+                      hidden: { opacity: 0, y: 24 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.45, ease: luxuryEase },
+                      },
+                    }}
+                    className="h-full"
+                  >
+                    {pub.hasRead ? (
+                      <Link href={`/library/${pub.slug}`} className="block h-full">
+                        <ArticleCard pub={pub} />
+                      </Link>
+                    ) : (
+                      <ArticleCard pub={pub} />
+                    )}
+                  </motion.div>
+                ))}
               </motion.div>
             )}
           </AnimatePresence>
