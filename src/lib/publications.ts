@@ -117,6 +117,30 @@ export const publications: Publication[] = [
     pages: 8,
     hasRead: true,
   },
+  {
+    slug: "self-employment-uzbekistan",
+    tag: "Tax Briefing",
+    category: "Tax",
+    title: "Self-Employment in Uzbekistan",
+    description:
+      "Find out how to register, understand tax benefits, and navigate the legal aspects of self-employment in Uzbekistan.",
+    year: "2024",
+    date: "2024-05-15",
+    pages: 6,
+    hasRead: true,
+  },
+  {
+    slug: "pit-refunds-education-uzbekistan",
+    tag: "Tax Briefing",
+    category: "Tax",
+    title: "How to Claim PIT Refunds for Education in Uzbekistan",
+    description:
+      "Your guide to personal income tax benefits and refunds for education expenses, mortgages, and more in Uzbekistan.",
+    year: "2024",
+    date: "2024-06-01",
+    pages: 6,
+    hasRead: true,
+  },
 ];
 
 export function getPublicationBySlug(slug: string): Publication | undefined {
