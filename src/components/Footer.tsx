@@ -129,7 +129,7 @@ export default function Footer() {
               Privacy
             </Link>
             <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Terms
+              Terms of Use
             </Link>
           </div>
         </div>
