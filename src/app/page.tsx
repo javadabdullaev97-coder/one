@@ -64,7 +64,7 @@ const REGION_DATA: Record<string, RegionData> = {
     name: "Andijan",
     population: "3.1M",
     gdp: "~$3.0B",
-    sezs: ["Andijan SEZ", "Qo'rg'ontepa FEZ"],
+    sezs: ["Andijan SEZ", "Qo’rg‘ontepa FEZ"],
     industries: ["Automotive", "Textiles", "Chemicals", "Food Processing", "Engineering"],
   },
   "UZ-BU": {
@@ -232,7 +232,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               </div>
 
               {/* Region name */}
-              <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide mb-4">
+              <h3 className="text-2xl md:text-3xl text-foreground tracking-wide mb-4" style={{ fontFamily: "Inter, system-ui, sans-serif", fontWeight: 300 }}>
                 {region.name}
               </h3>
 
@@ -311,7 +311,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-10 md:mb-12">
             <p className="tracking-luxury text-muted-dark mb-3">Where We Operate</p>
-            <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
+            <h2 className="heading-luxury text-2xl md:text-3xl text-foreground" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
               All of Uzbekistan, from a single advisory partner
             </h2>
           </AnimatedSection>
