@@ -120,10 +120,10 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap gap-6">
             <Link href="/oferta" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Публичная оферта
+              Terms of Sale
             </Link>
             <Link href="/cookies" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Политика cookies
+              Cookie Policy
             </Link>
             <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Privacy
