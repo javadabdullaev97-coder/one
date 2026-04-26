@@ -209,28 +209,31 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-xl md:text-2xl text-foreground leading-snug tracking-wide mb-3 group-hover:text-white transition-colors duration-200">
+        <h3 className="font-serif text-xl md:text-[1.35rem] text-foreground leading-snug tracking-wide mb-4 group-hover:text-white transition-colors duration-200">
           {product.title}
         </h3>
+
+        {/* Price — primary decision signal */}
+        <div className="flex items-baseline gap-1.5 mb-5">
+          <span className="font-serif text-base text-white/40 leading-none">$</span>
+          <span className="font-serif text-[2.75rem] md:text-[3rem] text-foreground font-light tabular-nums leading-none tracking-tight">
+            {product.price}
+          </span>
+        </div>
 
         {/* Description */}
         <p className="text-[13px] text-white/45 leading-relaxed flex-1 mb-6">
           {product.description}
         </p>
 
-        {/* Bottom row */}
+        {/* Bottom row — languages + CTA */}
         <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-          <div className="flex items-center gap-2">
-            <span className="font-serif text-2xl text-foreground font-light tabular-nums">
-              ${product.price}
-            </span>
-            <div className="flex gap-1 ml-1">
-              {product.languages.map((l) => (
-                <span key={l} className="text-[9px] text-white/25 border border-white/[0.07] px-1.5 py-0.5 rounded font-mono tracking-wider">
-                  {l}
-                </span>
-              ))}
-            </div>
+          <div className="flex gap-1">
+            {product.languages.map((l) => (
+              <span key={l} className="text-[9px] text-white/30 border border-white/[0.07] px-1.5 py-0.5 rounded font-mono tracking-wider">
+                {l}
+              </span>
+            ))}
           </div>
           <Link
             href={`/contact?ref=${product.id}`}
