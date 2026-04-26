@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
@@ -62,10 +62,19 @@ function FlagCircle({ code }: { code: string }) {
   );
 }
 
+// Routes that have /ru and /uz sub-pages
+const localeRoutes = ["/terms-of-sale"];
+
+function getBasePath(path: string) {
+  return path.replace(/\/(ru|uz)$/, "");
+}
+
 function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
   const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -75,13 +84,23 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  function handleLangSwitch(l: Language) {
+    setLang(l);
+    const basePath = getBasePath(pathname);
+    if (localeRoutes.includes(basePath)) {
+      const target = l === "EN" ? basePath : `${basePath}/${l.toLowerCase()}`;
+      router.push(target);
+    }
+    setOpen(false);
+  }
+
   if (mobile) {
     return (
       <div className="flex items-center gap-1 mt-6 pt-6 border-t border-white/[0.06]">
         {languages.map((l) => (
           <button
             key={l}
-            onClick={() => setLang(l)}
+            onClick={() => handleLangSwitch(l)}
             style={{ fontFamily: inter }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
               lang === l
@@ -123,7 +142,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
             {languages.map((l) => (
               <button
                 key={l}
-                onClick={() => { setLang(l); setOpen(false); }}
+                onClick={() => handleLangSwitch(l)}
                 style={{ fontFamily: inter }}
                 className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
                   lang === l
