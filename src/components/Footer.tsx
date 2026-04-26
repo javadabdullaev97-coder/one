@@ -131,6 +131,9 @@ export default function Footer() {
             <Link href="/terms" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Terms of Use
             </Link>
+            <Link href="/disclaimer" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+              Disclaimer
+            </Link>
           </div>
         </div>
       </div>
