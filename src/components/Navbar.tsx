@@ -8,6 +8,8 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
 
+const inter = "Inter, system-ui, -apple-system, sans-serif";
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/expertise", label: "Expertise" },
@@ -80,6 +82,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
           <button
             key={l}
             onClick={() => setLang(l)}
+            style={{ fontFamily: inter }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
               lang === l
                 ? "bg-white/[0.08] text-white border border-white/[0.15]"
@@ -98,6 +101,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
+        style={{ fontFamily: inter }}
         className="flex items-center gap-1.5 text-[12px] tracking-[0.12em] text-white/45 hover:text-white/75 transition-colors duration-200 cursor-pointer select-none"
       >
         <FlagCircle code={lang} />
@@ -120,6 +124,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
               <button
                 key={l}
                 onClick={() => { setLang(l); setOpen(false); }}
+                style={{ fontFamily: inter }}
                 className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
                   lang === l
                     ? "text-white bg-white/[0.07]"
@@ -168,7 +173,7 @@ export default function Navbar() {
             width={36}
             height={30}
           />
-          <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground">
+          <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground" style={{ fontFamily: inter }}>
             ADVIZEN
           </span>
         </Link>
@@ -181,6 +186,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                style={{ fontFamily: inter }}
                 className={`relative hover-line text-[13px] font-medium tracking-wide transition-colors cursor-pointer ${
                   isActive ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
@@ -236,6 +242,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
+                  style={{ fontFamily: inter }}
                   className={`block py-3 font-medium tracking-wide transition-colors border-b border-white/[0.06] cursor-pointer ${
                     pathname === link.href ? "text-foreground" : "text-foreground/70 hover:text-foreground"
                   }`}

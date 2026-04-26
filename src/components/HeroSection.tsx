@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 
+const inter = "Inter, system-ui, -apple-system, sans-serif";
+
 export default function HeroSection() {
   return (
     <motion.section
@@ -31,7 +33,10 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 w-full max-w-6xl mt-20">
-        <p className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10">
+        <p
+          className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10"
+          style={{ fontFamily: inter }}
+        >
           Business Advisory · Uzbekistan
         </p>
 
@@ -45,7 +50,10 @@ export default function HeroSection() {
           ADVIZEN
         </motion.h1>
 
-        <p className="mt-8 text-[15px] text-white/75 max-w-sm mx-auto leading-relaxed">
+        <p
+          className="mt-8 text-[13px] text-white/65 max-w-xs mx-auto leading-relaxed tracking-wide"
+          style={{ fontFamily: inter, fontWeight: 300 }}
+        >
           Strategic counsel for businesses entering and operating across Central Asia.
         </p>
 
@@ -60,7 +68,12 @@ export default function HeroSection() {
       {/* Bottom label */}
       <div className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4">
         <div className="h-px w-8 bg-white/20" />
-        <p className="text-[11px] tracking-[0.3em] uppercase text-white/40">Tashkent, Uzbekistan</p>
+        <p
+          className="text-[11px] tracking-[0.3em] uppercase text-white/40"
+          style={{ fontFamily: inter }}
+        >
+          Tashkent, Uzbekistan
+        </p>
         <div className="h-px w-8 bg-white/20" />
       </div>
     </motion.section>
