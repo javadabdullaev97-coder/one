@@ -60,7 +60,7 @@ export default function HeroSection() {
       {/* Bottom label */}
       <div className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4">
         <div className="h-px w-8 bg-white/20" />
-        <p className="text-[9px] tracking-[0.3em] uppercase text-white/40">Tashkent, Uzbekistan</p>
+        <p className="text-[11px] tracking-[0.3em] uppercase text-white/40">Tashkent, Uzbekistan</p>
         <div className="h-px w-8 bg-white/20" />
       </div>
     </motion.section>
