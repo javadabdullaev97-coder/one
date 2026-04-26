@@ -34,27 +34,26 @@ const footerLinks = {
   ],
 };
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/[0.06]" style={{ fontFamily: inter }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
         {/* Main footer */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
-          }}
-          className="py-20 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-8"
-        >
+        <div className="py-20 flex flex-col md:flex-row gap-12 md:gap-0">
+
           {/* Brand */}
           <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
-            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={itemVariants}
+            className="md:w-[260px] shrink-0 md:mr-16"
           >
             <div className="flex items-center gap-3">
               <Image src="/logo.png" alt="Advizen" width={40} height={32} />
@@ -62,7 +61,7 @@ export default function Footer() {
                 ADVIZEN
               </span>
             </div>
-            <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-sm">
+            <p className="mt-6 text-sm text-white/50 leading-relaxed">
               Premier business advisory in Uzbekistan. Integrated consulting
               across tax, legal, finance, and HR — a single point of
               contact for your entire operation.
@@ -89,31 +88,38 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <motion.div
-              key={title}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
-              }}
-            >
-              <h3 className="text-[13px] font-bold tracking-[0.18em] uppercase text-white/60 mb-6">{title}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[13px] text-white/50 hover:text-foreground transition-colors cursor-pointer"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Link columns — equal gaps, last column flush to right edge */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+            className="flex-1 flex flex-col md:flex-row md:justify-between gap-10 md:gap-0"
+          >
+            {Object.entries(footerLinks).map(([title, links]) => (
+              <motion.div key={title} variants={itemVariants}>
+                <h3 className="text-[13px] font-bold tracking-[0.18em] uppercase text-white/60 mb-6">
+                  {title}
+                </h3>
+                <ul className="space-y-3">
+                  {links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-[13px] text-white/50 hover:text-foreground transition-colors cursor-pointer"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Social Icons Bar */}
         <div className="py-8 border-t border-white/[0.06]">
@@ -121,11 +127,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="py-6 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="py-6 border-t border-white/[0.06]">
           <p className="text-xs text-muted-dark tracking-wide">
             &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
           </p>
         </div>
+
       </div>
     </footer>
   );
