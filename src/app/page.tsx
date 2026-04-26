@@ -232,7 +232,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               </div>
 
               {/* Region name */}
-              <h3 className="text-2xl md:text-3xl text-foreground tracking-wide mb-4" style={{ fontFamily: "Inter, system-ui, sans-serif", fontWeight: 300 }}>
+              <h3 className="heading-luxury text-2xl md:text-3xl text-foreground mb-4">
                 {region.name}
               </h3>
 
@@ -311,7 +311,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-10 md:mb-12">
             <p className="tracking-luxury text-muted-dark mb-3">Where We Operate</p>
-            <h2 className="heading-luxury text-2xl md:text-3xl text-foreground" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+            <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
               All of Uzbekistan, from a single advisory partner
             </h2>
           </AnimatedSection>
