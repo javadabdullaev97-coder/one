@@ -91,13 +91,13 @@ export default function Footer() {
                 visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
               }}
             >
-              <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-white/60 mb-6">{title}</h3>
+              <h3 className="text-sm font-bold tracking-[0.18em] uppercase text-white/60 mb-6">{title}</h3>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer"
+                      className="text-xs text-white/50 hover:text-foreground transition-colors cursor-pointer"
                     >
                       {link.label}
                     </Link>
