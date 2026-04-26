@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
-import { useLanguage, type Language } from "@/context/LanguageContext";
 
 const inter = "Inter, system-ui, -apple-system, sans-serif";
 
@@ -18,157 +17,6 @@ const navLinks = [
   { href: "/library", label: "Insights" },
   { href: "/contact", label: "Contact" },
 ];
-
-const languages = ["EN", "RU", "UZ"] as const;
-
-const FlagEN = () => (
-  <svg viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
-    <rect width="60" height="40" fill="#012169" />
-    <path d="M0,0 L60,40 M60,0 L0,40" stroke="white" strokeWidth="8" />
-    <path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" strokeWidth="5" />
-    <rect x="26" width="8" height="40" fill="white" />
-    <rect y="16" width="60" height="8" fill="white" />
-    <rect x="28" width="4" height="40" fill="#C8102E" />
-    <rect y="18" width="60" height="4" fill="#C8102E" />
-  </svg>
-);
-
-const FlagRU = () => (
-  <svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
-    <rect width="3" height="0.667" fill="#FFFFFF" />
-    <rect y="0.667" width="3" height="0.667" fill="#0039A6" />
-    <rect y="1.333" width="3" height="0.667" fill="#D52B1E" />
-  </svg>
-);
-
-const FlagUZ = () => (
-  <svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
-    <rect width="3" height="0.7" fill="#1BBED7" />
-    <rect y="0.7" width="3" height="0.07" fill="#CE1126" />
-    <rect y="0.77" width="3" height="0.46" fill="#FFFFFF" />
-    <rect y="1.23" width="3" height="0.07" fill="#CE1126" />
-    <rect y="1.3" width="3" height="0.7" fill="#1EB53A" />
-  </svg>
-);
-
-const flags = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
-
-function FlagCircle({ code }: { code: string }) {
-  const Flag = flags[code as keyof typeof flags];
-  return (
-    <span className="w-3.5 h-3.5 rounded-full overflow-hidden shrink-0 inline-block border border-white/10">
-      <Flag />
-    </span>
-  );
-}
-
-// Routes that have /ru and /uz sub-pages
-const localeRoutes = ["/terms-of-sale"];
-
-function getBasePath(path: string) {
-  return path.replace(/\/(ru|uz)$/, "");
-}
-
-function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
-  const { lang, setLang } = useLanguage();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  // Sync context lang from URL on load/refresh
-  useEffect(() => {
-    const basePath = getBasePath(pathname);
-    if (!localeRoutes.includes(basePath)) return;
-    if (pathname.endsWith("/ru")) setLang("RU");
-    else if (pathname.endsWith("/uz")) setLang("UZ");
-    else setLang("EN");
-  }, [pathname, setLang]);
-
-  function handleLangSwitch(l: Language) {
-    setLang(l);
-    const basePath = getBasePath(pathname);
-    if (localeRoutes.includes(basePath)) {
-      const target = l === "EN" ? basePath : `${basePath}/${l.toLowerCase()}`;
-      router.push(target);
-    }
-    setOpen(false);
-  }
-
-  if (mobile) {
-    return (
-      <div className="flex items-center gap-1 mt-6 pt-6 border-t border-white/[0.06]">
-        {languages.map((l) => (
-          <button
-            key={l}
-            onClick={() => handleLangSwitch(l)}
-            style={{ fontFamily: inter }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
-              lang === l
-                ? "bg-white/[0.08] text-white border border-white/[0.15]"
-                : "text-white/35 hover:text-white/60"
-            }`}
-          >
-            <FlagCircle code={l} />
-            {l}
-          </button>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        style={{ fontFamily: inter }}
-        className="flex items-center gap-1.5 text-[12px] tracking-[0.12em] text-white/45 hover:text-white/75 transition-colors duration-200 cursor-pointer select-none"
-      >
-        <FlagCircle code={lang} />
-        <span>{lang}</span>
-        <ChevronDown
-          className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -6, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.97 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-2.5 bg-[#141414] border border-white/[0.08] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)] min-w-[80px]"
-          >
-            {languages.map((l) => (
-              <button
-                key={l}
-                onClick={() => handleLangSwitch(l)}
-                style={{ fontFamily: inter }}
-                className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
-                  lang === l
-                    ? "text-white bg-white/[0.07]"
-                    : "text-white/40 hover:text-white/70 hover:bg-white/[0.03]"
-                }`}
-              >
-                <FlagCircle code={l} />
-                {l}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -232,9 +80,8 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right side — language switcher + Inquire */}
+        {/* Right side — Inquire button */}
         <div className="hidden md:flex items-center gap-5 ml-auto">
-          <LanguageSwitcher />
           <MagneticButton as="a" href="/contact" className="px-6 py-2.5 text-[12px]">
             Inquire
           </MagneticButton>
@@ -284,7 +131,6 @@ export default function Navbar() {
                 Inquire
               </MagneticButton>
             </div>
-            <LanguageSwitcher mobile />
           </motion.div>
         )}
       </AnimatePresence>
