@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { motion } from "framer-motion";
 
 const sectionsEN = [
   {
@@ -267,7 +268,12 @@ export default function TermsOfSalePage() {
   const c = content[lang] ?? content.EN;
 
   return (
-    <main className="bg-black min-h-screen">
+    <motion.main
+      className="bg-black min-h-screen"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-[#080808]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 pt-32 pb-20">
@@ -310,6 +316,6 @@ export default function TermsOfSalePage() {
           </p>
         </div>
       </div>
-    </main>
+    </motion.main>
   );
 }
