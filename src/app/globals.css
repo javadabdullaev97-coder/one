@@ -31,7 +31,7 @@
   --color-border-light: var(--border-light);
   --color-card: #000000;
   --color-card-foreground: var(--foreground);
-  --font-serif: "Tahoma", "Geneva", sans-serif;
+  --font-serif: var(--font-hero);
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -89,9 +89,9 @@ body::after {
   border-color: var(--border);
 }
 
-/* Heading system — Tahoma */
+/* Heading system */
 .heading-luxury {
-  font-family: "Tahoma", "Geneva", sans-serif;
-  font-weight: 400;
-  letter-spacing: 0em;
+  font-family: var(--font-hero);
+  font-weight: 300;
+  letter-spacing: 0.04em;
 }
