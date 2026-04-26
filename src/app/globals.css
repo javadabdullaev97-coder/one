@@ -31,7 +31,7 @@
   --color-border-light: var(--border-light);
   --color-card: #000000;
   --color-card-foreground: var(--foreground);
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-hero), "Raleway", sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -87,4 +87,11 @@ body::after {
 .hairline {
   border-width: 1px;
   border-color: var(--border);
+}
+
+/* Heading system — Raleway unified */
+.heading-luxury {
+  font-family: var(--font-hero), "Raleway", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.03em;
 }
