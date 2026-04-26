@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Raleway, Quicksand } from "next/font/google";
+import { Josefin_Sans, Raleway, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,10 +21,10 @@ const raleway = Raleway({
   display: "swap",
 });
 
-const quicksand = Quicksand({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-quicksand",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -91,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${quicksand.variable}`}>
+    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
