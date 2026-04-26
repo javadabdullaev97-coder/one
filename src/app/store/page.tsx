@@ -27,13 +27,13 @@ interface Product {
 
 const CATEGORIES = ["All", "Company Formation", "Legal", "HR", "Tax", "Compliance", "Finance"] as const;
 
-const CATEGORY_META: Record<string, { color: string; icon: React.ReactNode }> = {
-  "Company Formation": { color: "text-blue-400/80 bg-blue-400/[0.08] border-blue-400/20",   icon: <FileText className="w-3 h-3" /> },
-  "Legal":            { color: "text-violet-400/80 bg-violet-400/[0.08] border-violet-400/20", icon: <Scale className="w-3 h-3" /> },
-  "HR":               { color: "text-emerald-400/80 bg-emerald-400/[0.08] border-emerald-400/20", icon: <Users className="w-3 h-3" /> },
-  "Tax":              { color: "text-amber-400/80 bg-amber-400/[0.08] border-amber-400/20",   icon: <Calculator className="w-3 h-3" /> },
-  "Compliance":       { color: "text-orange-400/80 bg-orange-400/[0.08] border-orange-400/20", icon: <ShieldCheck className="w-3 h-3" /> },
-  "Finance":          { color: "text-cyan-400/80 bg-cyan-400/[0.08] border-cyan-400/20",     icon: <BarChart2 className="w-3 h-3" /> },
+const CATEGORY_META: Record<string, { icon: React.ReactNode }> = {
+  "Company Formation": { icon: <FileText className="w-3 h-3" /> },
+  "Legal":             { icon: <Scale className="w-3 h-3" /> },
+  "HR":                { icon: <Users className="w-3 h-3" /> },
+  "Tax":               { icon: <Calculator className="w-3 h-3" /> },
+  "Compliance":        { icon: <ShieldCheck className="w-3 h-3" /> },
+  "Finance":           { icon: <BarChart2 className="w-3 h-3" /> },
 };
 
 const products: Product[] = [
@@ -190,7 +190,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       <div className="relative flex flex-col flex-1 p-6">
         {/* Top row */}
         <div className="flex items-start justify-between mb-5">
-          <span className={cn("inline-flex items-center gap-1.5 text-[10px] tracking-[0.12em] uppercase font-medium border px-2.5 py-1 rounded-full", meta?.color)}>
+          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-foreground/65 border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-full">
             {meta?.icon}
             {product.category}
           </span>
