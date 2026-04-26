@@ -16,7 +16,7 @@ const footerLinks = {
     { label: "HR Services", href: "/expertise/hr" },
     { label: "Funding", href: "/expertise/funding" },
   ],
-  "Operations": [
+  Operations: [
     { label: "Corporate Services", href: "/expertise/corporate" },
     { label: "Entity Management", href: "/expertise/entity-management" },
   ],
@@ -24,6 +24,13 @@ const footerLinks = {
     { label: "Store", href: "/store" },
     { label: "Insights", href: "/library" },
     { label: "Contact", href: "/contact" },
+  ],
+  Legal: [
+    { label: "Terms of Sale", href: "/terms-of-sale" },
+    { label: "Cookie Policy", href: "/cookies" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms of Use", href: "/terms" },
+    { label: "Disclaimer", href: "/disclaimer" },
   ],
 };
 
@@ -40,7 +47,7 @@ export default function Footer() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.1 } },
           }}
-          className="py-20 grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr] gap-10"
+          className="py-20 grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr_1fr] gap-10"
         >
           {/* Brand */}
           <motion.div
@@ -118,23 +125,6 @@ export default function Footer() {
           <p className="text-xs text-muted-dark tracking-wide">
             &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-6">
-            <Link href="/terms-of-sale" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Terms of Sale
-            </Link>
-            <Link href="/cookies" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Cookie Policy
-            </Link>
-            <Link href="/privacy" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Privacy
-            </Link>
-            <Link href="/terms" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Terms of Use
-            </Link>
-            <Link href="/disclaimer" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
-              Disclaimer
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
