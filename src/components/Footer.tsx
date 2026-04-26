@@ -53,7 +53,7 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             variants={itemVariants}
-            className="md:w-[260px] shrink-0 md:mr-16"
+            className="md:w-[380px] shrink-0 md:mr-16"
           >
             <div className="flex items-center gap-3">
               <Image src="/logo.png" alt="Advizen" width={40} height={32} />
