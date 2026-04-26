@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Raleway, Playfair_Display } from "next/font/google";
+import { Josefin_Sans, Raleway, Quicksand } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,11 +21,10 @@ const raleway = Raleway({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const quicksand = Quicksand({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-quicksand",
   display: "swap",
 });
 
@@ -92,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${playfair.variable}`}>
+    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${quicksand.variable}`}>
       <head>
         <script
           type="application/ld+json"

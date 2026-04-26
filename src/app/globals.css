@@ -31,8 +31,8 @@
   --color-border-light: var(--border-light);
   --color-card: #000000;
   --color-card-foreground: var(--foreground);
-  --font-serif: var(--font-playfair);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-quicksand);
+  --font-sans: var(--font-quicksand);
 }
 
 /* Reserve scrollbar gutter so the viewport width never changes on page load */
@@ -91,7 +91,7 @@ body::after {
 
 /* Heading system */
 .heading-luxury {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-family: var(--font-quicksand);
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
