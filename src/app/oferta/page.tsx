@@ -128,7 +128,7 @@ export default function OfertaPage() {
     <main className="bg-black min-h-screen">
       {/* Header */}
       <div className="border-b border-white/[0.06] bg-[#080808]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 pt-32 pb-20">
           <p className="text-[11px] tracking-[0.3em] uppercase text-muted-dark mb-4">
             Advizen Consulting · Магазин
           </p>
