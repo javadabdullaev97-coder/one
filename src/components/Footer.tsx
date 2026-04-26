@@ -88,7 +88,7 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Link columns — equal gaps, last column flush to right edge */}
+          {/* Link columns — grouped right, equal gaps, Legal flush to right edge */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -97,7 +97,7 @@ export default function Footer() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.08 } },
             }}
-            className="flex-1 flex flex-col md:flex-row md:justify-between gap-10 md:gap-0"
+            className="flex-1 flex flex-col md:flex-row md:justify-end gap-10 md:gap-16"
           >
             {Object.entries(footerLinks).map(([title, links]) => (
               <motion.div key={title} variants={itemVariants}>
