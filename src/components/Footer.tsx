@@ -119,7 +119,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-6">
-            <Link href="/oferta" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+            <Link href="/terms-of-sale" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Terms of Sale
             </Link>
             <Link href="/cookies" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
