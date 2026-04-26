@@ -214,26 +214,9 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </h3>
 
         {/* Description */}
-        <p className="text-[13px] text-white/40 leading-relaxed flex-1 mb-5">
+        <p className="text-[13px] text-white/45 leading-relaxed flex-1 mb-6">
           {product.description}
         </p>
-
-        {/* Includes — revealed on hover */}
-        <motion.div
-          className="mb-5 overflow-hidden"
-          initial={{ height: 0, opacity: 0 }}
-          whileHover={{ height: "auto", opacity: 1 }}
-        >
-        </motion.div>
-
-        {/* Includes list (always visible, subtle) */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {product.includes.map((item) => (
-            <span key={item} className="text-[10px] text-white/30 border border-white/[0.06] bg-white/[0.02] px-2 py-0.5 rounded">
-              {item}
-            </span>
-          ))}
-        </div>
 
         {/* Bottom row */}
         <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
