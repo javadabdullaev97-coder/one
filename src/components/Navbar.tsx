@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
 
@@ -18,6 +18,47 @@ const navLinks = [
 
 const languages = ["EN", "RU", "UZ"] as const;
 type Language = (typeof languages)[number];
+
+const FlagEN = () => (
+  <svg viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
+    <rect width="60" height="40" fill="#012169" />
+    <path d="M0,0 L60,40 M60,0 L0,40" stroke="white" strokeWidth="8" />
+    <path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" strokeWidth="5" />
+    <rect x="26" width="8" height="40" fill="white" />
+    <rect y="16" width="60" height="8" fill="white" />
+    <rect x="28" width="4" height="40" fill="#C8102E" />
+    <rect y="18" width="60" height="4" fill="#C8102E" />
+  </svg>
+);
+
+const FlagRU = () => (
+  <svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
+    <rect width="3" height="0.667" fill="#FFFFFF" />
+    <rect y="0.667" width="3" height="0.667" fill="#0039A6" />
+    <rect y="1.333" width="3" height="0.667" fill="#D52B1E" />
+  </svg>
+);
+
+const FlagUZ = () => (
+  <svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
+    <rect width="3" height="0.7" fill="#1BBED7" />
+    <rect y="0.7" width="3" height="0.07" fill="#CE1126" />
+    <rect y="0.77" width="3" height="0.46" fill="#FFFFFF" />
+    <rect y="1.23" width="3" height="0.07" fill="#CE1126" />
+    <rect y="1.3" width="3" height="0.7" fill="#1EB53A" />
+  </svg>
+);
+
+const flags: Record<string, () => JSX.Element> = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
+
+function FlagCircle({ code }: { code: string }) {
+  const Flag = flags[code];
+  return (
+    <span className="w-3.5 h-3.5 rounded-full overflow-hidden shrink-0 inline-block border border-white/10">
+      <Flag />
+    </span>
+  );
+}
 
 function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
   const [lang, setLang] = useState<Language>("EN");
@@ -35,17 +76,17 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
   if (mobile) {
     return (
       <div className="flex items-center gap-1 mt-6 pt-6 border-t border-white/[0.06]">
-        <Globe className="w-3.5 h-3.5 text-white/30 mr-1.5" />
         {languages.map((l) => (
           <button
             key={l}
             onClick={() => setLang(l)}
-            className={`px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
               lang === l
                 ? "bg-white/[0.08] text-white border border-white/[0.15]"
                 : "text-white/35 hover:text-white/60"
             }`}
           >
+            <FlagCircle code={l} />
             {l}
           </button>
         ))}
@@ -59,7 +100,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-1.5 text-[12px] tracking-[0.12em] text-white/45 hover:text-white/75 transition-colors duration-200 cursor-pointer select-none"
       >
-        <Globe className="w-3.5 h-3.5" />
+        <FlagCircle code={lang} />
         <span>{lang}</span>
         <ChevronDown
           className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -73,18 +114,19 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.97 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-2.5 bg-[#141414] border border-white/[0.08] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)] min-w-[64px]"
+            className="absolute right-0 top-full mt-2.5 bg-[#141414] border border-white/[0.08] rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)] min-w-[80px]"
           >
             {languages.map((l) => (
               <button
                 key={l}
                 onClick={() => { setLang(l); setOpen(false); }}
-                className={`block w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
+                className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
                   lang === l
                     ? "text-white bg-white/[0.07]"
                     : "text-white/40 hover:text-white/70 hover:bg-white/[0.03]"
                 }`}
               >
+                <FlagCircle code={l} />
                 {l}
               </button>
             ))}
