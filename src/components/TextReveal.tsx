@@ -37,11 +37,9 @@ export default function TextReveal({
           className="block"
         >
           {lines.map((line, i) => (
-            <span key={i} className="block overflow-hidden">
-              <motion.span variants={lineRevealItem} className="block">
-                {line}
-              </motion.span>
-            </span>
+            <motion.span key={i} variants={lineRevealItem} className="block">
+              {line}
+            </motion.span>
           ))}
         </motion.span>
       </Tag>
@@ -60,22 +58,21 @@ export default function TextReveal({
         className="inline"
       >
         {words.map((word, i) => (
-          <span key={i} className="inline-block overflow-hidden">
-            <motion.span
-              variants={textRevealWord}
-              className="inline-block"
-              style={{ marginRight: "0.25em" }}
-            >
-              {word}
-            </motion.span>
-          </span>
+          <motion.span
+            key={i}
+            variants={textRevealWord}
+            className="inline-block"
+            style={{ marginRight: "0.25em" }}
+          >
+            {word}
+          </motion.span>
         ))}
       </motion.span>
     </Tag>
   );
 }
 
-/* ── Single-line paragraph reveal ─────────────────────── */
+/* ── Single-line paragraph reveal ───────────────────── */
 interface RevealLineProps {
   children: ReactNode;
   delay?: number;
