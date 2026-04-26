@@ -118,7 +118,13 @@ export default function Footer() {
           <p className="text-xs text-muted-dark tracking-wide">
             &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
           </p>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap gap-6">
+            <Link href="/oferta" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+              Публичная оферта
+            </Link>
+            <Link href="/cookies" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+              Политика cookies
+            </Link>
             <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Privacy
             </Link>
