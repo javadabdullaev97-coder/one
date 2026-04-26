@@ -16,7 +16,7 @@ const syne = Josefin_Sans({
 
 const raleway = Raleway({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500"],
+  weight: ["200", "300", "400", "500", "600"],
   variable: "--font-hero",
   display: "swap",
 });
