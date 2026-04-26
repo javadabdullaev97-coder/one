@@ -237,9 +237,9 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
           <Link
             href={`/contact?ref=${product.id}`}
-            className="group/btn inline-flex items-center gap-1.5 text-[11px] tracking-[0.1em] uppercase text-white/40 hover:text-foreground transition-colors duration-200"
+            className="group/btn inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-foreground/85 hover:text-foreground bg-white/[0.04] hover:bg-primary/[0.18] border border-white/[0.10] hover:border-primary/45 px-4 py-2 rounded-lg transition-all duration-200"
           >
-            Get pack
+            Purchase
             <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
           </Link>
         </div>
