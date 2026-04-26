@@ -214,6 +214,18 @@ export const publications: Publication[] = [
     pages: 6,
     hasRead: true,
   },
+  {
+    slug: "employer-of-record-central-asia",
+    tag: "HR Insight",
+    category: "HR",
+    title: "Employer of Record in Central Asia",
+    description:
+      "How foreign companies can establish talent presence without a local legal entity.",
+    year: "2025",
+    date: "2025-06-01",
+    pages: 10,
+    hasRead: true,
+  },
 ];
 
 export function getPublicationBySlug(slug: string): Publication | undefined {
