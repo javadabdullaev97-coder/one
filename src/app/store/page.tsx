@@ -307,8 +307,6 @@ export default function StorePage() {
     ? products
     : products.filter((p) => p.category === activeCategory);
 
-  const featured = products.filter((p) => p.popular).slice(0, 3);
-
   return (
     <>
       {/* ── Hero ── */}
@@ -368,32 +366,6 @@ export default function StorePage() {
 
       {/* ── Category filter ── */}
       <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
-
-      {/* ── Featured (only when "All" is selected) ── */}
-      <AnimatePresence mode="wait">
-        {activeCategory === "All" && (
-          <motion.section
-            key="featured"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="py-14 md:py-18 bg-black relative overflow-hidden"
-          >
-            <div className="ambient-glow ambient-glow-warm w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-              <div className="flex items-center justify-between mb-8">
-                <p className="tracking-luxury text-white/40">Most popular</p>
-              </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {featured.map((p, i) => (
-                  <ProductCard key={p.id} product={p} index={i} />
-                ))}
-              </div>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
 
       {/* ── Full grid ── */}
       <section className="py-14 md:py-20 bg-black relative">
