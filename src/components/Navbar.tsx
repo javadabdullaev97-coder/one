@@ -84,6 +84,15 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  // Sync context lang from URL on load/refresh
+  useEffect(() => {
+    const basePath = getBasePath(pathname);
+    if (!localeRoutes.includes(basePath)) return;
+    if (pathname.endsWith("/ru")) setLang("RU");
+    else if (pathname.endsWith("/uz")) setLang("UZ");
+    else setLang("EN");
+  }, [pathname, setLang]);
+
   function handleLangSwitch(l: Language) {
     setLang(l);
     const basePath = getBasePath(pathname);
