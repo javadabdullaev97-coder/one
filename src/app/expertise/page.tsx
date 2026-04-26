@@ -14,7 +14,7 @@ import regionImageLoader from "@/lib/image-loader";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ──────────────────────────────────────────────────────
+// ─── Industries ───────────────────────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -200,7 +200,7 @@ function IndustriesSection() {
   );
 }
 
-// ─── Page ──────────────────────────────────────────────────────
+// ─── Page ───────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
@@ -278,60 +278,75 @@ export default function ExpertisePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
-                className="group relative bg-gradient-to-br from-[#101010] to-[#070707] border border-white/[0.07] hover:border-white/[0.16] rounded-xl overflow-hidden transition-all duration-500"
+                whileHover={{
+                  scale: 1.025,
+                  transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] },
+                }}
+                className="group relative rounded-xl p-px overflow-hidden"
               >
-                {/* Top hairline */}
-                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
+                {/* Static border colour */}
+                <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
 
-                {/* Soft corner glow on hover */}
-                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/[0.10] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                {/* Light that travels around the border on hover */}
+                <div className="absolute inset-[-150%] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  <div
+                    className="absolute inset-0 animate-spin"
+                    style={{
+                      animationDuration: "3.5s",
+                      background:
+                        "conic-gradient(from 0deg, transparent 0deg, transparent 280deg, rgba(192,133,133,0.95) 325deg, rgba(192,133,133,0) 360deg)",
+                    }}
+                  />
+                </div>
 
-                {/* Left accent line on hover */}
-                <div className="absolute top-7 bottom-7 left-0 w-[2px] bg-gradient-to-b from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Inner card */}
+                <div className="relative h-full bg-gradient-to-br from-[#101010] to-[#070707] rounded-[11px] overflow-hidden">
+                  {/* Top hairline */}
+                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
 
-                {/* Card index, top right */}
-                <span className="absolute top-6 right-6 font-serif text-[11px] text-white/20 tabular-nums tracking-widest">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                  {/* Card index, top right */}
+                  <span className="absolute top-6 right-6 font-serif text-[11px] text-white/20 tabular-nums tracking-widest">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
-                <div className="relative p-7 md:p-8 flex flex-col h-full">
-                  {/* Sector with luminous accent dot */}
-                  <div className="flex items-center gap-2.5 mb-9">
-                    <span className="relative flex w-1.5 h-1.5">
-                      <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px] group-hover:blur-[5px] transition-all duration-500" />
-                      <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
-                    </span>
-                    <span className="text-[10px] tracking-[0.24em] uppercase text-foreground/80">
-                      {deal.sector}
-                    </span>
-                  </div>
-
-                  {/* Metric */}
-                  <div className="mb-8">
-                    <span className="block font-serif text-[2.5rem] md:text-[2.75rem] text-foreground tracking-[-0.02em] leading-[0.95] group-hover:text-white transition-colors duration-500">
-                      {deal.metric}
-                    </span>
-                    <p className="text-[10px] tracking-[0.18em] uppercase text-white/35 mt-3">
-                      {deal.metricLabel}
-                    </p>
-                  </div>
-
-                  {/* Headline */}
-                  <p className="text-[14px] text-white/55 leading-relaxed mb-8 flex-1">
-                    {deal.headline}
-                  </p>
-
-                  {/* Disciplines */}
-                  <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/[0.06]">
-                    {deal.disciplines.map((d) => (
-                      <span
-                        key={d}
-                        className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
-                      >
-                        {d}
+                  <div className="relative p-7 md:p-8 flex flex-col h-full">
+                    {/* Sector with luminous accent dot */}
+                    <div className="flex items-center gap-2.5 mb-9">
+                      <span className="relative flex w-1.5 h-1.5">
+                        <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px]" />
+                        <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
                       </span>
-                    ))}
+                      <span className="text-[10px] tracking-[0.24em] uppercase text-foreground/80">
+                        {deal.sector}
+                      </span>
+                    </div>
+
+                    {/* Metric */}
+                    <div className="mb-8">
+                      <span className="block font-serif text-[2.5rem] md:text-[2.75rem] text-foreground tracking-[-0.02em] leading-[0.95]">
+                        {deal.metric}
+                      </span>
+                      <p className="text-[10px] tracking-[0.18em] uppercase text-white/35 mt-3">
+                        {deal.metricLabel}
+                      </p>
+                    </div>
+
+                    {/* Headline */}
+                    <p className="text-[14px] text-white/55 leading-relaxed mb-8 flex-1">
+                      {deal.headline}
+                    </p>
+
+                    {/* Disciplines */}
+                    <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/[0.06]">
+                      {deal.disciplines.map((d) => (
+                        <span
+                          key={d}
+                          className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
+                        >
+                          {d}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
