@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Raleway } from "next/font/google";
+import { Josefin_Sans, Raleway, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,8 +16,16 @@ const syne = Josefin_Sans({
 
 const raleway = Raleway({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
+  weight: ["200", "300", "400", "500"],
   variable: "--font-hero",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -84,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable}`}>
+    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${playfair.variable}`}>
       <head>
         <script
           type="application/ld+json"

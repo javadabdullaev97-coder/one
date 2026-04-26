@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 
-const inter = "Inter, system-ui, -apple-system, sans-serif";
-
 export default function HeroSection() {
   return (
     <motion.section
@@ -33,10 +31,7 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 w-full max-w-6xl mt-20">
-        <p
-          className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10"
-          style={{ fontFamily: inter }}
-        >
+        <p className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10">
           Business Advisory · Uzbekistan
         </p>
 
@@ -45,15 +40,12 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="uppercase leading-none select-none"
-          style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)", letterSpacing: "0.12em", fontFamily: "var(--font-hero)", fontWeight: 300, color: "#D6CFC8" }}
+          style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)", letterSpacing: "0.12em", fontFamily: "var(--font-hero), sans-serif", fontWeight: 400, color: "#D6CFC8" }}
         >
           ADVIZEN
         </motion.h1>
 
-        <p
-          className="mt-8 text-[13px] text-white/65 max-w-xs mx-auto leading-relaxed tracking-wide"
-          style={{ fontFamily: inter, fontWeight: 300 }}
-        >
+        <p className="mt-8 text-[15px] text-white/75 max-w-sm mx-auto leading-relaxed">
           Strategic counsel for businesses entering and operating across Central Asia.
         </p>
 
@@ -68,10 +60,7 @@ export default function HeroSection() {
       {/* Bottom label */}
       <div className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4">
         <div className="h-px w-8 bg-white/20" />
-        <p
-          className="text-[11px] tracking-[0.3em] uppercase text-white/40"
-          style={{ fontFamily: inter }}
-        >
+        <p className="text-[11px] tracking-[0.3em] uppercase text-white/40">
           Tashkent, Uzbekistan
         </p>
         <div className="h-px w-8 bg-white/20" />

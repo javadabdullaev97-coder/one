@@ -31,7 +31,7 @@
   --color-border-light: var(--border-light);
   --color-card: #000000;
   --color-card-foreground: var(--foreground);
-  --font-serif: var(--font-hero);
+  --font-serif: var(--font-playfair);
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -91,7 +91,7 @@ body::after {
 
 /* Heading system */
 .heading-luxury {
-  font-family: var(--font-hero);
-  font-weight: 300;
+  font-family: var(--font-serif);
+  font-weight: 400;
   letter-spacing: 0.04em;
 }
