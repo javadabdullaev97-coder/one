@@ -47,7 +47,7 @@ export default function Footer() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.1 } },
           }}
-          className="py-20 grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr_1fr] gap-10"
+          className="py-20 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-8"
         >
           {/* Brand */}
           <motion.div
