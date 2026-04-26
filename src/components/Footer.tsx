@@ -125,10 +125,10 @@ export default function Footer() {
             <Link href="/cookies" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Cookie Policy
             </Link>
-            <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+            <Link href="/privacy" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Privacy
             </Link>
-            <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
+            <Link href="/terms" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Terms of Use
             </Link>
           </div>
