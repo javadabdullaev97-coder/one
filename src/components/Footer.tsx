@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import SocialIcons from "@/components/SocialIcons";
 import { Phone, Mail, MapPin } from "lucide-react";
 
-const raleway = "var(--font-hero), sans-serif";
+const inter = "var(--font-inter), sans-serif";
 
 const footerLinks = {
   Expertise: [
@@ -29,7 +29,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/[0.06]" style={{ fontFamily: raleway }}>
+    <footer className="bg-[#0A0A0A] border-t border-white/[0.06]" style={{ fontFamily: inter }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Main footer */}
         <motion.div
@@ -91,7 +91,7 @@ export default function Footer() {
                 visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
               }}
             >
-              <h3 className="tracking-luxury text-muted-dark mb-6">{title}</h3>
+              <h3 className="text-xs font-bold tracking-[0.18em] uppercase text-white/60 mb-6">{title}</h3>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
