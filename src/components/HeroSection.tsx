@@ -30,7 +30,7 @@ export default function HeroSection() {
       <div aria-hidden className="absolute inset-0 bg-black/50" />
 
       {/* Main content */}
-      <div className="relative z-10 text-center px-6 w-full max-w-6xl">
+      <div className="relative z-10 text-center px-6 w-full max-w-6xl mt-20">
         <p className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10">
           Business Advisory · Uzbekistan
         </p>
