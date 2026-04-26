@@ -3,10 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
+import { useLanguage, type Language } from "@/context/LanguageContext";
+
+const inter = "Inter, system-ui, -apple-system, sans-serif";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,7 +20,6 @@ const navLinks = [
 ];
 
 const languages = ["EN", "RU", "UZ"] as const;
-type Language = (typeof languages)[number];
 
 const FlagEN = () => (
   <svg viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
@@ -49,10 +51,10 @@ const FlagUZ = () => (
   </svg>
 );
 
-const flags: Record<string, () => JSX.Element> = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
+const flags = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
 
 function FlagCircle({ code }: { code: string }) {
-  const Flag = flags[code];
+  const Flag = flags[code as keyof typeof flags];
   return (
     <span className="w-3.5 h-3.5 rounded-full overflow-hidden shrink-0 inline-block border border-white/10">
       <Flag />
@@ -60,10 +62,19 @@ function FlagCircle({ code }: { code: string }) {
   );
 }
 
+// Routes that have /ru and /uz sub-pages
+const localeRoutes = ["/terms-of-sale"];
+
+function getBasePath(path: string) {
+  return path.replace(/\/(ru|uz)$/, "");
+}
+
 function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
-  const [lang, setLang] = useState<Language>("EN");
+  const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -73,13 +84,33 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  // Sync context lang from URL on load/refresh
+  useEffect(() => {
+    const basePath = getBasePath(pathname);
+    if (!localeRoutes.includes(basePath)) return;
+    if (pathname.endsWith("/ru")) setLang("RU");
+    else if (pathname.endsWith("/uz")) setLang("UZ");
+    else setLang("EN");
+  }, [pathname, setLang]);
+
+  function handleLangSwitch(l: Language) {
+    setLang(l);
+    const basePath = getBasePath(pathname);
+    if (localeRoutes.includes(basePath)) {
+      const target = l === "EN" ? basePath : `${basePath}/${l.toLowerCase()}`;
+      router.push(target);
+    }
+    setOpen(false);
+  }
+
   if (mobile) {
     return (
       <div className="flex items-center gap-1 mt-6 pt-6 border-t border-white/[0.06]">
         {languages.map((l) => (
           <button
             key={l}
-            onClick={() => setLang(l)}
+            onClick={() => handleLangSwitch(l)}
+            style={{ fontFamily: inter }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] tracking-[0.14em] transition-colors cursor-pointer ${
               lang === l
                 ? "bg-white/[0.08] text-white border border-white/[0.15]"
@@ -98,6 +129,7 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
+        style={{ fontFamily: inter }}
         className="flex items-center gap-1.5 text-[12px] tracking-[0.12em] text-white/45 hover:text-white/75 transition-colors duration-200 cursor-pointer select-none"
       >
         <FlagCircle code={lang} />
@@ -119,7 +151,8 @@ function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
             {languages.map((l) => (
               <button
                 key={l}
-                onClick={() => { setLang(l); setOpen(false); }}
+                onClick={() => handleLangSwitch(l)}
+                style={{ fontFamily: inter }}
                 className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-[11px] tracking-[0.14em] transition-colors duration-150 cursor-pointer ${
                   lang === l
                     ? "text-white bg-white/[0.07]"
@@ -168,7 +201,7 @@ export default function Navbar() {
             width={36}
             height={30}
           />
-          <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground">
+          <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground" style={{ fontFamily: inter }}>
             ADVIZEN
           </span>
         </Link>
@@ -181,6 +214,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                style={{ fontFamily: inter }}
                 className={`relative hover-line text-[13px] font-medium tracking-wide transition-colors cursor-pointer ${
                   isActive ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
@@ -236,6 +270,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
+                  style={{ fontFamily: inter }}
                   className={`block py-3 font-medium tracking-wide transition-colors border-b border-white/[0.06] cursor-pointer ${
                     pathname === link.href ? "text-foreground" : "text-foreground/70 hover:text-foreground"
                   }`}
