@@ -14,7 +14,7 @@ import regionImageLoader from "@/lib/image-loader";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ──────────────────────────────────────────────────────────────────────────
+// ─── Industries ───────────────────────────────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -200,7 +200,7 @@ function IndustriesSection() {
   );
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
@@ -278,32 +278,35 @@ export default function ExpertisePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
-                className="glow-card"
+                whileHover={{ y: -3 }}
+                className="group relative bg-[#0c0c0c] border border-white/[0.06] hover:border-white/[0.14] rounded-xl overflow-hidden transition-colors duration-500"
               >
-                <div className="glow-card-spinner" />
-                <div className="glow-card-backdrop" />
-                <div className="glow-card-content p-7 md:p-8 flex flex-col h-full">
-                  <div className="glow-card-glow" />
-                  <div className="mb-6">
-                    <span className="font-serif text-3xl md:text-4xl text-foreground/85 tracking-tight leading-none glow-card-title">
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                <div className="absolute top-0 left-0 w-px h-16 bg-gradient-to-b from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative p-7 md:p-8 flex flex-col h-full">
+                  <span className="text-[10px] tracking-[0.22em] uppercase text-primary/80 mb-7">
+                    {deal.sector}
+                  </span>
+
+                  <div className="mb-7">
+                    <span className="block font-serif text-3xl md:text-[2.25rem] text-foreground tracking-tight leading-none">
                       {deal.metric}
                     </span>
-                    <p className="text-[10px] tracking-[0.16em] uppercase text-white/25 mt-2">
+                    <p className="text-[10px] tracking-[0.18em] uppercase text-white/35 mt-2.5">
                       {deal.metricLabel}
                     </p>
                   </div>
-                  <span className="inline-block text-xs tracking-[0.16em] uppercase text-red-400/70 mb-3">
-                    {deal.sector}
-                  </span>
-                  <p className="text-[14px] text-foreground/60 leading-snug font-light mb-6 flex-1 glow-card-desc">
+
+                  <p className="text-[14px] text-white/55 leading-relaxed mb-7 flex-1">
                     {deal.headline}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/[0.05]">
+
+                  <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/[0.06]">
                     {deal.disciplines.map((d) => (
                       <span
                         key={d}
-                        className="text-[10px] tracking-[0.12em] uppercase text-white/30 border border-white/[0.06] rounded-full px-2.5 py-0.5"
+                        className="text-[10px] tracking-[0.16em] uppercase text-white/40 border border-white/[0.08] rounded-full px-2.5 py-1"
                       >
                         {d}
                       </span>
