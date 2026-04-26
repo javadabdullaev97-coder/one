@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const syne = Josefin_Sans({
   subsets: ["latin"],
@@ -99,13 +100,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col relative">
-          <ScrollProgress />
-          <Navbar />
-          <main className="flex-1 relative z-10">{children}</main>
-          <div className="relative z-10">
-            <Footer />
-          </div>
-          <ScrollToTop />
+          <LanguageProvider>
+            <ScrollProgress />
+            <Navbar />
+            <main className="flex-1 relative z-10">{children}</main>
+            <div className="relative z-10">
+              <Footer />
+            </div>
+            <ScrollToTop />
+          </LanguageProvider>
       </body>
     </html>
   );
