@@ -19,7 +19,7 @@ import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import UzbekistanMap from "@/components/UzbekistanMap";
 import DisciplinesIntegration from "@/components/DisciplinesIntegration";
 
-/* ── Orbital values data ─────────────────────────── */
+/* ── Orbital values data ────────────────────────────── */
 
 const firmValues = [
   {
@@ -49,7 +49,7 @@ const firmValues = [
   },
 ];
 
-/* ── Region data ─────────────────────── */
+/* ── Region data ──────────────────────── */
 
 interface RegionData {
   name: string;
@@ -64,7 +64,7 @@ const REGION_DATA: Record<string, RegionData> = {
     name: "Andijan",
     population: "3.1M",
     gdp: "~$3.0B",
-    sezs: ["Andijan SEZ", "Qo’rg‘ontepa FEZ"],
+    sezs: ["Andijan SEZ", "Qo'rg'ontepa FEZ"],
     industries: ["Automotive", "Textiles", "Chemicals", "Food Processing", "Engineering"],
   },
   "UZ-BU": {
@@ -177,7 +177,7 @@ const REGION_IMAGE: Record<string, string> = {
   "UZ-TO": "/Regions/Tashkent region.png",
 };
 
-/* ── Region image preloader ─────────────────────── */
+/* ── Region image preloader ───────────────────────────── */
 
 function RegionImagePreloader() {
   return (
@@ -197,7 +197,7 @@ function RegionImagePreloader() {
   );
 }
 
-/* ── Region info panel ─────────────────────── */
+/* ── Region info panel ──────────────────────── */
 
 function RegionInfoPanel({ activeId }: { activeId: string | null }) {
   const region = activeId ? REGION_DATA[activeId] : null;
@@ -232,7 +232,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               </div>
 
               {/* Region name */}
-              <h3 className="heading-luxury text-2xl md:text-3xl text-foreground mb-4">
+              <h3 className="heading-luxury text-3xl md:text-4xl text-foreground mb-4">
                 {region.name}
               </h3>
 
@@ -291,7 +291,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
   );
 }
 
-/* ── Page ──────────────────────────────────────────── */
+/* ── Page ──────────────────────────────────────────────────────── */
 
 export default function Home() {
   const [activeRegionId, setActiveRegionId] = useState<string | null>("UZ-TK");
@@ -311,7 +311,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-10 md:mb-12">
             <p className="tracking-luxury text-muted-dark mb-3">Where We Operate</p>
-            <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
+            <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
               All of Uzbekistan, from a single advisory partner
             </h2>
           </AnimatedSection>
@@ -343,7 +343,7 @@ export default function Home() {
               <TextReveal
                 text="One partner, every discipline"
                 as="h2"
-                className="heading-luxury text-4xl md:text-5xl text-foreground"
+                className="heading-luxury text-3xl md:text-4xl text-foreground"
               />
               <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
                 Tax, legal, finance, HR, and funding — working in concert on a shared view of your business.
@@ -378,7 +378,7 @@ export default function Home() {
                 <TextReveal
                   text="What we stand for"
                   as="h2"
-                  className="heading-luxury text-4xl md:text-5xl text-foreground leading-tight mb-6"
+                  className="heading-luxury text-3xl md:text-4xl text-foreground leading-tight mb-6"
                 />
               </AnimatedSection>
               <AnimatedSection delay={0.15}>
@@ -417,7 +417,7 @@ export default function Home() {
                   <TextReveal
                     text="Research, guides & analysis"
                     as="h2"
-                    className="heading-luxury text-4xl md:text-5xl text-foreground"
+                    className="heading-luxury text-3xl md:text-4xl text-foreground"
                   />
                 </div>
                 <Link
@@ -524,7 +524,7 @@ export default function Home() {
               <TextReveal
                 text="Ready to begin?"
                 as="h2"
-                className="heading-luxury text-4xl md:text-6xl text-foreground mb-6"
+                className="heading-luxury text-3xl md:text-4xl text-foreground mb-6"
               />
               <p className="text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
                 Whether you are entering Uzbekistan or expanding operations across
