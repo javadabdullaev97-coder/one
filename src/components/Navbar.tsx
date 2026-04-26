@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
+import { useLanguage, type Language } from "@/context/LanguageContext";
 
 const inter = "Inter, system-ui, -apple-system, sans-serif";
 
@@ -19,7 +20,6 @@ const navLinks = [
 ];
 
 const languages = ["EN", "RU", "UZ"] as const;
-type Language = (typeof languages)[number];
 
 const FlagEN = () => (
   <svg viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice" style={{ display: "block", width: "100%", height: "100%" }}>
@@ -63,7 +63,7 @@ function FlagCircle({ code }: { code: string }) {
 }
 
 function LanguageSwitcher({ mobile = false }: { mobile?: boolean }) {
-  const [lang, setLang] = useState<Language>("EN");
+  const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
