@@ -49,10 +49,10 @@ const FlagUZ = () => (
   </svg>
 );
 
-const flags: Record<string, () => JSX.Element> = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
+const flags = { EN: FlagEN, RU: FlagRU, UZ: FlagUZ };
 
 function FlagCircle({ code }: { code: string }) {
-  const Flag = flags[code];
+  const Flag = flags[code as keyof typeof flags];
   return (
     <span className="w-3.5 h-3.5 rounded-full overflow-hidden shrink-0 inline-block border border-white/10">
       <Flag />
