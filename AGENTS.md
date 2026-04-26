@@ -14,7 +14,7 @@ The local git proxy is read-only. `git push` always fails with HTTP 503. **Never
 
 After committing locally with `git commit`, push using the `mcp__github__push_files` tool:
 - owner: `javadabdullaev97-coder`
-- repo: `Advizen`
+- repo: `one`
 - branch: `main`
 - files: every file changed in the commit (read each one and pass its full content)
 - message: same message as the local commit
