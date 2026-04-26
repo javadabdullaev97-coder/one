@@ -23,7 +23,7 @@ const raleway = Raleway({
 });
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
