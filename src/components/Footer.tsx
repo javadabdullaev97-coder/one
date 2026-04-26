@@ -4,8 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SocialIcons from "@/components/SocialIcons";
-import MagneticButton from "@/components/MagneticButton";
 import { Phone, Mail, MapPin } from "lucide-react";
+
+const raleway = "var(--font-hero), sans-serif";
 
 const footerLinks = {
   Expertise: [
@@ -28,7 +29,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/[0.06]">
+    <footer className="bg-[#0A0A0A] border-t border-white/[0.06]" style={{ fontFamily: raleway }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Main footer */}
         <motion.div
@@ -39,7 +40,7 @@ export default function Footer() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.1 } },
           }}
-          className="py-20 grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr_2fr] gap-10"
+          className="py-20 grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr] gap-10"
         >
           {/* Brand */}
           <motion.div
@@ -60,7 +61,6 @@ export default function Footer() {
               contact for your entire operation.
             </p>
             <div className="mt-8 space-y-4">
-              {/* Phone with Icon */}
               <a
                 href="tel:+998334884888"
                 className="flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer w-fit"
@@ -68,7 +68,6 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-primary" />
                 +998 (33) 488 48 88
               </a>
-              {/* Email with Icon */}
               <a
                 href="mailto:info@advizenco.com"
                 className="flex items-center gap-3 text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer w-fit"
@@ -76,7 +75,6 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-primary" />
                 info@advizenco.com
               </a>
-              {/* Location with Icon */}
               <p className="flex items-center gap-3 text-sm text-muted-dark w-fit">
                 <MapPin className="w-4 h-4 text-primary" />
                 Tashkent, Uzbekistan
@@ -108,30 +106,6 @@ export default function Footer() {
               </ul>
             </motion.div>
           ))}
-
-          {/* Newsletter */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
-            }}
-          >
-            <h3 className="tracking-luxury text-muted-dark mb-6">Newsletter</h3>
-            <p className="text-sm text-white/50 mb-4">
-              Insights on doing business in Central Asia.
-            </p>
-            <form className="space-y-3">
-              <input
-                type="email"
-                placeholder="Email address"
-                aria-label="Email address"
-                className="w-full px-4 py-3 bg-transparent border border-white/[0.08] text-sm text-foreground placeholder:text-muted-dark focus:outline-none focus:border-primary transition-colors"
-              />
-              <MagneticButton as="button" type="submit" className="w-full justify-center px-4 py-3 text-[11px]">
-                Subscribe
-              </MagneticButton>
-            </form>
-          </motion.div>
         </motion.div>
 
         {/* Social Icons Bar */}
@@ -142,20 +116,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="py-6 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-dark tracking-wide">
-            &copy; {new Date().getFullYear()} Advizen Consulting. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
           </p>
           <div className="flex gap-8">
-            <Link
-              href="#"
-              className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer"
-            >
+            <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Privacy
             </Link>
-            <Link
-              href="#"
-              className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer"
-            >
+            <Link href="#" className="text-xs text-muted-dark hover:text-muted transition-colors tracking-wide cursor-pointer">
               Terms
             </Link>
           </div>
