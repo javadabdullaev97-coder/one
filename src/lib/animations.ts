@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 
-/* ── Easing ────────────────────────────────────────────── */
+/* ── Easing ──────────────────────────────────────────────────── */
 export const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 export const snapEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -16,10 +16,9 @@ export const textRevealContainer: Variants = {
 };
 
 export const textRevealWord: Variants = {
-  hidden: { y: "110%", rotateX: 8, opacity: 0 },
+  hidden: { y: "110%", opacity: 0 },
   visible: {
     y: "0%",
-    rotateX: 0,
     opacity: 1,
     transition: { duration: 0.6, ease: luxuryEase },
   },
@@ -45,7 +44,7 @@ export const lineRevealItem: Variants = {
   },
 };
 
-/* ── Fade ──────────────────────────────────────────────── */
+/* ── Fade ────────────────────────────────────────────────────── */
 export const fadeIn: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -64,7 +63,7 @@ export const fadeInSlow: Variants = {
   },
 };
 
-/* ── Stagger ───────────────────────────────────────────── */
+/* ── Stagger ─────────────────────────────────────────────────── */
 export const staggerContainer: Variants = {
   hidden: {},
   visible: {
@@ -84,7 +83,7 @@ export const staggerItem: Variants = {
   },
 };
 
-/* ── Line Expand ───────────────────────────────────────── */
+/* ── Line Expand ─────────────────────────────────────────────── */
 export const lineExpand: Variants = {
   hidden: { scaleX: 0, originX: 0 },
   visible: {
@@ -93,7 +92,7 @@ export const lineExpand: Variants = {
   },
 };
 
-/* ── Parallax ──────────────────────────────────────────── */
+/* ── Parallax ────────────────────────────────────────────────────── */
 export const parallaxUp: Variants = {
   hidden: { y: 60, opacity: 0 },
   visible: {
@@ -103,7 +102,7 @@ export const parallaxUp: Variants = {
   },
 };
 
-/* ── Scale Reveal ──────────────────────────────────────── */
+/* ── Scale Reveal ─────────────────────────────────────────────── */
 export const scaleReveal: Variants = {
   hidden: { scale: 0.95, opacity: 0 },
   visible: {
@@ -113,7 +112,7 @@ export const scaleReveal: Variants = {
   },
 };
 
-/* ── Slide ─────────────────────────────────────────────── */
+/* ── Slide ───────────────────────────────────────────────────────── */
 export const slideFromLeft: Variants = {
   hidden: { x: -60, opacity: 0 },
   visible: {
