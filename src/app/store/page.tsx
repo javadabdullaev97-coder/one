@@ -202,7 +202,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
       whileHover={{ y: -4, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }}
-      className="group w-full rounded-xl bg-[#080808] border border-white/[0.10] p-1.5 shadow-xl backdrop-blur-xl cursor-default"
+      className="group w-full flex flex-col rounded-xl bg-[#080808] border border-white/[0.10] p-1.5 shadow-xl backdrop-blur-xl cursor-default"
     >
       {/* Header inner card */}
       <div className="bg-[#141414] relative mb-1.5 rounded-[10px] border border-white/[0.07] p-4">
@@ -246,7 +246,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
       </div>
 
       {/* Body */}
-      <div className="space-y-4 p-3">
+      <div className="flex flex-col gap-4 p-3">
         {/* Description */}
         <p className="text-white/40 text-xs leading-relaxed">{product.description}</p>
 
@@ -257,8 +257,8 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
           <span className="h-[1px] flex-1 bg-white/[0.08]" />
         </div>
 
-        {/* Includes list */}
-        <ul className="space-y-2.5">
+        {/* Includes list — min-h locks button position regardless of item count */}
+        <ul className="space-y-2.5 min-h-[110px]">
           {product.includes.map((item) => (
             <li key={item} className="flex items-start gap-3 text-sm text-white/45">
               <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-white/25" />
@@ -266,15 +266,6 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
             </li>
           ))}
         </ul>
-
-        {/* Language pairs */}
-        <div className="flex gap-1 flex-wrap">
-          {product.languages.map((l) => (
-            <span key={l} className="rounded font-mono text-[9px] tracking-wider text-white/30 border border-white/[0.07] px-1.5 py-0.5">
-              {l}
-            </span>
-          ))}
-        </div>
 
         {/* CTA */}
         <Link
@@ -484,7 +475,7 @@ export default function StorePage() {
                   </button>
                 </div>
               ) : (
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
                   {filtered.map((p, i) => (
                     <ProductCard key={p.id} product={p} index={i} currency={currency} />
                   ))}
