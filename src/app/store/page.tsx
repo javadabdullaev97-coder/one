@@ -10,21 +10,26 @@ import { cn } from "@/lib/utils";
 
 /* ── Types ───────────────────────────────────────────── */
 
+type LangPair = "EN/RU" | "EN/UZ" | "RU/UZ";
+type Currency = "USD" | "UZS";
+
 interface Product {
   id: string;
   title: string;
   category: string;
   description: string;
   price: number;
-  languages: string[];
+  languages: LangPair[];
   pages: number;
   updated: string;
   includes: string[];
 }
 
-/* ── Data ────────────────────────────────────────────── */
+/* ── Constants ─────────────────────────────────────────── */
 
 const CATEGORIES = ["All", "Company Formation", "Legal", "HR", "Tax", "Compliance", "Finance"] as const;
+const LANG_PAIRS: ("All" | LangPair)[] = ["All", "EN/RU", "EN/UZ", "RU/UZ"];
+const UZS_RATE = 12750;
 
 const CATEGORY_META: Record<string, { icon: React.ReactNode }> = {
   "Company Formation": { icon: <FileText className="w-3 h-3" /> },
@@ -35,6 +40,8 @@ const CATEGORY_META: Record<string, { icon: React.ReactNode }> = {
   "Finance":           { icon: <BarChart2 className="w-3 h-3" /> },
 };
 
+/* ── Data ────────────────────────────────────────────── */
+
 const products: Product[] = [
   {
     id: "llc-formation",
@@ -42,7 +49,7 @@ const products: Product[] = [
     category: "Company Formation",
     description: "Complete document set for registering an LLC in Uzbekistan — charter, founder decisions, and all registration forms.",
     price: 299,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 24,
     updated: "Mar 2025",
     includes: ["Company charter (bilingual)", "Founder's decision", "Application forms", "Regulatory checklist"],
@@ -53,7 +60,7 @@ const products: Product[] = [
     category: "Company Formation",
     description: "Full package for joint-stock company formation, including prospectus templates and shareholder documentation.",
     price: 449,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 38,
     updated: "Jan 2025",
     includes: ["JSC charter", "Prospectus template", "Shareholder registry", "Board resolutions"],
@@ -64,7 +71,7 @@ const products: Product[] = [
     category: "Legal",
     description: "Comprehensive SHA covering governance, drag-along/tag-along rights, dividends, and exit provisions under Uzbek law.",
     price: 279,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 32,
     updated: "Apr 2026",
     includes: ["Full SHA template", "Schedules", "Board charter", "Annotation guide"],
@@ -75,7 +82,7 @@ const products: Product[] = [
     category: "Legal",
     description: "Mutual non-disclosure agreement adapted for Uzbek law. Covers trade secrets, IP, and sensitive business information.",
     price: 39,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 6,
     updated: "Apr 2026",
     includes: ["Bilateral NDA", "Unilateral variant", "Usage guide"],
@@ -86,7 +93,7 @@ const products: Product[] = [
     category: "Legal",
     description: "Bilingual commercial lease under Uzbek civil law — office, retail, and warehouse. Includes renewal and exit clauses.",
     price: 89,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 14,
     updated: "Dec 2024",
     includes: ["Standard lease", "Short-term variant", "Addendum templates"],
@@ -97,7 +104,7 @@ const products: Product[] = [
     category: "HR",
     description: "Bilingual employment contract compliant with the Uzbekistan Labour Code. Covers fixed-term and open-ended positions.",
     price: 59,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 10,
     updated: "Feb 2026",
     includes: ["Standard contract", "Fixed-term variant", "Probation addendum"],
@@ -108,7 +115,7 @@ const products: Product[] = [
     category: "HR",
     description: "End-to-end HR policy framework adapted for Uzbek labour law — hiring, performance, termination, and benefits.",
     price: 199,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 56,
     updated: "Nov 2024",
     includes: ["12 policy modules", "Code of conduct", "Disciplinary procedure", "Leave policy"],
@@ -119,7 +126,7 @@ const products: Product[] = [
     category: "Tax",
     description: "Essential tax registration forms, VAT templates, and compliance calendar for businesses operating in Uzbekistan.",
     price: 249,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 28,
     updated: "Mar 2026",
     includes: ["Tax registration forms", "VAT return template", "Compliance calendar", "CIT worksheet"],
@@ -130,7 +137,7 @@ const products: Product[] = [
     category: "Tax",
     description: "Master file and local file templates for transfer pricing compliance under Uzbek tax law and OECD guidelines.",
     price: 399,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 44,
     updated: "Jan 2025",
     includes: ["Master file template", "Local file template", "Benchmarking guide", "Policy statement"],
@@ -141,7 +148,7 @@ const products: Product[] = [
     category: "Compliance",
     description: "Full documentation set for obtaining work permits for foreign nationals employed in Uzbekistan, including renewals.",
     price: 119,
-    languages: ["EN", "RU", "UZ"],
+    languages: ["EN/RU", "EN/UZ", "RU/UZ"],
     pages: 16,
     updated: "Apr 2026",
     includes: ["Application forms", "Document checklist", "Employer letter templates", "Extension guide"],
@@ -152,7 +159,7 @@ const products: Product[] = [
     category: "Compliance",
     description: "Full application package for entering a Special Economic Zone — investment plan templates and regulatory overview.",
     price: 449,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 36,
     updated: "Feb 2025",
     includes: ["SEZ application form", "Investment plan template", "Financial projections model", "Regulatory overview"],
@@ -163,19 +170,30 @@ const products: Product[] = [
     category: "Finance",
     description: "Comprehensive DD document request list and data room structure for M&A and investment transactions in Uzbekistan.",
     price: 499,
-    languages: ["EN", "RU"],
+    languages: ["EN/RU"],
     pages: 48,
     updated: "Mar 2026",
     includes: ["DD request list", "Data room index", "Red flag checklist", "Legal opinion template"],
   },
 ];
 
+/* ── Helpers ─────────────────────────────────────────── */
+
+function formatPrice(price: number, currency: Currency): { main: string; suffix: string } {
+  if (currency === "USD") {
+    return { main: `$${price}`, suffix: "/doc" };
+  }
+  const uzs = (price * UZS_RATE).toLocaleString("en-US");
+  return { main: `~${uzs}`, suffix: "so'm" };
+}
+
 /* ── Product card ────────────────────────────────────── */
 
-function ProductCard({ product, index }: { product: Product; index: number }) {
+function ProductCard({ product, index, currency }: { product: Product; index: number; currency: Currency }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const meta = CATEGORY_META[product.category];
+  const { main, suffix } = formatPrice(product.price, currency);
 
   return (
     <motion.div
@@ -210,11 +228,20 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <p className="relative text-white/55 text-xs mb-3 leading-snug">{product.title}</p>
 
         {/* Price */}
-        <div className="relative mb-1 flex items-end gap-1">
-          <span className="text-3xl font-extrabold tracking-tight text-foreground group-hover:text-white transition-colors duration-200">
-            ${product.price}
-          </span>
-          <span className="text-foreground/55 pb-1 text-sm">/doc</span>
+        <div className="relative mb-1 flex items-end gap-1.5">
+          <motion.span
+            key={currency}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className={cn(
+              "font-extrabold tracking-tight text-foreground group-hover:text-white transition-colors duration-200",
+              currency === "USD" ? "text-3xl" : "text-xl"
+            )}
+          >
+            {main}
+          </motion.span>
+          <span className="text-foreground/55 pb-1 text-sm">{suffix}</span>
         </div>
       </div>
 
@@ -240,8 +267,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           ))}
         </ul>
 
-        {/* Languages */}
-        <div className="flex gap-1">
+        {/* Language pairs */}
+        <div className="flex gap-1 flex-wrap">
           {product.languages.map((l) => (
             <span key={l} className="rounded font-mono text-[9px] tracking-wider text-white/30 border border-white/[0.07] px-1.5 py-0.5">
               {l}
@@ -261,37 +288,91 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   );
 }
 
-/* ── Category filter ─────────────────────────────────── */
+/* ── Store filters ─────────────────────────────────────── */
 
-function CategoryFilter({ active, onChange }: { active: string; onChange: (c: string) => void }) {
+function StoreFilters({
+  activeCategory, onCategoryChange,
+  activeLanguage, onLanguageChange,
+  currency, onCurrencyChange,
+}: {
+  activeCategory: string; onCategoryChange: (c: string) => void;
+  activeLanguage: string; onLanguageChange: (l: string) => void;
+  currency: Currency; onCurrencyChange: (c: Currency) => void;
+}) {
   return (
     <div className="sticky top-20 z-30 bg-black/80 backdrop-blur-xl border-b border-white/[0.06] py-4">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-3">
+
+        {/* Row 1: Category */}
         <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1 w-fit overflow-x-auto scrollbar-none flex-wrap">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
-              onClick={() => onChange(cat)}
+              onClick={() => onCategoryChange(cat)}
               className="relative shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer outline-none"
             >
-              {active === cat && (
+              {activeCategory === cat && (
                 <motion.div
                   layoutId="cat-pill"
                   className="absolute inset-0 rounded-full bg-primary"
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}
-              <span
-                className={cn(
-                  "relative z-10 transition-colors duration-200",
-                  active === cat ? "text-white" : "text-white/40 hover:text-white/65"
-                )}
-              >
+              <span className={cn("relative z-10 transition-colors duration-200", activeCategory === cat ? "text-white" : "text-white/40 hover:text-white/65")}>
                 {cat}
               </span>
             </button>
           ))}
         </div>
+
+        {/* Row 2: Language pairs + Currency */}
+        <div className="flex items-center justify-between gap-4">
+
+          {/* Language filter */}
+          <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1 w-fit">
+            {LANG_PAIRS.map((lang) => (
+              <button
+                key={lang}
+                onClick={() => onLanguageChange(lang)}
+                className="relative shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono tracking-wider transition-colors duration-200 cursor-pointer outline-none"
+              >
+                {activeLanguage === lang && (
+                  <motion.div
+                    layoutId="lang-pill"
+                    className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/[0.10]"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className={cn("relative z-10 transition-colors duration-200", activeLanguage === lang ? "text-white/85" : "text-white/35 hover:text-white/60")}>
+                  {lang}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Currency toggle */}
+          <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1">
+            {(["USD", "UZS"] as Currency[]).map((curr) => (
+              <button
+                key={curr}
+                onClick={() => onCurrencyChange(curr)}
+                className="relative px-3 py-1.5 rounded-full text-[11px] font-mono tracking-wider transition-colors duration-200 cursor-pointer outline-none"
+              >
+                {currency === curr && (
+                  <motion.div
+                    layoutId="curr-pill"
+                    className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/[0.10]"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className={cn("relative z-10 transition-colors duration-200", currency === curr ? "text-white/85" : "text-white/35 hover:text-white/60")}>
+                  {curr}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
@@ -301,10 +382,14 @@ function CategoryFilter({ active, onChange }: { active: string; onChange: (c: st
 
 export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [activeLanguage, setActiveLanguage] = useState("All");
+  const [currency, setCurrency] = useState<Currency>("USD");
 
-  const filtered = activeCategory === "All"
-    ? products
-    : products.filter((p) => p.category === activeCategory);
+  const filtered = products.filter((p) => {
+    const catMatch = activeCategory === "All" || p.category === activeCategory;
+    const langMatch = activeLanguage === "All" || p.languages.includes(activeLanguage as LangPair);
+    return catMatch && langMatch;
+  });
 
   return (
     <>
@@ -363,37 +448,48 @@ export default function StorePage() {
         </section>
       </AuroraBackground>
 
-      {/* ── Category filter ── */}
-      <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
+      {/* ── Filters ── */}
+      <StoreFilters
+        activeCategory={activeCategory} onCategoryChange={setActiveCategory}
+        activeLanguage={activeLanguage} onLanguageChange={setActiveLanguage}
+        currency={currency} onCurrencyChange={setCurrency}
+      />
 
-      {/* ── Full grid ── */}
+      {/* ── Grid ── */}
       <section className="py-14 md:py-20 bg-black relative">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeCategory}
+              key={activeCategory + activeLanguage}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
-              {activeCategory !== "All" && (
-                <div className="mb-8">
-                  <p className="tracking-luxury text-white/40">
-                    {filtered.length} document{filtered.length !== 1 ? "s" : ""} in {activeCategory}
-                  </p>
-                </div>
-              )}
-              {activeCategory === "All" && (
-                <div className="mb-8">
-                  <p className="tracking-luxury text-white/40">All documents</p>
-                </div>
-              )}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filtered.map((p, i) => (
-                  <ProductCard key={p.id} product={p} index={i} />
-                ))}
+              <div className="mb-8">
+                <p className="tracking-luxury text-white/40">
+                  {filtered.length} document{filtered.length !== 1 ? "s" : ""}
+                  {activeCategory !== "All" && ` in ${activeCategory}`}
+                  {activeLanguage !== "All" && ` · ${activeLanguage}`}
+                </p>
               </div>
+              {filtered.length === 0 ? (
+                <div className="py-24 text-center">
+                  <p className="text-white/30 text-sm">No documents match this combination.</p>
+                  <button
+                    onClick={() => { setActiveCategory("All"); setActiveLanguage("All"); }}
+                    className="mt-4 text-xs text-primary-light/70 hover:text-primary-light underline underline-offset-4 transition-colors cursor-pointer"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              ) : (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {filtered.map((p, i) => (
+                    <ProductCard key={p.id} product={p} index={i} currency={currency} />
+                  ))}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
