@@ -19,7 +19,7 @@ import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ──────────────────────────────────────────────────────── */
+/* ── Helpers ──────────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ────────────────────────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -98,7 +98,7 @@ function ArticleRow({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ─────────────────────────────────────────────────────────────────── */
+/* ── Page ───────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -131,13 +131,13 @@ export default function LibraryPage() {
     <>
       {/* ====== HERO ====== */}
       <AuroraBackground>
-        <section className="relative pt-36 pb-24 md:pt-44 md:pb-32">
+        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="tracking-luxury text-white/50 mb-6"
+              className="tracking-luxury text-white/50 mb-3"
             >
               Insights
             </motion.p>
@@ -145,11 +145,11 @@ export default function LibraryPage() {
               text="Knowledge that empowers decisions"
               as="h1"
               mode="line"
-              className="heading-luxury text-4xl md:text-6xl lg:text-7xl text-foreground leading-[1.05] max-w-3xl"
+              className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-3xl"
               delay={0.2}
             />
             <RevealLine delay={0.5}>
-              <p className="text-lg text-white/55 max-w-xl mt-8 leading-relaxed">
+              <p className="text-base text-white/55 max-w-xl mt-4 leading-relaxed">
                 Guides, briefings, and market intelligence from our practice —
                 rigorous, practical, and freely available.
               </p>
@@ -157,7 +157,7 @@ export default function LibraryPage() {
 
             {/* Stats row */}
             <RevealLine delay={0.7}>
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-12 pt-10 border-t border-white/[0.06]">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-7 pt-7 border-t border-white/[0.06]">
                 {stats.map((s, i) => (
                   <div key={i} className="flex items-baseline gap-2">
                     <span className="font-serif text-xl text-foreground font-light tabular-nums">
