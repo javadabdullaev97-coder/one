@@ -225,7 +225,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
         </div>
 
         {/* Product title */}
-        <p className="relative text-white/55 text-xs mb-3 leading-snug">{product.title}</p>
+        <p className="relative text-white/55 text-sm mb-3 leading-snug">{product.title}</p>
 
         {/* Price */}
         <div className="relative mb-1 flex items-end gap-1.5">
@@ -248,7 +248,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
       {/* Body */}
       <div className="flex flex-col gap-4 p-3">
         {/* Description */}
-        <p className="text-white/40 text-xs leading-relaxed">{product.description}</p>
+        <p className="text-white/40 text-sm leading-relaxed">{product.description}</p>
 
         {/* Separator */}
         <div className="flex items-center gap-3">
