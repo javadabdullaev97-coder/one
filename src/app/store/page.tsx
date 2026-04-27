@@ -251,31 +251,31 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 /* ── Category filter ─────────────────────────────────── */
 
 function CategoryFilter({ active, onChange }: { active: string; onChange: (c: string) => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-
   return (
     <div className="sticky top-20 z-30 bg-black/80 backdrop-blur-xl border-b border-white/[0.06] py-4">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div ref={ref} className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+        <div className="flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full p-1 w-fit overflow-x-auto scrollbar-none flex-wrap">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => onChange(cat)}
-              className={cn(
-                "relative shrink-0 px-4 py-2 text-[11px] tracking-[0.12em] uppercase font-medium rounded-lg transition-colors duration-200 outline-none",
-                active === cat
-                  ? "text-foreground"
-                  : "text-white/35 hover:text-white/65"
-              )}
+              className="relative shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer outline-none"
             >
               {active === cat && (
                 <motion.div
                   layoutId="cat-pill"
-                  className="absolute inset-0 bg-white/[0.06] border border-white/[0.10] rounded-lg"
-                  transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                  className="absolute inset-0 rounded-full bg-primary"
+                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}
-              <span className="relative z-10">{cat}</span>
+              <span
+                className={cn(
+                  "relative z-10 transition-colors duration-200",
+                  active === cat ? "text-white" : "text-white/40 hover:text-white/65"
+                )}
+              >
+                {cat}
+              </span>
             </button>
           ))}
         </div>
