@@ -258,7 +258,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
         </div>
 
         {/* Includes list — min-h locks button position regardless of item count */}
-        <ul className="space-y-2.5 min-h-[110px]">
+        <ul className="space-y-2.5 min-h-[140px]">
           {product.includes.map((item) => (
             <li key={item} className="flex items-start gap-3 text-sm text-white/45">
               <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-white/25" />
