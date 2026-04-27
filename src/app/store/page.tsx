@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ArrowUpRight, FileText, Users, Calculator, Scale, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
+import { FileText, Users, Calculator, Scale, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
 import AuroraBackground from "@/components/AuroraBackground";
 import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
@@ -178,79 +178,89 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -4, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] } }}
-      className="group relative flex flex-col bg-white/[0.03] border border-white/[0.08] rounded-2xl p-2 shadow-xl backdrop-blur-sm cursor-default"
+      transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+      whileHover={{ y: -4, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }}
+      className="group w-full rounded-xl bg-[#080808] border border-white/[0.10] p-1.5 shadow-xl backdrop-blur-xl cursor-default"
     >
-      {/* ── Header inner card ── */}
-      <div className="relative bg-[#111111] border border-white/[0.07] rounded-[14px] p-5 mb-2 overflow-hidden">
+      {/* Header inner card */}
+      <div className="bg-[#141414] relative mb-1.5 rounded-[10px] border border-white/[0.07] p-4">
         {/* Glass gradient */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-48 rounded-[inherit] pointer-events-none"
-          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.015) 40%, rgba(0,0,0,0) 100%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, rgba(0,0,0,0) 100%)" }}
         />
-        {/* Decorative index watermark */}
-        <span className="absolute bottom-3 right-5 font-serif text-[5.5rem] leading-none font-light text-white/[0.035] select-none pointer-events-none tabular-nums">
-          {String(index + 1).padStart(2, "0")}
-        </span>
 
-        {/* Category + status badges */}
-        <div className="flex items-center justify-between mb-7">
-          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-foreground/55 border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-full">
+        {/* Plan row: category + badges */}
+        <div className="relative mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm font-medium text-white/50">
             {meta?.icon}
-            {product.category}
-          </span>
+            <span>{product.category}</span>
+          </div>
           <div className="flex items-center gap-2">
             {product.popular && (
-              <span className="text-[9px] tracking-[0.15em] uppercase text-primary/80 border border-primary/25 bg-primary/[0.06] px-2 py-0.5 rounded-full">
+              <span className="rounded-full border border-white/20 text-white/65 px-2 py-0.5 text-xs">
                 Popular
               </span>
             )}
             {product.isNew && (
-              <span className="text-[9px] tracking-[0.15em] uppercase text-emerald-400/80 border border-emerald-400/25 bg-emerald-400/[0.06] px-2 py-0.5 rounded-full">
+              <span className="rounded-full border border-emerald-400/30 text-emerald-400/60 px-2 py-0.5 text-xs">
                 New
               </span>
             )}
           </div>
         </div>
 
-        {/* Title */}
-        <h3 className="font-serif text-xl text-foreground leading-snug tracking-wide mb-5 group-hover:text-white transition-colors duration-200">
-          {product.title}
-        </h3>
+        {/* Product title */}
+        <p className="relative text-white/55 text-xs mb-3 leading-snug">{product.title}</p>
 
         {/* Price */}
-        <div className="flex items-end gap-1.5">
-          <span className="font-serif text-base text-white/35 leading-none pb-1">$</span>
-          <span className="font-serif text-[2.5rem] text-foreground font-light tabular-nums leading-none tracking-tight">
-            {product.price}
+        <div className="relative mb-1 flex items-end gap-1">
+          <span className="text-3xl font-extrabold tracking-tight text-foreground group-hover:text-white transition-colors duration-200">
+            ${product.price}
           </span>
+          <span className="text-foreground/55 pb-1 text-sm">/doc</span>
         </div>
       </div>
 
-      {/* ── Body ── */}
-      <div className="flex flex-col flex-1 px-3 pb-3 pt-2">
-        <p className="text-[13px] text-white/45 leading-relaxed flex-1 mb-5">
-          {product.description}
-        </p>
+      {/* Body */}
+      <div className="space-y-4 p-3">
+        {/* Description */}
+        <p className="text-white/40 text-xs leading-relaxed">{product.description}</p>
 
-        <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
-          <div className="flex gap-1">
-            {product.languages.map((l) => (
-              <span key={l} className="text-[9px] text-white/30 border border-white/[0.07] px-1.5 py-0.5 rounded font-mono tracking-wider">
-                {l}
-              </span>
-            ))}
-          </div>
-          <Link
-            href={`/contact?ref=${product.id}`}
-            className="group/btn inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-foreground/85 hover:text-foreground bg-white/[0.04] hover:bg-primary/[0.18] border border-white/[0.10] hover:border-primary/45 px-4 py-2 rounded-lg transition-all duration-200"
-          >
-            Purchase
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
-          </Link>
+        {/* Separator */}
+        <div className="flex items-center gap-3">
+          <span className="h-[1px] flex-1 bg-white/[0.08]" />
+          <span className="shrink-0 text-[10px] tracking-[0.14em] uppercase text-white/25">Includes</span>
+          <span className="h-[1px] flex-1 bg-white/[0.08]" />
         </div>
+
+        {/* Includes list */}
+        <ul className="space-y-2.5">
+          {product.includes.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-sm text-white/45">
+              <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-white/25" />
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        {/* Languages */}
+        <div className="flex gap-1">
+          {product.languages.map((l) => (
+            <span key={l} className="rounded font-mono text-[9px] tracking-wider text-white/30 border border-white/[0.07] px-1.5 py-0.5">
+              {l}
+            </span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <Link
+          href={`/contact?ref=${product.id}`}
+          className="block w-full rounded-lg bg-primary hover:bg-primary-light py-2.5 text-center text-[11px] tracking-[0.18em] uppercase font-medium text-foreground/90 hover:text-white transition-all duration-200"
+        >
+          Purchase
+        </Link>
       </div>
     </motion.div>
   );
@@ -329,7 +339,7 @@ export default function StorePage() {
               transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed mb-10"
             >
-              Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan's regulatory framework, available in English, Russian, and Uzbek.
+              Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan’s regulatory framework, available in English, Russian, and Uzbek.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 8 }}
