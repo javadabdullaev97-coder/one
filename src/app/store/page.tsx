@@ -386,13 +386,13 @@ export default function StorePage() {
     <>
       {/* ── Hero ── */}
       <AuroraBackground>
-        <section className="relative pt-36 pb-16 md:pt-44 md:pb-20">
+        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="tracking-luxury text-white/50 mb-5"
+              className="tracking-luxury text-white/50 mb-3"
             >
               Document Store
             </motion.p>
@@ -400,7 +400,7 @@ export default function StorePage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="heading-luxury text-4xl md:text-6xl text-foreground leading-[1.05] max-w-3xl mb-6"
+              className="heading-luxury text-3xl md:text-4xl text-foreground leading-[1.05] max-w-3xl mb-4"
             >
               Ready-to-use documents for doing business in Uzbekistan
             </motion.h1>
@@ -408,7 +408,7 @@ export default function StorePage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed mb-10"
+              className="text-white/50 text-sm md:text-base max-w-xl leading-relaxed mb-6"
             >
               Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan's regulatory framework, available in English, Russian, and Uzbek.
             </motion.p>
