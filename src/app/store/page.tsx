@@ -181,7 +181,7 @@ const products: Product[] = [
 
 function formatPrice(price: number, currency: Currency): { main: string; suffix: string } {
   if (currency === "USD") {
-    return { main: `$${price}`, suffix: "/doc" };
+    return { main: `$${price}`, suffix: "" };
   }
   const rounded = Math.round((price * UZS_RATE) / 50000) * 50000;
   return { main: rounded.toLocaleString("en-US"), suffix: "so'm" };
