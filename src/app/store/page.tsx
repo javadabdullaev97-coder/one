@@ -18,8 +18,7 @@ interface Product {
   price: number;
   languages: string[];
   pages: number;
-  popular?: boolean;
-  isNew?: boolean;
+  updated: string;
   includes: string[];
 }
 
@@ -45,7 +44,7 @@ const products: Product[] = [
     price: 299,
     languages: ["EN", "RU", "UZ"],
     pages: 24,
-    popular: true,
+    updated: "Mar 2025",
     includes: ["Company charter (bilingual)", "Founder's decision", "Application forms", "Regulatory checklist"],
   },
   {
@@ -56,6 +55,7 @@ const products: Product[] = [
     price: 449,
     languages: ["EN", "RU"],
     pages: 38,
+    updated: "Jan 2025",
     includes: ["JSC charter", "Prospectus template", "Shareholder registry", "Board resolutions"],
   },
   {
@@ -66,7 +66,7 @@ const products: Product[] = [
     price: 279,
     languages: ["EN", "RU"],
     pages: 32,
-    popular: true,
+    updated: "Apr 2026",
     includes: ["Full SHA template", "Schedules", "Board charter", "Annotation guide"],
   },
   {
@@ -77,7 +77,7 @@ const products: Product[] = [
     price: 39,
     languages: ["EN", "RU", "UZ"],
     pages: 6,
-    isNew: true,
+    updated: "Apr 2026",
     includes: ["Bilateral NDA", "Unilateral variant", "Usage guide"],
   },
   {
@@ -88,6 +88,7 @@ const products: Product[] = [
     price: 89,
     languages: ["EN", "RU", "UZ"],
     pages: 14,
+    updated: "Dec 2024",
     includes: ["Standard lease", "Short-term variant", "Addendum templates"],
   },
   {
@@ -98,7 +99,7 @@ const products: Product[] = [
     price: 59,
     languages: ["EN", "RU", "UZ"],
     pages: 10,
-    popular: true,
+    updated: "Feb 2026",
     includes: ["Standard contract", "Fixed-term variant", "Probation addendum"],
   },
   {
@@ -109,6 +110,7 @@ const products: Product[] = [
     price: 199,
     languages: ["EN", "RU"],
     pages: 56,
+    updated: "Nov 2024",
     includes: ["12 policy modules", "Code of conduct", "Disciplinary procedure", "Leave policy"],
   },
   {
@@ -119,7 +121,7 @@ const products: Product[] = [
     price: 249,
     languages: ["EN", "RU", "UZ"],
     pages: 28,
-    popular: true,
+    updated: "Mar 2026",
     includes: ["Tax registration forms", "VAT return template", "Compliance calendar", "CIT worksheet"],
   },
   {
@@ -130,6 +132,7 @@ const products: Product[] = [
     price: 399,
     languages: ["EN", "RU"],
     pages: 44,
+    updated: "Jan 2025",
     includes: ["Master file template", "Local file template", "Benchmarking guide", "Policy statement"],
   },
   {
@@ -140,7 +143,7 @@ const products: Product[] = [
     price: 119,
     languages: ["EN", "RU", "UZ"],
     pages: 16,
-    isNew: true,
+    updated: "Apr 2026",
     includes: ["Application forms", "Document checklist", "Employer letter templates", "Extension guide"],
   },
   {
@@ -151,6 +154,7 @@ const products: Product[] = [
     price: 449,
     languages: ["EN", "RU"],
     pages: 36,
+    updated: "Feb 2025",
     includes: ["SEZ application form", "Investment plan template", "Financial projections model", "Regulatory overview"],
   },
   {
@@ -161,7 +165,7 @@ const products: Product[] = [
     price: 499,
     languages: ["EN", "RU"],
     pages: 48,
-    popular: true,
+    updated: "Mar 2026",
     includes: ["DD request list", "Data room index", "Red flag checklist", "Legal opinion template"],
   },
 ];
@@ -191,24 +195,15 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, rgba(0,0,0,0) 100%)" }}
         />
 
-        {/* Plan row: category + badges */}
+        {/* Plan row: category + date */}
         <div className="relative mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-medium text-white/50">
             {meta?.icon}
             <span>{product.category}</span>
           </div>
-          <div className="flex items-center gap-2">
-            {product.popular && (
-              <span className="rounded-full border border-white/20 text-white/65 px-2 py-0.5 text-xs">
-                Popular
-              </span>
-            )}
-            {product.isNew && (
-              <span className="rounded-full border border-emerald-400/30 text-emerald-400/60 px-2 py-0.5 text-xs">
-                New
-              </span>
-            )}
-          </div>
+          <span className="rounded-full border border-white/[0.12] text-white/40 px-2 py-0.5 text-xs font-mono">
+            {product.updated}
+          </span>
         </div>
 
         {/* Product title */}
