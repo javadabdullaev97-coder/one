@@ -14,7 +14,7 @@ import regionImageLoader from "@/lib/image-loader";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ───────────────────────────────────────────────────
+// ─── Industries ────────────────────────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -200,19 +200,19 @@ function IndustriesSection() {
   );
 }
 
-// ─── Page ───────────────────────────────────────────────────
+// ─── Page ────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
     <>
       <AuroraBackground>
-        <section className="relative pt-36 pb-24 md:pt-44 md:pb-32">
+        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="tracking-luxury text-white/50 mb-6"
+              className="tracking-luxury text-white/50 mb-3"
             >
               Our Expertise
             </motion.p>
@@ -221,18 +221,18 @@ export default function ExpertisePage() {
               text="Integrated services, singular results"
               as="h1"
               mode="line"
-              className="heading-luxury text-4xl md:text-6xl lg:text-7xl text-foreground leading-[1.05] max-w-4xl"
+              className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-4xl"
               delay={0.2}
             />
 
             <RevealLine delay={0.5}>
-              <p className="text-lg text-white/50 max-w-2xl mt-8 leading-relaxed">
+              <p className="text-base text-white/50 max-w-2xl mt-4 leading-relaxed">
                 Seven advisory disciplines. Seven managed operations services. One integrated
                 practice built for the complexities of Central Asian markets.
               </p>
             </RevealLine>
 
-            <div className="mt-12 pt-10 border-t border-white/[0.08] flex flex-wrap gap-x-12 gap-y-6">
+            <div className="mt-7 pt-7 border-t border-white/[0.08] flex flex-wrap gap-x-12 gap-y-6">
               {heroStats.map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -241,7 +241,7 @@ export default function ExpertisePage() {
                   transition={{ duration: 0.7, delay: 0.65 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col gap-1.5"
                 >
-                  <span className="font-serif text-4xl md:text-5xl text-foreground font-light tabular-nums leading-none">
+                  <span className="font-serif text-3xl md:text-4xl text-foreground font-light tabular-nums leading-none">
                     {s.value}
                   </span>
                   <span className="text-[10px] tracking-[0.2em] uppercase text-white/45">
