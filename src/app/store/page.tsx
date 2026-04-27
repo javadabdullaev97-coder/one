@@ -179,18 +179,25 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -6, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
-      className="group relative flex flex-col bg-[#0c0c0c] border border-white/[0.07] rounded-2xl overflow-hidden cursor-default hover:border-white/[0.14] transition-colors duration-300"
+      whileHover={{ y: -4, transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] } }}
+      className="group relative flex flex-col bg-white/[0.03] border border-white/[0.08] rounded-2xl p-2 shadow-xl backdrop-blur-sm cursor-default"
     >
-      {/* Top glow on hover */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 40% at 50% 0%, rgba(122,26,26,0.10) 0%, transparent 70%)" }} />
+      {/* ── Header inner card ── */}
+      <div className="relative bg-[#111111] border border-white/[0.07] rounded-[14px] p-5 mb-2 overflow-hidden">
+        {/* Glass gradient */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-48 rounded-[inherit] pointer-events-none"
+          style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.015) 40%, rgba(0,0,0,0) 100%)" }}
+        />
+        {/* Decorative index watermark */}
+        <span className="absolute bottom-3 right-5 font-serif text-[5.5rem] leading-none font-light text-white/[0.035] select-none pointer-events-none tabular-nums">
+          {String(index + 1).padStart(2, "0")}
+        </span>
 
-      <div className="relative flex flex-col flex-1 p-6">
-        {/* Top row */}
-        <div className="flex items-start justify-between mb-5">
-          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-foreground/65 border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-full">
+        {/* Category + status badges */}
+        <div className="flex items-center justify-between mb-7">
+          <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-foreground/55 border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-full">
             {meta?.icon}
             {product.category}
           </span>
@@ -209,25 +216,26 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-xl md:text-[1.35rem] text-foreground leading-snug tracking-wide mb-4 group-hover:text-white transition-colors duration-200">
+        <h3 className="font-serif text-xl text-foreground leading-snug tracking-wide mb-5 group-hover:text-white transition-colors duration-200">
           {product.title}
         </h3>
 
-        {/* Price — primary decision signal */}
-        <div className="flex items-baseline gap-1.5 mb-5">
-          <span className="font-serif text-base text-white/40 leading-none">$</span>
-          <span className="font-serif text-[2.75rem] md:text-[3rem] text-foreground font-light tabular-nums leading-none tracking-tight">
+        {/* Price */}
+        <div className="flex items-end gap-1.5">
+          <span className="font-serif text-base text-white/35 leading-none pb-1">$</span>
+          <span className="font-serif text-[2.5rem] text-foreground font-light tabular-nums leading-none tracking-tight">
             {product.price}
           </span>
         </div>
+      </div>
 
-        {/* Description */}
-        <p className="text-[13px] text-white/45 leading-relaxed flex-1 mb-6">
+      {/* ── Body ── */}
+      <div className="flex flex-col flex-1 px-3 pb-3 pt-2">
+        <p className="text-[13px] text-white/45 leading-relaxed flex-1 mb-5">
           {product.description}
         </p>
 
-        {/* Bottom row — languages + CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
           <div className="flex gap-1">
             {product.languages.map((l) => (
               <span key={l} className="text-[9px] text-white/30 border border-white/[0.07] px-1.5 py-0.5 rounded font-mono tracking-wider">
