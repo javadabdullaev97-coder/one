@@ -419,7 +419,7 @@ export default function StorePage() {
               transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed mb-10"
             >
-              Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan’s regulatory framework, available in English, Russian, and Uzbek.
+              Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan's regulatory framework, available in English, Russian, and Uzbek.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 8 }}
