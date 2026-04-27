@@ -183,8 +183,8 @@ function formatPrice(price: number, currency: Currency): { main: string; suffix:
   if (currency === "USD") {
     return { main: `$${price}`, suffix: "/doc" };
   }
-  const uzs = (price * UZS_RATE).toLocaleString("en-US");
-  return { main: `~${uzs}`, suffix: "so'm" };
+  const rounded = Math.round((price * UZS_RATE) / 50000) * 50000;
+  return { main: rounded.toLocaleString("en-US"), suffix: "so'm" };
 }
 
 /* ── Product card ────────────────────────────────────── */
