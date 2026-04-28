@@ -305,13 +305,13 @@ export default function ExpertisePage() {
                   <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
 
                   {/* Card index, top right */}
-                  <span className="absolute top-6 right-6 font-serif text-[11px] text-white/20 tabular-nums tracking-widest">
+                  <span className="absolute top-5 right-5 font-serif text-[11px] text-white/20 tabular-nums tracking-widest">
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
-                  <div className="relative p-7 md:p-8 flex flex-col h-full">
+                  <div className="relative p-5 md:p-6 flex flex-col h-full">
                     {/* Sector with luminous accent dot */}
-                    <div className="flex items-center gap-2.5 mb-9">
+                    <div className="flex items-center gap-2.5 mb-5">
                       <span className="relative flex w-1.5 h-1.5">
                         <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px]" />
                         <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
@@ -322,8 +322,8 @@ export default function ExpertisePage() {
                     </div>
 
                     {/* Metric */}
-                    <div className="mb-8">
-                      <span className="block font-serif text-[2.5rem] md:text-[2.75rem] text-foreground tracking-[-0.02em] leading-[0.95]">
+                    <div className="mb-5">
+                      <span className="block font-serif text-[1.75rem] md:text-[2rem] text-foreground tracking-[-0.02em] leading-[0.95]">
                         {deal.metric}
                       </span>
                       <p className="text-[10px] tracking-[0.18em] uppercase text-white/35 mt-3">
@@ -332,12 +332,12 @@ export default function ExpertisePage() {
                     </div>
 
                     {/* Headline */}
-                    <p className="text-[14px] text-white/55 leading-relaxed mb-8 flex-1">
+                    <p className="text-[13px] text-white/55 leading-relaxed mb-5 flex-1">
                       {deal.headline}
                     </p>
 
                     {/* Disciplines */}
-                    <div className="flex flex-wrap gap-1.5 pt-5 border-t border-white/[0.06]">
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.06]">
                       {deal.disciplines.map((d) => (
                         <span
                           key={d}
