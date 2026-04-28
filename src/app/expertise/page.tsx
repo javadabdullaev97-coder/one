@@ -264,7 +264,7 @@ export default function ExpertisePage() {
           <AnimatedSection className="mb-14 md:mb-16">
             <div>
               <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
-              <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
+              <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
                 Selected engagements of our team members
               </h2>
             </div>
