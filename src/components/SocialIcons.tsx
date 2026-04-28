@@ -14,7 +14,7 @@ interface SocialLink {
 const socials: SocialLink[] = [
   {
     name: "Facebook",
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/people/Advizen-Consulting/61577742804426/",
     color: "#1877F2",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -24,7 +24,7 @@ const socials: SocialLink[] = [
   },
   {
     name: "Telegram",
-    href: "https://t.me/advizen",
+    href: "https://t.me/advizen_consulting",
     color: "#0088CC",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -34,7 +34,7 @@ const socials: SocialLink[] = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/advizen_consulting/",
     color: "#E4405F",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -44,7 +44,7 @@ const socials: SocialLink[] = [
   },
   {
     name: "YouTube",
-    href: "https://youtube.com",
+    href: "https://www.youtube.com/@AdvizenConsulting/shorts",
     color: "#FF0000",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -54,7 +54,7 @@ const socials: SocialLink[] = [
   },
   {
     name: "X",
-    href: "https://x.com",
+    href: "https://x.com/advizen_consult",
     color: "#000000",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -64,7 +64,7 @@ const socials: SocialLink[] = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/advizen",
+    href: "https://www.linkedin.com/company/advizen-consulting",
     color: "#0A66C2",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
