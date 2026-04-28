@@ -13,14 +13,14 @@ const stack = [
     tag: "Tax Briefing",
     title: "Tax Landscape 2024–2025",
     desc: "Key changes in Uzbekistan's tax legislation and strategic implications for foreign investors.",
-    href: "/library/uzbekistan-tax-landscape-2024",
+    href: "/insights/uzbekistan-tax-landscape-2024",
   },
   {
     num: "03",
     tag: "HR Insight",
     title: "Employer of Record in Central Asia",
     desc: "How foreign companies can establish talent presence without a local legal entity.",
-    href: "/library/employer-of-record-central-asia",
+    href: "/insights/employer-of-record-central-asia",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function InsightsSection() {
                 />
               </div>
               <Link
-                href="/library"
+                href="/insights"
                 className="group inline-flex items-center gap-2.5 self-start md:self-auto pb-1.5 border-b border-white/15 hover:border-primary/70 text-[11px] tracking-[0.28em] uppercase text-white/55 hover:text-foreground transition-colors duration-300 cursor-pointer"
               >
                 <span>Browse all</span>
@@ -61,7 +61,7 @@ export default function InsightsSection() {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/library/uzbekistan-tax-landscape-2024" className="group block h-full">
+            <Link href="/insights/uzbekistan-tax-landscape-2024" className="group block h-full">
               <div className="relative h-full border-t border-white/10 group-hover:border-primary/50 pt-10 flex flex-col transition-colors duration-500">
                 <div className="flex items-center gap-3 mb-10">
                   <span className="font-serif text-sm text-white/35">01</span>

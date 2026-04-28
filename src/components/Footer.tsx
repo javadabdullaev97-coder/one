@@ -22,7 +22,7 @@ const footerLinks = {
   ],
   Firm: [
     { label: "Store", href: "/store" },
-    { label: "Insights", href: "/library" },
+    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
   ],
   Legal: [
