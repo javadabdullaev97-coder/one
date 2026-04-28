@@ -120,7 +120,7 @@ export default {
     { type: "h2" as const, text: "How Advizen Can Help" },
     {
       type: "p" as const,
-      text: "Advizen has direct experience advising on Islamic finance structuring in Uzbekistan, including work on the seed investment phase of an Uzbek-based Islamic fintech startup and advisory to government-linked bodies on the integration of Islamic finance instruments into domestic legislation. Our team assists microfinance organisations and investors in assessing which instruments are appropriate for their business model, drafting Sharia-compliant contract documentation, establishing and advising Special Councils, and ensuring ongoing compliance with Central Bank requirements.",
+      text: "Members of the Advizen team bring hands-on experience with Islamic finance structuring in Uzbekistan from their prior careers — including work on the seed investment phase of an Uzbek-based Islamic fintech startup and participation in government-level advisory projects on integrating Islamic finance instruments into domestic legislation. We assist microfinance organisations and investors in assessing which instruments are appropriate for their business model, drafting Sharia-compliant contract documentation, establishing and advising Special Councils, and ensuring ongoing compliance with Central Bank requirements.",
     },
   ],
 };
