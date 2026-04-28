@@ -252,7 +252,7 @@ const navSuggestions = [
     description: "Our practice areas and capabilities",
   },
   {
-    href: "/library",
+    href: "/insights",
     icon: BookOpen,
     label: "Insights",
     description: "Guides, briefings, and market intelligence",
