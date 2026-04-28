@@ -113,7 +113,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
       ? readablePublications[currentIndex + 1]
       : null;
 
-  /* ── Counters reset each render ──────────────────────────────────────────────────────────── */
+  /* ── Counters reset each render ─────────────────────────────────────────────────────────── */
   let h2Counter = 0;
   const firstParagraphIndex = article.content.findIndex((b) => b.type === "p");
 
@@ -141,13 +141,13 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                 >
                   <Link
                     href="/insights"
-                    className="group inline-flex items-center gap-2 text-sm text-white/50 hover:text-foreground transition-colors cursor-pointer"
+                    className="group inline-flex items-center gap-2 text-sm font-bold text-white/50 hover:text-foreground transition-colors cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                    Library
+                    Insights
                   </Link>
                   <span className="text-white/15">/</span>
-                  <span className="tracking-luxury text-white/40">
+                  <span className="text-sm tracking-luxury text-white/40">
                     {article.tag}
                   </span>
                 </motion.div>
