@@ -226,6 +226,18 @@ export const publications: Publication[] = [
     pages: 10,
     hasRead: true,
   },
+  {
+    slug: "islamic-finance-uzbekistan",
+    tag: "Legal Briefing",
+    category: "Legal",
+    title: "Islamic Finance in Uzbekistan: A Practical Guide",
+    description:
+      "Uzbekistan's Islamic finance framework explained — from the legislative foundation and permitted MFO instruments to Special Council requirements and Sharia-compliant penalty mechanics.",
+    year: "2026",
+    date: "2026-04-28",
+    pages: 12,
+    hasRead: true,
+  },
 ];
 
 export function getPublicationBySlug(slug: string): Publication | undefined {

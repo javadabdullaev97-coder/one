@@ -16,6 +16,7 @@ import accountingLaw from "./articles/accounting-law-uzbekistan";
 import representativeOffices from "./articles/representative-offices-uzbekistan";
 import voluntaryLiquidation from "./articles/voluntary-liquidation-uzbekistan";
 import employerOfRecord from "./articles/employer-of-record-central-asia";
+import islamicFinance from "./articles/islamic-finance-uzbekistan";
 
 function build(slug: string, extra: Omit<PublicationArticle, keyof typeof publications[0]>): PublicationArticle {
   const pub = publications.find((p) => p.slug === slug)!;
@@ -40,6 +41,7 @@ export const articles: Record<string, PublicationArticle> = {
   "representative-offices-uzbekistan": build("representative-offices-uzbekistan", representativeOffices),
   "voluntary-liquidation-uzbekistan": build("voluntary-liquidation-uzbekistan", voluntaryLiquidation),
   "employer-of-record-central-asia": build("employer-of-record-central-asia", employerOfRecord),
+  "islamic-finance-uzbekistan": build("islamic-finance-uzbekistan", islamicFinance),
 };
 
 export function getArticleBySlug(slug: string): PublicationArticle | undefined {
