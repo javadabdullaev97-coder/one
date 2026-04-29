@@ -48,6 +48,10 @@ export const metadata: Metadata = {
   title: "Advizen Consulting | Premier Business Advisory in Uzbekistan",
   description:
     "Advizen Consulting — your trusted partner for expert tax, legal, finance, accounting, HR, and business consulting in Uzbekistan. 8+ years of integrated advisory across 15+ industries in Central Asia.",
+  icons: {
+    icon: "/Logo-v3.png",
+    apple: "/Logo-v3.png",
+  },
   keywords: [
     "business consulting Uzbekistan",
     "tax consulting Tashkent",
