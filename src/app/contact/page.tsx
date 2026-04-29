@@ -10,7 +10,7 @@ import AnimatedSection, {
 } from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
-import AuroraBackground from "@/components/AuroraBackground";
+import MeshBackground from "@/components/MeshBackground";
 
 const TelegramIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -62,7 +62,7 @@ export default function ContactPage() {
   return (
     <div className="font-onest">
       {/* Hero */}
-      <AuroraBackground>
+      <MeshBackground>
         <section className="relative pt-24 pb-44 md:pt-28 md:pb-48">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
@@ -88,7 +88,7 @@ export default function ContactPage() {
             </RevealLine>
           </div>
         </section>
-      </AuroraBackground>
+      </MeshBackground>
 
       {/* Form section starts right at aurora bottom — cards overlay the boundary */}
       <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-background">
