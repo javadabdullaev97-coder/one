@@ -47,14 +47,14 @@ export default function Navbar() {
           <Image
             src="/Logo-v3.png"
             alt="Advizen"
-            width={40}
-            height={40}
-            style={{ width: "auto", height: "40px" }}
+            width={50}
+            height={50}
+            style={{ width: "auto", height: "50px" }}
           />
           <span
             style={{
               fontFamily: "var(--font-hero), sans-serif",
-              fontSize: "40px",
+              fontSize: "20px",
               fontWeight: 400,
               letterSpacing: "0.12em",
               lineHeight: 1,
