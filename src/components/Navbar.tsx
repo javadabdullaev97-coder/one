@@ -54,8 +54,8 @@ export default function Navbar() {
           <span
             style={{
               fontFamily: "var(--font-hero), sans-serif",
-              fontSize: "20px",
-              fontWeight: 400,
+              fontSize: "25px",
+              fontWeight: 600,
               letterSpacing: "0.12em",
               lineHeight: 1,
               color: "#D6CFC8",
