@@ -55,9 +55,9 @@ export default function Footer() {
             variants={itemVariants}
             className="md:w-[380px] shrink-0 md:mr-16"
           >
-            <div className="flex items-center gap-3">
-              <Image src="/logo.png" alt="Advizen" width={40} height={32} />
-              <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground">
+            <div className="flex items-center gap-1.5">
+              <Image src="/Logo-v3.png" alt="Advizen" width={50} height={50} style={{ width: "auto", height: "50px" }} />
+              <span style={{ fontFamily: "var(--font-hero), sans-serif", fontSize: "25px", fontWeight: 500, letterSpacing: "0.12em", lineHeight: 1, color: "#D6CFC8" }}>
                 ADVIZEN
               </span>
             </div>
