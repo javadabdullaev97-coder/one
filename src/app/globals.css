@@ -96,6 +96,12 @@ body::after {
   letter-spacing: -0.01em;
 }
 
+/* Onest font scope — applies to wrapper and overrides .heading-luxury inside */
+.font-onest,
+.font-onest .heading-luxury {
+  font-family: var(--font-onest), system-ui, sans-serif;
+}
+
 /* Override browser autofill so it matches the dark form fields */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
