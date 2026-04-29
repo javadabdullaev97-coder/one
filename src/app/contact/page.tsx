@@ -140,15 +140,6 @@ export default function ContactPage() {
 
             {/* Form */}
             <AnimatedSection className="lg:col-span-7">
-              {/* Response time badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/20 text-[#4ade80] text-[11px] tracking-wide mb-6">
-                <span className="relative flex w-1.5 h-1.5">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-60 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4ade80]" />
-                </span>
-                Response within 24 hours
-              </div>
-
               <p className="tracking-luxury text-white/35 mb-4">Inquiry</p>
               <TextReveal
                 text="Send us a message"
@@ -332,9 +323,6 @@ export default function ContactPage() {
             {/* Sidebar — Quick chat */}
             <AnimatedSection delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
-                {/* Spacer matching the response-time badge in the form column so headings align */}
-                <div className="hidden lg:block h-[28px] mb-6" aria-hidden="true" />
-
                 <p className="tracking-luxury text-white/35 mb-4">Quick chat</p>
                 <h2 className="heading-luxury text-3xl md:text-4xl text-foreground mb-4">
                   Need a faster reply?
