@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -61,39 +62,61 @@ const stats = [
   { value: "2026", label: "Latest edition" },
 ];
 
+const categoryGradients: Record<string, string> = {
+  Tax: "from-amber-950/60 via-stone-900/80 to-black",
+  Legal: "from-slate-900/80 via-zinc-900/60 to-black",
+  HR: "from-rose-950/50 via-stone-900/70 to-black",
+  Advisory: "from-emerald-950/50 via-stone-900/70 to-black",
+};
+
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 6;
 
-/* ── Article Row ────────────────────────────────────────────────────────────── */
+/* ── Article Card ─────────────────────────────────────── */
 
-function ArticleRow({ pub }: { pub: Publication }) {
+function ArticleCard({ pub }: { pub: Publication }) {
+  const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
+
   return (
-    <div className="group relative flex items-start gap-6 md:gap-10 py-6 md:py-8 border-b border-white/[0.07] hover:bg-white/[0.02] transition-colors duration-200 cursor-pointer">
-      {/* Left accent — slides down on hover */}
-      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary-light/50 origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
-
-      {/* Left column: tag + date */}
-      <div className="w-28 md:w-44 shrink-0 pt-0.5 pl-4">
-        <span className="inline-block text-[10px] tracking-[0.14em] uppercase text-white/65 border border-white/[0.18] rounded-full px-2.5 py-0.5">
+    <div className="group flex flex-col rounded-xl border border-white/[0.07] overflow-hidden hover:border-white/[0.14] transition-colors duration-300 bg-white/[0.02] cursor-pointer h-full">
+      {/* Image area */}
+      <div className={cn("relative h-44 overflow-hidden bg-gradient-to-b", gradient)}>
+        {pub.image ? (
+          <Image
+            src={pub.image}
+            alt={pub.title}
+            fill
+            className="object-cover opacity-70 group-hover:opacity-85 group-hover:scale-[1.03] transition-all duration-500"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-end p-5">
+            <span className="font-serif text-[5rem] leading-none font-light text-white/[0.04] select-none">
+              {pub.category.charAt(0)}
+            </span>
+          </div>
+        )}
+        {/* Tag badge */}
+        <span className="absolute top-4 left-4 inline-block text-[10px] tracking-[0.14em] uppercase text-white/70 border border-white/[0.2] rounded-full px-2.5 py-0.5 bg-black/40 backdrop-blur-sm">
           {pub.tag}
         </span>
-        <p className="font-mono text-[10px] text-white/45 mt-2.5 tabular-nums">
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5">
+        <p className="font-mono text-[10px] text-white/40 mb-2.5 tabular-nums">
           {formatDate(pub.date, pub.year)}
         </p>
-      </div>
-
-      {/* Right column: title + description */}
-      <div className="flex-1 min-w-0">
-        <h3 className="font-serif text-lg md:text-xl text-foreground/80 leading-snug line-clamp-1 mb-1.5 group-hover:text-foreground transition-colors duration-200">
+        <h3 className="font-serif text-base text-foreground/80 leading-snug mb-2 group-hover:text-foreground transition-colors duration-200 line-clamp-2">
           {pub.title}
         </h3>
-        <p className="text-[13px] text-white/[0.38] leading-relaxed line-clamp-1 hidden sm:block">
+        <p className="text-[12px] text-white/40 leading-relaxed line-clamp-2 flex-1">
           {pub.description}
         </p>
+        <div className="mt-4 flex items-center gap-1.5 text-[11px] text-primary-light/70 group-hover:text-primary-light transition-colors duration-200">
+          Read more
+          <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
+        </div>
       </div>
-
-      {/* Arrow */}
-      <ArrowRight className="hidden md:block shrink-0 self-center w-4 h-4 text-white/20 group-hover:text-white/55 group-hover:translate-x-0.5 transition-all duration-200" />
     </div>
   );
 }
@@ -333,7 +356,7 @@ export default function LibraryPage() {
             </div>
           </AnimatedSection>
 
-          {/* Article list */}
+          {/* Article grid */}
           <AnimatePresence mode="wait">
             {filtered.length === 0 ? (
               <motion.div
@@ -360,30 +383,31 @@ export default function LibraryPage() {
             ) : (
               <motion.div
                 key={activeFilter + searchQuery + currentPage}
-                className="border-t border-white/[0.07]"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 initial="hidden"
                 animate="visible"
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+                variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
               >
                 {paginated.map((pub) => (
                   <motion.div
                     key={pub.slug}
                     variants={{
-                      hidden: { opacity: 0, x: -16 },
+                      hidden: { opacity: 0, y: 20 },
                       visible: {
                         opacity: 1,
-                        x: 0,
-                        transition: { duration: 0.4, ease: luxuryEase },
+                        y: 0,
+                        transition: { duration: 0.45, ease: luxuryEase },
                       },
                     }}
+                    className="h-full"
                   >
                     {pub.hasRead ? (
-                      <Link href={`/insights/${pub.slug}`} className="block">
-                        <ArticleRow pub={pub} />
+                      <Link href={`/insights/${pub.slug}`} className="block h-full">
+                        <ArticleCard pub={pub} />
                       </Link>
                     ) : (
-                      <ArticleRow pub={pub} />
+                      <ArticleCard pub={pub} />
                     )}
                   </motion.div>
                 ))}
