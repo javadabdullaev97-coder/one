@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -386,10 +386,6 @@ export default function ExpertisePage() {
                 <MagneticButton variant="primary" as="a" href="/contact">
                   Schedule a consultation
                   <ArrowRight className="w-4 h-4" />
-                </MagneticButton>
-                <MagneticButton variant="outline" as="a" href="/about">
-                  About the firm
-                  <ArrowUpRight className="w-4 h-4" />
                 </MagneticButton>
               </div>
             </RevealLine>
