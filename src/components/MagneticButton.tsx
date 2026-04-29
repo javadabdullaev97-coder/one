@@ -50,7 +50,6 @@ export default function MagneticButton({
         className,
       )}
     >
-      {/* Cursor-following glow */}
       <span
         className={cn(
           "absolute w-[250px] h-[250px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out",
@@ -63,8 +62,6 @@ export default function MagneticButton({
           zIndex: 0,
         }}
       />
-
-      {/* Content — text always stays white */}
       <span className="relative z-10 inline-flex items-center gap-2 text-foreground">
         {children}
       </span>
@@ -84,11 +81,7 @@ export default function MagneticButton({
 
   if (as === "button" && type === "submit") {
     return (
-      <button
-        type="submit"
-        disabled={disabled}
-        className={cn(wrapperClass, "bg-transparent border-none p-0 m-0")}
-      >
+      <button type="submit" disabled={disabled} className={cn(wrapperClass, "bg-transparent border-none p-0 m-0")}>
         {btn}
       </button>
     );
