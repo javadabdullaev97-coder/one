@@ -14,7 +14,7 @@ import regionImageLoader from "@/lib/image-loader";
 import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ────────────────────────────────────────────────────
+// ─── Industries ─────────────────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -31,7 +31,7 @@ function IndustriesSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <AnimatedSection className="mb-10 md:mb-12">
           <p className="tracking-luxury text-white/50 mb-3">Sector Experience</p>
-          <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
+          <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
             Sectors we serve
           </h2>
         </AnimatedSection>
@@ -200,7 +200,7 @@ function IndustriesSection() {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────
+// ─── Page ───────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
@@ -264,7 +264,7 @@ export default function ExpertisePage() {
           <AnimatedSection className="mb-14 md:mb-16">
             <div>
               <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
-              <h2 className="heading-luxury text-2xl md:text-3xl text-foreground">
+              <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
                 Selected engagements of our team members
               </h2>
             </div>
@@ -373,7 +373,7 @@ export default function ExpertisePage() {
             <TextReveal
               text="Ready to begin?"
               as="h2"
-              className="heading-luxury text-3xl md:text-5xl text-foreground mb-6"
+              className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6"
             />
             <RevealLine delay={0.2}>
               <p className="text-base md:text-lg text-white/50 max-w-xl mx-auto mb-12 leading-relaxed">
