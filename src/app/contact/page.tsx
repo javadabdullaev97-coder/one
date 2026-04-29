@@ -12,88 +12,42 @@ import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AuroraBackground from "@/components/AuroraBackground";
 
-const TelegramIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+const TelegramIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
   </svg>
 );
 
-const WhatsAppIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
   </svg>
 );
 
 const infoCards = [
   {
-    icon: <MapPin className="w-6 h-6" />,
+    icon: <MapPin className="w-8 h-8" strokeWidth={1.4} />,
     title: "Our Office",
     value: "Tashkent, Uzbekistan",
     href: undefined,
-    iconColor: "text-white/50",
-    iconBg: "bg-white/[0.05]",
   },
   {
-    icon: <Phone className="w-6 h-6" />,
+    icon: <Phone className="w-8 h-8" strokeWidth={1.4} />,
     title: "Phone",
     value: "+998 (33) 488 48 88",
     href: "tel:+998334884888",
-    iconColor: "text-white/50",
-    iconBg: "bg-white/[0.05]",
   },
   {
-    icon: <TelegramIcon />,
-    title: "Telegram",
-    value: "Write to us",
-    href: "https://t.me/advizen",
-    iconColor: "text-[#0088CC]",
-    iconBg: "bg-[#0088CC]/10",
-  },
-  {
-    icon: <WhatsAppIcon />,
-    title: "WhatsApp",
-    value: "Write to us",
-    href: "https://wa.me/message/EKU3HEOTSK43O1",
-    iconColor: "text-[#25D366]",
-    iconBg: "bg-[#25D366]/10",
-  },
-  {
-    icon: <Mail className="w-6 h-6" />,
+    icon: <Mail className="w-8 h-8" strokeWidth={1.4} />,
     title: "Email",
     value: "info@advizenco.com",
     href: "mailto:info@advizenco.com",
-    iconColor: "text-white/50",
-    iconBg: "bg-white/[0.05]",
-  },
-];
-
-const directChannels = [
-  {
-    icon: <TelegramIcon />,
-    label: "Telegram",
-    sub: "@advizen",
-    href: "https://t.me/advizen",
-    colorClass: "text-[#0088CC]",
-    bgClass: "bg-[#0088CC]/10 group-hover:bg-[#0088CC]/20",
-    borderClass: "hover:border-[#0088CC]/30 hover:bg-[#0088CC]/5",
   },
   {
-    icon: <WhatsAppIcon />,
-    label: "WhatsApp",
-    sub: "Message us directly",
-    href: "https://wa.me/message/EKU3HEOTSK43O1",
-    colorClass: "text-[#25D366]",
-    bgClass: "bg-[#25D366]/10 group-hover:bg-[#25D366]/20",
-    borderClass: "hover:border-[#25D366]/30 hover:bg-[#25D366]/5",
-  },
-  {
-    icon: <Mail className="w-5 h-5" />,
-    label: "Email",
-    sub: "info@advizenco.com",
-    href: "mailto:info@advizenco.com",
-    colorClass: "text-white/50",
-    bgClass: "bg-white/[0.05] group-hover:bg-white/[0.08]",
-    borderClass: "hover:border-white/15 hover:bg-white/[0.02]",
+    icon: <Clock className="w-8 h-8" strokeWidth={1.4} />,
+    title: "Working Hours",
+    value: "Mon – Fri, 9:00 – 18:00",
+    href: undefined,
   },
 ];
 
@@ -109,7 +63,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <AuroraBackground>
-        <section className="relative pt-36 pb-40 md:pt-44 md:pb-48">
+        <section className="relative pt-36 pb-44 md:pt-44 md:pb-52">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.span
               initial={{ opacity: 0 }}
@@ -146,21 +100,19 @@ export default function ContactPage() {
       </AuroraBackground>
 
       {/* Info cards — float over hero bottom */}
-      <div className="relative z-20 -mt-20">
+      <div className="relative z-20 -mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {infoCards.map((card) => {
               const inner = (
-                <div className="group bg-[#0f0f0f] border border-white/[0.07] rounded-2xl p-6 text-center hover:border-white/[0.13] transition-all duration-300 h-full shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-                  <div
-                    className={`w-12 h-12 rounded-full ${card.iconBg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 ${card.iconColor}`}
-                  >
+                <div className="group relative bg-[#0f0f0f] border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.18] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
+                  <div className="flex justify-center mb-5 md:mb-6 text-white/55 group-hover:text-white transition-colors duration-300">
                     {card.icon}
                   </div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2 font-medium">
+                  <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/45 group-hover:text-white/70 mb-3 font-semibold transition-colors duration-300">
                     {card.title}
                   </p>
-                  <p className="text-sm text-white/55 leading-snug group-hover:text-white/80 transition-colors duration-300">
+                  <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
                     {card.value}
                   </p>
                 </div>
@@ -189,19 +141,32 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Form + Get in touch */}
-      <section className="pt-20 pb-24 md:pt-28 md:pb-32 bg-background">
+      {/* Form + Sidebar */}
+      <section className="pt-24 pb-24 md:pt-32 md:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
             {/* Form */}
             <AnimatedSection className="lg:col-span-7">
+              {/* Response time badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/20 text-[#4ade80] text-[11px] tracking-wide mb-6">
+                <span className="relative flex w-1.5 h-1.5">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-60 animate-ping" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4ade80]" />
+                </span>
+                Response within 24 hours
+              </div>
+
               <p className="tracking-luxury text-white/35 mb-4">Inquiry</p>
               <TextReveal
                 text="Send us a message"
                 as="h2"
-                className="heading-luxury text-3xl md:text-4xl text-foreground mb-10"
+                className="heading-luxury text-3xl md:text-4xl text-foreground mb-4"
               />
+              <p className="text-white/45 leading-relaxed mb-10 max-w-xl">
+                For detailed inquiries — share project context, timeline, and
+                area of interest. We&rsquo;ll get back to you with a tailored response.
+              </p>
 
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
@@ -369,57 +334,75 @@ export default function ContactPage() {
               </form>
             </AnimatedSection>
 
-            {/* Get in touch sidebar */}
+            {/* Sidebar — Quick chat */}
             <AnimatedSection delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
-                <p className="tracking-luxury text-white/35 mb-4">
-                  Direct contact
-                </p>
+                <p className="tracking-luxury text-white/35 mb-4">Quick chat</p>
                 <h2 className="heading-luxury text-3xl md:text-4xl text-foreground mb-6">
-                  Get in touch
+                  Need a faster reply?
                 </h2>
                 <p className="text-white/50 leading-relaxed mb-10">
-                  Prefer a direct conversation? Reach our team instantly via
-                  Telegram or WhatsApp, or send us an email. We respond within
-                  24 hours on business days.
+                  Skip the form — message us directly on Telegram or WhatsApp.
+                  Average response in under 30 minutes during business hours.
                 </p>
 
-                {/* Direct messaging rows */}
-                <div className="space-y-3 mb-10">
-                  {directChannels.map((ch) => (
-                    <a
-                      key={ch.label}
-                      href={ch.href}
-                      target={
-                        ch.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel="noopener noreferrer"
-                      className={`group flex items-center gap-4 p-4 rounded-xl border border-white/[0.07] bg-[#0f0f0f] transition-all duration-300 cursor-pointer ${ch.borderClass}`}
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${ch.bgClass} ${ch.colorClass}`}
-                      >
-                        {ch.icon}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-foreground/85 group-hover:text-white transition-colors duration-300">
-                          {ch.label}
-                        </p>
-                        <p className="text-xs text-white/40 mt-0.5 truncate">
-                          {ch.sub}
-                        </p>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-white/25 ml-auto shrink-0 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300" />
-                    </a>
-                  ))}
+                {/* Telegram + WhatsApp — large, prominent */}
+                <div className="space-y-4 mb-10">
+                  <a
+                    href="https://t.me/advizen"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-5 p-5 md:p-6 rounded-2xl border border-white/[0.07] bg-[#0f0f0f] hover:border-[#0088CC]/40 hover:bg-[#0088CC]/[0.04] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#0088CC]/10 group-hover:bg-[#0088CC]/20 flex items-center justify-center text-[#0088CC] shrink-0 transition-colors duration-300">
+                      <TelegramIcon className="w-6 h-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">
+                        Telegram
+                      </p>
+                      <p className="text-xs text-white/40">
+                        @advizen &nbsp;·&nbsp; Fastest response
+                      </p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                  </a>
+
+                  <a
+                    href="https://wa.me/message/EKU3HEOTSK43O1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-5 p-5 md:p-6 rounded-2xl border border-white/[0.07] bg-[#0f0f0f] hover:border-[#25D366]/40 hover:bg-[#25D366]/[0.04] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#25D366]/10 group-hover:bg-[#25D366]/20 flex items-center justify-center text-[#25D366] shrink-0 transition-colors duration-300">
+                      <WhatsAppIcon className="w-6 h-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">
+                        WhatsApp
+                      </p>
+                      <p className="text-xs text-white/40">
+                        Send a message instantly
+                      </p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                  </a>
                 </div>
 
-                {/* Hours */}
-                <div className="flex items-center gap-3 py-6 border-t border-b border-white/[0.06]">
-                  <Clock className="w-4 h-4 text-white/30 shrink-0" />
-                  <p className="text-sm text-white/40">
-                    Mon – Fri, 9:00 – 18:00 &nbsp;·&nbsp; UTC+5 (Tashkent)
-                  </p>
+                {/* Hours card */}
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                  <Clock className="w-4 h-4 text-white/35 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-white/35 font-medium mb-1.5">
+                      Business hours
+                    </p>
+                    <p className="text-sm text-white/55">
+                      Mon – Fri, 9:00 – 18:00
+                    </p>
+                    <p className="text-xs text-white/35 mt-1">
+                      UTC+5 · Tashkent, Uzbekistan
+                    </p>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
