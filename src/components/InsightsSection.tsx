@@ -38,7 +38,7 @@ export default function InsightsSection() {
                 <TextReveal
                   text="Research, guides & analysis"
                   as="h2"
-                  className="heading-luxury text-3xl md:text-4xl text-foreground"
+                  className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground"
                 />
               </div>
               <Link
@@ -70,7 +70,7 @@ export default function InsightsSection() {
                 </div>
 
                 <h3
-                  className="font-serif text-3xl md:text-[2.75rem] leading-[1.1] text-foreground mb-7 max-w-md group-hover:text-white transition-colors duration-300"
+                  className="font-serif text-2xl md:text-3xl leading-[1.1] text-foreground mb-7 max-w-md group-hover:text-white transition-colors duration-300"
                   style={{ letterSpacing: "-0.005em" }}
                 >
                   Doing Business in Uzbekistan
