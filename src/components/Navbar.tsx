@@ -43,7 +43,7 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center h-20 relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-1.5">
           <Image
             src="/Logo-v3.png"
             alt="Advizen"
@@ -55,7 +55,7 @@ export default function Navbar() {
             style={{
               fontFamily: "var(--font-hero), sans-serif",
               fontSize: "25px",
-              fontWeight: 600,
+              fontWeight: 500,
               letterSpacing: "0.12em",
               lineHeight: 1,
               color: "#D6CFC8",
