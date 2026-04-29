@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
+import LoadingScreen from "@/components/LoadingScreen";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 const syne = Josefin_Sans({
@@ -115,6 +116,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col relative">
+          <LoadingScreen />
           <LanguageProvider>
             <ScrollProgress />
             <Navbar />
