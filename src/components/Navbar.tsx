@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -43,17 +44,13 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center h-20 relative">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
-          <svg
-            viewBox="0 0 100 90"
-            aria-hidden="true"
-            style={{ height: "30px", width: "auto" }}
-          >
-            <path
-              fillRule="evenodd"
-              d="M50 3L100 88L0 88ZM50 40L22 88L78 88Z"
-              fill="#E00000"
-            />
-          </svg>
+          <Image
+            src="/Logo-v3.png"
+            alt="Advizen"
+            width={32}
+            height={32}
+            style={{ width: "auto", height: "30px" }}
+          />
           <span
             className="font-medium text-foreground"
             style={{
