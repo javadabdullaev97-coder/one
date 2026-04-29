@@ -63,7 +63,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <AuroraBackground>
-        <section className="relative pt-24 pb-32 md:pt-28 md:pb-36">
+        <section className="relative pt-24 pb-44 md:pt-28 md:pb-48">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
