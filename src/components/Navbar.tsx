@@ -42,39 +42,18 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center h-20 relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <span
-            className="font-medium text-foreground"
-            style={{
-              fontFamily: interTight,
-              fontSize: "1.25rem",
-              letterSpacing: "-0.03em",
-              lineHeight: 0.95,
-            }}
-          >
-            Advizen
-          </span>
-          <svg
-            viewBox="0 0 20 26"
-            aria-hidden="true"
-            className="text-primary"
-            style={{
-              height: "0.72em",
-              width: "auto",
-              display: "inline-block",
-              marginLeft: "0.06em",
-              verticalAlign: "0.01em",
-            }}
-            fill="none"
-          >
-            <path
-              d="M2 2L18 13L2 24"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <Link
+          href="/"
+          className="font-medium"
+          style={{
+            fontFamily: interTight,
+            fontSize: "1.25rem",
+            letterSpacing: "-0.03em",
+            lineHeight: 0.95,
+          }}
+        >
+          <span className="text-foreground">Advizen</span>
+          <span className="text-primary">{">"}</span>
         </Link>
 
         {/* Desktop Nav — absolutely centred on the viewport */}
