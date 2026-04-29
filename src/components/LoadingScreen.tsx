@@ -9,10 +9,6 @@ export default function LoadingScreen() {
   const [fillDuration, setFillDuration] = useState(1.6);
 
   useEffect(() => {
-    // Only show once per browser session
-    if (sessionStorage.getItem("splashShown")) return;
-    sessionStorage.setItem("splashShown", "1");
-
     const alreadyLoaded = document.readyState === "complete";
     const dur = alreadyLoaded ? 0.65 : 1.6;
     setFillDuration(dur);
@@ -21,12 +17,9 @@ export default function LoadingScreen() {
     const hide = () => setVisible(false);
 
     if (alreadyLoaded) {
-      // Page already loaded — play quick animation then exit
       setTimeout(hide, dur * 1000 + 300);
     } else {
-      // Wait for page load, then exit shortly after
       window.addEventListener("load", () => setTimeout(hide, 350), { once: true });
-      // Safety fallback
       setTimeout(hide, (dur + 0.5) * 1000);
     }
   }, []);
@@ -46,12 +39,13 @@ export default function LoadingScreen() {
               alt=""
               width={340}
               height={340}
-              style={{ width: "340px", height: "auto", opacity: 0.15 }}
+              style={{ width: "340px", height: "auto", opacity: 0.1 }}
               priority
             />
             {/* Fill layer — reveals bottom to top */}
             <motion.div
               className="absolute inset-0 overflow-hidden"
+              style={{ opacity: 0.5 }}
               initial={{ clipPath: "inset(100% 0 0 0)" }}
               animate={{ clipPath: "inset(0% 0 0 0)" }}
               transition={{ duration: fillDuration, ease: "easeInOut" }}
