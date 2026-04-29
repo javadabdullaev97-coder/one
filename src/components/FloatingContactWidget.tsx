@@ -8,7 +8,7 @@ const contacts = [
   {
     name: "Email",
     href: "mailto:info@advizenco.com",
-    color: "#a0a0a0",
+    color: "#999999",
     icon: <Mail className="w-5 h-5" />,
   },
   {
@@ -42,56 +42,60 @@ export default function FloatingContactWidget() {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
+      {/* Contact buttons */}
       <AnimatePresence>
         {isOpen &&
           contacts.map((contact, i) => (
-            <motion.div
+            <motion.a
               key={contact.name}
-              initial={{ opacity: 0, scale: 0.7, y: 8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.7, y: 8 }}
-              transition={{
-                duration: 0.22,
-                delay: i * 0.07,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="flex items-center gap-3"
+              href={contact.href}
+              target={contact.href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noopener noreferrer"
+              aria-label={contact.name}
+              initial={{ opacity: 0, y: 12, scale: 0.85 }}
+              animate={{ opacity: 1, y: 0, scale: 1, transition: { delay: i * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
+              exit={{ opacity: 0, y: 6, scale: 0.9, transition: { duration: 0.18, ease: "easeIn" } }}
+              className="group relative flex items-center justify-center w-11 h-11 rounded-full bg-[#1A1A1A] border border-white/[0.06] overflow-hidden hover:shadow-lg"
             >
-              <span className="text-[11px] font-medium tracking-widest uppercase text-white/50 bg-[#141414] border border-white/[0.08] px-3 py-1.5 rounded-full pointer-events-none select-none">
-                {contact.name}
+              {/* Fill-up on hover — same as footer SocialIcons */}
+              <div
+                className="absolute bottom-0 left-0 w-full h-0 group-hover:h-full transition-all duration-300 ease-in-out"
+                style={{ backgroundColor: contact.color }}
+              />
+              <span className="relative z-10 text-[#999999] group-hover:text-white transition-colors duration-300">
+                {contact.icon}
               </span>
-              <a
-                href={contact.href}
-                target={contact.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#141414] border border-white/[0.1] transition-all duration-300 hover:border-white/20 hover:shadow-lg"
-                aria-label={contact.name}
-              >
-                <span style={{ color: contact.color }}>{contact.icon}</span>
-              </a>
-            </motion.div>
+            </motion.a>
           ))}
       </AnimatePresence>
 
-      {/* Main button with pulse ring */}
-      <div className="relative flex items-center justify-center">
-        {/* Pulse ring — only when closed */}
-        {!isOpen && (
-          <>
-            <motion.span
-              className="absolute inset-0 rounded-full border border-white/20"
-              animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-            />
-            <motion.span
-              className="absolute inset-0 rounded-full border border-white/10"
-              animate={{ scale: [1, 1.9], opacity: [0.3, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
-            />
-          </>
-        )}
-        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#141414] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.5)] cursor-pointer">
-          <MessageCircle className="w-5 h-5 text-white/70" />
+      {/* Main trigger button */}
+      <div className="relative w-14 h-14">
+        {/* Pulse rings — visible only when closed */}
+        <AnimatePresence>
+          {!isOpen && (
+            <>
+              <motion.div
+                key="ring1"
+                className="absolute inset-0 rounded-full border border-white/[0.25]"
+                initial={{ scale: 1, opacity: 0.6 }}
+                animate={{ scale: 1.75, opacity: 0 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", repeatDelay: 0.2 }}
+              />
+              <motion.div
+                key="ring2"
+                className="absolute inset-0 rounded-full border border-white/[0.15]"
+                initial={{ scale: 1, opacity: 0.4 }}
+                animate={{ scale: 2.1, opacity: 0 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.7, repeatDelay: 0.2 }}
+              />
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Button face */}
+        <div className="absolute inset-0 flex items-center justify-center rounded-full bg-[#1A1A1A] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.5)] cursor-pointer">
+          <MessageCircle className="w-5 h-5 text-white/60" />
         </div>
       </div>
     </div>
