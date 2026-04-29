@@ -11,6 +11,7 @@ interface MagneticButtonProps {
   href?: string;
   className?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 export default function MagneticButton({
@@ -20,6 +21,7 @@ export default function MagneticButton({
   href,
   className = "",
   type = "button",
+  disabled = false,
 }: MagneticButtonProps) {
   const btnRef = useRef<HTMLSpanElement>(null);
   const [hovered, setHovered] = useState(false);
@@ -84,6 +86,7 @@ export default function MagneticButton({
     return (
       <button
         type="submit"
+        disabled={disabled}
         className={cn(wrapperClass, "bg-transparent border-none p-0 m-0")}
       >
         {btn}
@@ -92,7 +95,7 @@ export default function MagneticButton({
   }
 
   return (
-    <button type="button" className={cn(wrapperClass, "bg-transparent border-none p-0 m-0")}>
+    <button type="button" disabled={disabled} className={cn(wrapperClass, "bg-transparent border-none p-0 m-0")}>
       {btn}
     </button>
   );
