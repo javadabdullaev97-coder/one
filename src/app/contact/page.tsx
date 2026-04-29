@@ -63,22 +63,13 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <AuroraBackground>
-        <section className="relative pt-36 pb-44 md:pt-44 md:pb-52">
+        <section className="relative pt-24 pb-28 md:pt-28 md:pb-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.025 }}
-              transition={{ duration: 2.5, delay: 0.6 }}
-              className="absolute top-8 right-0 md:right-8 font-serif text-[18rem] md:text-[26rem] leading-none text-foreground select-none pointer-events-none"
-            >
-              ✦
-            </motion.span>
-
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="tracking-luxury text-white/50 mb-6"
+              className="tracking-luxury text-white/50 mb-4"
             >
               Contact
             </motion.p>
@@ -86,11 +77,11 @@ export default function ContactPage() {
               text="Begin a conversation"
               as="h1"
               mode="line"
-              className="heading-luxury text-5xl md:text-7xl text-foreground leading-[1.08] max-w-3xl"
+              className="heading-luxury text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.08] max-w-3xl"
               delay={0.3}
             />
             <RevealLine delay={0.6}>
-              <p className="text-lg text-white/50 max-w-2xl mt-8 leading-relaxed">
+              <p className="text-base text-white/50 max-w-xl mt-5 leading-relaxed">
                 Every engagement starts with understanding. Reach out and our
                 team will respond within 24 hours.
               </p>
@@ -99,13 +90,13 @@ export default function ContactPage() {
         </section>
       </AuroraBackground>
 
-      {/* Info cards — float over hero bottom */}
-      <div className="relative z-20 -mt-24">
+      {/* Info cards — straddle hero/content boundary */}
+      <div className="relative z-20 -mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {infoCards.map((card) => {
               const inner = (
-                <div className="group relative bg-[#0f0f0f] border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.18] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
+                <div className="group relative bg-surface border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.18] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
                   <div className="flex justify-center mb-5 md:mb-6 text-white/55 group-hover:text-white transition-colors duration-300">
                     {card.icon}
                   </div>
@@ -142,7 +133,7 @@ export default function ContactPage() {
       </div>
 
       {/* Form + Sidebar */}
-      <section className="pt-24 pb-24 md:pt-32 md:pb-32 bg-background">
+      <section className="pt-16 pb-24 md:pt-20 md:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
