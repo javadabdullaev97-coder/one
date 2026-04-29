@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Josefin_Sans, Raleway, Inter, Onest } from "next/font/google";
+import { Josefin_Sans, Raleway, Inter, Inter_Tight, Onest } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -26,6 +26,13 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -99,7 +106,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${inter.variable} ${onest.variable}`}>
+    <html lang="en" className={`h-full antialiased ${syne.variable} ${raleway.variable} ${inter.variable} ${interTight.variable} ${onest.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "history.scrollRestoration='manual'" }} />
         <script
