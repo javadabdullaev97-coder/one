@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
-import FloatingContactWidget from "@/components/FloatingContactWidget";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 const syne = Josefin_Sans({
@@ -110,7 +109,6 @@ export default function RootLayout({
               <Footer />
             </div>
             <ScrollToTop />
-            <FloatingContactWidget />
           </LanguageProvider>
       </body>
     </html>
