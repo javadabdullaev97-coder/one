@@ -52,9 +52,9 @@ const infoCards = [
 ];
 
 const inputClass =
-  "w-full px-0 py-3 bg-transparent border-b border-white/[0.12] text-foreground placeholder:text-white/20 focus:outline-none focus:border-white/50 transition-colors duration-300";
+  "w-full px-4 py-3 bg-white/[0.02] border border-white/[0.08] rounded-lg text-foreground placeholder:text-white/25 focus:outline-none focus:border-white/25 focus:bg-white/[0.04] transition-all duration-200";
 const labelClass =
-  "block text-xs uppercase tracking-widest text-white/35 mb-3";
+  "block text-xs uppercase tracking-widest text-white/40 mb-2.5";
 
 export default function ContactPage() {
   const [consent, setConsent] = useState(false);
@@ -164,22 +164,24 @@ export default function ContactPage() {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className={labelClass}>
-                      First Name
+                      First Name <span className="text-primary-light/80">*</span>
                     </label>
                     <input
                       id="firstName"
                       type="text"
+                      required
                       className={inputClass}
                       placeholder="John"
                     />
                   </div>
                   <div>
                     <label htmlFor="lastName" className={labelClass}>
-                      Last Name
+                      Last Name <span className="text-primary-light/80">*</span>
                     </label>
                     <input
                       id="lastName"
                       type="text"
+                      required
                       className={inputClass}
                       placeholder="Doe"
                     />
@@ -189,11 +191,12 @@ export default function ContactPage() {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className={labelClass}>
-                      Email
+                      Email <span className="text-primary-light/80">*</span>
                     </label>
                     <input
                       id="email"
                       type="email"
+                      required
                       className={inputClass}
                       placeholder="john@company.com"
                     />
@@ -329,11 +332,14 @@ export default function ContactPage() {
             {/* Sidebar — Quick chat */}
             <AnimatedSection delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
+                {/* Spacer matching the response-time badge in the form column so headings align */}
+                <div className="hidden lg:block h-[28px] mb-6" aria-hidden="true" />
+
                 <p className="tracking-luxury text-white/35 mb-4">Quick chat</p>
-                <h2 className="heading-luxury text-3xl md:text-4xl text-foreground mb-6">
+                <h2 className="heading-luxury text-3xl md:text-4xl text-foreground mb-4">
                   Need a faster reply?
                 </h2>
-                <p className="text-white/50 leading-relaxed mb-10">
+                <p className="text-white/50 leading-relaxed mb-10 max-w-xl">
                   Skip the form — message us directly on Telegram or WhatsApp.
                   Average response in under 30 minutes during business hours.
                 </p>
