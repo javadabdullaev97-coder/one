@@ -7,6 +7,7 @@ export interface Publication {
   year: string;
   date?: string;
   pages: number;
+  image?: string;
   hasDownload?: boolean;
   hasRead?: boolean;
 }
