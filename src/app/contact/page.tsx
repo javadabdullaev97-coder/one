@@ -63,7 +63,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <AuroraBackground>
-        <section className="relative pt-24 pb-28 md:pt-28 md:pb-32">
+        <section className="relative pt-24 pb-32 md:pt-28 md:pb-40">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
@@ -90,20 +90,27 @@ export default function ContactPage() {
         </section>
       </AuroraBackground>
 
-      {/* Info cards — straddle hero/content boundary */}
-      <div className="relative z-20 -mt-20">
+      {/* Hairline boundary — the "line" that cards straddle */}
+      <div className="relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      </div>
+
+      {/* Info cards — sit half on aurora, half on form section */}
+      <div className="relative z-20 -mt-24 md:-mt-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {infoCards.map((card) => {
               const inner = (
-                <div className="group relative bg-surface border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.18] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
-                  <div className="flex justify-center mb-5 md:mb-6 text-white/55 group-hover:text-white transition-colors duration-300">
+                <div className="group relative bg-[#141414] border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
+                  {/* subtle top gleam */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <div className="flex justify-center mb-5 md:mb-6 text-white/60 group-hover:text-white transition-colors duration-300">
                     {card.icon}
                   </div>
-                  <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/45 group-hover:text-white/70 mb-3 font-semibold transition-colors duration-300">
+                  <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/45 group-hover:text-white/75 mb-3 font-semibold transition-colors duration-300">
                     {card.title}
                   </p>
-                  <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
+                  <p className="text-sm md:text-[15px] text-white/80 leading-relaxed">
                     {card.value}
                   </p>
                 </div>
@@ -133,7 +140,7 @@ export default function ContactPage() {
       </div>
 
       {/* Form + Sidebar */}
-      <section className="pt-16 pb-24 md:pt-20 md:pb-32 bg-background">
+      <section className="pt-20 pb-24 md:pt-24 md:pb-32 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
