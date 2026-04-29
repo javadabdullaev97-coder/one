@@ -11,7 +11,7 @@ import AnimatedSection, {
 import MagneticButton from "@/components/MagneticButton";
 import AuroraBackground from "@/components/AuroraBackground";
 
-/* ── Types / data ─────────────────────────────────────── */
+/* ── Types / data ─────────────────────────────────────────────────────────── */
 
 const contactInfo = [
   {
@@ -112,7 +112,7 @@ export default function ContactPage() {
                     <input
                       id="lastName"
                       type="text"
-                      placeholder="Smith"
+                      placeholder="Doe"
                       className={inputClass}
                     />
                   </div>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                     <input
                       id="company"
                       type="text"
-                      placeholder="Acme Corp"
+                      placeholder="Company name"
                       className={inputClass}
                     />
                   </div>
@@ -153,7 +153,7 @@ export default function ContactPage() {
                     <select
                       id="service"
                       className={`${inputClass} appearance-none pr-10 cursor-pointer`}
-                      style={{ WebkitAppearance: "none", MozAppearance: "none" }}
+                      style={{ WebkitAppearance: "none", MozAppearance: "none", paddingLeft: "16px" }}
                     >
                       <option value="" className="bg-surface">
                         Select a service
@@ -177,7 +177,7 @@ export default function ContactPage() {
                         Other
                       </option>
                     </select>
-                    <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                    <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
                   </div>
                 </div>
 
