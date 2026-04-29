@@ -5,35 +5,67 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
-  const [done, setDone] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [fillDuration, setFillDuration] = useState(1.6);
 
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 2800);
-    return () => clearTimeout(t);
+    // Only show once per browser session
+    if (sessionStorage.getItem("splashShown")) return;
+    sessionStorage.setItem("splashShown", "1");
+
+    const alreadyLoaded = document.readyState === "complete";
+    const dur = alreadyLoaded ? 0.65 : 1.6;
+    setFillDuration(dur);
+    setVisible(true);
+
+    const hide = () => setVisible(false);
+
+    if (alreadyLoaded) {
+      // Page already loaded — play quick animation then exit
+      setTimeout(hide, dur * 1000 + 300);
+    } else {
+      // Wait for page load, then exit shortly after
+      window.addEventListener("load", () => setTimeout(hide, 350), { once: true });
+      // Safety fallback
+      setTimeout(hide, (dur + 0.5) * 1000);
+    }
   }, []);
 
   return (
     <AnimatePresence>
-      {!done && (
+      {visible && (
         <motion.div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <motion.div
-            initial={{ filter: "brightness(0)", opacity: 0.2 }}
-            animate={{ filter: "brightness(1.2)", opacity: 1 }}
-            transition={{ duration: 2.2, ease: "easeInOut", delay: 0.2 }}
-          >
+          <div className="relative" style={{ width: 340 }}>
+            {/* Dim ghost layer — always visible */}
             <Image
               src="/Loading.png"
               alt=""
               width={340}
               height={340}
-              style={{ width: "340px", height: "auto" }}
+              style={{ width: "340px", height: "auto", opacity: 0.15 }}
               priority
             />
-          </motion.div>
+            {/* Fill layer — reveals bottom to top */}
+            <motion.div
+              className="absolute inset-0 overflow-hidden"
+              initial={{ clipPath: "inset(100% 0 0 0)" }}
+              animate={{ clipPath: "inset(0% 0 0 0)" }}
+              transition={{ duration: fillDuration, ease: "easeInOut" }}
+            >
+              <Image
+                src="/Loading.png"
+                alt=""
+                width={340}
+                height={340}
+                style={{ width: "340px", height: "auto" }}
+                priority
+              />
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
