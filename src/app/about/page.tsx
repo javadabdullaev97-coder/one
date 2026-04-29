@@ -282,7 +282,7 @@ export default function AboutPage() {
                   text="Advisory built for Central Asia's most complex market"
                   as="h1"
                   mode="line"
-                  className="heading-luxury text-4xl md:text-6xl text-foreground leading-[1.05] max-w-3xl mb-10"
+                  className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-3xl mb-10"
                   delay={0.2}
                 />
                 <motion.div
@@ -348,7 +348,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
             <AnimatedSection className="lg:col-span-5">
               <p className="tracking-luxury text-white/50 mb-4">The Thesis</p>
-              <h2 className="heading-luxury text-3xl md:text-4xl text-foreground leading-tight">
+              <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground leading-tight">
                 A modern mandate for a rapidly evolving market
               </h2>
             </AnimatedSection>
@@ -472,7 +472,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-14 md:mb-16 text-center">
             <p className="tracking-luxury text-white/50 mb-4">Integrated Coverage</p>
-            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground">
+            <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
               One partner, every discipline
             </h2>
             <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
@@ -494,7 +494,7 @@ export default function AboutPage() {
           <AnimatedSection>
             <div className="text-center mb-12">
               <p className="tracking-luxury text-white/50 mb-4">Where We Operate</p>
-              <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
+              <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
                 Based in Tashkent, serving all of Uzbekistan
               </h2>
               <p className="text-white/55 max-w-2xl mx-auto leading-relaxed">
@@ -518,7 +518,7 @@ export default function AboutPage() {
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="tracking-luxury text-white/50 mb-6">Next Step</p>
-            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
+            <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
               Work with us
             </h2>
             <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
