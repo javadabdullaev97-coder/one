@@ -19,7 +19,7 @@ import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ──────────────────────────────────────────────── */
+/* ── Helpers ─────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ──────────────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -64,7 +64,7 @@ const stats = [
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 10;
 
-/* ── Article Row ───────────────────────────────────────────────────────────────────────── */
+/* ── Article Row ────────────────────────────────────────────────────────────── */
 
 function ArticleRow({ pub }: { pub: Publication }) {
   return (
@@ -98,7 +98,7 @@ function ArticleRow({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ─────────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -193,7 +193,7 @@ export default function LibraryPage() {
                     {flagship.tag}
                   </span>
 
-                  <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 leading-tight tracking-tight">
+                  <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-foreground mb-4 leading-tight tracking-tight">
                     {flagship.title}
                   </h2>
                   <p className="text-sm text-white/40 mb-8 tracking-wide">
@@ -275,7 +275,7 @@ export default function LibraryPage() {
           <AnimatedSection className="mb-14 md:mb-16">
             <div className="mb-8">
               <p className="tracking-luxury text-white/50 mb-4">Publications</p>
-              <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
+              <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
                 Briefings &amp; guides
               </h2>
             </div>
@@ -437,7 +437,7 @@ export default function LibraryPage() {
             <p className="tracking-luxury text-white/50 mb-6">
               Bespoke Intelligence
             </p>
-            <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-6">
+            <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
               Need tailored analysis?
             </h2>
             <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
