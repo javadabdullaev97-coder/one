@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, X, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 const contacts = [
   {
@@ -37,77 +37,63 @@ export default function FloatingContactWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <div
+      className="fixed bottom-24 right-6 z-50 flex flex-col-reverse items-end gap-3"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-        )}
+        {isOpen &&
+          contacts.map((contact, i) => (
+            <motion.div
+              key={contact.name}
+              initial={{ opacity: 0, scale: 0.7, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.7, y: 8 }}
+              transition={{
+                duration: 0.22,
+                delay: i * 0.07,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="flex items-center gap-3"
+            >
+              <span className="text-[11px] font-medium tracking-widest uppercase text-white/50 bg-[#141414] border border-white/[0.08] px-3 py-1.5 rounded-full pointer-events-none select-none">
+                {contact.name}
+              </span>
+              <a
+                href={contact.href}
+                target={contact.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#141414] border border-white/[0.1] transition-all duration-300 hover:border-white/20 hover:shadow-lg"
+                aria-label={contact.name}
+              >
+                <span style={{ color: contact.color }}>{contact.icon}</span>
+              </a>
+            </motion.div>
+          ))}
       </AnimatePresence>
 
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col-reverse items-end gap-3">
-        <AnimatePresence>
-          {isOpen &&
-            contacts.map((contact, i) => (
-              <motion.div
-                key={contact.name}
-                initial={{ opacity: 0, scale: 0.7, y: 8 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.7, y: 8 }}
-                transition={{
-                  duration: 0.22,
-                  delay: i * 0.07,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="flex items-center gap-3"
-              >
-                <span className="text-[11px] font-medium tracking-widest uppercase text-white/50 bg-[#141414] border border-white/[0.08] px-3 py-1.5 rounded-full pointer-events-none select-none">
-                  {contact.name}
-                </span>
-                <a
-                  href={contact.href}
-                  target={contact.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-[#141414] border border-white/[0.1] transition-all duration-300 hover:border-white/20 hover:shadow-lg"
-                  aria-label={contact.name}
-                >
-                  <span style={{ color: contact.color }}>{contact.icon}</span>
-                </a>
-              </motion.div>
-            ))}
-        </AnimatePresence>
-
-        <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-center w-14 h-14 rounded-full bg-[#141414] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-white/25 cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label={isOpen ? "Close contact menu" : "Contact us"}
-        >
-          <AnimatePresence mode="wait" initial={false}>
+      {/* Main button with pulse ring */}
+      <div className="relative flex items-center justify-center">
+        {/* Pulse ring — only when closed */}
+        {!isOpen && (
+          <>
             <motion.span
-              key={isOpen ? "x" : "msg"}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.18 }}
-              className="text-white/70"
-            >
-              {isOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <MessageCircle className="w-5 h-5" />
-              )}
-            </motion.span>
-          </AnimatePresence>
-        </motion.button>
+              className="absolute inset-0 rounded-full border border-white/20"
+              animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+            />
+            <motion.span
+              className="absolute inset-0 rounded-full border border-white/10"
+              animate={{ scale: [1, 1.9], opacity: [0.3, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+            />
+          </>
+        )}
+        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#141414] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.5)] cursor-pointer">
+          <MessageCircle className="w-5 h-5 text-white/70" />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
