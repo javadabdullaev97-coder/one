@@ -60,7 +60,7 @@ export default function ContactPage() {
   const [consent, setConsent] = useState(false);
 
   return (
-    <>
+    <div className="font-onest">
       {/* Hero */}
       <AuroraBackground>
         <section className="relative pt-24 pb-44 md:pt-28 md:pb-48">
@@ -408,6 +408,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
