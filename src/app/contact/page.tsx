@@ -153,6 +153,7 @@ export default function ContactPage() {
                     <select
                       id="service"
                       className={`${inputClass} appearance-none pr-10 cursor-pointer`}
+                      style={{ WebkitAppearance: "none", MozAppearance: "none" }}
                     >
                       <option value="" className="bg-surface">
                         Select a service
