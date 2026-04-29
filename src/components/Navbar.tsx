@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -42,15 +41,18 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center h-20 relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="Advizen"
-            width={36}
-            height={30}
-          />
-          <span className="text-lg font-light tracking-[0.25em] uppercase text-foreground" style={{ fontFamily: inter }}>
+        <Link href="/" className="flex items-center gap-0">
+          <span
+            className="text-[15px] font-light tracking-[0.3em] uppercase text-foreground"
+            style={{ fontFamily: inter }}
+          >
             ADVIZEN
+          </span>
+          <span
+            className="text-primary text-[15px] font-light ml-[0.15em]"
+            style={{ fontFamily: inter }}
+          >
+            {">"}
           </span>
         </Link>
 
