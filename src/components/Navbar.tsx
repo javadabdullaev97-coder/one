@@ -43,24 +43,25 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center h-20 relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/Logo-v3.png"
             alt="Advizen"
-            width={32}
-            height={32}
-            style={{ width: "auto", height: "30px" }}
+            width={40}
+            height={40}
+            style={{ width: "auto", height: "40px" }}
           />
           <span
-            className="font-medium text-foreground"
             style={{
-              fontFamily: interTight,
-              fontSize: "1.25rem",
-              letterSpacing: "-0.03em",
-              lineHeight: 0.95,
+              fontFamily: "var(--font-hero), sans-serif",
+              fontSize: "40px",
+              fontWeight: 400,
+              letterSpacing: "0.12em",
+              lineHeight: 1,
+              color: "#D6CFC8",
             }}
           >
-            Advizen
+            ADVIZEN
           </span>
         </Link>
 
