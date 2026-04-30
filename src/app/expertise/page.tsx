@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -193,15 +192,15 @@ function TrackRecord() {
 export default function ExpertisePage() {
   return (
     <>
-      <div className="relative overflow-hidden">
-        <Image
-          src="/Hero and CTA images/Expertise Hero.png"
-          alt=""
-          fill
-          className="object-cover object-center"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60" />
+      <div
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
