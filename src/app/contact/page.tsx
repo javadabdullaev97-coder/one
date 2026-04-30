@@ -62,16 +62,17 @@ export default function ContactPage() {
     <div className="font-onest">
       {/* Hero */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden flex flex-col"
         style={{
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Contact%20Her.webp')",
+          height: "65vh",
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Contact%20Hero.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="absolute inset-0 bg-black/55" />
-        <section className="relative z-10 pt-24 pb-44 md:pt-28 md:pb-48">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
+          <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -149,7 +150,7 @@ export default function ContactPage() {
               />
               <p className="text-white/45 leading-relaxed mb-10 max-w-xl">
                 For detailed inquiries — share project context, timeline, and
-                area of interest. We’ll get back to you with a tailored response.
+                area of interest. We'll get back to you with a tailored response.
               </p>
 
               <form className="space-y-6">
