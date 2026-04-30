@@ -56,7 +56,7 @@ export default function Footer() {
             className="md:w-[380px] shrink-0 md:mr-16"
           >
             <div className="flex items-center gap-1.5">
-              <Image src="/Logo.webp" alt="Advizen" width={50} height={50} style={{ width: "auto", height: "50px" }} />
+              <Image src="/Logo.webp" alt="Advizen" width={40} height={40} style={{ width: "auto", height: "40px" }} />
               <span style={{ fontFamily: "var(--font-hero), sans-serif", fontSize: "25px", fontWeight: 500, letterSpacing: "0.12em", lineHeight: 1, color: "#D6CFC8" }}>
                 ADVIZEN
               </span>

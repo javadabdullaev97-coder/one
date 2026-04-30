@@ -47,9 +47,9 @@ export default function Navbar() {
           <Image
             src="/Logo.webp"
             alt="Advizen"
-            width={50}
-            height={50}
-            style={{ width: "auto", height: "50px" }}
+            width={40}
+            height={40}
+            style={{ width: "auto", height: "40px" }}
           />
           <span
             style={{
