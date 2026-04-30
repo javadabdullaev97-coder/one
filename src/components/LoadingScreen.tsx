@@ -25,13 +25,13 @@ export default function LoadingScreen() {
 
   return (
     <>
-      {/* SVG filter: maps white → dark muted burgundy wine (#8b1d3a) */}
+      {/* SVG filter: maps white → dark wine red */}
       <svg width="0" height="0" className="absolute overflow-hidden">
         <defs>
           <filter id="wine-tint" colorInterpolationFilters="sRGB">
             <feColorMatrix
               type="matrix"
-              values="0.182 0.182 0.182 0 0  0.038 0.038 0.038 0 0  0.076 0.076 0.076 0 0  0 0 0 1 0"
+              values="0.230 0.230 0.230 0 0  0.027 0.027 0.027 0 0  0.033 0.033 0.033 0 0  0 0 0 1 0"
             />
           </filter>
         </defs>
