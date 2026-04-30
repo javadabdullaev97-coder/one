@@ -166,7 +166,7 @@ export default function LibraryPage() {
         />
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex flex-col justify-end pt-24 pb-14 md:pt-28 md:pb-20">
-          <div className="px-6 lg:px-8 relative">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
