@@ -31,7 +31,7 @@ export default function LoadingScreen() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <div className="relative" style={{ width: 340 }}>
+          <div className="relative" style={{ width: 340, filter: "sepia(1) hue-rotate(320deg) saturate(2) brightness(0.5)" }}>
             {/* Dim ghost layer — always visible */}
             <Image
               src="/Loading.png"
