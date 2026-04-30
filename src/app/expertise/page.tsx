@@ -259,7 +259,7 @@ export default function ExpertisePage() {
   return (
     <>
       <div
-        className="relative overflow-hidden min-h-[65vh] flex flex-col"
+        className="relative overflow-hidden h-[65vh] flex flex-col"
         style={{
           backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.webp')",
           backgroundSize: "cover",
