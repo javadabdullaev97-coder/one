@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -48,7 +49,6 @@ export default function NotFound() {
     setYear(toRoman(now.getFullYear()));
   }, []);
 
-  // Generate a fake reference signature based on the path
   const refSignature = pathname
     ? pathname
         .replace(/[^a-zA-Z0-9]/g, "")
@@ -59,23 +59,13 @@ export default function NotFound() {
 
   return (
     <main className="relative min-h-screen bg-black text-foreground overflow-hidden">
-      {/* Subtle vertical guide lines (archive grid) */}
+      {/* Subtle vertical guide lines */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px)",
           backgroundSize: "calc(100% / 12) 100%",
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none opacity-30"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(var(--primary-rgb), 0.08) 0%, transparent 60%)",
-          filter: "blur(120px)",
         }}
       />
 
@@ -109,128 +99,139 @@ export default function NotFound() {
         />
       </div>
 
-      {/* Main content — centered */}
-      <section className="relative z-10 flex flex-col items-center justify-center px-6 lg:px-12 py-20 md:py-28">
-        {/* Reference */}
+      {/* Hero — glass image */}
+      <section className="relative z-10 px-6 lg:px-12 pt-12 pb-0">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[10px] tracking-[0.32em] uppercase text-white/35 mb-12 text-center"
-          style={{ fontFamily: MONO }}
+          transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-3xl mx-auto"
         >
-          File · Ref.{" "}
-          <span className="text-white/55">{refSignature}</span>{" "}
-          / Class · IV
-        </motion.div>
-
-        {/* Massive 404 with VOID stamp */}
-        <div className="relative">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="leading-[0.85] text-center select-none tabular-nums"
-            style={{
-              fontFamily: "var(--font-hero), serif",
-              fontSize: "clamp(8rem, 24vw, 22rem)",
-              fontWeight: 200,
-              letterSpacing: "-0.04em",
-              color: "transparent",
-              WebkitTextStroke: "1px rgba(245, 245, 245, 0.18)",
-            }}
-          >
-            404
-          </motion.h1>
-
-          {/* VOID stamp — overlay */}
-          <motion.div
-            initial={{ opacity: 0, scale: 1.2, rotate: -12 }}
-            animate={{ opacity: 1, scale: 1, rotate: -8 }}
-            transition={{ duration: 0.5, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          >
-            <div
-              className="relative px-6 py-2 border-[3px] uppercase"
-              style={{
-                fontFamily: MONO,
-                fontSize: "clamp(1.2rem, 2.5vw, 2rem)",
-                letterSpacing: "0.3em",
-                fontWeight: 700,
-                color: "rgba(var(--primary-light-rgb), 0.55)",
-                borderColor: "rgba(var(--primary-light-rgb), 0.5)",
-                transform: "rotate(0deg)",
-                textShadow: "0 0 1px rgba(var(--primary-rgb), 0.2)",
-                background: "transparent",
-              }}
-            >
-              <span style={{ filter: "url(#voidGrunge)" }}>V O I D</span>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* SVG filter for stamp grunge effect */}
-        <svg width="0" height="0" className="absolute">
-          <defs>
-            <filter id="voidGrunge">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.9"
-                numOctaves="2"
-                result="noise"
-              />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
-            </filter>
-          </defs>
-        </svg>
-
-        {/* Description block */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 max-w-md text-center"
-        >
-          <p className="text-[11px] tracking-[0.32em] uppercase text-primary-light/70 mb-5"
+          {/* Reference tag above image */}
+          <div
+            className="mb-4 text-[10px] tracking-[0.32em] uppercase text-white/35 text-center"
             style={{ fontFamily: MONO }}
           >
-            Status — Not in active index
-          </p>
-          <h2
-            className="text-2xl md:text-3xl text-foreground/90 font-light leading-tight mb-4"
-            style={{ letterSpacing: "-0.01em" }}
-          >
-            This record has been
-            <br />
-            <span className="text-foreground">withdrawn from circulation.</span>
-          </h2>
-          <p className="text-sm text-white/40 leading-relaxed font-light italic">
-            The path you requested could not be located in our archive.
-            It may have been moved, retired, or never filed.
-          </p>
+            File · Ref.{" "}
+            <span className="text-white/55">{refSignature}</span>{" "}
+            / Class · IV
+          </div>
 
-          {/* Path display */}
-          {pathname && (
-            <div
-              className="mt-8 inline-flex items-center gap-3 text-[11px] text-white/35 px-3 py-1.5 border border-white/[0.08] rounded-sm bg-white/[0.02]"
-              style={{ fontFamily: MONO }}
+          {/* Glass image container */}
+          <div className="relative w-full aspect-[16/9] rounded-sm overflow-hidden">
+            <Image
+              src="/404.webp"
+              alt="404 — Record Not Found"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 896px"
+            />
+            {/* Subtle dark vignette overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
+
+            {/* VOID stamp — overlaid on image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.15, rotate: -14 }}
+              animate={{ opacity: 1, scale: 1, rotate: -8 }}
+              transition={{ duration: 0.55, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
             >
-              <span className="text-white/25">PATH</span>
-              <span className="text-white/60 line-through decoration-primary-light/60 decoration-1">
-                {pathname}
-              </span>
-            </div>
-          )}
+              <div
+                className="px-7 py-2.5 border-[3px] uppercase"
+                style={{
+                  fontFamily: MONO,
+                  fontSize: "clamp(1.4rem, 3vw, 2.5rem)",
+                  letterSpacing: "0.35em",
+                  fontWeight: 700,
+                  color: "rgba(var(--primary-light-rgb), 0.65)",
+                  borderColor: "rgba(var(--primary-light-rgb), 0.6)",
+                }}
+              >
+                <span style={{ filter: "url(#voidGrunge)" }}>V O I D</span>
+              </div>
+            </motion.div>
+
+            {/* Bottom overlay — text on image */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute bottom-0 left-0 right-0 px-8 py-6 flex items-end justify-between"
+            >
+              <div>
+                <p
+                  className="text-[10px] tracking-[0.3em] uppercase text-primary-light/70 mb-1"
+                  style={{ fontFamily: MONO }}
+                >
+                  Status — Not in active index
+                </p>
+                <h1
+                  className="text-2xl md:text-4xl font-light text-white/90 leading-tight"
+                  style={{ letterSpacing: "-0.01em" }}
+                >
+                  This record has been{" "}
+                  <span className="text-white">withdrawn.</span>
+                </h1>
+              </div>
+              <div
+                className="hidden md:block text-right tabular-nums text-white/30 leading-tight"
+                style={{ fontFamily: MONO, fontSize: "clamp(3rem, 8vw, 6rem)", fontWeight: 200, letterSpacing: "-0.04em" }}
+              >
+                404
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Path + description below image */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          >
+            <p className="text-sm text-white/40 leading-relaxed font-light italic max-w-md">
+              The path you requested could not be located in our archive.
+              It may have been moved, retired, or never filed.
+            </p>
+
+            {pathname && (
+              <div
+                className="inline-flex items-center gap-3 text-[11px] text-white/35 px-3 py-1.5 border border-white/[0.08] rounded-sm bg-white/[0.02] shrink-0"
+                style={{ fontFamily: MONO }}
+              >
+                <span className="text-white/25">PATH</span>
+                <span className="text-white/60 line-through decoration-primary-light/60 decoration-1">
+                  {pathname}
+                </span>
+              </div>
+            )}
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Index of available records (footnotes) */}
-      <section className="relative z-10 px-6 lg:px-12 pb-20">
+      {/* SVG filter for stamp grunge effect */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <filter id="voidGrunge">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="2"
+              result="noise"
+            />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* Index of available records */}
+      <section className="relative z-10 px-6 lg:px-12 pt-16 pb-20">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 1.5 }}
-          className="max-w-2xl mx-auto"
+          transition={{ duration: 0.7, delay: 1.6 }}
+          className="max-w-3xl mx-auto"
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="h-px flex-1 bg-white/[0.08]" />
@@ -251,7 +252,7 @@ export default function NotFound() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.5,
-                  delay: 1.6 + i * 0.07,
+                  delay: 1.7 + i * 0.07,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >
@@ -287,7 +288,7 @@ export default function NotFound() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.7, delay: 2 }}
+        transition={{ duration: 0.7, delay: 2.1 }}
         className="relative z-10 border-t border-white/[0.06] px-6 lg:px-12 py-6"
       >
         <div
