@@ -153,15 +153,13 @@ export default function LibraryPage() {
     <>
       {/* ====== HERO ====== */}
       <div className="relative overflow-hidden min-h-[65vh] flex flex-col bg-black">
-        {/* Background — flipped horizontally, zoomed out */}
+        {/* Background */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.webp')",
-            backgroundSize: "contain",
+            backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            transform: "scaleX(-1)",
           }}
         />
         <div className="absolute inset-0 bg-black/55" />
