@@ -282,18 +282,18 @@ export default function ExpertisePage() {
               text="Integrated services, singular results"
               as="h1"
               mode="line"
-              className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-4xl"
+              className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-3xl"
               delay={0.2}
             />
 
             <RevealLine delay={0.5}>
-              <p className="text-base text-white/50 max-w-2xl mt-4 leading-relaxed">
+              <p className="text-base text-white/50 max-w-xl mt-4 leading-relaxed">
                 Seven advisory disciplines. Seven managed operations services. One integrated
                 practice built for the complexities of Central Asian markets.
               </p>
             </RevealLine>
 
-            <div className="mt-7 pt-7 border-t border-white/[0.08] flex flex-wrap gap-x-12 gap-y-6">
+            <div className="mt-7 pt-7 border-t border-white/[0.08] flex flex-wrap gap-x-8 gap-y-4">
               {heroStats.map((s, i) => (
                 <motion.div
                   key={s.label}
