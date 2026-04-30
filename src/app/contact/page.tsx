@@ -98,46 +98,45 @@ export default function ContactPage() {
         </section>
       </div>
 
-      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-background">
-        <div className="absolute inset-x-0 -top-24 md:-top-28 z-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {infoCards.map((card) => {
-                const inner = (
-                  <div className="group relative bg-[#141414] border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                    <div className="flex justify-center mb-5 md:mb-6 text-white/60 group-hover:text-white transition-colors duration-300">
-                      {card.icon}
-                    </div>
-                    <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/45 group-hover:text-white/75 mb-3 font-semibold transition-colors duration-300">
-                      {card.title}
-                    </p>
-                    <p className="text-sm md:text-[15px] text-white/80 leading-relaxed">
-                      {card.value}
-                    </p>
+      <section className="relative pt-12 pb-24 md:pt-16 md:pb-32 bg-background">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16 md:mb-24">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {infoCards.map((card) => {
+              const inner = (
+                <div className="group relative bg-[#141414] border border-white/[0.08] rounded-2xl p-7 md:p-9 text-center hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-300 h-full shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <div className="flex justify-center mb-5 md:mb-6 text-white/60 group-hover:text-white transition-colors duration-300">
+                    {card.icon}
                   </div>
-                );
+                  <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/45 group-hover:text-white/75 mb-3 font-semibold transition-colors duration-300">
+                    {card.title}
+                  </p>
+                  <p className="text-sm md:text-[15px] text-white/80 leading-relaxed">
+                    {card.value}
+                  </p>
+                </div>
+              );
 
-                return (
-                  <StaggerItem key={card.title}>
-                    {card.href ? (
-                      <a
-                        href={card.href}
-                        target={card.href.startsWith("http") ? "_blank" : undefined}
-                        rel="noopener noreferrer"
-                        className="block h-full cursor-pointer"
-                      >
-                        {inner}
-                      </a>
-                    ) : (
-                      <div className="h-full">{inner}</div>
-                    )}
-                  </StaggerItem>
-                );
-              })}
-            </StaggerContainer>
-          </div>
+              return (
+                <StaggerItem key={card.title}>
+                  {card.href ? (
+                    <a
+                      href={card.href}
+                      target={card.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="block h-full cursor-pointer"
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <div className="h-full">{inner}</div>
+                  )}
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
         </div>
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
