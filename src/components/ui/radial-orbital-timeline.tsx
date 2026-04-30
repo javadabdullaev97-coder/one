@@ -189,9 +189,9 @@ export default function RadialOrbitalTimeline({
         >
           {/* Center — red glowing orb, fades from center to edge */}
           <div className="absolute flex items-center justify-center z-10">
-            <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, rgba(122,26,26,0.15) 0%, transparent 70%)" }}></div>
-            <div className="absolute w-32 h-32 rounded-full" style={{ background: "radial-gradient(circle, rgba(139,32,32,0.25) 0%, transparent 70%)" }}></div>
-            <div className="w-16 h-16 rounded-full shadow-[0_0_30px_rgba(122,26,26,0.5),0_0_60px_rgba(99,13,13,0.3),0_0_100px_rgba(74,8,8,0.15)]" style={{ background: "radial-gradient(circle, rgba(180,40,40,0.9) 0%, rgba(122,26,26,0.6) 50%, rgba(74,8,8,0.2) 100%)" }}>
+            <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, rgba(var(--primary-light-rgb), 0.15) 0%, transparent 70%)" }}></div>
+            <div className="absolute w-32 h-32 rounded-full" style={{ background: "radial-gradient(circle, rgba(var(--primary-rgb), 0.25) 0%, transparent 70%)" }}></div>
+            <div className="w-16 h-16 rounded-full" style={{ background: "radial-gradient(circle, rgba(var(--primary-bright-rgb), 0.9) 0%, rgba(var(--primary-light-rgb), 0.6) 50%, rgba(var(--primary-dark-rgb), 0.2) 100%)", boxShadow: "0 0 30px rgba(var(--primary-light-rgb), 0.5), 0 0 60px rgba(var(--primary-rgb), 0.3), 0 0 100px rgba(var(--primary-dark-rgb), 0.15)" }}>
               <div className="absolute w-20 h-20 rounded-full border border-primary/20 animate-ping opacity-30" style={{ left: "-0.5rem", top: "-0.5rem", willChange: "transform, opacity" }}></div>
             </div>
           </div>
