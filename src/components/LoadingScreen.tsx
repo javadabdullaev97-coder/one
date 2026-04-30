@@ -24,43 +24,57 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <div className="relative" style={{ width: 340, filter: "sepia(1) hue-rotate(320deg) saturate(2) brightness(0.5)" }}>
-            {/* Dim ghost layer — always visible */}
-            <Image
-              src="/Loading.png"
-              alt=""
-              width={340}
-              height={340}
-              style={{ width: "340px", height: "auto", opacity: 0.1 }}
-              priority
+    <>
+      {/* SVG filter: maps white → dark muted burgundy wine (#8b1d3a) */}
+      <svg width="0" height="0" className="absolute overflow-hidden">
+        <defs>
+          <filter id="wine-tint" colorInterpolationFilters="sRGB">
+            <feColorMatrix
+              type="matrix"
+              values="0.182 0.182 0.182 0 0  0.038 0.038 0.038 0 0  0.076 0.076 0.076 0 0  0 0 0 1 0"
             />
-            {/* Fill layer — reveals bottom to top */}
-            <motion.div
-              className="absolute inset-0 overflow-hidden"
-              style={{ opacity: 0.5 }}
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              animate={{ clipPath: "inset(0% 0 0 0)" }}
-              transition={{ duration: fillDuration, ease: "easeInOut" }}
-            >
+          </filter>
+        </defs>
+      </svg>
+
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <div className="relative" style={{ width: 340, filter: "url(#wine-tint)" }}>
+              {/* Dim ghost layer — always visible */}
               <Image
                 src="/Loading.png"
                 alt=""
                 width={340}
                 height={340}
-                style={{ width: "340px", height: "auto" }}
+                style={{ width: "340px", height: "auto", opacity: 0.15 }}
                 priority
               />
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              {/* Fill layer — reveals bottom to top */}
+              <motion.div
+                className="absolute inset-0 overflow-hidden"
+                style={{ opacity: 0.8 }}
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                animate={{ clipPath: "inset(0% 0 0 0)" }}
+                transition={{ duration: fillDuration, ease: "easeInOut" }}
+              >
+                <Image
+                  src="/Loading.png"
+                  alt=""
+                  width={340}
+                  height={340}
+                  style={{ width: "340px", height: "auto" }}
+                  priority
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
