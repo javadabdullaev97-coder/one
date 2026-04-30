@@ -31,7 +31,7 @@ export default function LoadingScreen() {
           <filter id="wine-tint" colorInterpolationFilters="sRGB">
             <feColorMatrix
               type="matrix"
-              values="0.230 0.230 0.230 0 0  0.027 0.027 0.027 0 0  0.033 0.033 0.033 0 0  0 0 0 1 0"
+              values="0.140 0.140 0.140 0 0  0.013 0.013 0.013 0 0  0.015 0.015 0.015 0 0  0 0 0 1 0"
             />
           </filter>
         </defs>
@@ -57,7 +57,7 @@ export default function LoadingScreen() {
               {/* Fill layer — reveals bottom to top */}
               <motion.div
                 className="absolute inset-0 overflow-hidden"
-                style={{ opacity: 0.8 }}
+                style={{ opacity: 0.9 }}
                 initial={{ clipPath: "inset(100% 0 0 0)" }}
                 animate={{ clipPath: "inset(0% 0 0 0)" }}
                 transition={{ duration: fillDuration, ease: "easeInOut" }}
