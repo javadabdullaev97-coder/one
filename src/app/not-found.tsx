@@ -1,346 +1,304 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Home, BookOpen, Briefcase, MessageCircle } from "lucide-react";
-import MagneticButton from "@/components/MagneticButton";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
-/* ── Floating particle field ─────────────────────────── */
-
-function ParticleField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    let particles: {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      opacity: number;
-      pulse: number;
-    }[] = [];
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    const init = () => {
-      resize();
-      const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 80);
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.4 + 0.1,
-        pulse: Math.random() * Math.PI * 2,
-      }));
-    };
-
-    const draw = (time: number) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.pulse += 0.008;
-
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        const breathe = Math.sin(p.pulse) * 0.15 + 0.85;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(122, 26, 26, ${p.opacity * breathe})`;
-        ctx.fill();
-      }
-
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * 0.06;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(122, 26, 26, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    init();
-    animId = requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ opacity: 0.7 }}
-    />
-  );
-}
-
-/* ── Glitch text effect ──────────────────────────────── */
-
-function GlitchText() {
-  const [glitch, setGlitch] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGlitch(true);
-      setTimeout(() => setGlitch(false), 200);
-    }, 4000 + Math.random() * 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative select-none">
-      <h1
-        className="font-serif text-[10rem] md:text-[14rem] lg:text-[18rem] font-light leading-none tracking-tight"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(245,245,245,0.15) 0%, rgba(122,26,26,0.08) 100%)",
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
-        404
-      </h1>
-
-      {/* Glitch layers */}
-      {glitch && (
-        <>
-          <h1
-            className="absolute inset-0 font-serif text-[10rem] md:text-[14rem] lg:text-[18rem] font-light leading-none tracking-tight"
-            style={{
-              color: "rgba(122, 26, 26, 0.4)",
-              clipPath: "inset(20% 0 40% 0)",
-              transform: "translateX(-4px)",
-            }}
-          >
-            404
-          </h1>
-          <h1
-            className="absolute inset-0 font-serif text-[10rem] md:text-[14rem] lg:text-[18rem] font-light leading-none tracking-tight"
-            style={{
-              color: "rgba(245, 245, 245, 0.15)",
-              clipPath: "inset(60% 0 10% 0)",
-              transform: "translateX(3px)",
-            }}
-          >
-            404
-          </h1>
-        </>
-      )}
-    </div>
-  );
-}
-
-/* ── Interactive tilt card ───────────────────────────── */
-
-function TiltCard({
-  href,
-  icon: Icon,
-  label,
-  description,
-  delay,
-}: {
-  href: string;
-  icon: typeof Home;
-  label: string;
-  description: string;
-  delay: number;
-}) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const springX = useSpring(x, { stiffness: 300, damping: 20 });
-  const springY = useSpring(y, { stiffness: 300, damping: 20 });
-
-  const rotateX = useTransform(springY, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-6, 6]);
-
-  const handleMouse = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
-      onMouseMove={handleMouse}
-      onMouseLeave={handleLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative block rounded-lg border border-white/[0.06] bg-white/[0.02] p-6 hover:border-white/[0.12] hover:bg-white/[0.04] transition-colors duration-300 cursor-pointer"
-    >
-      <div className="flex items-start gap-4">
-        <div className="shrink-0 w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-          <Icon className="w-4 h-4 text-primary-light/70 group-hover:text-primary-light transition-colors duration-300" />
-        </div>
-        <div className="min-w-0">
-          <p className="text-foreground/90 text-sm font-medium mb-1 group-hover:text-foreground transition-colors">
-            {label}
-          </p>
-          <p className="text-white/35 text-xs leading-relaxed group-hover:text-white/50 transition-colors">
-            {description}
-          </p>
-        </div>
-        <ArrowRight className="w-4 h-4 text-white/15 shrink-0 mt-0.5 group-hover:text-white/40 group-hover:translate-x-1 transition-all duration-300" />
-      </div>
-    </motion.a>
-  );
-}
-
-/* ── Page ─────────────────────────────────────────────── */
-
-const navSuggestions = [
-  {
-    href: "/",
-    icon: Home,
-    label: "Home",
-    description: "Back to the beginning",
-  },
-  {
-    href: "/expertise",
-    icon: Briefcase,
-    label: "Expertise",
-    description: "Our practice areas and capabilities",
-  },
-  {
-    href: "/insights",
-    icon: BookOpen,
-    label: "Insights",
-    description: "Guides, briefings, and market intelligence",
-  },
-  {
-    href: "/contact",
-    icon: MessageCircle,
-    label: "Contact",
-    description: "Start a conversation with our team",
-  },
+const NAV_INDEX = [
+  { num: "01", href: "/", label: "Home" },
+  { num: "02", href: "/expertise", label: "Expertise" },
+  { num: "03", href: "/insights", label: "Insights" },
+  { num: "04", href: "/store", label: "Store" },
+  { num: "05", href: "/contact", label: "Contact" },
 ];
 
+const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
+
+function formatTimestamp(d: Date) {
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mi = String(d.getMinutes()).padStart(2, "0");
+  return { date: `${dd}.${mm}.${yyyy}`, time: `${hh}:${mi}` };
+}
+
+function toRoman(n: number) {
+  const map: [number, string][] = [
+    [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+    [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let out = "";
+  for (const [v, s] of map) {
+    while (n >= v) { out += s; n -= v; }
+  }
+  return out;
+}
+
 export default function NotFound() {
+  const pathname = usePathname();
+  const [stamp, setStamp] = useState({ date: "—.—.—", time: "—" });
+  const [year, setYear] = useState("MMXXVI");
+
+  useEffect(() => {
+    const now = new Date();
+    setStamp(formatTimestamp(now));
+    setYear(toRoman(now.getFullYear()));
+  }, []);
+
+  // Generate a fake reference signature based on the path
+  const refSignature = pathname
+    ? pathname
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .toUpperCase()
+        .slice(0, 6)
+        .padEnd(6, "0")
+    : "000000";
+
   return (
-    <section className="relative min-h-[calc(100dvh-80px)] flex items-center justify-center overflow-hidden bg-background">
-      {/* Particle background */}
-      <ParticleField />
+    <main className="relative min-h-screen bg-black text-foreground overflow-hidden">
+      {/* Subtle vertical guide lines (archive grid) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,1) 1px, transparent 1px)",
+          backgroundSize: "calc(100% / 12) 100%",
+        }}
+      />
 
-      {/* Ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/[0.04] rounded-full blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none" />
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none opacity-30"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(var(--primary-rgb), 0.08) 0%, transparent 60%)",
+          filter: "blur(120px)",
+        }}
+      />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
-        {/* 404 number */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      {/* Archive header bar */}
+      <div className="relative z-10 px-6 lg:px-12 pt-28 md:pt-32">
+        <div
+          className="flex justify-between items-center text-[10px] tracking-[0.28em] uppercase text-white/35"
+          style={{ fontFamily: MONO }}
         >
-          <GlitchText />
-        </motion.div>
-
-        {/* Decorative line */}
+          <motion.span
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            ADVIZEN · ARCHIVE / TASHKENT
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:inline"
+          >
+            {stamp.date} · {stamp.time}
+          </motion.span>
+        </div>
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px w-24 bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto mb-10 origin-center"
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="h-px w-full bg-white/[0.08] mt-4 origin-left"
         />
+      </div>
 
-        {/* Heading */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="tracking-luxury text-white/40 mb-4"
-        >
-          Page not found
-        </motion.p>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="heading-luxury text-2xl md:text-3xl text-foreground/90 mb-4"
-        >
-          This page doesn&rsquo;t exist
-        </motion.h2>
-
-        <motion.p
+      {/* Main content — centered */}
+      <section className="relative z-10 flex flex-col items-center justify-center px-6 lg:px-12 py-20 md:py-28">
+        {/* Reference */}
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-white/40 text-sm md:text-base max-w-md mx-auto mb-14 leading-relaxed"
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[10px] tracking-[0.32em] uppercase text-white/35 mb-12 text-center"
+          style={{ fontFamily: MONO }}
         >
-          The page you&rsquo;re looking for may have been moved, removed,
-          or never existed. Let us help you find your way.
-        </motion.p>
+          File · Ref.{" "}
+          <span className="text-white/55">{refSignature}</span>{" "}
+          / Class · IV
+        </motion.div>
 
-        {/* Navigation suggestions */}
-        <div className="grid sm:grid-cols-2 gap-3 mb-14 text-left">
-          {navSuggestions.map((item, i) => (
-            <TiltCard key={item.href} {...item} delay={0.7 + i * 0.08} />
-          ))}
+        {/* Massive 404 with VOID stamp */}
+        <div className="relative">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="leading-[0.85] text-center select-none tabular-nums"
+            style={{
+              fontFamily: "var(--font-hero), serif",
+              fontSize: "clamp(8rem, 24vw, 22rem)",
+              fontWeight: 200,
+              letterSpacing: "-0.04em",
+              color: "transparent",
+              WebkitTextStroke: "1px rgba(245, 245, 245, 0.18)",
+            }}
+          >
+            404
+          </motion.h1>
+
+          {/* VOID stamp — overlay */}
+          <motion.div
+            initial={{ opacity: 0, scale: 1.2, rotate: -12 }}
+            animate={{ opacity: 1, scale: 1, rotate: -8 }}
+            transition={{ duration: 0.5, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div
+              className="relative px-6 py-2 border-[3px] uppercase"
+              style={{
+                fontFamily: MONO,
+                fontSize: "clamp(1.2rem, 2.5vw, 2rem)",
+                letterSpacing: "0.3em",
+                fontWeight: 700,
+                color: "rgba(var(--primary-light-rgb), 0.55)",
+                borderColor: "rgba(var(--primary-light-rgb), 0.5)",
+                transform: "rotate(0deg)",
+                textShadow: "0 0 1px rgba(var(--primary-rgb), 0.2)",
+                background: "transparent",
+              }}
+            >
+              <span style={{ filter: "url(#voidGrunge)" }}>V O I D</span>
+            </div>
+          </motion.div>
         </div>
 
-        {/* CTA */}
+        {/* SVG filter for stamp grunge effect */}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <filter id="voidGrunge">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.9"
+                numOctaves="2"
+                result="noise"
+              />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
+            </filter>
+          </defs>
+        </svg>
+
+        {/* Description block */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16 max-w-md text-center"
+        >
+          <p className="text-[11px] tracking-[0.32em] uppercase text-primary-light/70 mb-5"
+            style={{ fontFamily: MONO }}
+          >
+            Status — Not in active index
+          </p>
+          <h2
+            className="text-2xl md:text-3xl text-foreground/90 font-light leading-tight mb-4"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            This record has been
+            <br />
+            <span className="text-foreground">withdrawn from circulation.</span>
+          </h2>
+          <p className="text-sm text-white/40 leading-relaxed font-light italic">
+            The path you requested could not be located in our archive.
+            It may have been moved, retired, or never filed.
+          </p>
+
+          {/* Path display */}
+          {pathname && (
+            <div
+              className="mt-8 inline-flex items-center gap-3 text-[11px] text-white/35 px-3 py-1.5 border border-white/[0.08] rounded-sm bg-white/[0.02]"
+              style={{ fontFamily: MONO }}
+            >
+              <span className="text-white/25">PATH</span>
+              <span className="text-white/60 line-through decoration-primary-light/60 decoration-1">
+                {pathname}
+              </span>
+            </div>
+          )}
+        </motion.div>
+      </section>
+
+      {/* Index of available records (footnotes) */}
+      <section className="relative z-10 px-6 lg:px-12 pb-20">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
+          transition={{ duration: 0.7, delay: 1.5 }}
+          className="max-w-2xl mx-auto"
         >
-          <MagneticButton variant="primary" as="a" href="/">
-            Return home
-            <ArrowRight className="w-4 h-4" />
-          </MagneticButton>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px flex-1 bg-white/[0.08]" />
+            <p
+              className="text-[10px] tracking-[0.32em] uppercase text-white/35"
+              style={{ fontFamily: MONO }}
+            >
+              Active Index
+            </p>
+            <div className="h-px flex-1 bg-white/[0.08]" />
+          </div>
+
+          <ul className="divide-y divide-white/[0.06]">
+            {NAV_INDEX.map((item, i) => (
+              <motion.li
+                key={item.num}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 1.6 + i * 0.07,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                <Link
+                  href={item.href}
+                  className="group flex items-baseline justify-between py-4 transition-colors duration-300"
+                >
+                  <div className="flex items-baseline gap-6">
+                    <span
+                      className="text-[10px] text-white/30 group-hover:text-primary-light tabular-nums tracking-[0.25em] transition-colors duration-300"
+                      style={{ fontFamily: MONO }}
+                    >
+                      {item.num}
+                    </span>
+                    <span className="text-base md:text-lg text-white/65 group-hover:text-foreground transition-colors duration-300">
+                      {item.label}
+                    </span>
+                  </div>
+                  <span
+                    className="text-[10px] text-white/20 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300"
+                    style={{ fontFamily: MONO }}
+                  >
+                    →
+                  </span>
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
-      </div>
-    </section>
+      </section>
+
+      {/* Footer signature */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7, delay: 2 }}
+        className="relative z-10 border-t border-white/[0.06] px-6 lg:px-12 py-6"
+      >
+        <div
+          className="flex justify-between items-center text-[10px] tracking-[0.28em] uppercase text-white/25"
+          style={{ fontFamily: MONO }}
+        >
+          <span>Advizen Consulting</span>
+          <span className="hidden md:inline">{year} · Tashkent</span>
+          <span>End of record</span>
+        </div>
+      </motion.div>
+    </main>
   );
 }
