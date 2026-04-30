@@ -22,6 +22,12 @@
   --map-pulse-ring-soft: rgba(176, 21, 53, 0.3);
   --map-dot: var(--primary-light);
   --map-label: rgba(245, 245, 245, 0.65);
+
+  /* Brand red as RGB triples (for rgba() with custom alpha) */
+  --primary-rgb: 148, 14, 39;
+  --primary-light-rgb: 176, 21, 53;
+  --primary-dark-rgb: 110, 10, 28;
+  --primary-bright-rgb: 205, 30, 70;
 }
 
 @theme inline {
