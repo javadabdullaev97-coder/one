@@ -15,6 +15,15 @@ import { cn } from "@/lib/utils";
 
 // ─── Industries ─────────────────────────────────────────────
 
+const industryToSectors: Record<string, string[]> = {
+  "Financial Services":         ["Banking", "Fintech", "Capital Markets", "Islamic Finance", "Islamic Fintech"],
+  "Energy & Industrials":       ["Energy", "Manufacturing"],
+  "Technology & Digital":       ["Technology"],
+  "Real Estate & Infrastructure": [],
+  "Consumer & Lifestyle":       ["FMCG", "Retail"],
+  "Healthcare & Social":        ["Pharma"],
+};
+
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
@@ -95,10 +104,10 @@ function IndustriesSection() {
                 <div className="space-y-3 flex-1">
                   <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3">Sample Engagements</p>
                   {allEngagements
-                    .filter((e) => e.industry === active.name)
+                    .filter((e) => (industryToSectors[active.name] ?? []).includes(e.sector))
                     .map((eng) => (
                       <motion.div
-                        key={eng.title}
+                        key={eng.headline}
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -106,10 +115,8 @@ function IndustriesSection() {
                       >
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
                         <div>
-                          <p className="text-sm text-white/75 leading-snug">{eng.title}</p>
-                          {eng.detail && (
-                            <p className="text-xs text-white/35 mt-0.5">{eng.detail}</p>
-                          )}
+                          <p className="text-sm text-white/75 leading-snug">{eng.headline}</p>
+                          <p className="text-xs text-white/35 mt-0.5">{eng.disciplines.join(" · ")}</p>
                         </div>
                       </motion.div>
                     ))}
@@ -117,7 +124,7 @@ function IndustriesSection() {
 
                 {/* Tags */}
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {active.tags.map((tag) => (
+                  {active.sectors.map((tag) => (
                     <span
                       key={tag}
                       className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
@@ -150,7 +157,7 @@ function TrackRecord() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {allEngagements.slice(0, 6).map((eng, i) => (
-            <AnimatedSection key={eng.title} delay={i * 0.06}>
+            <AnimatedSection key={eng.headline} delay={i * 0.06}>
               <div className="group relative rounded-xl overflow-hidden">
                 <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
                 <div
@@ -169,13 +176,11 @@ function TrackRecord() {
                         <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
                       </span>
                       <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">
-                        {eng.industry}
+                        {eng.sector}
                       </span>
                     </div>
-                    <p className="text-sm text-white/70 leading-relaxed">{eng.title}</p>
-                    {eng.detail && (
-                      <p className="text-xs text-white/35 mt-2 leading-relaxed">{eng.detail}</p>
-                    )}
+                    <p className="text-sm text-white/70 leading-relaxed">{eng.headline}</p>
+                    <p className="text-xs text-white/35 mt-2 leading-relaxed">{eng.disciplines.join(" · ")}</p>
                   </div>
                 </div>
               </div>
