@@ -44,7 +44,7 @@ export default function DisciplinesIntegration() {
         <div className="relative z-10 flex flex-col items-center gap-5 shrink-0">
           <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl border border-white/10 bg-[#0D0D0D] flex items-center justify-center overflow-hidden">
             <Image
-              src="/logo.png"
+              src="/Logo.webp"
               alt="Advizen"
               width={160}
               height={134}
