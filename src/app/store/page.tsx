@@ -4,11 +4,10 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FileText, Users, Calculator, Scale, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
-import AuroraBackground from "@/components/AuroraBackground";
 import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 
-/* ── Types ───────────────────────────────────────────── */
+/* ── Types ──────────────────────────────────────────── */
 
 type LangPair = "EN/RU" | "EN/UZ" | "RU/UZ";
 type Currency = "USD" | "UZS";
@@ -25,7 +24,7 @@ interface Product {
   includes: string[];
 }
 
-/* ── Constants ─────────────────────────────────────────── */
+/* ── Constants ────────────────────────────────────────────── */
 
 const CATEGORIES = ["All", "Company Formation", "Legal", "HR", "Tax", "Compliance", "Finance"] as const;
 const LANG_PAIRS: ("All" | LangPair)[] = ["All", "EN/RU", "EN/UZ", "RU/UZ"];
@@ -177,7 +176,7 @@ const products: Product[] = [
   },
 ];
 
-/* ── Helpers ─────────────────────────────────────────── */
+/* ── Helpers ──────────────────────────────────────────── */
 
 function formatPrice(price: number, currency: Currency): { main: string; suffix: string } {
   if (currency === "USD") {
@@ -187,7 +186,7 @@ function formatPrice(price: number, currency: Currency): { main: string; suffix:
   return { main: rounded.toLocaleString("en-US"), suffix: "so'm" };
 }
 
-/* ── Product card ────────────────────────────────────── */
+/* ── Product card ────────────────────────────────────────── */
 
 function ProductCard({ product, index, currency }: { product: Product; index: number; currency: Currency }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -279,7 +278,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
   );
 }
 
-/* ── Store filters ─────────────────────────────────────── */
+/* ── Store filters ────────────────────────────────────────────── */
 
 function StoreFilters({
   activeCategory, onCategoryChange,
@@ -369,7 +368,7 @@ function StoreFilters({
   );
 }
 
-/* ── Page ────────────────────────────────────────────── */
+/* ── Page ──────────────────────────────────────────── */
 
 export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -385,8 +384,16 @@ export default function StorePage() {
   return (
     <>
       {/* ── Hero ── */}
-      <AuroraBackground>
-        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
+      <div
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Store%20Hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/55" />
+        <section className="relative z-10 pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.p
               initial={{ opacity: 0 }}
@@ -437,7 +444,7 @@ export default function StorePage() {
             </motion.div>
           </div>
         </section>
-      </AuroraBackground>
+      </div>
 
       {/* ── Filters ── */}
       <StoreFilters
