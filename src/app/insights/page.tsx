@@ -152,7 +152,7 @@ export default function LibraryPage() {
   return (
     <>
       {/* ====== HERO ====== */}
-      <div className="relative overflow-hidden h-[65vh] flex flex-col bg-black">
+      <div className="relative overflow-hidden flex flex-col bg-black" style={{ height: "65vh" }}>
         {/* Background */}
         <div
           className="absolute inset-0"
