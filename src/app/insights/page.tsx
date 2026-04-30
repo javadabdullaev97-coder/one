@@ -158,13 +158,14 @@ export default function LibraryPage() {
           className="absolute inset-0"
           style={{
             backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.webp')",
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         />
         <div className="absolute inset-0 bg-black/55" />
-        <section className="relative z-10 flex-1 flex flex-col justify-end pt-24 pb-14 md:pt-28 md:pb-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
+          <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
