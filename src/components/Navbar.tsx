@@ -45,7 +45,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1.5">
           <Image
-            src="/Logo-v3.png"
+            src="/Logo.webp"
             alt="Advizen"
             width={50}
             height={50}
