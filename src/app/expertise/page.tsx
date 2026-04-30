@@ -302,10 +302,10 @@ export default function ExpertisePage() {
                   transition={{ duration: 0.7, delay: 0.65 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col gap-1.5"
                 >
-                  <span className="font-serif text-3xl md:text-4xl text-foreground font-light tabular-nums leading-none">
+                  <span className="font-serif text-xl text-foreground font-light tabular-nums leading-none">
                     {s.value}
                   </span>
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-white/45">
+                  <span className="text-xs tracking-[0.16em] uppercase text-white/40">
                     {s.label}
                   </span>
                 </motion.div>
