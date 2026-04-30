@@ -4,10 +4,10 @@
   /* Quiet Luxury Palette */
   --background: #0D0D0D;
   --foreground: #D9D4CE;
-  --primary: #630D0D;
-  --primary-light: #7A1A1A;
-  --primary-dark: #4A0808;
-  --accent: #8B2020;
+  --primary: #940e27;
+  --primary-light: #b01535;
+  --primary-dark: #6e0a1c;
+  --accent: #a81232;
   --surface: #1A1A1A;
   --surface-light: #222222;
   --muted: #999999;
@@ -69,7 +69,7 @@ body::after {
 }
 
 .ambient-glow-oxblood {
-  background: rgba(122, 26, 26, 0.15);
+  background: rgba(148, 14, 39, 0.15);
   filter: blur(150px);
 }
 
