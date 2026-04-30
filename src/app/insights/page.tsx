@@ -19,7 +19,7 @@ import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ──────────────────────────────────────────── */
+/* ── Helpers ─────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ────────────────────────────────────────────── */
+/* ── Data ──────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -71,7 +71,7 @@ const categoryGradients: Record<string, string> = {
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 6;
 
-/* ── Article Card ─────────────────────────────────────────── */
+/* ── Article Card ────────────────────────────────────── */
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
@@ -120,7 +120,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ──────────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ──────────────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -155,7 +155,7 @@ export default function LibraryPage() {
       <div
         className="relative overflow-hidden"
         style={{
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.png')",
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
