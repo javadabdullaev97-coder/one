@@ -16,11 +16,10 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
-import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ─────────────────────────────────────────── */
+/* ── Helpers ──────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -72,7 +71,7 @@ const categoryGradients: Record<string, string> = {
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 6;
 
-/* ── Article Card ─────────────────────────────────────── */
+/* ── Article Card ─────────────────────────────────────────── */
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
@@ -121,7 +120,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ──────────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -153,8 +152,16 @@ export default function LibraryPage() {
   return (
     <>
       {/* ====== HERO ====== */}
-      <AuroraBackground>
-        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
+      <div
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/55" />
+        <section className="relative z-10 pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
@@ -195,7 +202,7 @@ export default function LibraryPage() {
             </RevealLine>
           </div>
         </section>
-      </AuroraBackground>
+      </div>
 
       {/* ====== FLAGSHIP PUBLICATION ====== */}
       <section className="py-24 md:py-32 bg-black relative overflow-hidden">
