@@ -192,7 +192,7 @@ function TrackRecord() {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────
+// ─── Page ────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
@@ -200,7 +200,7 @@ export default function ExpertisePage() {
       <div
         className="relative overflow-hidden"
         style={{
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.png')",
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
