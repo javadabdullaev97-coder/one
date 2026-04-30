@@ -13,20 +13,17 @@ import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
 import regionImageLoader from "@/lib/image-loader";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ─────────────────────────────────────────────
-
-const industryToSectors: Record<string, string[]> = {
-  "Financial Services":         ["Banking", "Fintech", "Capital Markets", "Islamic Finance", "Islamic Fintech"],
-  "Energy & Industrials":       ["Energy", "Manufacturing"],
-  "Technology & Digital":       ["Technology"],
-  "Real Estate & Infrastructure": [],
-  "Consumer & Lifestyle":       ["FMCG", "Retail"],
-  "Healthcare & Social":        ["Pharma"],
-};
+// ─── Industries ─────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
+
+  useEffect(() => {
+    industryGroups.forEach(({ image }) => {
+      if (image) new window.Image().src = regionImageLoader({ src: image, width: 800, quality: 75 });
+    });
+  }, []);
 
   return (
     <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
@@ -64,7 +61,7 @@ function IndustriesSection() {
                   <span
                     className={cn(
                       "w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-colors duration-200",
-                      isActive ? "bg-primary/10" : "bg-white/[0.03] group-hover:bg-white/[0.06]"
+                      isActive ? "bg-primary/10" : "bg-white/[0.03]"
                     )}
                   >
                     <IconComp className={cn("w-3.5 h-3.5", isActive ? "text-primary-light" : "text-white/35")} />
@@ -76,115 +73,179 @@ function IndustriesSection() {
           </div>
 
           {/* Right — detail panel */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.name}
-              initial={{ opacity: 0, x: 12 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -12 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative bg-[#080808] h-full overflow-hidden"
-            >
-              {/* Tinted background */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
-                }}
-              />
+          <div className="relative bg-[#080808] h-full overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.name}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 p-6 md:p-8 overflow-y-auto"
+              >
+                {/* Sector image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-full h-44 md:h-52 rounded-xl overflow-hidden mb-6"
+                  style={{
+                    background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
+                  }}
+                >
+                  {active.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={regionImageLoader({ src: active.image, width: 800, quality: 75 })}
+                      alt={active.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      fetchPriority="high"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <active.icon className="w-14 h-14 text-white/[0.06]" strokeWidth={0.6} />
+                  </div>
+                </motion.div>
 
-              <div className="relative p-8 md:p-10 h-full flex flex-col">
-                {/* Header */}
-                <div className="mb-6">
-                  <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-2">{active.name}</h3>
-                  <p className="text-sm text-white/45 leading-relaxed max-w-lg">{active.description}</p>
-                </div>
+                {/* Title */}
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-3 mb-3"
+                >
+                  <active.icon className="w-5 h-5 text-primary shrink-0" strokeWidth={1.25} />
+                  <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide leading-tight">
+                    {active.name}
+                  </h3>
+                </motion.div>
 
-                {/* Engagements */}
-                <div className="space-y-3 flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3">Sample Engagements</p>
-                  {allEngagements
-                    .filter((e) => (industryToSectors[active.name] ?? []).includes(e.sector))
-                    .map((eng) => (
-                      <motion.div
-                        key={eng.headline}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.025] border border-white/[0.05]"
-                      >
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
-                        <div>
-                          <p className="text-sm text-white/75 leading-snug">{eng.headline}</p>
-                          <p className="text-xs text-white/35 mt-0.5">{eng.disciplines.join(" · ")}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                </div>
-
-                {/* Tags */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {active.sectors.map((tag) => (
+                {/* Sector tags */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-wrap gap-1.5 mb-5"
+                >
+                  {active.sectors.map((s) => (
                     <span
-                      key={tag}
-                      className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
+                      key={s}
+                      className="text-[10px] tracking-[0.1em] uppercase text-white/40 border border-white/[0.07] px-2.5 py-1"
                     >
-                      {tag}
+                      {s}
                     </span>
                   ))}
+                </motion.div>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[14px] text-white/52 leading-relaxed mb-6"
+                >
+                  {active.description}
+                </motion.p>
+
+                {/* Offerings */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.25 }}
+                  className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5"
+                >
+                  What we offer
+                </motion.p>
+                <div className="flex flex-wrap gap-2">
+                  {active.offerings.map((item, oi) => (
+                    <motion.span
+                      key={item}
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.28, delay: 0.28 + oi * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-center gap-2 px-3 py-2 border border-white/[0.07] bg-white/[0.02] text-[12px] text-white/52 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-white/80 transition-all duration-200 cursor-default"
+                    >
+                      <span className="w-[5px] h-[5px] rounded-full bg-primary/50 shrink-0" />
+                      {item}
+                    </motion.span>
+                  ))}
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Track record ────────────────────────────────────────────
+// ─── Track record ────────────────────────────────
 
 function TrackRecord() {
   return (
     <section className="py-24 md:py-32 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <AnimatedSection className="mb-12">
-          <p className="tracking-luxury text-white/50 mb-3">Track Record</p>
+      <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-[0.18]" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <AnimatedSection className="mb-14 md:mb-16">
+          <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
           <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-            Engagements across Central Asia
+            Selected engagements of our team members
           </h2>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {allEngagements.slice(0, 6).map((eng, i) => (
-            <AnimatedSection key={eng.headline} delay={i * 0.06}>
-              <div className="group relative rounded-xl overflow-hidden">
-                <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
-                <div
-                  className="absolute inset-[1px] rounded-[11px]"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)",
-                  }}
-                />
-                <div className="relative h-full bg-gradient-to-br from-[#101010] to-[#070707] rounded-[11px] overflow-hidden">
-                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px]" />
-                        <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {allEngagements.map((eng, i) => (
+            <motion.div
+              key={eng.headline}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4 }}
+              className="group relative rounded-xl overflow-hidden"
+            >
+              <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
+              <div
+                className="absolute inset-[1px] rounded-[11px]"
+                style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)" }}
+              />
+              <div className="relative h-full bg-gradient-to-br from-[#101010] to-[#070707] rounded-[11px] overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
+                <div className="p-6 md:p-7 flex flex-col h-full">
+                  {/* Metric */}
+                  <div className="mb-5">
+                    <span className="font-serif text-3xl md:text-4xl text-foreground/85 tracking-tight leading-none">
+                      {eng.metric}
+                    </span>
+                    <p className="text-[10px] tracking-[0.16em] uppercase text-white/25 mt-2">
+                      {eng.metricLabel}
+                    </p>
+                  </div>
+                  {/* Sector */}
+                  <span className="inline-block text-xs tracking-[0.16em] uppercase text-red-400/70 mb-3">
+                    {eng.sector}
+                  </span>
+                  {/* Headline */}
+                  <p className="text-[14px] text-foreground/60 leading-snug font-light flex-1 mb-5">
+                    {eng.headline}
+                  </p>
+                  {/* Disciplines */}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.05]">
+                    {eng.disciplines.map((d) => (
+                      <span
+                        key={d}
+                        className="text-[10px] tracking-[0.12em] uppercase text-white/30 border border-white/[0.06] rounded-full px-2.5 py-0.5"
+                      >
+                        {d}
                       </span>
-                      <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">
-                        {eng.sector}
-                      </span>
-                    </div>
-                    <p className="text-sm text-white/70 leading-relaxed">{eng.headline}</p>
-                    <p className="text-xs text-white/35 mt-2 leading-relaxed">{eng.disciplines.join(" · ")}</p>
+                    ))}
                   </div>
                 </div>
               </div>
-            </AnimatedSection>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -192,7 +253,7 @@ function TrackRecord() {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
