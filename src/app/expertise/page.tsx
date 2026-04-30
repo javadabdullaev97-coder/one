@@ -259,7 +259,7 @@ export default function ExpertisePage() {
   return (
     <>
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden min-h-[65vh] flex flex-col"
         style={{
           backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.webp')",
           backgroundSize: "cover",
@@ -267,8 +267,8 @@ export default function ExpertisePage() {
         }}
       >
         <div className="absolute inset-0 bg-black/55" />
-        <section className="relative z-10 pt-24 pb-10 md:pt-28 md:pb-14">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
+          <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
