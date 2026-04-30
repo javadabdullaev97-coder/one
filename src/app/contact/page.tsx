@@ -64,7 +64,7 @@ export default function ContactPage() {
       <div
         className="relative overflow-hidden"
         style={{
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Contact%20Her.png')",
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Contact%20Her.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -281,7 +281,7 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">Telegram</p>
-                      <p className="text-xs text-white/40">@advizen  ·  Fastest response</p>
+                      <p className="text-xs text-white/40">@advizen  ·  Fastest response</p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                   </a>
