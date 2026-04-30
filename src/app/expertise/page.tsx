@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -11,7 +12,6 @@ import AdvisorySection from "@/components/expertise/AdvisorySection";
 import OperationsSection from "@/components/expertise/OperationsSection";
 import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
 import regionImageLoader from "@/lib/image-loader";
-import AuroraBackground from "@/components/AuroraBackground";
 import { cn } from "@/lib/utils";
 
 // ─── Industries ─────────────────────────────────────────────
@@ -19,12 +19,6 @@ import { cn } from "@/lib/utils";
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
-
-  useEffect(() => {
-    industryGroups.forEach(({ image }) => {
-      if (image) new window.Image().src = regionImageLoader({ src: image, width: 800, quality: 75 });
-    });
-  }, []);
 
   return (
     <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
@@ -37,6 +31,7 @@ function IndustriesSection() {
         </AnimatedSection>
 
         <div className="grid md:grid-cols-[5fr_7fr] border border-white/[0.07] overflow-hidden md:h-[760px]">
+          {/* Left — sector list */}
           <div className="border-r border-white/[0.07] divide-y divide-white/[0.04] flex flex-col h-full">
             {industryGroups.map((ind, i) => {
               const IconComp = ind.icon;
@@ -44,169 +39,170 @@ function IndustriesSection() {
               return (
                 <button
                   key={ind.name}
-                  type="button"
                   onClick={() => setActiveIndex(i)}
                   className={cn(
-                    "relative w-full flex flex-1 items-center gap-4 px-6 text-left transition-all duration-250 group outline-none",
+                    "relative flex items-center gap-3 px-5 py-4 text-left transition-colors duration-200 cursor-pointer flex-1",
                     isActive
                       ? "bg-white/[0.04] text-foreground"
                       : "text-white/45 hover:text-white/75 hover:bg-white/[0.02]"
                   )}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="sector-indicator"
+                      className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary"
+                    />
+                  )}
                   <span
                     className={cn(
-                      "absolute left-0 top-0 bottom-0 w-[2px] transition-all duration-300",
-                      isActive ? "bg-primary opacity-100" : "opacity-0"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "w-9 h-9 rounded flex items-center justify-center shrink-0 transition-all duration-250",
+                      "w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-colors duration-200",
                       isActive ? "bg-primary/10" : "bg-white/[0.03] group-hover:bg-white/[0.06]"
                     )}
                   >
-                    <IconComp
-                      className={cn(
-                        "w-[18px] h-[18px] shrink-0 transition-colors duration-250",
-                        isActive ? "text-primary" : "text-white/40 group-hover:text-white/65"
-                      )}
-                      strokeWidth={1.5}
-                    />
+                    <IconComp className={cn("w-3.5 h-3.5", isActive ? "text-primary-light" : "text-white/35")} />
                   </span>
-                  <span
-                    className={cn(
-                      "text-[13px] tracking-[0.07em] uppercase transition-all duration-250",
-                      isActive ? "font-semibold" : "font-medium"
-                    )}
-                  >
-                    {ind.name}
-                  </span>
-                  <ArrowRight
-                    className={cn(
-                      "ml-auto w-4 h-4 shrink-0 transition-all duration-250",
-                      isActive ? "text-primary opacity-100 translate-x-0" : "opacity-0 -translate-x-1"
-                    )}
-                  />
+                  <span className="text-sm font-medium leading-snug">{ind.name}</span>
                 </button>
               );
             })}
           </div>
 
-          <div className="relative bg-[#080808] h-full overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.name}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="absolute inset-0 p-6 md:p-8 overflow-y-auto"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full h-44 md:h-52 rounded-xl overflow-hidden mb-6"
-                  style={{
-                    background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
-                  }}
-                >
-                  {active.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={regionImageLoader({ src: active.image, width: 800, quality: 75 })}
-                      alt={active.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      fetchPriority="high"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
-                  )}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <active.icon className="w-14 h-14 text-white/[0.06]" strokeWidth={0.6} />
-                  </div>
-                </motion.div>
+          {/* Right — detail panel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.name}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative bg-[#080808] h-full overflow-hidden"
+            >
+              {/* Tinted background */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
+                }}
+              />
 
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 mb-3"
-                >
-                  <active.icon className="w-5 h-5 text-primary shrink-0" strokeWidth={1.25} />
-                  <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide leading-tight">
-                    {active.name}
-                  </h3>
-                </motion.div>
+              <div className="relative p-8 md:p-10 h-full flex flex-col">
+                {/* Header */}
+                <div className="mb-6">
+                  <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-2">{active.name}</h3>
+                  <p className="text-sm text-white/45 leading-relaxed max-w-lg">{active.description}</p>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-wrap gap-1.5 mb-5"
-                >
-                  {active.sectors.map((s) => (
+                {/* Engagements */}
+                <div className="space-y-3 flex-1">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3">Sample Engagements</p>
+                  {allEngagements
+                    .filter((e) => e.industry === active.name)
+                    .map((eng) => (
+                      <motion.div
+                        key={eng.title}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.025] border border-white/[0.05]"
+                      >
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
+                        <div>
+                          <p className="text-sm text-white/75 leading-snug">{eng.title}</p>
+                          {eng.detail && (
+                            <p className="text-xs text-white/35 mt-0.5">{eng.detail}</p>
+                          )}
+                        </div>
+                      </motion.div>
+                    ))}
+                </div>
+
+                {/* Tags */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {active.tags.map((tag) => (
                     <span
-                      key={s}
-                      className="text-[10px] tracking-[0.1em] uppercase text-white/40 border border-white/[0.07] px-2.5 py-1"
+                      key={tag}
+                      className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
                     >
-                      {s}
+                      {tag}
                     </span>
                   ))}
-                </motion.div>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[14px] text-white/52 leading-relaxed mb-6"
-                >
-                  {active.description}
-                </motion.p>
-
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.25 }}
-                  className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5"
-                >
-                  What we offer
-                </motion.p>
-                <div className="flex flex-wrap gap-2">
-                  {active.offerings.map((item, oi) => (
-                    <motion.span
-                      key={item}
-                      initial={{ opacity: 0, scale: 0.94 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.28,
-                        delay: 0.28 + oi * 0.04,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      className="flex items-center gap-2 px-3 py-2 border border-white/[0.07] bg-white/[0.02] text-[12px] text-white/52 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-white/80 transition-all duration-250 cursor-default"
-                    >
-                      <span className="w-[5px] h-[5px] rounded-full bg-primary/50 shrink-0" />
-                      {item}
-                    </motion.span>
-                  ))}
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Page ───────────────────────────────────────────────────
+// ─── Track record ────────────────────────────────────────────
+
+function TrackRecord() {
+  return (
+    <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <AnimatedSection className="mb-12">
+          <p className="tracking-luxury text-white/50 mb-3">Track Record</p>
+          <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
+            Engagements across Central Asia
+          </h2>
+        </AnimatedSection>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {allEngagements.slice(0, 6).map((eng, i) => (
+            <AnimatedSection key={eng.title} delay={i * 0.06}>
+              <div className="group relative rounded-xl overflow-hidden">
+                <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
+                <div
+                  className="absolute inset-[1px] rounded-[11px]"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)",
+                  }}
+                />
+                <div className="relative h-full bg-gradient-to-br from-[#101010] to-[#070707] rounded-[11px] overflow-hidden">
+                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px]" />
+                        <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
+                      </span>
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">
+                        {eng.industry}
+                      </span>
+                    </div>
+                    <p className="text-sm text-white/70 leading-relaxed">{eng.title}</p>
+                    {eng.detail && (
+                      <p className="text-xs text-white/35 mt-2 leading-relaxed">{eng.detail}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
     <>
-      <AuroraBackground>
-        <section className="relative pt-24 pb-10 md:pt-28 md:pb-14">
+      <div className="relative overflow-hidden">
+        <Image
+          src="/Hero and CTA images/Expertise Hero.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <section className="relative z-10 pt-24 pb-10 md:pt-28 md:pb-14">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
@@ -252,146 +248,12 @@ export default function ExpertisePage() {
             </div>
           </div>
         </section>
-      </AuroraBackground>
+      </div>
 
       <AdvisorySection />
       <OperationsSection />
       <IndustriesSection />
-
-      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
-        <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-[0.18]" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <AnimatedSection className="mb-14 md:mb-16">
-            <div>
-              <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
-              <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-                Selected engagements of our team members
-              </h2>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {allEngagements.map((deal, i) => (
-              <motion.div
-                key={deal.headline}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{
-                  scale: 1.025,
-                  transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] },
-                }}
-                className="group relative rounded-xl p-px overflow-hidden"
-              >
-                {/* Static border colour */}
-                <div className="absolute inset-0 rounded-xl bg-white/[0.07]" />
-
-                {/* Light that travels around the border on hover */}
-                <div className="absolute inset-[-150%] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                  <div
-                    className="absolute inset-0 animate-spin"
-                    style={{
-                      animationDuration: "3.5s",
-                      background:
-                        "conic-gradient(from 0deg, transparent 0deg, transparent 280deg, rgba(192,133,133,0.95) 325deg, rgba(192,133,133,0) 360deg)",
-                    }}
-                  />
-                </div>
-
-                {/* Inner card */}
-                <div className="relative h-full bg-gradient-to-br from-[#101010] to-[#070707] rounded-[11px] overflow-hidden">
-                  {/* Top hairline */}
-                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent" />
-
-                  {/* Card index, top right */}
-                  <span className="absolute top-5 right-5 font-serif text-[11px] text-white/20 tabular-nums tracking-widest">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className="relative p-5 md:p-6 flex flex-col h-full">
-                    {/* Sector with luminous accent dot */}
-                    <div className="flex items-center gap-2.5 mb-5">
-                      <span className="relative flex w-1.5 h-1.5">
-                        <span className="absolute inset-0 rounded-full bg-primary/70 blur-[3px]" />
-                        <span className="relative w-1.5 h-1.5 rounded-full bg-[#C08585]" />
-                      </span>
-                      <span className="text-[10px] tracking-[0.24em] uppercase text-foreground/80">
-                        {deal.sector}
-                      </span>
-                    </div>
-
-                    {/* Metric */}
-                    <div className="mb-5">
-                      <span className="block font-serif text-[1.75rem] md:text-[2rem] text-foreground tracking-[-0.02em] leading-[0.95]">
-                        {deal.metric}
-                      </span>
-                      <p className="text-[10px] tracking-[0.18em] uppercase text-white/35 mt-3">
-                        {deal.metricLabel}
-                      </p>
-                    </div>
-
-                    {/* Headline */}
-                    <p className="text-[13px] text-white/55 leading-relaxed mb-5 flex-1">
-                      {deal.headline}
-                    </p>
-
-                    {/* Disciplines */}
-                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.06]">
-                      {deal.disciplines.map((d) => (
-                        <span
-                          key={d}
-                          className="text-[10px] tracking-[0.16em] uppercase text-white/45 bg-white/[0.025] border border-white/[0.06] rounded-full px-3 py-1"
-                        >
-                          {d}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-28 md:py-36 bg-black relative overflow-hidden">
-        <div className="ambient-glow ambient-glow-warm w-[900px] h-[900px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        <div className="ambient-glow ambient-glow-oxblood w-[350px] h-[350px] bottom-0 right-0 translate-x-1/2 translate-y-1/2 opacity-[0.14]" />
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.03 }}
-              viewport={{ once: true }}
-              transition={{ duration: 2 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[14rem] md:text-[20rem] text-foreground leading-none select-none pointer-events-none"
-            >
-              A
-            </motion.span>
-            <p className="tracking-luxury text-white/50 mb-6">Next Step</p>
-            <TextReveal
-              text="Ready to begin?"
-              as="h2"
-              className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6"
-            />
-            <RevealLine delay={0.2}>
-              <p className="text-base md:text-lg text-white/50 max-w-xl mx-auto mb-12 leading-relaxed">
-                Every engagement begins with a conversation. Let us understand your business
-                before we propose solutions.
-              </p>
-            </RevealLine>
-            <RevealLine delay={0.35}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <MagneticButton variant="primary" as="a" href="/contact">
-                  Schedule a consultation
-                  <ArrowRight className="w-4 h-4" />
-                </MagneticButton>
-              </div>
-            </RevealLine>
-          </AnimatedSection>
-        </div>
-      </section>
+      <TrackRecord />
     </>
   );
 }
