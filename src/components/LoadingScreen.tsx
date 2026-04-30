@@ -5,14 +5,13 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [fillDuration, setFillDuration] = useState(1.6);
 
   useEffect(() => {
     const alreadyLoaded = document.readyState === "complete";
     const dur = alreadyLoaded ? 0.65 : 1.6;
     setFillDuration(dur);
-    setVisible(true);
 
     const hide = () => setVisible(false);
 
