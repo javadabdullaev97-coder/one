@@ -10,7 +10,6 @@ import AnimatedSection, {
 } from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
-import MeshBackground from "@/components/MeshBackground";
 
 const TelegramIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -62,8 +61,16 @@ export default function ContactPage() {
   return (
     <div className="font-onest">
       {/* Hero */}
-      <MeshBackground>
-        <section className="relative pt-24 pb-44 md:pt-28 md:pb-48">
+      <div
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/Hero%20and%20CTA%20images/Contact%20Her.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/55" />
+        <section className="relative z-10 pt-24 pb-44 md:pt-28 md:pb-48">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
@@ -88,7 +95,7 @@ export default function ContactPage() {
             </RevealLine>
           </div>
         </section>
-      </MeshBackground>
+      </div>
 
       <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-background">
         <div className="absolute inset-x-0 -top-24 md:-top-28 z-20">
@@ -142,7 +149,7 @@ export default function ContactPage() {
               />
               <p className="text-white/45 leading-relaxed mb-10 max-w-xl">
                 For detailed inquiries — share project context, timeline, and
-                area of interest. We&rsquo;ll get back to you with a tailored response.
+                area of interest. We’ll get back to you with a tailored response.
               </p>
 
               <form className="space-y-6">
@@ -274,7 +281,7 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">Telegram</p>
-                      <p className="text-xs text-white/40">@advizen &nbsp;·&nbsp; Fastest response</p>
+                      <p className="text-xs text-white/40">@advizen  ·  Fastest response</p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                   </a>
