@@ -118,10 +118,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Expertise%20Hero.png" />
-        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Insights%20Hero.png" />
-        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Store%20Hero.png" />
-        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Contact%20Her.png" />
+        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Expertise%20Hero.webp" />
+        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Insights%20Hero.webp" />
+        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Store%20Hero.webp" />
+        <link rel="preload" as="image" href="/Hero%20and%20CTA%20images/Contact%20Her.webp" />
       </head>
       <body className="min-h-full flex flex-col relative">
           <LoadingScreen />
