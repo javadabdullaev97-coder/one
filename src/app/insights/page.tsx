@@ -152,17 +152,21 @@ export default function LibraryPage() {
   return (
     <>
       {/* ====== HERO ====== */}
-      <div
-        className="relative overflow-hidden min-h-[65vh] flex flex-col"
-        style={{
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <div className="relative overflow-hidden min-h-[65vh] flex flex-col bg-black">
+        {/* Background — flipped horizontally, zoomed out */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/Hero%20and%20CTA%20images/Insights%20Hero.webp')",
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            transform: "scaleX(-1)",
+          }}
+        />
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex flex-col justify-end pt-24 pb-14 md:pt-28 md:pb-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <div className="px-6 lg:px-8 relative">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
