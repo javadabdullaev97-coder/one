@@ -24,7 +24,7 @@ export default function OperationsSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/[0.06]">
+    <section id="operations" className="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/[0.06]">
       <div className="ambient-glow ambient-glow-warm w-[700px] h-[700px] top-1/4 right-0 translate-x-1/2 opacity-[0.06]" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
 
@@ -77,7 +77,7 @@ export default function OperationsSection() {
                   className="w-full flex items-center gap-5 md:gap-8 py-6 md:py-7 pl-6 pr-4 text-left"
                 >
                   <span className="font-serif text-xs tabular-nums text-white/18 w-5 shrink-0">
-                    {String(i + 1).padStart(2, "00")}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
 
                   <span className={cn(

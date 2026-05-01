@@ -10,15 +10,19 @@ const inter = "var(--font-inter), sans-serif";
 
 const footerLinks = {
   Expertise: [
-    { label: "Tax Consulting", href: "/expertise/tax" },
-    { label: "Legal Advisory", href: "/expertise/legal" },
-    { label: "Accounting", href: "/expertise/finance" },
-    { label: "HR Services", href: "/expertise/hr" },
-    { label: "Funding", href: "/expertise/funding" },
+    { label: "Tax Consulting",  href: "/expertise#advisory" },
+    { label: "Legal Advisory",  href: "/expertise#advisory" },
+    { label: "Accounting",      href: "/expertise#advisory" },
+    { label: "HR Services",     href: "/expertise#advisory" },
+    { label: "Funding",         href: "/expertise#advisory" },
+    { label: "M&A Advisory",    href: "/expertise#advisory" },
+    { label: "Due Diligence",   href: "/expertise#advisory" },
   ],
   Operations: [
-    { label: "Corporate Services", href: "/expertise/corporate" },
-    { label: "Entity Management", href: "/expertise/entity-management" },
+    { label: "Entity Management",    href: "/expertise#operations" },
+    { label: "Employer of Record",   href: "/expertise#operations" },
+    { label: "Corporate Services",   href: "/expertise#operations" },
+    { label: "Virtual Office",       href: "/expertise#operations" },
   ],
   Firm: [
     { label: "Store", href: "/store" },

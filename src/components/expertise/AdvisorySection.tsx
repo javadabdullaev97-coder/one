@@ -92,7 +92,7 @@ export default function AdvisorySection() {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+    <section id="advisory" className="py-24 md:py-32 bg-black relative overflow-hidden">
       <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -top-32 -left-32 opacity-[0.15]" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
 
