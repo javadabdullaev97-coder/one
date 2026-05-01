@@ -11,7 +11,6 @@ import MagneticButton from "@/components/MagneticButton";
 import AdvisorySection from "@/components/expertise/AdvisorySection";
 import OperationsSection from "@/components/expertise/OperationsSection";
 import { industryGroups, allEngagements } from "@/lib/industries";
-import regionImageLoader from "@/lib/image-loader";
 import { cn } from "@/lib/utils";
 
 // ─── Stats ─────────────────────────────────
@@ -79,13 +78,23 @@ function StatsSection() {
 
 // ─── Industries ────────────────────────────────
 
+const sectorEngagements: Record<string, { metric: string; label: string; text: string }> = {
+  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Restructuring of an international digital bank's Uzbek subsidiaries" },
+  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax, accounting and customs structuring for a nuclear power plant construction" },
+  "Technology & Digital":         { metric: "$5M",   label: "Investment",     text: "Tax structuring for a major Russian IT company during its Uzbek market launch" },
+  "Real Estate & Infrastructure": { metric: "$20M",  label: "Transaction",    text: "M&A and restructuring of a large Uzbek cement producer" },
+  "Consumer & Lifestyle":         { metric: "$250M", label: "Transaction",    text: "M&A of a large Uzbek bottler company" },
+  "Healthcare & Social":          { metric: "5+",    label: "Companies",      text: "Entity formation, payroll and compliance advisory for international pharma companies" },
+};
+
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
+  const engagement = sectorEngagements[active.name];
 
   useEffect(() => {
     industryGroups.forEach(({ image }) => {
-      if (image) new window.Image().src = regionImageLoader({ src: image, width: 800, quality: 75 });
+      if (image) { const img = new window.Image(); img.src = image; }
     });
   }, []);
 
@@ -95,7 +104,7 @@ function IndustriesSection() {
         <AnimatedSection className="mb-10 md:mb-12">
           <p className="tracking-luxury text-white/50 mb-3">Sector Experience</p>
           <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-            Sectors we serve
+            Deep expertise across six sectors
           </h2>
         </AnimatedSection>
 
@@ -158,15 +167,13 @@ function IndustriesSection() {
                   }}
                 >
                   {active.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={regionImageLoader({ src: active.image, width: 800, quality: 75 })}
+                    <Image
+                      src={active.image}
+                      fill
+                      unoptimized
                       alt={active.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      fetchPriority="high"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
+                      className="object-cover"
+                      priority
                     />
                   )}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -223,7 +230,7 @@ function IndustriesSection() {
                 >
                   What we offer
                 </motion.p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-7">
                   {active.offerings.map((item, oi) => (
                     <motion.span
                       key={item}
@@ -237,6 +244,29 @@ function IndustriesSection() {
                     </motion.span>
                   ))}
                 </div>
+
+                {/* Featured engagement */}
+                {engagement && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.38 }}
+                  >
+                    <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-3">
+                      Featured engagement
+                    </p>
+                    <div
+                      className="border border-white/[0.07] bg-white/[0.02] p-4 rounded-lg"
+                      style={{ borderLeftColor: `rgba(${active.accent},0.4)`, borderLeftWidth: "2px" }}
+                    >
+                      <div className="flex items-baseline gap-3 mb-1.5">
+                        <span className="font-serif text-2xl text-foreground/75 leading-none">{engagement.metric}</span>
+                        <span className="text-[10px] tracking-[0.14em] uppercase text-white/28">{engagement.label}</span>
+                      </div>
+                      <p className="text-[13px] text-white/42 leading-snug">{engagement.text}</p>
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
