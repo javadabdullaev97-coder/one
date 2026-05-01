@@ -110,14 +110,42 @@
   "InsightsPage": {
     "hero": {
       "eyebrow": "Insights",
-      "heading": "Research & analysis on doing business in Uzbekistan",
-      "description": "Practical guides, regulatory briefings, and analytical commentary from our advisory team."
+      "heading": "Knowledge that empowers decisions",
+      "description": "Guides, briefings, and market intelligence from our practice — rigorous, practical, and freely available.",
+      "statPublications": "Publications",
+      "statAccess": "Access",
+      "statAccessValue": "Free",
+      "statLanguages": "Languages",
+      "statLatestEdition": "Latest edition"
     },
-    "labels": {
-      "all": "All",
-      "search": "Search articles",
-      "noResults": "No articles match this search.",
-      "clear": "Clear search"
+    "flagship": {
+      "eyebrow": "Featured Publication",
+      "tag": "Flagship Publication",
+      "subtitle": "The Definitive Guide — 2026 Edition",
+      "description": "A comprehensive resource for international investors and companies entering the Uzbekistan market. Covers regulatory frameworks, tax structures, labour law, market entry strategies, and operational best practices.",
+      "year": "Year",
+      "pages": "Pages",
+      "languages": "Languages",
+      "downloadPdf": "Download PDF",
+      "readOnline": "Read online",
+      "contents": "Contents"
+    },
+    "publications": {
+      "eyebrow": "Publications",
+      "heading": "Briefings & guides",
+      "filterAll": "All",
+      "searchPlaceholder": "Search by keyword…",
+      "noResults": "No results for \"{query}\"",
+      "noResultsCategory": "No publications in this category yet.",
+      "clearFilters": "Clear filters",
+      "readMore": "Read more"
+    },
+    "cta": {
+      "eyebrow": "Bespoke Intelligence",
+      "heading": "Need tailored analysis?",
+      "description": "Our advisory team produces bespoke reports, market studies, and regulatory briefings. Contact us to discuss your requirements.",
+      "primary": "Commission a report",
+      "secondary": "Our practice areas"
     }
   },
   "ContactPage": {

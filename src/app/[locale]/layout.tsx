@@ -9,7 +9,35 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 import LoadingScreen from "@/components/LoadingScreen";
-import { routing } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
+
+const SITE_URL = "https://www.advizenco.com";
+
+const localeMetadata: Record<Locale, { title: string; description: string; ogLocale: string }> = {
+  en: {
+    title: "Advizen Consulting | Premier Business Advisory in Uzbekistan",
+    description:
+      "Advizen Consulting — your trusted partner for expert tax, legal, finance, accounting, HR, and business consulting in Uzbekistan. 8+ years of integrated advisory across 15+ industries in Central Asia.",
+    ogLocale: "en_US",
+  },
+  ru: {
+    title: "Advizen Consulting | Ведущий бизнес-консультант в Узбекистане",
+    description:
+      "Advizen Consulting — надёжный партнёр в области налогового, юридического, финансового консалтинга, бухгалтерии и HR в Узбекистане. 8+ лет интегрированной экспертизы в 15+ отраслях Центральной Азии.",
+    ogLocale: "ru_RU",
+  },
+  uz: {
+    title: "Advizen Consulting | O'zbekistondagi yetakchi biznes maslahatchi",
+    description:
+      "Advizen Consulting — O'zbekistonda soliq, huquqiy, moliyaviy konsalting, buxgalteriya va HR sohasidagi ishonchli hamkoringiz. Markaziy Osiyodagi 15+ sohada 8+ yillik integratsiyalashgan tajriba.",
+    ogLocale: "uz_UZ",
+  },
+};
+
+function localePath(path: string, locale: string) {
+  const prefix = locale === routing.defaultLocale ? "" : `/${locale}`;
+  return `${SITE_URL}${prefix}${path}`;
+}
 
 const syne = Josefin_Sans({
   subsets: ["latin"],
@@ -50,31 +78,51 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "Advizen Consulting | Premier Business Advisory in Uzbekistan",
-  description:
-    "Advizen Consulting — your trusted partner for expert tax, legal, finance, accounting, HR, and business consulting in Uzbekistan. 8+ years of integrated advisory across 15+ industries in Central Asia.",
-  icons: {
-    icon: "/Logo-v3.png",
-    apple: "/Logo-v3.png",
-  },
-  keywords: [
-    "business consulting Uzbekistan",
-    "tax consulting Tashkent",
-    "legal advisory Central Asia",
-    "HR services Uzbekistan",
-    "Employer of Record Uzbekistan",
-    "accounting services Tashkent",
-  ],
-  openGraph: {
-    title: "Advizen Consulting | Premier Business Advisory",
-    description:
-      "One-stop business consulting partner in Uzbekistan. Tax, legal, finance, and HR under one roof.",
-    type: "website",
-    locale: "en_US",
-    siteName: "Advizen Consulting",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const safe: Locale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
+  const m = localeMetadata[safe];
+  const canonical = localePath("", safe);
+  const languages = Object.fromEntries(
+    routing.locales.map((l) => [l, localePath("", l)]),
+  );
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: m.title,
+    description: m.description,
+    icons: { icon: "/Logo-v3.png", apple: "/Logo-v3.png" },
+    keywords: [
+      "business consulting Uzbekistan",
+      "tax consulting Tashkent",
+      "legal advisory Central Asia",
+      "HR services Uzbekistan",
+      "Employer of Record Uzbekistan",
+      "accounting services Tashkent",
+    ],
+    alternates: {
+      canonical,
+      languages: { ...languages, "x-default": localePath("", routing.defaultLocale) },
+    },
+    openGraph: {
+      title: m.title,
+      description: m.description,
+      type: "website",
+      locale: m.ogLocale,
+      siteName: "Advizen Consulting",
+      url: canonical,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: m.title,
+      description: m.description,
+    },
+  };
+}
 
 const jsonLd = {
   "@context": "https://schema.org",

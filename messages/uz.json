@@ -110,14 +110,42 @@
   "InsightsPage": {
     "hero": {
       "eyebrow": "Tahlillar",
-      "heading": "O'zbekistonda biznes yuritish bo'yicha tadqiqotlar va tahlil",
-      "description": "Bizning konsalting jamoamizdan amaliy qo'llanmalar, me'yoriy brifinglar va tahliliy sharhlar."
+      "heading": "Qarorlar qabul qilishga yordam beradigan bilimlar",
+      "description": "Bizning amaliyotimizdan qo'llanmalar, brifinglar va bozor tahlili — qattiq, amaliy va bepul.",
+      "statPublications": "Nashrlar",
+      "statAccess": "Kirish",
+      "statAccessValue": "Bepul",
+      "statLanguages": "Tillar",
+      "statLatestEdition": "Eng yangi nashri"
     },
-    "labels": {
-      "all": "Barchasi",
-      "search": "Maqolalarni qidirish",
-      "noResults": "So'rovga mos maqolalar yo'q.",
-      "clear": "Qidiruvni tozalash"
+    "flagship": {
+      "eyebrow": "Tanlangan nashr",
+      "tag": "Bayroqdor nashr",
+      "subtitle": "To'liq qo'llanma — 2026 nashri",
+      "description": "O'zbekiston bozoriga kirayotgan xalqaro investorlar va kompaniyalar uchun keng qamrovli manba. Me'yoriy asoslar, soliq tuzilmalari, mehnat huquqi, bozorga kirish strategiyalari va operatsion eng yaxshi amaliyotlarni qamrab oladi.",
+      "year": "Yil",
+      "pages": "Sahifa",
+      "languages": "Tillar",
+      "downloadPdf": "PDF yuklab olish",
+      "readOnline": "Onlayn o'qish",
+      "contents": "Mundarija"
+    },
+    "publications": {
+      "eyebrow": "Nashrlar",
+      "heading": "Brifinglar va qo'llanmalar",
+      "filterAll": "Barchasi",
+      "searchPlaceholder": "Kalit so'z bo'yicha qidirish…",
+      "noResults": "\"{query}\" uchun natija yo'q",
+      "noResultsCategory": "Bu toifada hali nashr yo'q.",
+      "clearFilters": "Filtrlarni tozalash",
+      "readMore": "O'qish"
+    },
+    "cta": {
+      "eyebrow": "Maxsus tahlil",
+      "heading": "Maxsus tahlil kerakmi?",
+      "description": "Bizning konsalting jamoamiz maxsus hisobotlar, bozor tadqiqotlari va me'yoriy brifinglar tayyorlaydi. Talablaringizni muhokama qilish uchun biz bilan bog'laning.",
+      "primary": "Hisobot buyurtma berish",
+      "secondary": "Bizning amaliyotlar"
     }
   },
   "ContactPage": {

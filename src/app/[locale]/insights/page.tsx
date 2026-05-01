@@ -13,6 +13,7 @@ import {
   Search,
   X,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -54,13 +55,6 @@ type FilterTag = "All" | "Advisory" | "Tax" | "HR" | "Legal";
 
 const filters: FilterTag[] = ["All", "Advisory", "Tax", "HR", "Legal"];
 
-const stats = [
-  { value: "16", label: "Publications" },
-  { value: "Free", label: "Access" },
-  { value: "EN / RU", label: "Languages" },
-  { value: "2026", label: "Latest edition" },
-];
-
 const categoryGradients: Record<string, string> = {
   Tax: "from-amber-950/60 via-stone-900/80 to-black",
   Legal: "from-slate-900/80 via-zinc-900/60 to-black",
@@ -75,6 +69,7 @@ const ITEMS_PER_PAGE = 6;
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
+  const t = useTranslations("InsightsPage.publications");
 
   return (
     <div className="group flex flex-col rounded-xl border border-white/[0.07] overflow-hidden hover:border-white/[0.14] transition-colors duration-300 bg-white/[0.02] cursor-pointer h-full">
@@ -114,7 +109,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
           {pub.description}
         </p>
         <div className="mt-4 flex items-center gap-1.5 text-[11px] text-primary-light/70 group-hover:text-primary-light transition-colors duration-200">
-          Read more
+          {t("readMore")}
           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
         </div>
       </div>
@@ -128,6 +123,17 @@ export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const tHero = useTranslations("InsightsPage.hero");
+  const tFlagship = useTranslations("InsightsPage.flagship");
+  const tPubs = useTranslations("InsightsPage.publications");
+  const tCta = useTranslations("InsightsPage.cta");
+
+  const stats = [
+    { value: "16", label: tHero("statPublications") },
+    { value: tHero("statAccessValue"), label: tHero("statAccess") },
+    { value: "EN / RU", label: tHero("statLanguages") },
+    { value: "2026", label: tHero("statLatestEdition") },
+  ];
 
   const filtered = useMemo(() => {
     let result = sortedPublications(publications);
@@ -175,10 +181,10 @@ export default function LibraryPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="tracking-luxury text-white/50 mb-3"
             >
-              Insights
+              {tHero("eyebrow")}
             </motion.p>
             <TextReveal
-              text="Knowledge that empowers decisions"
+              text={tHero("heading")}
               as="h1"
               mode="line"
               className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-3xl"
@@ -186,8 +192,7 @@ export default function LibraryPage() {
             />
             <RevealLine delay={0.5}>
               <p className="text-base text-white/55 max-w-xl mt-4 leading-relaxed">
-                Guides, briefings, and market intelligence from our practice —
-                rigorous, practical, and freely available.
+                {tHero("description")}
               </p>
             </RevealLine>
 
@@ -215,7 +220,7 @@ export default function LibraryPage() {
         <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-30" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection>
-            <p className="tracking-luxury text-white/50 mb-12">Featured Publication</p>
+            <p className="tracking-luxury text-white/50 mb-12">{tFlagship("eyebrow")}</p>
 
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
               <div className="grid lg:grid-cols-2">
@@ -226,24 +231,24 @@ export default function LibraryPage() {
                   </span>
 
                   <span className="inline-block text-xs tracking-[0.2em] uppercase text-primary-light/80 border border-primary-light/20 rounded-full px-3 py-1 mb-8">
-                    {flagship.tag}
+                    {tFlagship("tag")}
                   </span>
 
                   <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-foreground mb-4 leading-tight tracking-tight">
                     {flagship.title}
                   </h2>
                   <p className="text-sm text-white/40 mb-8 tracking-wide">
-                    {flagship.subtitle}
+                    {tFlagship("subtitle")}
                   </p>
                   <p className="text-white/55 leading-relaxed mb-10 max-w-md">
-                    {flagship.description}
+                    {tFlagship("description")}
                   </p>
 
                   <div className="flex flex-wrap gap-6 mb-10 pb-10 border-b border-white/[0.06]">
                     {[
-                      { label: "Year", value: flagship.year },
-                      { label: "Pages", value: String(flagship.pages) },
-                      { label: "Languages", value: flagship.languages },
+                      { label: tFlagship("year"), value: flagship.year },
+                      { label: tFlagship("pages"), value: String(flagship.pages) },
+                      { label: tFlagship("languages"), value: flagship.languages },
                     ].map((m) => (
                       <div key={m.label}>
                         <p className="text-xs tracking-[0.16em] uppercase text-white/30 mb-1">
@@ -259,11 +264,11 @@ export default function LibraryPage() {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <MagneticButton variant="primary">
                       <Download className="w-4 h-4" />
-                      Download PDF
+                      {tFlagship("downloadPdf")}
                     </MagneticButton>
                     <MagneticButton variant="outline">
                       <BookOpen className="w-4 h-4" />
-                      Read online
+                      {tFlagship("readOnline")}
                     </MagneticButton>
                   </div>
                 </div>
@@ -284,7 +289,7 @@ export default function LibraryPage() {
                   {/* Chapter list overlaid at bottom */}
                   <div className="absolute bottom-0 inset-x-0 px-8 md:px-12 lg:px-14 pt-6 pb-8">
                     <p className="tracking-luxury text-white/30 mb-3 text-[10px] uppercase">
-                      Contents
+                      {tFlagship("contents")}
                     </p>
                     <div>
                       {flagship.chapters.map((chapter, i) => (
@@ -320,9 +325,9 @@ export default function LibraryPage() {
           {/* Heading + filter + search */}
           <AnimatedSection className="mb-14 md:mb-16">
             <div className="mb-8">
-              <p className="tracking-luxury text-white/50 mb-4">Publications</p>
+              <p className="tracking-luxury text-white/50 mb-4">{tPubs("eyebrow")}</p>
               <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-                Briefings &amp; guides
+                {tPubs("heading")}
               </h2>
             </div>
 
@@ -364,7 +369,7 @@ export default function LibraryPage() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search by keyword…"
+                  placeholder={tPubs("searchPlaceholder")}
                   className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full pl-11 pr-10 py-2.5 text-sm text-white/80 placeholder-white/25 outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-200"
                 />
                 {searchQuery && (
@@ -393,14 +398,14 @@ export default function LibraryPage() {
                 <FileText className="w-10 h-10 text-white/20 mx-auto mb-4" />
                 <p className="text-white/40 text-sm">
                   {searchQuery.trim()
-                    ? `No results for "${searchQuery}"`
-                    : "No publications in this category yet."}
+                    ? tPubs("noResults", { query: searchQuery })
+                    : tPubs("noResultsCategory")}
                 </p>
                 <button
                   onClick={() => { setActiveFilter("All"); setSearchQuery(""); }}
                   className="mt-4 text-xs text-primary-light/70 hover:text-primary-light underline underline-offset-4 transition-colors cursor-pointer"
                 >
-                  Clear filters
+                  {tPubs("clearFilters")}
                 </button>
               </motion.div>
             ) : (
@@ -482,22 +487,21 @@ export default function LibraryPage() {
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
             <p className="tracking-luxury text-white/50 mb-6">
-              Bespoke Intelligence
+              {tCta("eyebrow")}
             </p>
             <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
-              Need tailored analysis?
+              {tCta("heading")}
             </h2>
             <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
-              Our advisory team produces bespoke reports, market studies, and
-              regulatory briefings. Contact us to discuss your requirements.
+              {tCta("description")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <MagneticButton variant="primary" as="a" href="/contact">
-                Commission a report
+                {tCta("primary")}
                 <ArrowRight className="w-4 h-4" />
               </MagneticButton>
               <MagneticButton variant="outline" as="a" href="/expertise">
-                Our practice areas
+                {tCta("secondary")}
                 <ArrowUpRight className="w-4 h-4" />
               </MagneticButton>
             </div>
