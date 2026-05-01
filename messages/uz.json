@@ -268,6 +268,55 @@
       "button": "Jamoa bilan bog'lanish"
     }
   },
+  "Legal": {
+    "common": {
+      "eyebrow": "Advizen Consulting · Yuridik ma'lumot",
+      "lastUpdated": "Oxirgi yangilanish: 2026 yil aprel"
+    },
+    "disclaimer": {
+      "title": "Mas'uliyatdan voz kechish",
+      "subtitle": "Saytdan foydalanish bo'yicha muhim cheklovlar va ogohlantirishlar",
+      "footer": "Ushbu Mas'uliyatdan voz kechish Advizen Consulting tomonidan boshqariladigan advizenco.com saytiga taalluqlidir. Oxirgi yangilanish: 2026 yil aprel.",
+      "sections": [
+        {
+          "title": "Yuridik maslahat emas",
+          "body": "Ushbu saytda (advizenco.com, bundan keyin — «Sayt») nashr etilgan materiallar va ma'lumotlar faqat umumiy axborot maqsadlariga mo'ljallangan. Ular Advizen Consulting tomonidan yuridik, soliq, moliyaviy yoki biznes maslahat sifatida talqin qilinmaydi va talqin qilinmasligi kerak.\n\nUshbu Saytning mazmuni qonunchilik yoki me'yoriy hujjatlardagi eng so'nggi o'zgarishlarni aks ettirmasligi mumkin. Biz sizning aniq vaziyatingizga moslashtirilgan professional maslahatni avval olmasdan turib, faqat ushbu Saytda nashr etilgan ma'lumotlarga asoslanib biron-bir harakat qilishni tavsiya etmaymiz."
+        },
+        {
+          "title": "Mijozlik munosabatlari yo'q",
+          "body": "Ushbu Saytda ma'lumotlarni nashr etish Advizen Consulting va bu ma'lumotni o'qigan har qanday shaxs o'rtasida mijozlik munosabatlarini yaratishni maqsad qilmaydi va yaratmaydi.\n\nUshbu Saytdagi maqolalar, sharhlar yoki nashrlarda bildirilgan fikrlar muallifning shaxsiy fikrini ifodalaydi va Advizen Consulting firmasining pozitsiyasini aks ettirishi shart emas."
+        },
+        {
+          "title": "So'ralmagan maxfiy ma'lumot",
+          "body": "Advizen Consulting bilan oldindan kelishuv bo'lmagan holda Sayt orqali bizga taqdim etgan har qanday maxfiy yoki mulkiy ma'lumot sizning xohishingiz va xavfingiz ostida taqdim etiladi.\n\nUshbu Sayt orqali bizga ma'lumot taqdim etish, agar siz va Advizen Consulting o'rtasida alohida yozma maxfiylik shartnomasi tuzilmagan bo'lsa, bunday ma'lumotni maxfiy sifatida ko'rib chiqish bo'yicha bizning zimmamizga hech qanday majburiyat yuklamaydi."
+        },
+        {
+          "title": "Kafolatlardan voz kechish",
+          "body": "Ushbu Saytdagi barcha kontent — matn, tasvirlar, grafikalar, havolalar va boshqa materiallarni o'z ichiga oladi, lekin ular bilan cheklanmaydi — «xuddi shu holatda» va «mavjudligiga qarab» asosida taqdim etiladi. Advizen Consulting va uning xodimlari aniq yoki nazarda tutilgan barcha bayonotlar va kafolatlardan voz kechadilar, jumladan ma'lumotning aniqligi yoki to'liqligi va uchinchi tomonlarning intellektual mulk huquqlarini buzmaslik kafolatlari."
+        },
+        {
+          "title": "Sayt ishini kafolatlamaslik",
+          "body": "Advizen Consulting va uning xodimlari quyidagilarni kafolatlamaydi va kafolat bermaydi:\n\n— Sayt sizning talablaringizga javob beradi;\n— Sayt to'xtovsiz, tez, xavfsiz yoki xatosiz ishlaydi;\n— Saytdan foydalanish orqali olingan har qanday natijalar (uning har qanday ma'lumotlari yoki materiallarini o'z ichiga oladi) aniq, to'liq, ishonchli yoki sizning ehtiyojlaringizga mos keladi.\n\nUshbu Sayt uchinchi tomon saytlariga giperhavolalarni o'z ichiga olishi mumkin. Bunday havolalar Advizen Consulting tomonidan nazorat qilinmaydi va biz bog'langan saytning mazmuni yoki ma'lumotlarni himoya qilish amaliyotlari uchun javobgar emasmiz. Ushbu Saytda giperhavolaning mavjudligi Advizen Consulting tomonidan o'sha saytni qo'llab-quvvatlash, tasdiqlash yoki tavsiya qilish degani emas."
+        },
+        {
+          "title": "Texnik mas'uliyatdan voz kechish",
+          "body": "Ushbu Sayt jamoatchilik uchun ochiq. Advizen Consulting va uning xodimlari internet, tarmoq yoki veb-xosting xizmatlaridagi uzilishlar yoki to'xtashlar uchun javobgar emas.\n\nBiz ushbu Sayt, uning kontenti yoki Advizen Consulting tomonidan yuborilgan har qanday elektron aloqalar viruslar yoki boshqa zararli komponentlardan xoli ekanligini kafolatlamaymiz. Ushbu Saytdagi har qanday kontentga kirish yoki yuklab olishdan oldin tegishli himoya choralarini ko'rish sizning mas'uliyatingizdir."
+        },
+        {
+          "title": "Yuklab olishlar va ma'lumot yo'qolishi",
+          "body": "Ushbu Saytdan har qanday materiallarni yuklab olish yoki Saytdan boshqa har qanday foydalanish orqali ularni olish sizning xohishingiz va xavfingiz ostida amalga oshiriladi.\n\nBunday materiallarni yuklab olish natijasida kompyuter tizimingizga yetkazilishi mumkin bo'lgan har qanday zarar yoki ma'lumotlarning yo'qolishi uchun siz yagona javobgarsiz. Advizen Consulting bunday zarar yoki yo'qotish uchun javobgar emas."
+        },
+        {
+          "title": "Mas'uliyatni cheklash",
+          "body": "Amaldagi qonun bilan ruxsat etilgan eng yuqori darajaga qadar Advizen Consulting va uning xodimlari hech qanday holatda ushbu Sayt yoki uning kontentiga kirish, undan foydalanish yoki kira olmaslik bilan bog'liq holda yuzaga keladigan har qanday to'g'ridan-to'g'ri, bilvosita, tasodifiy, oqibatli, jazoli, maxsus yoki boshqa zararlar uchun javobgar bo'lmaydi — hatto Advizen Consulting bunday zarar ehtimoli haqida xabardor qilingan bo'lsa ham."
+        },
+        {
+          "title": "Sarlavhalar",
+          "body": "Ushbu Mas'uliyatdan voz kechishdagi bo'lim sarlavhalari faqat havolaning qulayligi uchun kiritilgan, asosiy shartlarning qismini tashkil qilmaydi va shu yerdagi har qanday qoidalarning ma'nosi yoki talqiniga ta'sir qilmaydi."
+        }
+      ]
+    }
+  },
   "ArticlePage": {
     "back": "Tahlillar",
     "contents": "Mundarija",

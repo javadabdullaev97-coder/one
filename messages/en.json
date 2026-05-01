@@ -268,6 +268,55 @@
       "button": "Talk to our team"
     }
   },
+  "Legal": {
+    "common": {
+      "eyebrow": "Advizen Consulting · Legal",
+      "lastUpdated": "Last updated: April 2026"
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "subtitle": "Important limitations and disclaimers regarding use of this website",
+      "footer": "This Disclaimer applies to the website advizenco.com operated by Advizen Consulting. Last updated: April 2026.",
+      "sections": [
+        {
+          "title": "No Legal Advice",
+          "body": "The materials and information published on this website (advizenco.com, hereinafter the \"Website\") are intended for general informational purposes only. They do not constitute and must not be construed as legal, tax, financial, or business advice from Advizen Consulting.\n\nThe content of this Website may not reflect the most recent changes in legislation or regulations. We do not recommend taking any action based solely on information published on this Website without first obtaining professional advice tailored to your specific circumstances."
+        },
+        {
+          "title": "No Client Relationship",
+          "body": "The publication of information on this Website is not intended to create, and does not create, a client relationship between Advizen Consulting and any reader of that information.\n\nThe views expressed in any articles, insights, or publications on this Website represent the personal opinion of the author and do not necessarily reflect the position of Advizen Consulting as a firm."
+        },
+        {
+          "title": "Unsolicited Confidential Information",
+          "body": "Any confidential or proprietary information you submit to us through this Website without prior arrangement with Advizen Consulting is submitted at your own discretion and at your own risk.\n\nSubmitting information to us through this Website does not create any obligation on our part to treat such information as confidential, unless a separate written confidentiality agreement has been concluded between you and Advizen Consulting."
+        },
+        {
+          "title": "Disclaimer of Warranties",
+          "body": "All content on this Website — including but not limited to text, images, graphics, links, and other materials — is provided on an \"as is\" and \"as available\" basis. Advizen Consulting and its employees disclaim all representations and warranties, whether express or implied, including warranties as to the accuracy or completeness of the information and the absence of infringement of third-party intellectual property rights."
+        },
+        {
+          "title": "No Guarantee of Website Performance",
+          "body": "Advizen Consulting and its employees make no guarantee and give no warranty that:\n\n— The Website will meet your requirements;\n— The Website will operate without interruption, quickly, securely, or free of errors;\n— Any results obtained through the use of the Website (including any information or materials on it) will be accurate, complete, reliable, or otherwise meet your needs.\n\nThis Website may contain hyperlinks to third-party websites. Such links are not controlled by Advizen Consulting, and we accept no responsibility for the content of any linked website or its data protection practices. The presence of a hyperlink on this Website does not imply endorsement, approval, or recommendation of that website by Advizen Consulting."
+        },
+        {
+          "title": "Technical Disclaimer",
+          "body": "This Website is publicly accessible. Advizen Consulting and its employees accept no liability for interruptions or outages in the internet, network, or web hosting services.\n\nWe do not warrant that this Website, its content, or any electronic communications sent by Advizen Consulting are free from viruses or other harmful components. You are responsible for implementing appropriate safeguards before accessing or downloading any content from this Website."
+        },
+        {
+          "title": "Downloads and Data Loss",
+          "body": "Downloading any materials from this Website, or obtaining them through any other use of the Website, is done at your own discretion and at your own risk.\n\nYou are solely responsible for any damage to your computer system or loss of data that may result from downloading any such materials. Advizen Consulting accepts no liability for any such damage or loss."
+        },
+        {
+          "title": "Limitation of Liability",
+          "body": "To the fullest extent permitted by applicable law, Advizen Consulting and its employees shall not under any circumstances be liable for any direct, indirect, incidental, consequential, punitive, special, or other damages arising out of or in connection with access to, or use of, or inability to access or use, this Website or its content — even if Advizen Consulting has been advised of the possibility of such damage."
+        },
+        {
+          "title": "Headings",
+          "body": "The section headings in this Disclaimer are included for convenience of reference only, do not form part of the substantive terms, and shall not affect the meaning or interpretation of any provision herein."
+        }
+      ]
+    }
+  },
   "ArticlePage": {
     "back": "Insights",
     "contents": "Contents",
