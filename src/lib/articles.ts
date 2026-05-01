@@ -19,8 +19,9 @@ import employerOfRecord from "./articles/employer-of-record-central-asia";
 import islamicFinance from "./articles/islamic-finance-uzbekistan";
 
 type LocalizedArticleMap = Record<string, LocalizedArticle>;
+type ArticleSource = LocalizedArticleMap | LocalizedArticle;
 
-const articleSources: Record<string, LocalizedArticleMap> = {
+const articleSources: Record<string, ArticleSource> = {
   "outsourcing-operational-activities": outsourcing,
   "accounting-policy-tax-purposes": accountingPolicy,
   "franchising-uzbekistan": franchising,
@@ -41,10 +42,16 @@ const articleSources: Record<string, LocalizedArticleMap> = {
   "islamic-finance-uzbekistan": islamicFinance,
 };
 
+function isLocalizedMap(source: ArticleSource): source is LocalizedArticleMap {
+  return "en" in (source as Record<string, unknown>) && !("content" in (source as Record<string, unknown>));
+}
+
 export function getArticleBySlug(slug: string, locale: string = "en"): PublicationArticle | undefined {
   const pub = publications.find((p) => p.slug === slug);
   const source = articleSources[slug];
   if (!pub || !source) return undefined;
-  const localized = source[locale] ?? source.en;
+  const localized: LocalizedArticle = isLocalizedMap(source)
+    ? source[locale] ?? source.en
+    : source;
   return { ...pub, ...localized };
 }
