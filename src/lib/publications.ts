@@ -174,8 +174,8 @@ export const publications: Publication[] = [
     title: "Special Economic Zones in Uzbekistan: A Comparative Guide",
     description:
       "A comparative analysis of Uzbekistan's SEZ landscape — free economic zones, small industrial zones, and IT parks — covering incentive packages, entry criteria, and operational constraints.",
-    year: "2024",
-    date: "2024-11-25",
+    year: "2026",
+    date: "2026-04-15",
     pages: 20,
     image: "/Articles Image/Special Economic Zones.webp",
     hasRead: true,
