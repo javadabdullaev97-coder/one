@@ -67,7 +67,7 @@ export default function Footer() {
             </div>
             <p className="mt-6 text-sm text-white/50 leading-relaxed">
               Premier business advisory in Uzbekistan. Integrated consulting
-              across tax, legal, finance, and HR — a single point of
+              across tax, legal, finance, and HR &mdash; a single point of
               contact for your entire operation.
             </p>
             <div className="mt-8 space-y-4">
