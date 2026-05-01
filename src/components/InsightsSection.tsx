@@ -133,16 +133,15 @@ export default function InsightsSection() {
 
                     {/* Image */}
                     {pub.image && (
-                      <div className="relative h-36 overflow-hidden flex-shrink-0">
+                      <div className="relative h-40 overflow-hidden flex-shrink-0">
                         <Image
                           src={pub.image}
                           fill
                           unoptimized
                           alt={pub.title}
-                          className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.03] transition-all duration-500"
+                          className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
                           sizes="(max-width: 1024px) 100vw, 560px"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                       </div>
                     )}
 
