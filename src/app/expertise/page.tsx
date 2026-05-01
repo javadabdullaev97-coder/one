@@ -79,8 +79,8 @@ function StatsSection() {
 // ─── Industries ────────────────────────────────
 
 const sectorEngagements: Record<string, { metric: string; label: string; text: string }> = {
-  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Restructuring of an international digital bank's Uzbek subsidiaries" },
-  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax, accounting and customs structuring for a nuclear power plant construction" },
+  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Two restructuring projects for an international digital bank" },
+  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax and customs structuring for a nuclear power plant" },
   "Technology & Digital":         { metric: "$5M",   label: "Investment",     text: "Tax structuring for a major Russian IT company during its Uzbek market launch" },
   "Real Estate & Infrastructure": { metric: "$20M",  label: "Transaction",    text: "M&A and restructuring of a large Uzbek cement producer" },
   "Consumer & Lifestyle":         { metric: "$250M", label: "Transaction",    text: "M&A of a large Uzbek bottler company" },
