@@ -47,8 +47,9 @@ function StatCounter({ to, prefix = "", suffix = "" }: { to: number; prefix?: st
 
 function StatsSection() {
   return (
-    <section className="py-16 md:py-20 bg-[#050505] border-b border-white/[0.05]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-16 md:py-20 bg-black relative overflow-hidden border-y border-white/[0.04]">
+      <div className="ambient-glow ambient-glow-oxblood w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.12]" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <p className="text-[10px] tracking-[0.28em] uppercase text-white/25 mb-10 md:mb-12">
           Our track record
         </p>
