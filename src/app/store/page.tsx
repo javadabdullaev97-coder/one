@@ -2,12 +2,13 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FileText, Users, Calculator, Scale, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 
-/* ── Types ────────────────────────────────────────── */
+/* ── Types ────────────────────────────────────────────── */
 
 type LangPair = "EN/RU" | "EN/UZ" | "RU/UZ";
 type Currency = "USD" | "UZS";
@@ -24,7 +25,7 @@ interface Product {
   includes: string[];
 }
 
-/* ── Constants ────────────────────────────────────────── */
+/* ── Constants ────────────────────────────────────────────── */
 
 const CATEGORIES = ["All", "Company Formation", "Legal", "HR", "Tax", "Compliance", "Finance"] as const;
 const LANG_PAIRS: ("All" | LangPair)[] = ["All", "EN/RU", "EN/UZ", "RU/UZ"];
@@ -39,7 +40,7 @@ const CATEGORY_META: Record<string, { icon: React.ReactNode }> = {
   "Finance":           { icon: <BarChart2 className="w-3 h-3" /> },
 };
 
-/* ── Data ────────────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────────────────── */
 
 const products: Product[] = [
   {
@@ -176,7 +177,7 @@ const products: Product[] = [
   },
 ];
 
-/* ── Helpers ────────────────────────────────────────── */
+/* ── Helpers ────────────────────────────────────────────── */
 
 function formatPrice(price: number, currency: Currency): { main: string; suffix: string } {
   if (currency === "USD") {
@@ -186,7 +187,7 @@ function formatPrice(price: number, currency: Currency): { main: string; suffix:
   return { main: rounded.toLocaleString("en-US"), suffix: "so'm" };
 }
 
-/* ── Product card ────────────────────────────────────────── */
+/* ── Product card ────────────────────────────────────────────── */
 
 function ProductCard({ product, index, currency }: { product: Product; index: number; currency: Currency }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -278,7 +279,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
   );
 }
 
-/* ── Store filters ────────────────────────────────────────── */
+/* ── Store filters ────────────────────────────────────────────── */
 
 function StoreFilters({
   activeCategory, onCategoryChange,
@@ -368,7 +369,7 @@ function StoreFilters({
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────── */
+/* ── Page ────────────────────────────────────────────────────────────────────────── */
 
 export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -386,13 +387,23 @@ export default function StorePage() {
       {/* ── Hero ── */}
       <div
         className="relative overflow-hidden flex flex-col"
-        style={{
-          height: "65vh",
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Store%20Hero.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        style={{ height: "65vh" }}
       >
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.06, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src="/Hero and CTA images/Store Hero.webp"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
           <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
