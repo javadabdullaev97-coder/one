@@ -11,8 +11,7 @@ import { publications, sortedPublications } from "@/lib/publications";
 
 const recentArticles = sortedPublications(publications).slice(0, 2);
 
-// Set to the cover image path when the 2026 guide cover is ready
-const DOING_BUSINESS_COVER: string | null = null;
+const DOING_BUSINESS_COVER: string | null = "/Articles Image/DBU_cover.webp";
 
 export default function InsightsSection() {
   return (
