@@ -66,12 +66,7 @@ export default function ContactPage() {
         className="relative overflow-hidden flex flex-col"
         style={{ height: "65vh" }}
       >
-        <motion.div
-          className="absolute inset-0"
-          initial={{ scale: 1.06, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="absolute inset-0 hero-image-enter">
           <Image
             src="/Hero and CTA images/Contact Hero.webp"
             alt=""
@@ -80,7 +75,7 @@ export default function ContactPage() {
             className="object-cover"
             sizes="100vw"
           />
-        </motion.div>
+        </div>
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
           <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
@@ -160,7 +155,7 @@ export default function ContactPage() {
               />
               <p className="text-white/45 leading-relaxed mb-10 max-w-xl">
                 For detailed inquiries — share project context, timeline, and
-                area of interest. We’ll get back to you with a tailored response.
+                area of interest. We'll get back to you with a tailored response.
               </p>
 
               <form className="space-y-6">
