@@ -196,6 +196,11 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
   const meta = CATEGORY_META[product.category];
   const { main, suffix } = formatPrice(product.price, currency);
   const t = useTranslations("StorePage.card");
+  const tProducts = useTranslations("StoreProducts");
+  const title = tProducts(`items.${product.id}.title`);
+  const description = tProducts(`items.${product.id}.description`);
+  const includes = tProducts.raw(`items.${product.id}.includes`) as string[];
+  const categoryLabel = tProducts(`categories.${product.category}`);
 
   return (
     <motion.div
@@ -219,7 +224,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
         <div className="relative mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-medium text-white/50">
             {meta?.icon}
-            <span>{product.category}</span>
+            <span>{categoryLabel}</span>
           </div>
           <span className="rounded-full border border-white/[0.12] text-white/40 px-2 py-0.5 text-xs font-mono">
             {product.updated}
@@ -227,7 +232,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
         </div>
 
         {/* Product title */}
-        <p className="relative text-white/55 text-sm mb-3 leading-snug">{product.title}</p>
+        <p className="relative text-white/55 text-sm mb-3 leading-snug">{title}</p>
 
         {/* Price */}
         <div className="relative mb-1 flex items-end gap-1.5">
@@ -250,7 +255,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
       {/* Body */}
       <div className="flex flex-col gap-4 p-3">
         {/* Description */}
-        <p className="text-white/40 text-sm leading-relaxed">{product.description}</p>
+        <p className="text-white/40 text-sm leading-relaxed">{description}</p>
 
         {/* Separator */}
         <div className="flex items-center gap-3">
@@ -261,7 +266,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
 
         {/* Includes list — min-h locks button position regardless of item count */}
         <ul className="space-y-2.5 min-h-[140px]">
-          {product.includes.map((item) => (
+          {includes.map((item) => (
             <li key={item} className="flex items-start gap-3 text-sm text-white/45">
               <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-white/25" />
               {item}
@@ -292,6 +297,7 @@ function StoreFilters({
   activeLanguage: string; onLanguageChange: (l: string) => void;
   currency: Currency; onCurrencyChange: (c: Currency) => void;
 }) {
+  const tCat = useTranslations("StoreProducts.categories");
   return (
     <div className="sticky top-20 z-30 bg-black/80 backdrop-blur-xl border-b border-white/[0.06] py-4">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-3">
@@ -312,7 +318,7 @@ function StoreFilters({
                 />
               )}
               <span className={cn("relative z-10 transition-colors duration-200", activeCategory === cat ? "text-white" : "text-white/40 hover:text-white/65")}>
-                {cat}
+                {tCat(cat)}
               </span>
             </button>
           ))}
@@ -380,6 +386,7 @@ export default function StorePage() {
   const tHero = useTranslations("StorePage.hero");
   const tFilters = useTranslations("StorePage.filters");
   const tCta = useTranslations("StorePage.cta");
+  const tCat = useTranslations("StoreProducts.categories");
 
   const filtered = products.filter((p) => {
     const catMatch = activeCategory === "All" || p.category === activeCategory;
@@ -479,7 +486,7 @@ export default function StorePage() {
               <div className="mb-8">
                 <p className="tracking-luxury text-white/40">
                   {tFilters("documentsCount", { count: filtered.length })}
-                  {activeCategory !== "All" && tFilters("documentsInCategory", { category: activeCategory })}
+                  {activeCategory !== "All" && tFilters("documentsInCategory", { category: tCat(activeCategory) })}
                   {activeLanguage !== "All" && tFilters("documentsLang", { language: activeLanguage })}
                 </p>
               </div>

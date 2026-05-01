@@ -78,6 +78,79 @@
       "secondary": "Browse our insights"
     }
   },
+  "StoreProducts": {
+    "categories": {
+      "All": "All",
+      "Company Formation": "Company Formation",
+      "Legal": "Legal",
+      "HR": "HR",
+      "Tax": "Tax",
+      "Compliance": "Compliance",
+      "Finance": "Finance"
+    },
+    "items": {
+      "llc-formation": {
+        "title": "LLC Formation Pack",
+        "description": "Complete document set for registering an LLC in Uzbekistan — charter, founder decisions, and all registration forms.",
+        "includes": ["Company charter (bilingual)", "Founder's decision", "Application forms", "Regulatory checklist"]
+      },
+      "jsc-formation": {
+        "title": "JSC Registration Pack",
+        "description": "Full package for joint-stock company formation, including prospectus templates and shareholder documentation.",
+        "includes": ["JSC charter", "Prospectus template", "Shareholder registry", "Board resolutions"]
+      },
+      "shareholder-agreement": {
+        "title": "Shareholder Agreement",
+        "description": "Comprehensive SHA covering governance, drag-along/tag-along rights, dividends, and exit provisions under Uzbek law.",
+        "includes": ["Full SHA template", "Schedules", "Board charter", "Annotation guide"]
+      },
+      "nda-bilateral": {
+        "title": "NDA — Bilateral",
+        "description": "Mutual non-disclosure agreement adapted for Uzbek law. Covers trade secrets, IP, and sensitive business information.",
+        "includes": ["Bilateral NDA", "Unilateral variant", "Usage guide"]
+      },
+      "commercial-lease": {
+        "title": "Commercial Lease Agreement",
+        "description": "Bilingual commercial lease under Uzbek civil law — office, retail, and warehouse. Includes renewal and exit clauses.",
+        "includes": ["Standard lease", "Short-term variant", "Addendum templates"]
+      },
+      "employment-contract": {
+        "title": "Employment Contract",
+        "description": "Bilingual employment contract compliant with the Uzbekistan Labour Code. Covers fixed-term and open-ended positions.",
+        "includes": ["Standard contract", "Fixed-term variant", "Probation addendum"]
+      },
+      "hr-policy-manual": {
+        "title": "HR Policy Manual",
+        "description": "End-to-end HR policy framework adapted for Uzbek labour law — hiring, performance, termination, and benefits.",
+        "includes": ["12 policy modules", "Code of conduct", "Disciplinary procedure", "Leave policy"]
+      },
+      "tax-compliance-starter": {
+        "title": "Tax Compliance Starter Pack",
+        "description": "Essential tax registration forms, VAT templates, and compliance calendar for businesses operating in Uzbekistan.",
+        "includes": ["Tax registration forms", "VAT return template", "Compliance calendar", "CIT worksheet"]
+      },
+      "transfer-pricing": {
+        "title": "Transfer Pricing Documentation",
+        "description": "Master file and local file templates for transfer pricing compliance under Uzbek tax law and OECD guidelines.",
+        "includes": ["Master file template", "Local file template", "Benchmarking guide", "Policy statement"]
+      },
+      "work-permit-pack": {
+        "title": "Work Permit Application Pack",
+        "description": "Full documentation set for obtaining work permits for foreign nationals employed in Uzbekistan, including renewals.",
+        "includes": ["Application forms", "Document checklist", "Employer letter templates", "Extension guide"]
+      },
+      "sez-entry-pack": {
+        "title": "SEZ Entry Pack",
+        "description": "Full application package for entering a Special Economic Zone — investment plan templates and regulatory overview.",
+        "includes": ["SEZ application form", "Investment plan template", "Financial projections model", "Regulatory overview"]
+      },
+      "due-diligence-pack": {
+        "title": "Investor Due Diligence Pack",
+        "description": "Comprehensive DD document request list and data room structure for M&A and investment transactions in Uzbekistan.",
+        "includes": ["DD request list", "Data room index", "Red flag checklist", "Legal opinion template"]
+      }
+    }
+  },
   "StorePage": {
     "hero": {
       "eyebrow": "Document Store",

@@ -78,6 +78,79 @@
       "secondary": "Tahlillarni ko'rish"
     }
   },
+  "StoreProducts": {
+    "categories": {
+      "All": "Barchasi",
+      "Company Formation": "Ro'yxatga olish",
+      "Legal": "Huquq",
+      "HR": "HR",
+      "Tax": "Soliq",
+      "Compliance": "Muvofiqlik",
+      "Finance": "Moliya"
+    },
+    "items": {
+      "llc-formation": {
+        "title": "MChJ ro'yxatga olish to'plami",
+        "description": "O'zbekistonda MChJ ro'yxatga olish uchun to'liq hujjatlar to'plami — nizom, ta'sischi qarorlari va barcha ro'yxatga olish formalari.",
+        "includes": ["Kompaniya nizomi (ikki tilli)", "Ta'sischi qarori", "Arizalar", "Muvofiqlik chek-list"]
+      },
+      "jsc-formation": {
+        "title": "AJ ro'yxatga olish to'plami",
+        "description": "Aktsiyadorlik jamiyatini tashkil etish uchun to'liq paket, jumladan prospekt shablonlari va aktsiyadorlar hujjatlari.",
+        "includes": ["AJ nizomi", "Prospekt shabloni", "Aktsiyadorlar reestri", "Kengash qarorlari"]
+      },
+      "shareholder-agreement": {
+        "title": "Aktsiyadorlar shartnomasi",
+        "description": "O'zbek qonuni bo'yicha boshqaruv, drag-along/tag-along huquqlari, dividendlar va chiqish qoidalarini qamrab oluvchi to'liq SHA.",
+        "includes": ["To'liq SHA shabloni", "Ilovalar", "Kengash nizomi", "Izohlar qo'llanmasi"]
+      },
+      "nda-bilateral": {
+        "title": "NDA — ikki tomonlama",
+        "description": "O'zbek qonuniga moslashtirilgan o'zaro maxfiylik shartnomasi. Tijorat siri, IP va sezgir biznes ma'lumotlarni qamrab oladi.",
+        "includes": ["Ikki tomonlama NDA", "Bir tomonlama variant", "Foydalanish qo'llanmasi"]
+      },
+      "commercial-lease": {
+        "title": "Tijorat ijarasi shartnomasi",
+        "description": "O'zbek fuqarolik qonuni bo'yicha ikki tilli tijorat ijarasi — ofis, chakana savdo va ombor. Yangilash va tugatish bandlarini o'z ichiga oladi.",
+        "includes": ["Standart ijara", "Qisqa muddatli variant", "Qo'shimcha shartnoma shablonlari"]
+      },
+      "employment-contract": {
+        "title": "Mehnat shartnomasi",
+        "description": "O'zbekiston Mehnat kodeksiga mos keladigan ikki tilli mehnat shartnomasi. Belgilangan muddatli va muddatsiz lavozimlarni qamrab oladi.",
+        "includes": ["Standart shartnoma", "Belgilangan muddatli variant", "Sinov muddati ilovasi"]
+      },
+      "hr-policy-manual": {
+        "title": "HR siyosati qo'llanmasi",
+        "description": "O'zbek mehnat qonuniga moslashtirilgan to'liq HR siyosati — yollash, samaradorlik, ishdan bo'shatish va imtiyozlar.",
+        "includes": ["12 siyosat moduli", "Xulq-atvor kodeksi", "Intizomiy tartib", "Ta'til siyosati"]
+      },
+      "tax-compliance-starter": {
+        "title": "Soliq muvofiqligi boshlang'ich to'plami",
+        "description": "O'zbekistonda faoliyat yurituvchi kompaniyalar uchun asosiy soliq ro'yxatga olish formalari, QQS shablonlari va muvofiqlik kalendari.",
+        "includes": ["Soliq ro'yxatga olish formalari", "QQS deklaratsiyasi shabloni", "Muvofiqlik kalendari", "CIT hisob varaqi"]
+      },
+      "transfer-pricing": {
+        "title": "Transfer narxlash hujjatlari",
+        "description": "O'zbek soliq qonuni va OECD ko'rsatmalariga muvofiq transfer narxlash uchun Master file va Local file shablonlari.",
+        "includes": ["Master file shabloni", "Local file shabloni", "Benchmarking qo'llanmasi", "Siyosat bayonoti"]
+      },
+      "work-permit-pack": {
+        "title": "Mehnat ruxsatnomasi to'plami",
+        "description": "O'zbekistonda ishlayotgan xorijiy fuqarolar uchun mehnat ruxsatnomalarini olish uchun to'liq hujjatlar to'plami, jumladan yangilash.",
+        "includes": ["Arizalar", "Hujjatlar chek-list", "Ish beruvchi xat shablonlari", "Yangilash qo'llanmasi"]
+      },
+      "sez-entry-pack": {
+        "title": "EIZ ga kirish to'plami",
+        "description": "Erkin iqtisodiy zonaga kirish uchun to'liq ariza paketi — investitsiya rejasi shablonlari va me'yoriy ko'rinish.",
+        "includes": ["EIZ ariza shakli", "Investitsiya rejasi shabloni", "Moliyaviy prognoz modeli", "Me'yoriy ko'rinish"]
+      },
+      "due-diligence-pack": {
+        "title": "Investor Due Diligence to'plami",
+        "description": "O'zbekistondagi M&A va investitsiya bitimlari uchun to'liq DD hujjatlar so'rovi ro'yxati va data room tuzilishi.",
+        "includes": ["DD so'rov ro'yxati", "Data room indeksi", "Red flag chek-list", "Yuridik xulosa shabloni"]
+      }
+    }
+  },
   "StorePage": {
     "hero": {
       "eyebrow": "Hujjatlar do'koni",
