@@ -127,7 +127,7 @@ export default function AdvisorySection() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.45, delay: i * 0.055, ease: [0.16, 1, 0.3, 1] }}
                   className={cn(
-                    "group relative w-full flex items-center gap-4 px-6 py-5 text-left transition-colors duration-200",
+                    "group relative w-full flex flex-1 items-center gap-4 px-6 py-5 text-left transition-colors duration-200",
                     isActive ? "bg-white/[0.04]" : "hover:bg-white/[0.018]"
                   )}
                 >
@@ -150,7 +150,7 @@ export default function AdvisorySection() {
                     />
                   </span>
                   <span className={cn(
-                    "flex-1 text-[13px] font-medium tracking-[0.025em] transition-colors duration-200",
+                    "flex-1 text-[15px] font-medium tracking-[0.02em] transition-colors duration-200",
                     isActive ? "text-foreground" : "text-white/40 group-hover:text-white/72"
                   )}>
                     {service.title}
