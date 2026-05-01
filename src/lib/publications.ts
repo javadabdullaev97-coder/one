@@ -42,7 +42,7 @@ export const publications: Publication[] = [
     category: "Tax",
     title: "Accounting Policy for Tax Purposes in Uzbekistan",
     description:
-      "How Uzbekistan\'s tax code governs accounting method elections, asset classification, and timing differences — with practical guidance for foreign-invested entities.",
+      "How Uzbekistan's tax code governs accounting method elections, asset classification, and timing differences — with practical guidance for foreign-invested entities.",
     year: "2025",
     date: "2025-10-22",
     pages: 10,
@@ -54,7 +54,7 @@ export const publications: Publication[] = [
     category: "Legal",
     title: "Franchising in Uzbekistan: Legal Framework & Entry Structures",
     description:
-      "An analysis of Uzbekistan\'s franchising legislation, registration obligations, royalty repatriation rules, and key contractual considerations for international franchisors.",
+      "An analysis of Uzbekistan's franchising legislation, registration obligations, royalty repatriation rules, and key contractual considerations for international franchisors.",
     year: "2025",
     date: "2025-09-15",
     pages: 9,
@@ -88,7 +88,7 @@ export const publications: Publication[] = [
     slug: "creative-industry-park-uzbekistan",
     tag: "Advisory",
     category: "Advisory",
-    title: "Creative Industry Park: Uzbekistan\'s Framework for Creative Economy",
+    title: "Creative Industry Park: Uzbekistan's Framework for Creative Economy",
     description:
       "A detailed guide to the Creative Industry Park regime — eligibility criteria, tax incentives, registration process, and operational requirements for qualifying entities.",
     year: "2025",
@@ -126,7 +126,7 @@ export const publications: Publication[] = [
     category: "HR",
     title: "Self-Employment Regime in Uzbekistan",
     description:
-      "A practical guide to Uzbekistan\'s self-employment tax regime — eligibility, registration, contribution rates, and implications for businesses engaging independent contractors.",
+      "A practical guide to Uzbekistan's self-employment tax regime — eligibility, registration, contribution rates, and implications for businesses engaging independent contractors.",
     year: "2025",
     date: "2025-03-08",
     pages: 8,
@@ -138,7 +138,7 @@ export const publications: Publication[] = [
     category: "Legal",
     title: "Crypto-Asset Service Providers: Licensing in Uzbekistan",
     description:
-      "Uzbekistan\'s framework for crypto-asset service providers — NAFS licensing requirements, permitted activities, capital requirements, and AML/KYC obligations.",
+      "Uzbekistan's framework for crypto-asset service providers — NAFS licensing requirements, permitted activities, capital requirements, and AML/KYC obligations.",
     year: "2025",
     date: "2025-02-19",
     pages: 12,
@@ -162,7 +162,7 @@ export const publications: Publication[] = [
     category: "Advisory",
     title: "Special Economic Zones in Uzbekistan: A Comparative Guide",
     description:
-      "A comparative analysis of Uzbekistan\'s SEZ landscape — free economic zones, small industrial zones, and IT parks — covering incentive packages, entry criteria, and operational constraints.",
+      "A comparative analysis of Uzbekistan's SEZ landscape — free economic zones, small industrial zones, and IT parks — covering incentive packages, entry criteria, and operational constraints.",
     year: "2024",
     date: "2024-11-25",
     pages: 20,
@@ -174,7 +174,7 @@ export const publications: Publication[] = [
     category: "Advisory",
     title: "Accounting Law in Uzbekistan: Key Requirements for Businesses",
     description:
-      "An overview of Uzbekistan\'s accounting legislation — mandatory chart of accounts, financial statement requirements, audit thresholds, and transition considerations for IFRS adoption.",
+      "An overview of Uzbekistan's accounting legislation — mandatory chart of accounts, financial statement requirements, audit thresholds, and transition considerations for IFRS adoption.",
     year: "2024",
     date: "2024-10-30",
     pages: 11,
@@ -247,7 +247,7 @@ export function getPublicationBySlug(slug: string): Publication | undefined {
   return publications.find((p) => p.slug === slug);
 }
 
-export function getReadablePublicationSlugs(): string[] {
+export function getAllPublicationSlugs(): string[] {
   return publications.filter((p) => p.hasRead).map((p) => p.slug);
 }
 
