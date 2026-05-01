@@ -19,7 +19,7 @@ import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ─────────────────────────────────────────────── */
+/* ── Helpers ───────────────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ──────────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -71,7 +71,7 @@ const categoryGradients: Record<string, string> = {
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 6;
 
-/* ── Article Card ────────────────────────────────────────────── */
+/* ── Article Card ──────────────────────────────────────────────── */
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
@@ -120,7 +120,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -154,12 +154,7 @@ export default function LibraryPage() {
       {/* ====== HERO ====== */}
       <div className="relative overflow-hidden flex flex-col bg-black" style={{ height: "65vh" }}>
         {/* Background */}
-        <motion.div
-          className="absolute inset-0"
-          initial={{ scale: 1.06, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="absolute inset-0 hero-image-enter">
           <Image
             src="/Hero and CTA images/Insights Hero.webp"
             alt=""
@@ -168,7 +163,7 @@ export default function LibraryPage() {
             className="object-cover"
             sizes="100vw"
           />
-        </motion.div>
+        </div>
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
           <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
