@@ -14,6 +14,7 @@ export default function NotFound() {
           fill
           priority
           className="object-cover"
+          style={{ objectPosition: "center 35%" }}
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30" />
