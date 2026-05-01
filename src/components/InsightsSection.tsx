@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Parallax from "@/components/Parallax";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal from "@/components/TextReveal";
@@ -14,6 +15,7 @@ const recentArticles = sortedPublications(publications).slice(0, 2);
 const DOING_BUSINESS_COVER: string | null = "/Articles Image/DBU_cover.webp";
 
 export default function InsightsSection() {
+  const t = useTranslations("InsightsSection");
   return (
     <section className="py-20 md:py-28 bg-black relative overflow-hidden">
       <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
@@ -25,9 +27,9 @@ export default function InsightsSection() {
           <AnimatedSection>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
               <div>
-                <p className="tracking-luxury text-muted-dark mb-5">Insights</p>
+                <p className="tracking-luxury text-muted-dark mb-5">{t("eyebrow")}</p>
                 <TextReveal
-                  text="Research, guides & analysis"
+                  text={t("heading")}
                   as="h2"
                   className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground"
                 />
@@ -36,7 +38,7 @@ export default function InsightsSection() {
                 href="/insights"
                 className="group inline-flex items-center gap-2.5 self-start md:self-auto pb-1.5 border-b border-white/15 hover:border-primary/70 text-[11px] tracking-[0.28em] uppercase text-white/55 hover:text-foreground transition-colors duration-300"
               >
-                <span>Browse all</span>
+                <span>{t("browseAll")}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </Link>
             </div>
@@ -86,9 +88,9 @@ export default function InsightsSection() {
 
                   {/* Top label */}
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] tracking-[0.32em] uppercase text-white/25">Advizen</span>
+                    <span className="text-[10px] tracking-[0.32em] uppercase text-white/25">{t("flagshipBrand")}</span>
                     <span className="h-px w-4 bg-white/10" />
-                    <span className="text-[10px] tracking-[0.32em] uppercase text-primary/60">2026 Edition</span>
+                    <span className="text-[10px] tracking-[0.32em] uppercase text-primary/60">{t("flagshipEdition")}</span>
                   </div>
 
                   <div className="flex-1" />
@@ -97,19 +99,19 @@ export default function InsightsSection() {
                   <div className="w-[80%]">
                     <div className="flex items-center gap-2.5 mb-5">
                       <div className="h-px w-6 bg-primary/60" />
-                      <span className="text-[10px] tracking-[0.3em] uppercase text-primary">Flagship Guide</span>
+                      <span className="text-[10px] tracking-[0.3em] uppercase text-primary">{t("flagshipLabel")}</span>
                     </div>
 
                     <h3 className="heading-luxury text-2xl md:text-[1.75rem] leading-tight text-foreground mb-4 group-hover:text-white transition-colors duration-300">
-                      Doing Business<br />in Uzbekistan
+                      {t("flagshipTitleLine1")}<br />{t("flagshipTitleLine2")}
                     </h3>
 
                     <p className="text-white/45 text-sm leading-relaxed mb-8">
-                      The definitive guide for foreign investors — market entry, regulatory frameworks, and operational best practices.
+                      {t("flagshipDescription")}
                     </p>
 
                     <div className="flex items-center gap-2 text-xs text-white/40 group-hover:text-primary transition-colors duration-300">
-                      <span className="tracking-[0.2em] uppercase">Read the guide</span>
+                      <span className="tracking-[0.2em] uppercase">{t("flagshipCta")}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                     </div>
                   </div>
@@ -158,7 +160,7 @@ export default function InsightsSection() {
                       </h3>
 
                       <div className="flex items-center gap-2 text-xs text-white/35 group-hover:text-primary transition-colors duration-300 mt-auto">
-                        <span className="tracking-[0.18em] uppercase">Read more</span>
+                        <span className="tracking-[0.18em] uppercase">{t("readMore")}</span>
                         <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                       </div>
                     </div>

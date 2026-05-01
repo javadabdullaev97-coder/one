@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import MagneticButton from "@/components/MagneticButton";
 
 export default function HeroSection() {
+  const t = useTranslations("Hero");
+
   return (
     <section
       className="relative overflow-hidden flex flex-col items-center justify-center"
@@ -36,7 +39,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10"
         >
-          Business Advisory · Uzbekistan
+          {t("eyebrow")}
         </motion.p>
 
         <motion.h1
@@ -55,7 +58,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="mt-8 text-[15px] text-white/75 max-w-sm mx-auto leading-relaxed"
         >
-          Strategic counsel for businesses entering and operating across Central Asia.
+          {t("subtitle")}
         </motion.p>
 
         <motion.div
@@ -65,7 +68,7 @@ export default function HeroSection() {
           className="mt-10"
         >
           <MagneticButton variant="primary" as="a" href="/contact">
-            Schedule a consultation
+            {t("cta")}
             <ArrowRight className="w-4 h-4" />
           </MagneticButton>
         </motion.div>
@@ -80,7 +83,7 @@ export default function HeroSection() {
       >
         <div className="h-px w-8 bg-white/20" />
         <p className="text-[11px] tracking-[0.3em] uppercase text-white/40">
-          Tashkent, Uzbekistan
+          {t("location")}
         </p>
         <div className="h-px w-8 bg-white/20" />
       </motion.div>

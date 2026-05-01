@@ -40,5 +40,84 @@
     "en": "Ingliz",
     "ru": "Rus",
     "uz": "O'zbek"
+  },
+  "Hero": {
+    "eyebrow": "Biznes konsalting · O'zbekiston",
+    "subtitle": "Markaziy Osiyoda biznes ochayotgan va faoliyat yuritayotgan kompaniyalar uchun strategik maslahat.",
+    "cta": "Maslahatga yozilish",
+    "location": "Toshkent, O'zbekiston"
+  },
+  "InsightsSection": {
+    "eyebrow": "Tahlillar",
+    "heading": "Tadqiqotlar, qo'llanmalar va tahlil",
+    "browseAll": "Barchasini ko'rish",
+    "flagshipBrand": "Advizen",
+    "flagshipEdition": "2026 nashri",
+    "flagshipLabel": "Bayroqdor qo'llanma",
+    "flagshipTitleLine1": "O'zbekistonda",
+    "flagshipTitleLine2": "biznes yuritish",
+    "flagshipDescription": "Xorijiy investorlar uchun to'liq qo'llanma — bozorga kirish, me'yoriy asoslar va faoliyat yuritishning eng yaxshi amaliyotlari.",
+    "flagshipCta": "Qo'llanmani o'qish",
+    "readMore": "O'qish"
+  },
+  "Home": {
+    "coverage": {
+      "eyebrow": "Kompleks qamrov",
+      "heading": "Bitta hamkor, barcha yo'nalishlar",
+      "description": "Soliq, huquq, moliya, HR va moliyalashtirish — biznesingiz haqida umumiy tushunchaga ega bo'lgan holda birgalikda ishlaydi.",
+      "cta": "Barcha xizmatlar"
+    },
+    "geography": {
+      "eyebrow": "Faoliyat hududi",
+      "heading": "Butun O'zbekiston — yagona konsalting hamkordan",
+      "panel": {
+        "population": "Aholi",
+        "regionalGdp": "Hudud YaIMi",
+        "sezs": "Erkin iqtisodiy zonalar",
+        "keySectors": "Asosiy tarmoqlar",
+        "hint": "Hududni tanlang"
+      }
+    },
+    "values": {
+      "eyebrow": "Kompaniya haqida",
+      "heading": "Bizning tamoyillarimiz",
+      "p1": "Advizen — O'zbekistondagi universal biznes maslahatchi bo'lib, soliq, huquq, moliya va HR bo'yicha integratsiyalashgan konsalting xizmatlarini yagona aloqa nuqtasi orqali taqdim etadi.",
+      "p2": "Biz mahalliy bozorni chuqur bilish bilan xalqaro standartlarni birlashtirib, kompaniyalarga Markaziy Osiyo me'yoriy muhitida yo'l topib, o'sishga e'tibor qaratishlariga yordam beramiz.",
+      "tap": "Tamoyillarimiz bilan tanishish uchun nuqtaga bosing →",
+      "items": {
+        "oneStop": {
+          "title": "Yagona oyna",
+          "category": "Asosiy qadriyat",
+          "content": "Soliq, huquq, moliya va HR — barchasi bir tomda. Bir nechta kompaniya bilan ishlash shart emas. Bitta hamkor, bitta aloqa nuqtasi, to'liq qamrov."
+        },
+        "clientFirst": {
+          "title": "Mijoz birinchi",
+          "category": "Falsafa",
+          "content": "Har bir loyiha sizning biznesingizga moslashtiriladi. Biz avval tinglaymiz, keyin maslahat beramiz va o'z muvaffaqiyatimizni sizning muvaffaqiyatingiz bilan o'lchaymiz. Sizning maqsadlaringiz bizning vazifamizga aylanadi."
+        },
+        "localExpertise": {
+          "title": "Mahalliy ekspertiza",
+          "category": "Ustunlik",
+          "content": "O'zbekiston me'yoriy muhiti va Markaziy Osiyo bozorlari haqida chuqur bilim. Biz murakkabliklarni hal qilamiz, siz esa o'sishga e'tibor qarating."
+        },
+        "trustedTeam": {
+          "title": "Ishonchli jamoa",
+          "category": "Kuch",
+          "content": "Soliq, huquq, moliya va konsalting bo'yicha tajribali mutaxassislardan iborat ko'p qirrali jamoa. Muvofiqlashtirilgan tajriba, yagona strategiya."
+        },
+        "integrity": {
+          "title": "Halollik",
+          "category": "Asos",
+          "content": "Shaffoflik va axloqiy standartlar muhokama qilinmaydi. Biz munosabatlarni ishonchga asoslab quramiz, hatto eng oson yo'l bo'lmasa ham, halol maslahat beramiz."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Keyingi qadam",
+      "heading": "Boshlashga tayyormisiz?",
+      "description": "O'zbekistonga kirayotgan bo'lsangiz yoki Markaziy Osiyoda operatsiyalarni kengaytirayotgan bo'lsangiz, bizning jamoamiz maslahat berishga tayyor.",
+      "primary": "Maslahatga yozilish",
+      "secondary": "Xizmatlarimizni ko'rish"
+    }
   }
 }

@@ -40,5 +40,84 @@
     "en": "English",
     "ru": "Russian",
     "uz": "Uzbek"
+  },
+  "Hero": {
+    "eyebrow": "Business Advisory · Uzbekistan",
+    "subtitle": "Strategic counsel for businesses entering and operating across Central Asia.",
+    "cta": "Schedule a consultation",
+    "location": "Tashkent, Uzbekistan"
+  },
+  "InsightsSection": {
+    "eyebrow": "Insights",
+    "heading": "Research, guides & analysis",
+    "browseAll": "Browse all",
+    "flagshipBrand": "Advizen",
+    "flagshipEdition": "2026 Edition",
+    "flagshipLabel": "Flagship Guide",
+    "flagshipTitleLine1": "Doing Business",
+    "flagshipTitleLine2": "in Uzbekistan",
+    "flagshipDescription": "The definitive guide for foreign investors — market entry, regulatory frameworks, and operational best practices.",
+    "flagshipCta": "Read the guide",
+    "readMore": "Read more"
+  },
+  "Home": {
+    "coverage": {
+      "eyebrow": "Integrated Coverage",
+      "heading": "One partner, every discipline",
+      "description": "Tax, legal, finance, HR, and funding — working in concert on a shared view of your business.",
+      "cta": "Explore all services"
+    },
+    "geography": {
+      "eyebrow": "Where We Operate",
+      "heading": "All of Uzbekistan, from a single advisory partner",
+      "panel": {
+        "population": "Population",
+        "regionalGdp": "Regional GDP",
+        "sezs": "Special Economic Zones",
+        "keySectors": "Key Sectors",
+        "hint": "Hover a region to explore"
+      }
+    },
+    "values": {
+      "eyebrow": "The Firm",
+      "heading": "What we stand for",
+      "p1": "Advizen is a one-stop business advisory partner in Uzbekistan — offering integrated consulting across tax, legal, finance, and HR under a single point of contact.",
+      "p2": "We combine deep local expertise with international standards, helping businesses navigate Central Asia's regulatory landscape while focusing on growth.",
+      "tap": "Tap a node to explore our core values →",
+      "items": {
+        "oneStop": {
+          "title": "One-Stop Shop",
+          "category": "Core Value",
+          "content": "Tax, legal, finance, and HR — all under one roof. No need to juggle multiple firms. One partner, one point of contact, complete coverage."
+        },
+        "clientFirst": {
+          "title": "Client-First",
+          "category": "Philosophy",
+          "content": "Every engagement is tailored to your business. We listen before we advise, and we measure our success by yours. Your goals become our mission."
+        },
+        "localExpertise": {
+          "title": "Local Expertise",
+          "category": "Advantage",
+          "content": "Deep knowledge of Uzbekistan's regulatory landscape and Central Asian markets. We navigate the complexities so you can focus on growth."
+        },
+        "trustedTeam": {
+          "title": "Trusted Team",
+          "category": "Strength",
+          "content": "A multidisciplinary team of seasoned professionals across tax, law, finance, and consulting. Coordinated expertise, unified strategy."
+        },
+        "integrity": {
+          "title": "Integrity",
+          "category": "Foundation",
+          "content": "Transparency and ethical standards are non-negotiable. We build relationships on trust, delivering honest counsel even when it's not the easiest path."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Next Step",
+      "heading": "Ready to begin?",
+      "description": "Whether you are entering Uzbekistan or expanding operations across Central Asia, our team is prepared to advise.",
+      "primary": "Schedule a consultation",
+      "secondary": "Explore our expertise"
+    }
   }
 }

@@ -1,9 +1,9 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   ArrowRight, ArrowUpRight,
   Shield, Users, Lightbulb, Target, Handshake,
@@ -17,36 +17,6 @@ import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import UzbekistanMap from "@/components/UzbekistanMap";
 import DisciplinesIntegration from "@/components/DisciplinesIntegration";
 import InsightsSection from "@/components/InsightsSection";
-
-/* ── Orbital values data ───────────────────────────────── */
-
-const firmValues = [
-  {
-    id: 1, title: "One-Stop Shop", date: "",
-    content: "Tax, legal, finance, and HR — all under one roof. No need to juggle multiple firms. One partner, one point of contact, complete coverage.",
-    category: "Core Value", icon: Target, relatedIds: [2, 3], status: "completed" as const, energy: 100,
-  },
-  {
-    id: 2, title: "Client-First", date: "",
-    content: "Every engagement is tailored to your business. We listen before we advise, and we measure our success by yours. Your goals become our mission.",
-    category: "Philosophy", icon: Handshake, relatedIds: [1, 5], status: "completed" as const, energy: 95,
-  },
-  {
-    id: 3, title: "Local Expertise", date: "",
-    content: "Deep knowledge of Uzbekistan's regulatory landscape and Central Asian markets. We navigate the complexities so you can focus on growth.",
-    category: "Advantage", icon: Lightbulb, relatedIds: [1, 4], status: "completed" as const, energy: 90,
-  },
-  {
-    id: 4, title: "Trusted Team", date: "",
-    content: "A multidisciplinary team of seasoned professionals across tax, law, finance, and consulting. Coordinated expertise, unified strategy.",
-    category: "Strength", icon: Users, relatedIds: [3, 5], status: "completed" as const, energy: 85,
-  },
-  {
-    id: 5, title: "Integrity", date: "",
-    content: "Transparency and ethical standards are non-negotiable. We build relationships on trust, delivering honest counsel even when it's not the easiest path.",
-    category: "Foundation", icon: Shield, relatedIds: [2, 4], status: "completed" as const, energy: 100,
-  },
-];
 
 /* ── Region data ───────────────────────────────────── */
 
@@ -200,6 +170,7 @@ function RegionImagePreloader() {
 
 function RegionInfoPanel({ activeId }: { activeId: string | null }) {
   const region = activeId ? REGION_DATA[activeId] : null;
+  const t = useTranslations("Home.geography.panel");
 
   return (
     <div className="h-[480px] overflow-hidden relative">
@@ -237,11 +208,11 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               {/* Stats row */}
               <div className="grid grid-cols-2 gap-4 mb-5">
                 <div className="border border-white/[0.06] px-3 py-2.5 rounded-lg bg-white/[0.02]">
-                  <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-1">Population</p>
+                  <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-1">{t("population")}</p>
                   <p className="text-foreground font-light text-lg tabular-nums">{region.population}</p>
                 </div>
                 <div className="border border-white/[0.06] px-3 py-2.5 rounded-lg bg-white/[0.02]">
-                  <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-1">Regional GDP</p>
+                  <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-1">{t("regionalGdp")}</p>
                   <p className="text-foreground font-light text-lg tabular-nums">{region.gdp}</p>
                 </div>
               </div>
@@ -249,7 +220,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               {/* SEZs */}
               <div className="mb-4">
                 <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-2">
-                  Special Economic Zones
+                  {t("sezs")}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {region.sezs.map((s) => (
@@ -265,7 +236,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
 
               {/* Key sectors */}
               <div>
-                <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-2">Key Sectors</p>
+                <p className="text-[9px] tracking-[0.18em] uppercase text-white/30 mb-2">{t("keySectors")}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {region.industries.map((s) => (
                     <span
@@ -280,7 +251,7 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
             </>
           ) : (
             <div className="flex-1 flex items-center justify-center">
-              <p className="text-white/25 text-sm tracking-wider">Hover a region to explore</p>
+              <p className="text-white/25 text-sm tracking-wider">{t("hint")}</p>
             </div>
           )}
         </motion.div>
@@ -297,6 +268,37 @@ export default function Home() {
     setActiveRegionId(id);
   }, []);
 
+  const t = useTranslations("Home");
+  const tValues = useTranslations("Home.values.items");
+
+  const firmValues = [
+    {
+      id: 1, title: tValues("oneStop.title"), date: "",
+      content: tValues("oneStop.content"),
+      category: tValues("oneStop.category"), icon: Target, relatedIds: [2, 3], status: "completed" as const, energy: 100,
+    },
+    {
+      id: 2, title: tValues("clientFirst.title"), date: "",
+      content: tValues("clientFirst.content"),
+      category: tValues("clientFirst.category"), icon: Handshake, relatedIds: [1, 5], status: "completed" as const, energy: 95,
+    },
+    {
+      id: 3, title: tValues("localExpertise.title"), date: "",
+      content: tValues("localExpertise.content"),
+      category: tValues("localExpertise.category"), icon: Lightbulb, relatedIds: [1, 4], status: "completed" as const, energy: 90,
+    },
+    {
+      id: 4, title: tValues("trustedTeam.title"), date: "",
+      content: tValues("trustedTeam.content"),
+      category: tValues("trustedTeam.category"), icon: Users, relatedIds: [3, 5], status: "completed" as const, energy: 85,
+    },
+    {
+      id: 5, title: tValues("integrity.title"), date: "",
+      content: tValues("integrity.content"),
+      category: tValues("integrity.category"), icon: Shield, relatedIds: [2, 4], status: "completed" as const, energy: 100,
+    },
+  ];
+
   return (
     <>
       <RegionImagePreloader />
@@ -310,14 +312,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <Parallax offset={20} fade>
             <AnimatedSection className="mb-8 md:mb-10 text-center">
-              <p className="tracking-luxury text-muted-dark mb-4">Integrated Coverage</p>
+              <p className="tracking-luxury text-muted-dark mb-4">{t("coverage.eyebrow")}</p>
               <TextReveal
-                text="One partner, every discipline"
+                text={t("coverage.heading")}
                 as="h2"
                 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground"
               />
               <p className="mt-5 text-white/55 max-w-xl mx-auto leading-relaxed">
-                Tax, legal, finance, HR, and funding — working in concert on a shared view of your business.
+                {t("coverage.description")}
               </p>
             </AnimatedSection>
           </Parallax>
@@ -328,7 +330,7 @@ export default function Home() {
 
           <AnimatedSection delay={0.2} className="mt-12 flex justify-center">
             <MagneticButton variant="outline" as="a" href="/expertise">
-              Explore all services
+              {t("coverage.cta")}
               <ArrowUpRight className="w-4 h-4" />
             </MagneticButton>
           </AnimatedSection>
@@ -342,9 +344,9 @@ export default function Home() {
         <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 opacity-30" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <AnimatedSection className="mb-10 md:mb-12">
-            <p className="tracking-luxury text-muted-dark mb-3">Where We Operate</p>
+            <p className="tracking-luxury text-muted-dark mb-3">{t("geography.eyebrow")}</p>
             <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-              All of Uzbekistan, from a single advisory partner
+              {t("geography.heading")}
             </h2>
           </AnimatedSection>
 
@@ -372,25 +374,23 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             <div>
               <AnimatedSection>
-                <p className="tracking-luxury text-muted-dark mb-4">The Firm</p>
+                <p className="tracking-luxury text-muted-dark mb-4">{t("values.eyebrow")}</p>
                 <TextReveal
-                  text="What we stand for"
+                  text={t("values.heading")}
                   as="h2"
                   className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground leading-tight mb-6"
                 />
               </AnimatedSection>
               <AnimatedSection delay={0.15}>
                 <p className="text-white/50 leading-relaxed mb-4">
-                  Advizen is a one-stop business advisory partner in Uzbekistan — offering integrated
-                  consulting across tax, legal, finance, and HR under a single point of contact.
+                  {t("values.p1")}
                 </p>
                 <p className="text-white/40 leading-relaxed mb-10">
-                  We combine deep local expertise with international standards, helping businesses
-                  navigate Central Asia&apos;s regulatory landscape while focusing on growth.
+                  {t("values.p2")}
                 </p>
               </AnimatedSection>
               <AnimatedSection delay={0.3}>
-                <p className="text-white/30 text-sm mb-8 italic">Tap a node to explore our core values &rarr;</p>
+                <p className="text-white/30 text-sm mb-8 italic">{t("values.tap")}</p>
               </AnimatedSection>
             </div>
             <div>
@@ -414,23 +414,22 @@ export default function Home() {
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <Parallax offset={25} fade>
             <AnimatedSection>
-              <p className="tracking-luxury text-muted-dark mb-6">Next Step</p>
+              <p className="tracking-luxury text-muted-dark mb-6">{t("cta.eyebrow")}</p>
               <TextReveal
-                text="Ready to begin?"
+                text={t("cta.heading")}
                 as="h2"
                 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground mb-6"
               />
               <p className="text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
-                Whether you are entering Uzbekistan or expanding operations across
-                Central Asia, our team is prepared to advise.
+                {t("cta.description")}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <MagneticButton variant="primary" as="a" href="/contact">
-                  Schedule a consultation
+                  {t("cta.primary")}
                   <ArrowRight className="w-4 h-4" />
                 </MagneticButton>
                 <MagneticButton variant="outline" as="a" href="/expertise">
-                  Explore our expertise
+                  {t("cta.secondary")}
                   <ArrowUpRight className="w-4 h-4" />
                 </MagneticButton>
               </div>
