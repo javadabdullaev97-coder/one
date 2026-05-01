@@ -133,7 +133,7 @@ export default function InsightsSection() {
 
                     {/* Image */}
                     {pub.image && (
-                      <div className="relative w-full overflow-hidden flex-shrink-0" style={{ aspectRatio: "16/9" }}>
+                      <div className="relative h-44 overflow-hidden flex-shrink-0">
                         <Image
                           src={pub.image}
                           fill
@@ -146,21 +146,17 @@ export default function InsightsSection() {
                     )}
 
                     {/* Content */}
-                    <div className="flex flex-col flex-1 px-6 py-5">
+                    <div className="flex flex-col flex-1 px-6 py-4">
                       <div className="flex items-center gap-2.5 mb-3">
                         <span className="h-px w-5 bg-white/15 group-hover:bg-primary/50 transition-colors duration-500" />
                         <span className="text-[10px] tracking-[0.28em] uppercase text-primary">{pub.tag}</span>
                       </div>
 
-                      <h3 className="font-serif text-lg leading-snug text-foreground mb-2.5 group-hover:text-white transition-colors duration-300 line-clamp-2">
+                      <h3 className="font-serif text-lg leading-snug text-foreground mb-4 group-hover:text-white transition-colors duration-300 line-clamp-2">
                         {pub.title}
                       </h3>
 
-                      <p className="text-white/40 text-sm leading-relaxed flex-1 mb-5 line-clamp-2">
-                        {pub.description}
-                      </p>
-
-                      <div className="flex items-center gap-2 text-xs text-white/35 group-hover:text-primary transition-colors duration-300">
+                      <div className="flex items-center gap-2 text-xs text-white/35 group-hover:text-primary transition-colors duration-300 mt-auto">
                         <span className="tracking-[0.18em] uppercase">Read more</span>
                         <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                       </div>
