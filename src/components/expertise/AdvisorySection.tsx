@@ -22,6 +22,7 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import AnimatedSection from "@/components/AnimatedSection";
 import { advisoryServices } from "@/lib/services";
 import { cn } from "@/lib/utils";
@@ -79,6 +80,7 @@ const relatedArticle: Record<string, { slug: string; title: string; tag: string 
 export default function AdvisorySection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
+  const t = useTranslations("AdvisorySection");
 
   const active = advisoryServices[activeIndex];
   const ActiveIcon = serviceIcons[active.slug] ?? ArrowUpRight;
@@ -98,13 +100,12 @@ export default function AdvisorySection() {
 
         <AnimatedSection className="mb-14 md:mb-16">
           <div>
-            <p className="tracking-luxury text-white/50 mb-4">Advisory</p>
+            <p className="tracking-luxury text-white/50 mb-4">{t("eyebrow")}</p>
             <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-              You consult &mdash; we counsel
+              {t("heading")}
             </h2>
             <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-              Strategic guidance across tax, legal, finance, HR, funding, M&amp;A, and due diligence.
-              You make the decisions; we provide the depth.
+              {t("description")}
             </p>
           </div>
         </AnimatedSection>
@@ -203,7 +204,7 @@ export default function AdvisorySection() {
                         <h3 className="heading-luxury text-xl md:text-[1.35rem] text-foreground leading-tight">
                           {active.title}
                         </h3>
-                        <p className="text-[9px] tracking-[0.18em] uppercase text-white/28 mt-1">Advisory</p>
+                        <p className="text-[9px] tracking-[0.18em] uppercase text-white/28 mt-1">{t("advisoryLabel")}</p>
                       </div>
                     </div>
                     <span className="font-serif text-sm text-white/[0.14] tabular-nums shrink-0 mt-1">
@@ -237,7 +238,7 @@ export default function AdvisorySection() {
                       className="text-[10px] tracking-[0.18em] uppercase mb-1.5"
                       style={{ color: `rgba(${accent},0.65)` }}
                     >
-                      Who this is for
+                      {t("whoThisIsFor")}
                     </p>
                     <p className="text-[13px] text-white/50 leading-relaxed">
                       {serviceFor[active.slug]}
@@ -251,7 +252,7 @@ export default function AdvisorySection() {
                     transition={{ duration: 0.2, delay: 0.14 }}
                   >
                     <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-3">
-                      Capabilities
+                      {t("capabilities")}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {active.capabilities.map((cap, ci) => (
@@ -276,7 +277,7 @@ export default function AdvisorySection() {
                       transition={{ duration: 0.2, delay: 0.22 }}
                     >
                       <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-2.5">
-                        Related reading
+                        {t("relatedReading")}
                       </p>
                       <Link
                         href={`/insights/${relatedArticle[active.slug]!.slug}`}

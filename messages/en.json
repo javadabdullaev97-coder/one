@@ -47,6 +47,54 @@
     "cta": "Schedule a consultation",
     "location": "Tashkent, Uzbekistan"
   },
+  "ExpertisePage": {
+    "hero": {
+      "eyebrow": "Our Expertise",
+      "heading": "Integrated services, singular results",
+      "description": "Seven advisory disciplines. Seven managed operations services. One integrated practice built for the complexities of Central Asian markets."
+    },
+    "stats": {
+      "eyebrow": "Our track record",
+      "dealsAdvised": "Deals advised",
+      "registrations": "Registrations",
+      "dueDiligences": "Due diligences",
+      "lawsShaped": "Laws shaped"
+    },
+    "industries": {
+      "eyebrow": "Sector Experience",
+      "heading": "Deep expertise across six sectors",
+      "whatWeOffer": "What we offer",
+      "featuredEngagement": "Featured engagement"
+    },
+    "trackRecord": {
+      "eyebrow": "Track Record",
+      "heading": "Selected engagements of our team members"
+    },
+    "cta": {
+      "eyebrow": "Work with us",
+      "heading": "Ready to work together?",
+      "description": "Tell us about your business — we will identify where we can make the most impact and structure a scope that fits.",
+      "primary": "Schedule a consultation",
+      "secondary": "Browse our insights"
+    }
+  },
+  "AdvisorySection": {
+    "eyebrow": "Advisory",
+    "heading": "You consult — we counsel",
+    "description": "Strategic guidance across tax, legal, finance, HR, funding, M&A, and due diligence. You make the decisions; we provide the depth.",
+    "advisoryLabel": "Advisory",
+    "whoThisIsFor": "Who this is for",
+    "capabilities": "Capabilities",
+    "relatedReading": "Related reading"
+  },
+  "OperationsSection": {
+    "eyebrow": "Operations",
+    "heading": "You delegate — we execute",
+    "description": "Fully managed services where we handle execution on your behalf — one contract, one point of contact, full compliance.",
+    "servicesCount": "{count} services",
+    "capabilities": "Capabilities",
+    "relatedReading": "Related reading"
+  },
   "InsightsSection": {
     "eyebrow": "Insights",
     "heading": "Research, guides & analysis",

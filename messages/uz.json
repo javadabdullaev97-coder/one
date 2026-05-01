@@ -47,6 +47,54 @@
     "cta": "Maslahatga yozilish",
     "location": "Toshkent, O'zbekiston"
   },
+  "ExpertisePage": {
+    "hero": {
+      "eyebrow": "Bizning ekspertizamiz",
+      "heading": "Integratsiyalashgan xizmatlar, mukammal natijalar",
+      "description": "Yetti konsalting yo'nalishi. Yetti boshqaruv operatsiyalari xizmati. Markaziy Osiyo bozorlari murakkabligi uchun yaratilgan yagona amaliyot."
+    },
+    "stats": {
+      "eyebrow": "Bizning yutuqlarimiz",
+      "dealsAdvised": "Boshqarilgan bitimlar",
+      "registrations": "Ro'yxatdan o'tish",
+      "dueDiligences": "Due diligence",
+      "lawsShaped": "Ishtirok etilgan qonunlar"
+    },
+    "industries": {
+      "eyebrow": "Sohaviy tajriba",
+      "heading": "Olti sohada chuqur ekspertiza",
+      "whatWeOffer": "Biz nima taklif qilamiz",
+      "featuredEngagement": "Asosiy loyiha"
+    },
+    "trackRecord": {
+      "eyebrow": "Yutuqlar",
+      "heading": "Jamoamiz a'zolarining tanlangan loyihalari"
+    },
+    "cta": {
+      "eyebrow": "Biz bilan ishlash",
+      "heading": "Hamkorlikka tayyormisiz?",
+      "description": "Biznesingiz haqida gapirib bering — biz qaerda eng ko'p foyda keltirishimiz mumkinligini aniqlaymiz va mos keladigan ish hajmini shakllantiramiz.",
+      "primary": "Maslahatga yozilish",
+      "secondary": "Tahlillarni ko'rish"
+    }
+  },
+  "AdvisorySection": {
+    "eyebrow": "Konsalting",
+    "heading": "Siz maslahat olasiz — biz yo'naltiramiz",
+    "description": "Soliq, huquq, moliya, HR, moliyalashtirish, M&A va due diligence bo'yicha strategik rahbarlik. Qarorlar siznikida; biz tahlil chuqurligini ta'minlaymiz.",
+    "advisoryLabel": "Konsalting",
+    "whoThisIsFor": "Bu kimga mo'ljallangan",
+    "capabilities": "Imkoniyatlar",
+    "relatedReading": "Mavzu bo'yicha"
+  },
+  "OperationsSection": {
+    "eyebrow": "Operatsiyalar",
+    "heading": "Siz topshirasiz — biz bajaramiz",
+    "description": "Biz ijroni o'z zimmamizga oladigan to'liq boshqariladigan xizmatlar — bitta shartnoma, bitta aloqa nuqtasi, to'liq muvofiqlik.",
+    "servicesCount": "{count} xizmat",
+    "capabilities": "Imkoniyatlar",
+    "relatedReading": "Mavzu bo'yicha"
+  },
   "InsightsSection": {
     "eyebrow": "Tahlillar",
     "heading": "Tadqiqotlar, qo'llanmalar va tahlil",

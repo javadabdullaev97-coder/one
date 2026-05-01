@@ -1,10 +1,10 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -12,15 +12,6 @@ import AdvisorySection from "@/components/expertise/AdvisorySection";
 import OperationsSection from "@/components/expertise/OperationsSection";
 import { industryGroups, allEngagements } from "@/lib/industries";
 import { cn } from "@/lib/utils";
-
-// ─── Stats ─────────────────────────────────
-
-const trackStats = [
-  { prefix: "$", numeric: 10, suffix: "B+", label: "Deals advised" },
-  { prefix: "",  numeric: 80, suffix: "+",  label: "Registrations" },
-  { prefix: "",  numeric: 30, suffix: "+",  label: "Due diligences" },
-  { prefix: "",  numeric: 3,  suffix: "",   label: "Laws shaped" },
-];
 
 function StatCounter({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -45,12 +36,19 @@ function StatCounter({ to, prefix = "", suffix = "" }: { to: number; prefix?: st
 }
 
 function StatsSection() {
+  const t = useTranslations("ExpertisePage.stats");
+  const trackStats = [
+    { prefix: "$", numeric: 10, suffix: "B+", label: t("dealsAdvised") },
+    { prefix: "",  numeric: 80, suffix: "+",  label: t("registrations") },
+    { prefix: "",  numeric: 30, suffix: "+",  label: t("dueDiligences") },
+    { prefix: "",  numeric: 3,  suffix: "",   label: t("lawsShaped") },
+  ];
   return (
     <section className="py-16 md:py-20 bg-black relative overflow-hidden border-y border-white/[0.04]">
       <div className="ambient-glow ambient-glow-oxblood w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.12]" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <p className="text-[10px] tracking-[0.28em] uppercase text-white/25 mb-10 md:mb-12">
-          Our track record
+          {t("eyebrow")}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 md:divide-x md:divide-white/[0.07]">
           {trackStats.map((stat, i) => (
@@ -91,6 +89,7 @@ function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
   const engagement = sectorEngagements[active.name];
+  const t = useTranslations("ExpertisePage.industries");
 
   useEffect(() => {
     industryGroups.forEach(({ image }) => {
@@ -102,9 +101,9 @@ function IndustriesSection() {
     <section className="py-20 md:py-28 bg-black relative overflow-hidden border-y border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <AnimatedSection className="mb-10 md:mb-12">
-          <p className="tracking-luxury text-white/50 mb-3">Sector Experience</p>
+          <p className="tracking-luxury text-white/50 mb-3">{t("eyebrow")}</p>
           <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-            Deep expertise across six sectors
+            {t("heading")}
           </h2>
         </AnimatedSection>
 
@@ -211,7 +210,7 @@ function IndustriesSection() {
                   transition={{ duration: 0.3, delay: 0.25 }}
                   className="text-[10px] tracking-[0.18em] uppercase text-white/25 mb-3.5"
                 >
-                  What we offer
+                  {t("whatWeOffer")}
                 </motion.p>
                 <div className="flex flex-wrap gap-2 mb-7">
                   {active.offerings.map((item, oi) => (
@@ -236,7 +235,7 @@ function IndustriesSection() {
                     transition={{ duration: 0.3, delay: 0.38 }}
                   >
                     <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-3">
-                      Featured engagement
+                      {t("featuredEngagement")}
                     </p>
                     <div
                       className="border border-white/[0.07] bg-white/[0.02] p-4 rounded-lg"
@@ -262,14 +261,15 @@ function IndustriesSection() {
 // ─── Track record ────────────────────────────────
 
 function TrackRecord() {
+  const t = useTranslations("ExpertisePage.trackRecord");
   return (
     <section className="py-24 md:py-32 bg-black relative overflow-hidden">
       <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-[0.18]" />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <AnimatedSection className="mb-14 md:mb-16">
-          <p className="tracking-luxury text-white/50 mb-4">Track Record</p>
+          <p className="tracking-luxury text-white/50 mb-4">{t("eyebrow")}</p>
           <h2 className="heading-luxury text-2xl md:text-3xl lg:text-4xl text-foreground">
-            Selected engagements of our team members
+            {t("heading")}
           </h2>
         </AnimatedSection>
 
@@ -333,6 +333,8 @@ function TrackRecord() {
 // ─── Page ─────────────────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
+  const tHero = useTranslations("ExpertisePage.hero");
+  const tCta = useTranslations("ExpertisePage.cta");
   return (
     <>
       <div
@@ -358,11 +360,11 @@ export default function ExpertisePage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="tracking-luxury text-white/50 mb-3"
             >
-              Our Expertise
+              {tHero("eyebrow")}
             </motion.p>
 
             <TextReveal
-              text="Integrated services, singular results"
+              text={tHero("heading")}
               as="h1"
               mode="line"
               className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.05] max-w-3xl"
@@ -371,8 +373,7 @@ export default function ExpertisePage() {
 
             <RevealLine delay={0.5}>
               <p className="text-base text-white/50 max-w-xl mt-4 leading-relaxed">
-                Seven advisory disciplines. Seven managed operations services. One integrated
-                practice built for the complexities of Central Asian markets.
+                {tHero("description")}
               </p>
             </RevealLine>
           </div>
@@ -391,21 +392,20 @@ export default function ExpertisePage() {
         <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -right-32 opacity-35" />
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <p className="tracking-luxury text-white/40 mb-6">Work with us</p>
+            <p className="tracking-luxury text-white/40 mb-6">{tCta("eyebrow")}</p>
             <h2 className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground mb-6 leading-tight">
-              Ready to work together?
+              {tCta("heading")}
             </h2>
             <p className="text-lg text-white/55 max-w-xl mx-auto mb-12 leading-relaxed">
-              Tell us about your business — we will identify where we can make the most
-              impact and structure a scope that fits.
+              {tCta("description")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <MagneticButton variant="primary" as="a" href="/contact">
-                Schedule a consultation
+                {tCta("primary")}
                 <ArrowRight className="w-4 h-4" />
               </MagneticButton>
               <MagneticButton variant="outline" as="a" href="/insights">
-                Browse our insights
+                {tCta("secondary")}
                 <ArrowUpRight className="w-4 h-4" />
               </MagneticButton>
             </div>

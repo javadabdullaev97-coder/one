@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, ArrowUpRight, FileText } from "lucide-react";
+import { useTranslations } from "next-intl";
 import AnimatedSection from "@/components/AnimatedSection";
 import { operationsServices } from "@/lib/services";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ const relatedArticle: Record<string, { slug: string; title: string; tag: string 
 
 export default function OperationsSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const t = useTranslations("OperationsSection");
 
   return (
     <section id="operations" className="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/[0.06]">
@@ -31,17 +33,16 @@ export default function OperationsSection() {
         <AnimatedSection className="mb-14 md:mb-16">
           <div className="flex items-end justify-between gap-8">
             <div>
-              <p className="tracking-luxury text-white/50 mb-4">Operations</p>
+              <p className="tracking-luxury text-white/50 mb-4">{t("eyebrow")}</p>
               <h2 className="heading-luxury text-3xl md:text-4xl text-foreground">
-                You delegate &mdash; we execute
+                {t("heading")}
               </h2>
               <p className="mt-4 text-white/45 max-w-xl leading-relaxed text-sm">
-                Fully managed services where we handle execution on your behalf &mdash; one
-                contract, one point of contact, full compliance.
+                {t("description")}
               </p>
             </div>
             <span className="hidden md:block font-serif text-[11px] tracking-[0.16em] uppercase text-white/18 shrink-0 pb-1">
-              {shownServices.length} services
+              {t("servicesCount", { count: shownServices.length })}
             </span>
           </div>
         </AnimatedSection>
@@ -158,7 +159,7 @@ export default function OperationsSection() {
                               transition={{ duration: 0.2, delay: 0.12 }}
                             >
                               <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-3">
-                                Capabilities
+                                {t("capabilities")}
                               </p>
                               <div className="flex flex-wrap gap-1.5">
                                 {service.capabilities.map((cap, ci) => (
@@ -182,7 +183,7 @@ export default function OperationsSection() {
                                 transition={{ duration: 0.2, delay: 0.2 }}
                               >
                                 <p className="text-[10px] tracking-[0.18em] uppercase text-white/20 mb-2.5">
-                                  Related reading
+                                  {t("relatedReading")}
                                 </p>
                                 <Link
                                   href={`/insights/${article.slug}`}
