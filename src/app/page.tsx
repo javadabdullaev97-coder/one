@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import regionImageLoader from "@/lib/image-loader";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -162,20 +161,20 @@ const REGION_DATA: Record<string, RegionData> = {
 };
 
 const REGION_IMAGE: Record<string, string> = {
-  "UZ-AN": "/Regions/Andijan.png",
-  "UZ-BU": "/Regions/Bukhara.png",
-  "UZ-FA": "/Regions/Fergana.png",
-  "UZ-JI": "/Regions/Jizzakh.png",
-  "UZ-QR": "/Regions/Karakalpakstan.png",
-  "UZ-QA": "/Regions/Kashkadarya.png",
-  "UZ-XO": "/Regions/Khiva.png",
-  "UZ-NG": "/Regions/Namangan.png",
-  "UZ-NW": "/Regions/Navoi.png",
-  "UZ-SA": "/Regions/Samarkand.png",
-  "UZ-SU": "/Regions/Surkhandarya.png",
-  "UZ-SI": "/Regions/Syrdarya.png",
-  "UZ-TK": "/Regions/Tashkent City.png",
-  "UZ-TO": "/Regions/Tashkent region.png",
+  "UZ-AN": "/Regions/Andijan.webp",
+  "UZ-BU": "/Regions/Bukhara.webp",
+  "UZ-FA": "/Regions/Fergana.webp",
+  "UZ-JI": "/Regions/Jizzakh.webp",
+  "UZ-QR": "/Regions/Karakalpakstan.webp",
+  "UZ-QA": "/Regions/Kashkadarya.webp",
+  "UZ-XO": "/Regions/Khiva.webp",
+  "UZ-NG": "/Regions/Namangan.webp",
+  "UZ-NW": "/Regions/Navoi.webp",
+  "UZ-SA": "/Regions/Samarkand.webp",
+  "UZ-SU": "/Regions/Surkhandarya.webp",
+  "UZ-SI": "/Regions/Syrdarya.webp",
+  "UZ-TK": "/Regions/Tashkent City.webp",
+  "UZ-TO": "/Regions/Tashkent region.webp",
 };
 
 /* ── Region image preloader ────────────────────────────── */
@@ -187,7 +186,7 @@ function RegionImagePreloader() {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={src}
-          src={regionImageLoader({ src, width: 480, quality: 75 })}
+          src={src}
           alt=""
           width={1}
           height={1}
@@ -220,13 +219,12 @@ function RegionInfoPanel({ activeId }: { activeId: string | null }) {
               <div className="relative h-44 rounded-xl overflow-hidden mb-5 border border-white/[0.06]"
                 style={{ background: "linear-gradient(135deg, rgba(122,26,26,0.22) 0%, #080808 65%)" }}>
                 <Image
-                  loader={regionImageLoader}
-                  src={REGION_IMAGE[activeId ?? ""] ?? "/Regions/Andijan.png"}
+                  src={REGION_IMAGE[activeId ?? ""] ?? "/Regions/Andijan.webp"}
                   alt={region.name}
                   fill
+                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 1024px) calc(100vw - 3rem), 480px"
-                  quality={75}
                 />
                 {/* bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#080808]/70 to-transparent pointer-events-none" />
