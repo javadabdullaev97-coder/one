@@ -79,8 +79,8 @@ function StatsSection() {
 // ─── Industries ────────────────────────────────
 
 const sectorEngagements: Record<string, { metric: string; label: string; text: string }> = {
-  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Two restructuring projects for an international digital bank" },
-  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax and customs structuring for a nuclear power plant" },
+  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Restructuring of an international digital bank's Uzbek subsidiaries" },
+  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax, accounting and customs structuring for a nuclear power plant construction" },
   "Technology & Digital":         { metric: "$5M",   label: "Investment",     text: "Tax structuring for a major Russian IT company during its Uzbek market launch" },
   "Real Estate & Infrastructure": { metric: "$20M",  label: "Transaction",    text: "M&A and restructuring of a large Uzbek cement producer" },
   "Consumer & Lifestyle":         { metric: "$250M", label: "Transaction",    text: "M&A of a large Uzbek bottler company" },
@@ -161,7 +161,7 @@ function IndustriesSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full h-44 md:h-52 rounded-xl overflow-hidden mb-6"
+                  className="relative w-full h-36 md:h-40 rounded-xl overflow-hidden mb-5"
                   style={{
                     background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
                   }}
