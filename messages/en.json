@@ -204,6 +204,334 @@
       "timezone": "UTC+5 · Tashkent, Uzbekistan"
     }
   },
+  "Services": {
+    "tax": {
+      "title": "Tax Consulting",
+      "description": "Our tax practice navigates Uzbekistan's evolving fiscal landscape with precision — designing structures that optimise your position while maintaining full regulatory compliance across cross-border transactions, local VAT obligations, and everything in between.",
+      "capabilities": [
+        "Tax planning & optimization",
+        "Compliance & filing",
+        "Transfer pricing advisory",
+        "Tax audit representation",
+        "International tax structuring",
+        "VAT consulting",
+        "Tax incentive applications",
+        "Customs & excise advisory"
+      ]
+    },
+    "legal": {
+      "title": "Legal Advisory",
+      "description": "Our legal team provides end-to-end counsel for businesses operating in Uzbekistan — from entity formation and contract architecture to regulatory compliance and corporate structuring — protecting your interests with the rigour that complex, multi-jurisdictional operations demand.",
+      "capabilities": [
+        "Company formation & licensing",
+        "Contract drafting & review",
+        "Corporate governance",
+        "Regulatory compliance",
+        "Intellectual property",
+        "Labour law advisory",
+        "Merger & acquisition support"
+      ]
+    },
+    "finance": {
+      "title": "Accounting",
+      "description": "We deliver full-cycle financial management — precise bookkeeping, transparent reporting, and strategic advisory that transforms your numbers into actionable intelligence, with full compliance across National Accounting Standards and IFRS.",
+      "capabilities": [
+        "Bookkeeping & accounting",
+        "IFRS / NAS reporting",
+        "Audit preparation & support",
+        "Budgeting & forecasting",
+        "Cash flow management",
+        "Financial modelling",
+        "Management reporting",
+        "Internal controls advisory"
+      ]
+    },
+    "hr": {
+      "title": "Human Resources",
+      "description": "Our HR advisory practice covers the strategic and compliance dimensions of human capital — from organisational design and executive search to HR audits and labour law guidance — advising on the frameworks that underpin a compliant, high-performing workforce in Uzbekistan.",
+      "capabilities": [
+        "Recruitment & executive search",
+        "HR outsourcing",
+        "HR audits & compliance",
+        "Training & development",
+        "Compensation benchmarking",
+        "Organisational design",
+        "Labour law advisory"
+      ]
+    },
+    "funding": {
+      "title": "Funding & Grants",
+      "description": "We guide businesses through the landscape of available funding — grants, investment readiness, donor engagement, and financial structuring for growth — drawing on deep relationships across the institutional funding ecosystem in Central Asia.",
+      "capabilities": [
+        "Grant identification & applications",
+        "Investment readiness assessment",
+        "Business plan development",
+        "Donor & investor matching",
+        "Financial modelling & projections",
+        "Due diligence preparation",
+        "Pitch deck development",
+        "Post-funding compliance"
+      ]
+    },
+    "ma-advisory": {
+      "title": "M&A Advisory",
+      "description": "Our M&A practice guides buyers and sellers through every stage of a transaction in Uzbekistan — from structuring and due diligence to negotiation and post-deal integration — with a track record spanning $250M+ deals across FMCG, fintech, energy, and manufacturing.",
+      "capabilities": [
+        "Buy-side & sell-side advisory",
+        "Transaction structuring",
+        "Valuation support",
+        "Negotiation & deal management",
+        "Post-acquisition integration",
+        "Joint venture structuring",
+        "Management buyout advisory",
+        "Cross-border deal coordination"
+      ]
+    },
+    "due-diligence": {
+      "title": "Due Diligence",
+      "description": "Our due diligence practice provides comprehensive tax, legal, and financial assessment of Uzbek targets — giving acquirers, investors, and lenders a clear picture of what they are buying, with 30+ engagements completed across energy, mining, FMCG, and manufacturing.",
+      "capabilities": [
+        "Tax due diligence",
+        "Legal due diligence",
+        "Financial due diligence",
+        "Regulatory compliance review",
+        "Employment & HR review",
+        "Vendor due diligence",
+        "Red flag reports",
+        "Full scope DD reports"
+      ]
+    },
+    "entity-management": {
+      "title": "Entity Management",
+      "description1": "For foreign companies that want a full presence in Uzbekistan without building an internal team, we take complete operational control — acting as your on-the-ground management layer across accounting, tax, legal, and HR.",
+      "description2": "One contract, one point of contact, full compliance. Everything your entity needs to operate correctly and efficiently.",
+      "capabilities": [
+        "Outsourced accounting & bookkeeping",
+        "Tax compliance & filings",
+        "Legal compliance monitoring",
+        "HR & payroll management",
+        "Regulatory submissions & deadlines",
+        "Annual reporting & audit preparation",
+        "Corporate governance oversight",
+        "Dedicated client manager"
+      ]
+    },
+    "corporate": {
+      "title": "Corporate Services",
+      "description1": "We handle the full lifecycle of your corporate presence in Uzbekistan — from incorporation and ongoing administration to nominal services that let foreign companies operate without a physical footprint.",
+      "description2": "Our corporate services team manages the paperwork, deadlines, and compliance so you can focus on your business.",
+      "capabilities": [
+        "Company formation & registration",
+        "Nominal director services",
+        "Nominal / registered address",
+        "Corporate secretarial services",
+        "Power of attorney",
+        "Company liquidation & dissolution",
+        "Branch & representative office setup"
+      ]
+    },
+    "eor": {
+      "title": "Employer of Record",
+      "description1": "We become the legal employer for your staff in Uzbekistan — handling all employment contracts, payroll, tax withholding, and statutory compliance while your team works entirely for you.",
+      "description2": "EOR is the fastest way to build a local presence without the cost and complexity of entity formation.",
+      "capabilities": [
+        "Employment contract management",
+        "Payroll processing & tax withholding",
+        "Social contributions & benefits",
+        "HR compliance & documentation",
+        "Onboarding & offboarding",
+        "Multi-employee EOR at scale",
+        "Transition to own entity when ready"
+      ]
+    },
+    "payroll": {
+      "title": "Payroll Bureau",
+      "description1": "We handle the complete payroll cycle for your Uzbekistan workforce — calculation, withholding, reporting, and payment — with full compliance with local tax and labour law.",
+      "description2": "Whether you have 5 or 500 employees, our payroll bureau runs accurately and on time, every month.",
+      "capabilities": [
+        "Monthly payroll calculation",
+        "Tax & social contribution withholding",
+        "Salary payment processing",
+        "Payslip generation",
+        "Payroll tax reporting",
+        "Year-end reconciliation",
+        "Multi-currency payroll",
+        "Payroll audit support"
+      ]
+    },
+    "immigration": {
+      "title": "Work Permits & Immigration",
+      "description1": "We manage the full cycle of work permit applications, visa support, and immigration compliance for foreign nationals working in Uzbekistan — removing complexity and reducing processing time.",
+      "description2": "From initial application to renewal and exit, our team handles every interaction with the relevant authorities on your behalf.",
+      "capabilities": [
+        "Work permit applications & renewals",
+        "Business visa support",
+        "Residency permit advisory",
+        "Document preparation & apostille",
+        "Government liaison & submission",
+        "Permit tracking & deadline management",
+        "Dependant visa support",
+        "Exit procedures"
+      ]
+    },
+    "virtual-office": {
+      "title": "Virtual Office",
+      "description1": "Establish a credible Uzbekistan address for your business without committing to physical space. Our virtual office service provides a registered address, mail handling, and access to meeting facilities when you need them.",
+      "description2": "Ideal for companies exploring the market, managing compliance obligations, or running a lean local presence.",
+      "capabilities": [
+        "Registered business address",
+        "Mail receipt & forwarding",
+        "Document scanning & delivery",
+        "Meeting room access",
+        "Local phone number & call handling",
+        "Courier & logistics support"
+      ]
+    },
+    "compliance": {
+      "title": "Compliance Monitoring",
+      "description1": "Uzbekistan's regulatory environment evolves rapidly. Our compliance monitoring service tracks filing deadlines, legislative changes, and reporting obligations across tax, legal, and corporate — keeping your entity permanently in good standing.",
+      "description2": "We operate as your regulatory early-warning system, flagging what matters before it becomes a problem.",
+      "capabilities": [
+        "Filing deadline calendar & alerts",
+        "Regulatory change monitoring",
+        "Tax & statutory filing oversight",
+        "Corporate compliance checklist",
+        "Annual obligation management",
+        "Government correspondence handling",
+        "Compliance status reporting",
+        "Proactive risk flagging"
+      ]
+    }
+  },
+  "Industries": {
+    "Financial Services": {
+      "name": "Financial Services",
+      "description": "Banks, investment funds, PE firms, and digital asset operators across Central Asia rely on Advizen for licensing, regulatory compliance, fund structuring, and cross-border transaction advisory.",
+      "offerings": [
+        "Licensing and regulatory compliance",
+        "Corporate governance advisory",
+        "IFRS & NAS financial reporting",
+        "Fund and SPV structuring",
+        "M&A and restructuring support",
+        "Transfer pricing documentation",
+        "Digital asset legal structuring"
+      ]
+    },
+    "Energy & Industrials": {
+      "name": "Energy & Industrials",
+      "description": "From nuclear power and renewables to oil & gas, agri-processing, and heavy manufacturing — we provide tax, customs, and legal advisory for capital-intensive projects and their investors across Uzbekistan.",
+      "offerings": [
+        "Tax and customs structuring for large projects",
+        "Transfer pricing documentation",
+        "Holdings and investment structuring",
+        "Due diligence for energy and industrial assets",
+        "Free economic zone advisory",
+        "HR and payroll at scale"
+      ]
+    },
+    "Technology & Digital": {
+      "name": "Technology & Digital",
+      "description": "Tech companies, fintechs, and telecoms entering Uzbekistan's growing digital economy rely on us for tax structuring, regulatory licensing, and the legal frameworks that support rapid scaling.",
+      "offerings": [
+        "Tax structuring for market entry",
+        "Fintech regulatory compliance",
+        "Software and IP licensing advisory",
+        "Investment and shareholder structuring",
+        "Digital asset legal structuring",
+        "HR for engineering teams"
+      ]
+    },
+    "Real Estate & Infrastructure": {
+      "name": "Real Estate & Infrastructure",
+      "description": "Large-scale property and infrastructure projects demand careful tax and legal planning from the outset. We advise developers, contractors, and investors on project structuring, permitting, and compliance.",
+      "offerings": [
+        "Project tax optimisation",
+        "Contract architecture and review",
+        "Labour law and workforce compliance",
+        "Permitting and regulatory advisory",
+        "Investment structuring for developers"
+      ]
+    },
+    "Consumer & Lifestyle": {
+      "name": "Consumer & Lifestyle",
+      "description": "From FMCG and retail to hospitality, media, and sports — we support consumer-facing businesses across Uzbekistan with market entry structuring, HR at scale, payroll, and operational compliance.",
+      "offerings": [
+        "Market entry and entity formation",
+        "M&A and expansion structuring",
+        "Payroll and HR outsourcing",
+        "Franchise and distribution agreements",
+        "IP and content contracts",
+        "Event and sponsorship structuring"
+      ]
+    },
+    "Healthcare & Social": {
+      "name": "Healthcare & Social",
+      "description": "International pharma companies, healthcare operators, private schools, and universities rely on us for smooth market entry, licensing advisory, and the HR and compliance infrastructure needed to operate at scale.",
+      "offerings": [
+        "Market entry and product registration",
+        "Regulatory compliance advisory",
+        "HR, payroll, and EOR services",
+        "Entity formation and licensing",
+        "Foreign staff work permits",
+        "Tax compliance and reporting"
+      ]
+    }
+  },
+  "IndustryFeatured": {
+    "Financial Services": { "metric": "$200M", "label": "Transaction", "text": "Restructuring of an international digital bank's Uzbek subsidiaries" },
+    "Energy & Industrials": { "metric": "$10B+", "label": "Project budget", "text": "Tax, accounting and customs structuring for a nuclear power plant construction" },
+    "Technology & Digital": { "metric": "$5M", "label": "Investment", "text": "Tax structuring for a major Russian IT company during its Uzbek market launch" },
+    "Real Estate & Infrastructure": { "metric": "$20M", "label": "Transaction", "text": "M&A and restructuring of a large Uzbek cement producer" },
+    "Consumer & Lifestyle": { "metric": "$250M", "label": "Transaction", "text": "M&A of a large Uzbek bottler company" },
+    "Healthcare & Social": { "metric": "5+", "label": "Companies", "text": "Entity formation, payroll and compliance advisory for international pharma companies" }
+  },
+  "Engagements": {
+    "metricLabels": {
+      "Project budget": "Project budget",
+      "Structured investment": "Structured investment",
+      "Transaction": "Transaction",
+      "Investment": "Investment",
+      "Seed round": "Seed round",
+      "State-owned": "State-owned",
+      "Built from scratch": "Built from scratch",
+      "Companies": "Companies",
+      "Entities incorporated": "Entities incorporated",
+      "Tax & Legal DDs": "Tax & Legal DDs"
+    },
+    "sectors": {
+      "Energy": "Energy",
+      "FMCG": "FMCG",
+      "Fintech": "Fintech",
+      "Manufacturing": "Manufacturing",
+      "Technology": "Technology",
+      "Retail": "Retail",
+      "Islamic Fintech": "Islamic Fintech",
+      "Public Sector": "Public Sector",
+      "Capital Markets": "Capital Markets",
+      "Banking": "Banking",
+      "Islamic Finance": "Islamic Finance",
+      "Pharma": "Pharma",
+      "Cross-Industry": "Cross-Industry",
+      "Due Diligence": "Due Diligence"
+    },
+    "headlines": [
+      "Tax, accounting, and customs structuring of a nuclear power plant construction for a Russian enterprise",
+      "Tax & legal due diligence, holdings structuring, and transfer pricing documentation for all operations of a Chinese energy group of companies in Uzbekistan",
+      "M&A of a large Uzbek bottler company",
+      "Two major restructuring projects of an international digital bank in its Uzbek subsidiaries",
+      "M&A and corporate restructuring of a large Uzbek cement producer",
+      "Tax structuring and ad-hoc consulting of a major Russian IT company during its market launch in Uzbekistan",
+      "M&A and structuring for a major local retailer",
+      "Tax and legal advisory for the seed investment phase structuring of an Uzbek-based fintech startup operating on Islamic finance principles",
+      "Reorganization and structuring of an Uzbek state-owned investment fund",
+      "Served as local tax, legal, and finance consultants for international firms hired by the government to develop capital market legislation",
+      "Served as local consultants for international firms advising the government on banking legislation, including derivatives and REPO frameworks",
+      "Served as local consultants for an international firm advising the government on integrating Islamic finance instruments into Uzbek legislation",
+      "Establishing, structuring, payroll consulting, and ongoing compliance advisory for international pharmaceutical companies in Uzbekistan",
+      "End-to-end incorporation and registration advisory for both local and international companies across multiple industries",
+      "Tax and legal due diligence across renewable energy, mining, oil & gas, FMCG, and manufacturing sectors"
+    ]
+  },
   "AdvisorySection": {
     "eyebrow": "Advisory",
     "heading": "You consult — we counsel",

@@ -81,6 +81,7 @@ export default function AdvisorySection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const t = useTranslations("AdvisorySection");
+  const tServices = useTranslations("Services");
 
   const active = advisoryServices[activeIndex];
   const ActiveIcon = serviceIcons[active.slug] ?? ArrowUpRight;
@@ -154,7 +155,7 @@ export default function AdvisorySection() {
                     "flex-1 text-[15px] font-medium tracking-[0.02em] transition-colors duration-200",
                     isActive ? "text-foreground" : "text-white/40 group-hover:text-white/72"
                   )}>
-                    {service.title}
+                    {tServices(`${service.slug}.title`)}
                   </span>
                   <ArrowRight className={cn(
                     "w-3.5 h-3.5 shrink-0 transition-all duration-200",
@@ -202,7 +203,7 @@ export default function AdvisorySection() {
                       </span>
                       <div>
                         <h3 className="heading-luxury text-xl md:text-[1.35rem] text-foreground leading-tight">
-                          {active.title}
+                          {tServices(`${active.slug}.title`)}
                         </h3>
                         <p className="text-[9px] tracking-[0.18em] uppercase text-white/28 mt-1">{t("advisoryLabel")}</p>
                       </div>
@@ -223,7 +224,7 @@ export default function AdvisorySection() {
                     transition={{ duration: 0.28, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
                     className="text-[14px] text-white/55 leading-relaxed"
                   >
-                    {active.description[0]}
+                    {tServices(`${active.slug}.description`)}
                   </motion.p>
 
                   {/* Who this is for */}
@@ -255,7 +256,7 @@ export default function AdvisorySection() {
                       {t("capabilities")}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
-                      {active.capabilities.map((cap, ci) => (
+                      {(tServices.raw(`${active.slug}.capabilities`) as string[]).map((cap, ci) => (
                         <motion.span
                           key={cap}
                           initial={{ opacity: 0, scale: 0.93 }}

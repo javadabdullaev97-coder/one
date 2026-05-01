@@ -24,6 +24,7 @@ const relatedArticle: Record<string, { slug: string; title: string; tag: string 
 export default function OperationsSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const t = useTranslations("OperationsSection");
+  const tServices = useTranslations("Services");
 
   return (
     <section id="operations" className="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/[0.06]">
@@ -85,13 +86,13 @@ export default function OperationsSection() {
                     "heading-luxury text-lg md:text-xl flex-1 transition-colors duration-200",
                     isOpen ? "text-foreground" : "text-white/55 group-hover/row:text-white/85"
                   )}>
-                    {service.title}
+                    {tServices(`${service.slug}.title`)}
                   </span>
 
                   {/* Key capability preview — visible when closed */}
                   {!isOpen && (
                     <span className="hidden md:flex items-center gap-3 shrink-0">
-                      {service.capabilities.slice(0, 2).map(cap => (
+                      {(tServices.raw(`${service.slug}.capabilities`) as string[]).slice(0, 2).map(cap => (
                         <span key={cap} className="text-[10px] tracking-[0.1em] uppercase text-white/20 border border-white/[0.05] px-2.5 py-1">
                           {cap}
                         </span>
@@ -135,19 +136,17 @@ export default function OperationsSection() {
                               transition={{ duration: 0.25, delay: 0.06 }}
                               className="text-[14px] text-white/52 leading-relaxed"
                             >
-                              {service.description[0]}
+                              {tServices(`${service.slug}.description1`)}
                             </motion.p>
 
-                            {service.description[1] && (
-                              <motion.p
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.25, delay: 0.1 }}
-                                className="text-[14px] text-white/38 leading-relaxed"
-                              >
-                                {service.description[1]}
-                              </motion.p>
-                            )}
+                            <motion.p
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.25, delay: 0.1 }}
+                              className="text-[14px] text-white/38 leading-relaxed"
+                            >
+                              {tServices(`${service.slug}.description2`)}
+                            </motion.p>
 
                           </div>
 
@@ -162,7 +161,7 @@ export default function OperationsSection() {
                                 {t("capabilities")}
                               </p>
                               <div className="flex flex-wrap gap-1.5">
-                                {service.capabilities.map((cap, ci) => (
+                                {(tServices.raw(`${service.slug}.capabilities`) as string[]).map((cap, ci) => (
                                   <motion.span
                                     key={cap}
                                     initial={{ opacity: 0, scale: 0.93 }}

@@ -76,20 +76,17 @@ function StatsSection() {
 
 // ─── Industries ────────────────────────────────
 
-const sectorEngagements: Record<string, { metric: string; label: string; text: string }> = {
-  "Financial Services":           { metric: "$200M", label: "Transaction",    text: "Restructuring of an international digital bank's Uzbek subsidiaries" },
-  "Energy & Industrials":         { metric: "$10B+", label: "Project budget", text: "Tax, accounting and customs structuring for a nuclear power plant construction" },
-  "Technology & Digital":         { metric: "$5M",   label: "Investment",     text: "Tax structuring for a major Russian IT company during its Uzbek market launch" },
-  "Real Estate & Infrastructure": { metric: "$20M",  label: "Transaction",    text: "M&A and restructuring of a large Uzbek cement producer" },
-  "Consumer & Lifestyle":         { metric: "$250M", label: "Transaction",    text: "M&A of a large Uzbek bottler company" },
-  "Healthcare & Social":          { metric: "5+",    label: "Companies",      text: "Entity formation, payroll and compliance advisory for international pharma companies" },
-};
-
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industryGroups[activeIndex];
-  const engagement = sectorEngagements[active.name];
   const t = useTranslations("ExpertisePage.industries");
+  const tIndustries = useTranslations("Industries");
+  const tFeatured = useTranslations("IndustryFeatured");
+  const engagement = {
+    metric: tFeatured(`${active.name}.metric`),
+    label: tFeatured(`${active.name}.label`),
+    text: tFeatured(`${active.name}.text`),
+  };
 
   useEffect(() => {
     industryGroups.forEach(({ image }) => {
@@ -138,7 +135,7 @@ function IndustriesSection() {
                   >
                     <IconComp className={cn("w-3.5 h-3.5", isActive ? "text-primary-light" : "text-white/35")} />
                   </span>
-                  <span className="text-sm font-medium leading-snug">{ind.name}</span>
+                  <span className="text-sm font-medium leading-snug">{tIndustries(`${ind.name}.name`)}</span>
                 </button>
               );
             })}
@@ -189,7 +186,7 @@ function IndustriesSection() {
                 >
                   <active.icon className="w-5 h-5 text-primary shrink-0" strokeWidth={1.25} />
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide leading-tight">
-                    {active.name}
+                    {tIndustries(`${active.name}.name`)}
                   </h3>
                 </motion.div>
 
@@ -200,7 +197,7 @@ function IndustriesSection() {
                   transition={{ duration: 0.35, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}
                   className="text-[14px] text-white/52 leading-relaxed mb-6"
                 >
-                  {active.description}
+                  {tIndustries(`${active.name}.description`)}
                 </motion.p>
 
                 {/* Offerings */}
@@ -213,7 +210,7 @@ function IndustriesSection() {
                   {t("whatWeOffer")}
                 </motion.p>
                 <div className="flex flex-wrap gap-2 mb-7">
-                  {active.offerings.map((item, oi) => (
+                  {(tIndustries.raw(`${active.name}.offerings`) as string[]).map((item, oi) => (
                     <motion.span
                       key={item}
                       initial={{ opacity: 0, scale: 0.94 }}
@@ -262,6 +259,7 @@ function IndustriesSection() {
 
 function TrackRecord() {
   const t = useTranslations("ExpertisePage.trackRecord");
+  const tEng = useTranslations("Engagements");
   return (
     <section className="py-24 md:py-32 bg-black relative overflow-hidden">
       <div className="ambient-glow ambient-glow-oxblood w-[700px] h-[700px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2 opacity-[0.18]" />
@@ -276,7 +274,7 @@ function TrackRecord() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {allEngagements.map((eng, i) => (
             <motion.div
-              key={eng.headline}
+              key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -298,16 +296,16 @@ function TrackRecord() {
                       {eng.metric}
                     </span>
                     <p className="text-[10px] tracking-[0.16em] uppercase text-white/25 mt-2">
-                      {eng.metricLabel}
+                      {tEng(`metricLabels.${eng.metricLabel}`)}
                     </p>
                   </div>
                   {/* Sector */}
                   <span className="inline-block text-xs tracking-[0.16em] uppercase text-primary/70 mb-3">
-                    {eng.sector}
+                    {tEng(`sectors.${eng.sector}`)}
                   </span>
                   {/* Headline */}
                   <p className="text-[14px] text-foreground/60 leading-snug font-light flex-1 mb-5">
-                    {eng.headline}
+                    {tEng(`headlines.${i}`)}
                   </p>
                   {/* Disciplines */}
                   <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.05]">
