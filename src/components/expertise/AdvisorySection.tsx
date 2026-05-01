@@ -57,7 +57,7 @@ const serviceAccents: Record<string, string> = {
 };
 
 const serviceFor: Record<string, string> = {
-  tax:            "Foreign-invested companies, holding structures, and cross-border operators navigating Uzbekistan’s fiscal complexity.",
+  tax:            "Foreign-invested companies, holding structures, and cross-border operators navigating Uzbekistan's fiscal complexity.",
   legal:          "International businesses entering Uzbekistan, M&A counterparties, and companies requiring regulatory clearances.",
   finance:        "Foreign subsidiaries needing IFRS-compliant reporting, investor-ready financials, or audit-prepared books.",
   hr:             "Growing businesses requiring compliant HR infrastructure, executive hiring, or workforce compliance reviews.",
@@ -295,16 +295,6 @@ export default function AdvisorySection() {
                   )}
                 </div>
 
-                {/* Footer */}
-                <div className="px-8 md:px-10 py-4 border-t border-white/[0.05] shrink-0">
-                  <Link
-                    href={`/expertise/${active.slug}`}
-                    className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-white/40 hover:text-white/80 transition-colors duration-200"
-                  >
-                    Full service overview
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </Link>
-                </div>
               </motion.div>
             </AnimatePresence>
           </div>
