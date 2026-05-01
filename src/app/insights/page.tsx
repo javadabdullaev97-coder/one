@@ -19,7 +19,7 @@ import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ───────────────────────────────────────────────────── */
+/* ── Helpers ─────────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,7 +29,7 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ────────────────────────────────────────────────────── */
+/* ── Data ──────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
@@ -71,7 +71,7 @@ const categoryGradients: Record<string, string> = {
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 6;
 
-/* ── Article Card ──────────────────────────────────────────────── */
+/* ── Article Card ────────────────────────────────────────────── */
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
@@ -85,6 +85,8 @@ function ArticleCard({ pub }: { pub: Publication }) {
             src={pub.image}
             alt={pub.title}
             fill
+            unoptimized
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover opacity-70 group-hover:opacity-85 group-hover:scale-[1.03] transition-all duration-500"
           />
         ) : (
@@ -120,7 +122,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
