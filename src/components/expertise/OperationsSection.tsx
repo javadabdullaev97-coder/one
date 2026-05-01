@@ -13,13 +13,6 @@ const shownServices = SHOWN_SLUGS
   .map(slug => operationsServices.find(s => s.slug === slug))
   .filter(Boolean) as typeof operationsServices;
 
-const serviceFor: Record<string, string> = {
-  "entity-management": "Foreign companies that want a full operational presence in Uzbekistan without building an internal team.",
-  "eor":               "International businesses hiring local talent in Uzbekistan without committing to entity formation.",
-  "corporate":         "Foreign companies needing registered presence, nominal services, or ongoing corporate administration.",
-  "virtual-office":    "Businesses exploring the Uzbekistan market or maintaining compliance with a minimal physical footprint.",
-};
-
 const relatedArticle: Record<string, { slug: string; title: string; tag: string } | null> = {
   "entity-management": null,
   "eor":               { slug: "employer-of-record-central-asia",    title: "Employer of Record in Central Asia",       tag: "HR Briefing"    },
@@ -133,7 +126,7 @@ export default function OperationsSection() {
                       <div className="pb-10 pl-6 pr-4 md:pr-8">
                         <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 border-t border-white/[0.04] pt-7">
 
-                          {/* Left: description + who this is for + CTA */}
+                          {/* Left: description + CTA */}
                           <div className="flex flex-col gap-5">
                             <motion.p
                               initial={{ opacity: 0, y: 6 }}
@@ -154,20 +147,6 @@ export default function OperationsSection() {
                                 {service.description[1]}
                               </motion.p>
                             )}
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 4 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.25, delay: 0.13 }}
-                              className="border-l-2 border-primary/30 pl-4 py-0.5"
-                            >
-                              <p className="text-[10px] tracking-[0.18em] uppercase text-primary/50 mb-1.5">
-                                Who this is for
-                              </p>
-                              <p className="text-[13px] text-white/45 leading-relaxed">
-                                {serviceFor[service.slug]}
-                              </p>
-                            </motion.div>
 
                             <motion.div
                               initial={{ opacity: 0 }}
