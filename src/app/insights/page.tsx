@@ -19,7 +19,7 @@ import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 import { publications, sortedPublications, type Publication } from "@/lib/publications";
 
-/* ── Helpers ─────────────────────────────────────────────── */
+/* ── Helpers ──────────────────────────────────────────── */
 
 function formatDate(dateStr?: string, year?: string): string {
   if (dateStr) {
@@ -29,15 +29,15 @@ function formatDate(dateStr?: string, year?: string): string {
   return year ?? "";
 }
 
-/* ── Data ──────────────────────────────────────────── */
+/* ── Data ────────────────────────────────────────── */
 
 const flagship = {
   tag: "Flagship Publication",
   title: "Doing Business in Uzbekistan",
-  subtitle: "The Definitive Guide — 2024 Edition",
+  subtitle: "The Definitive Guide — 2026 Edition",
   description:
     "A comprehensive resource for international investors and companies entering the Uzbekistan market. Covers regulatory frameworks, tax structures, labour law, market entry strategies, and operational best practices.",
-  year: "2024",
+  year: "2026",
   pages: 148,
   languages: "EN / RU",
   chapters: [
@@ -71,7 +71,7 @@ const categoryGradients: Record<string, string> = {
 const luxuryEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const ITEMS_PER_PAGE = 6;
 
-/* ── Article Card ────────────────────────────────────────────── */
+/* ── Article Card ──────────────────────────────────────────── */
 
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
@@ -122,7 +122,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
   );
 }
 
-/* ── Page ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ── Page ───────────────────────────────────────────────────────────────────────────────────────────── */
 
 export default function LibraryPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>("All");
@@ -268,33 +268,43 @@ export default function LibraryPage() {
                   </div>
                 </div>
 
-                {/* Right — chapter list */}
-                <div className="border-t lg:border-t-0 lg:border-l border-white/[0.06] p-10 md:p-14 lg:p-16 bg-white/[0.01]">
-                  <p className="tracking-luxury text-white/40 mb-8 text-xs uppercase">
-                    Contents
-                  </p>
-                  <div className="space-y-0">
-                    {flagship.chapters.map((chapter, i) => (
-                      <motion.div
-                        key={chapter.num}
-                        initial={{ opacity: 0, x: -12 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-40px" }}
-                        transition={{
-                          duration: 0.4,
-                          delay: i * 0.07,
-                          ease: luxuryEase,
-                        }}
-                        className="flex items-start gap-5 py-5 border-b border-white/[0.05] group cursor-default"
-                      >
-                        <span className="font-mono text-xs text-primary-light/60 mt-0.5 shrink-0">
-                          {chapter.num}
-                        </span>
-                        <span className="text-sm text-white/60 leading-snug group-hover:text-white/90 transition-colors duration-200">
-                          {chapter.title}
-                        </span>
-                      </motion.div>
-                    ))}
+                {/* Right — cover image with chapter overlay */}
+                <div className="relative border-t lg:border-t-0 lg:border-l border-white/[0.06] overflow-hidden min-h-[480px] lg:min-h-0">
+                  <Image
+                    src="/Articles Image/DBU_cover.webp"
+                    fill
+                    unoptimized
+                    alt="Doing Business in Uzbekistan 2026"
+                    className="object-cover object-top"
+                    priority
+                  />
+                  {/* Gradient: top keeps image visible, bottom is dark for chapter legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-black/10" />
+
+                  {/* Chapter list overlaid at bottom */}
+                  <div className="absolute bottom-0 inset-x-0 px-8 md:px-12 lg:px-14 pt-6 pb-8">
+                    <p className="tracking-luxury text-white/30 mb-3 text-[10px] uppercase">
+                      Contents
+                    </p>
+                    <div>
+                      {flagship.chapters.map((chapter, i) => (
+                        <motion.div
+                          key={chapter.num}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true, margin: "-40px" }}
+                          transition={{ duration: 0.38, delay: i * 0.06, ease: luxuryEase }}
+                          className="flex items-center gap-4 py-2.5 border-b border-white/[0.05] last:border-0 group cursor-default"
+                        >
+                          <span className="font-mono text-[10px] text-primary-light/50 shrink-0 tabular-nums">
+                            {chapter.num}
+                          </span>
+                          <span className="text-[12px] text-white/55 leading-snug group-hover:text-white/85 transition-colors duration-200">
+                            {chapter.title}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
