@@ -73,8 +73,10 @@ export default function InsightsSection() {
                   />
                 )}
 
-                {/* Gradient overlay — always present for text legibility */}
+                {/* Bottom gradient for text legibility */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                {/* Top gradient for label legibility */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
 
                 {/* Left accent line */}
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-transparent via-primary/70 to-transparent" />
