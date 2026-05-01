@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -384,6 +384,34 @@ export default function ExpertisePage() {
       <OperationsSection />
       <IndustriesSection />
       <TrackRecord />
+
+      {/* ── CTA ── */}
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+        <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <div className="ambient-glow ambient-glow-oxblood w-[500px] h-[500px] -bottom-32 -right-32 opacity-35" />
+        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <p className="tracking-luxury text-white/40 mb-6">Work with us</p>
+            <h2 className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground mb-6 leading-tight">
+              Ready to work together?
+            </h2>
+            <p className="text-lg text-white/55 max-w-xl mx-auto mb-12 leading-relaxed">
+              Tell us about your business — we will identify where we can make the most
+              impact and structure a scope that fits.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <MagneticButton variant="primary" as="a" href="/contact">
+                Schedule a consultation
+                <ArrowRight className="w-4 h-4" />
+              </MagneticButton>
+              <MagneticButton variant="outline" as="a" href="/insights">
+                Browse our insights
+                <ArrowUpRight className="w-4 h-4" />
+              </MagneticButton>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
     </>
   );
 }
