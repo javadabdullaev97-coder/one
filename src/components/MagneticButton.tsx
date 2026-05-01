@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type ReactNode, type MouseEvent } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface MagneticButtonProps {
@@ -72,6 +72,14 @@ export default function MagneticButton({
     "inline-block rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary-light/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
   if (as === "a" && href) {
+    const isExternal = /^(https?:|mailto:|tel:)/.test(href);
+    if (isExternal) {
+      return (
+        <a href={href} className={wrapperClass}>
+          {btn}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={wrapperClass}>
         {btn}

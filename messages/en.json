@@ -1,0 +1,44 @@
+{
+  "Nav": {
+    "home": "Home",
+    "expertise": "Expertise",
+    "store": "Store",
+    "insights": "Insights",
+    "contact": "Contact",
+    "inquire": "Inquire"
+  },
+  "Footer": {
+    "expertise": "Expertise",
+    "operations": "Operations",
+    "firm": "Firm",
+    "legal": "Legal",
+    "tagline": "Premier business advisory in Uzbekistan. Integrated consulting across tax, legal, finance, and HR — a single point of contact for your entire operation.",
+    "rights": "All rights reserved.",
+    "store": "Store",
+    "insights": "Insights",
+    "contact": "Contact",
+    "termsOfSale": "Terms of Sale",
+    "cookiePolicy": "Cookie Policy",
+    "privacy": "Privacy",
+    "termsOfUse": "Terms of Use",
+    "disclaimer": "Disclaimer",
+    "taxConsulting": "Tax Consulting",
+    "legalAdvisory": "Legal Advisory",
+    "accounting": "Accounting",
+    "hrServices": "HR Services",
+    "funding": "Funding",
+    "maAdvisory": "M&A Advisory",
+    "dueDiligence": "Due Diligence",
+    "entityManagement": "Entity Management",
+    "employerOfRecord": "Employer of Record",
+    "corporateServices": "Corporate Services",
+    "virtualOffice": "Virtual Office",
+    "tashkent": "Tashkent, Uzbekistan"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "ru": "Russian",
+    "uz": "Uzbek"
+  }
+}

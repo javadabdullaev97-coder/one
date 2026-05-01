@@ -1,42 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import SocialIcons from "@/components/SocialIcons";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const inter = "var(--font-inter), sans-serif";
-
-const footerLinks = {
-  Expertise: [
-    { label: "Tax Consulting",  href: "/expertise#advisory" },
-    { label: "Legal Advisory",  href: "/expertise#advisory" },
-    { label: "Accounting",      href: "/expertise#advisory" },
-    { label: "HR Services",     href: "/expertise#advisory" },
-    { label: "Funding",         href: "/expertise#advisory" },
-    { label: "M&A Advisory",    href: "/expertise#advisory" },
-    { label: "Due Diligence",   href: "/expertise#advisory" },
-  ],
-  Operations: [
-    { label: "Entity Management",    href: "/expertise#operations" },
-    { label: "Employer of Record",   href: "/expertise#operations" },
-    { label: "Corporate Services",   href: "/expertise#operations" },
-    { label: "Virtual Office",       href: "/expertise#operations" },
-  ],
-  Firm: [
-    { label: "Store", href: "/store" },
-    { label: "Insights", href: "/insights" },
-    { label: "Contact", href: "/contact" },
-  ],
-  Legal: [
-    { label: "Terms of Sale", href: "/terms-of-sale" },
-    { label: "Cookie Policy", href: "/cookies" },
-    { label: "Privacy", href: "/privacy" },
-    { label: "Terms of Use", href: "/terms" },
-    { label: "Disclaimer", href: "/disclaimer" },
-  ],
-};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -44,6 +15,38 @@ const itemVariants = {
 };
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
+  const footerLinks = {
+    [t("expertise")]: [
+      { label: t("taxConsulting"),  href: "/expertise#advisory" },
+      { label: t("legalAdvisory"),  href: "/expertise#advisory" },
+      { label: t("accounting"),     href: "/expertise#advisory" },
+      { label: t("hrServices"),     href: "/expertise#advisory" },
+      { label: t("funding"),        href: "/expertise#advisory" },
+      { label: t("maAdvisory"),     href: "/expertise#advisory" },
+      { label: t("dueDiligence"),   href: "/expertise#advisory" },
+    ],
+    [t("operations")]: [
+      { label: t("entityManagement"),    href: "/expertise#operations" },
+      { label: t("employerOfRecord"),    href: "/expertise#operations" },
+      { label: t("corporateServices"),   href: "/expertise#operations" },
+      { label: t("virtualOffice"),       href: "/expertise#operations" },
+    ],
+    [t("firm")]: [
+      { label: t("store"),    href: "/store" },
+      { label: t("insights"), href: "/insights" },
+      { label: t("contact"),  href: "/contact" },
+    ],
+    [t("legal")]: [
+      { label: t("termsOfSale"),  href: "/terms-of-sale" },
+      { label: t("cookiePolicy"), href: "/cookies" },
+      { label: t("privacy"),      href: "/privacy" },
+      { label: t("termsOfUse"),   href: "/terms" },
+      { label: t("disclaimer"),   href: "/disclaimer" },
+    ],
+  };
+
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/[0.06]" style={{ fontFamily: inter }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -66,9 +69,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-6 text-sm text-white/50 leading-relaxed">
-              Premier business advisory in Uzbekistan. Integrated consulting
-              across tax, legal, finance, and HR &mdash; a single point of
-              contact for your entire operation.
+              {t("tagline")}
             </p>
             <div className="mt-8 space-y-4">
               <a
@@ -87,12 +88,12 @@ export default function Footer() {
               </a>
               <p className="flex items-center gap-3 text-sm text-muted-dark w-fit">
                 <MapPin className="w-4 h-4 text-primary" />
-                Tashkent, Uzbekistan
+                {t("tashkent")}
               </p>
             </div>
           </motion.div>
 
-          {/* Link columns — grouped right, equal gaps, Legal flush to right edge */}
+          {/* Link columns */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -133,7 +134,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="py-6 border-t border-white/[0.06]">
           <p className="text-xs text-muted-dark tracking-wide">
-            &copy; {new Date().getFullYear()} Advizen Consulting. All rights reserved.
+            &copy; {new Date().getFullYear()} Advizen Consulting. {t("rights")}
           </p>
         </div>
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, ArrowRight, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import AnimatedSection, {
   StaggerContainer,
   StaggerItem,

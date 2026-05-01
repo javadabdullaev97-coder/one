@@ -1,28 +1,29 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import MagneticButton from "@/components/MagneticButton";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Link, usePathname } from "@/i18n/navigation";
 
 const inter = "var(--font-inter), Inter, system-ui, sans-serif";
-const interTight = "var(--font-inter-tight), 'Inter Tight', Inter, system-ui, sans-serif";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/expertise", label: "Expertise" },
-  { href: "/store", label: "Store" },
-  { href: "/insights", label: "Insights" },
-  { href: "/contact", label: "Contact" },
-];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("Nav");
+
+  const navLinks = [
+    { href: "/", label: t("home") },
+    { href: "/expertise", label: t("expertise") },
+    { href: "/store", label: t("store") },
+    { href: "/insights", label: t("insights") },
+    { href: "/contact", label: t("contact") },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -91,10 +92,11 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right side — Inquire button */}
+        {/* Right side — Language + Inquire */}
         <div className="hidden md:flex items-center gap-5 ml-auto">
+          <LanguageSwitcher />
           <MagneticButton as="a" href="/contact" className="px-6 py-2.5 text-[12px]">
-            Inquire
+            {t("inquire")}
           </MagneticButton>
         </div>
 
@@ -137,9 +139,10 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             ))}
-            <div className="mt-6" onClick={() => setMobileOpen(false)}>
-              <MagneticButton as="a" href="/contact" className="w-full justify-center px-6 py-3 text-sm">
-                Inquire
+            <div className="mt-6 flex items-center justify-between gap-4" onClick={() => setMobileOpen(false)}>
+              <LanguageSwitcher compact />
+              <MagneticButton as="a" href="/contact" className="flex-1 justify-center px-6 py-3 text-sm">
+                {t("inquire")}
               </MagneticButton>
             </div>
           </motion.div>

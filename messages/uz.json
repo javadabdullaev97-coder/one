@@ -1,0 +1,44 @@
+{
+  "Nav": {
+    "home": "Bosh sahifa",
+    "expertise": "Xizmatlar",
+    "store": "Do'kon",
+    "insights": "Tahlillar",
+    "contact": "Aloqa",
+    "inquire": "Bog'lanish"
+  },
+  "Footer": {
+    "expertise": "Xizmatlar",
+    "operations": "Operatsiyalar",
+    "firm": "Kompaniya",
+    "legal": "Hujjatlar",
+    "tagline": "O'zbekistondagi yetakchi biznes maslahatchi. Soliq, huquq, moliya va HR sohalarida integratsiyalashgan konsalting — barcha operatsiyalaringiz uchun yagona aloqa nuqtasi.",
+    "rights": "Barcha huquqlar himoyalangan.",
+    "store": "Do'kon",
+    "insights": "Tahlillar",
+    "contact": "Aloqa",
+    "termsOfSale": "Sotuv shartlari",
+    "cookiePolicy": "Cookie siyosati",
+    "privacy": "Maxfiylik",
+    "termsOfUse": "Foydalanish shartlari",
+    "disclaimer": "Mas'uliyatdan voz kechish",
+    "taxConsulting": "Soliq konsaltingi",
+    "legalAdvisory": "Yuridik konsalting",
+    "accounting": "Buxgalteriya hisobi",
+    "hrServices": "HR xizmatlari",
+    "funding": "Moliyalashtirish",
+    "maAdvisory": "M&A konsaltingi",
+    "dueDiligence": "Due Diligence",
+    "entityManagement": "Kompaniyalarni boshqarish",
+    "employerOfRecord": "Employer of Record",
+    "corporateServices": "Korporativ xizmatlar",
+    "virtualOffice": "Virtual ofis",
+    "tashkent": "Toshkent, O'zbekiston"
+  },
+  "LanguageSwitcher": {
+    "label": "Til",
+    "en": "Ingliz",
+    "ru": "Rus",
+    "uz": "O'zbek"
+  }
+}

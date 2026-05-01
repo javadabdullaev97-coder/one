@@ -1,0 +1,44 @@
+{
+  "Nav": {
+    "home": "Главная",
+    "expertise": "Услуги",
+    "store": "Магазин",
+    "insights": "Аналитика",
+    "contact": "Контакты",
+    "inquire": "Связаться"
+  },
+  "Footer": {
+    "expertise": "Услуги",
+    "operations": "Операции",
+    "firm": "Компания",
+    "legal": "Документы",
+    "tagline": "Ведущий бизнес-консультант в Узбекистане. Интегрированный консалтинг в области налогов, права, финансов и HR — единая точка контакта для всех ваших операций.",
+    "rights": "Все права защищены.",
+    "store": "Магазин",
+    "insights": "Аналитика",
+    "contact": "Контакты",
+    "termsOfSale": "Условия продажи",
+    "cookiePolicy": "Политика cookie",
+    "privacy": "Конфиденциальность",
+    "termsOfUse": "Условия использования",
+    "disclaimer": "Отказ от ответственности",
+    "taxConsulting": "Налоговый консалтинг",
+    "legalAdvisory": "Юридический консалтинг",
+    "accounting": "Бухгалтерский учёт",
+    "hrServices": "HR-услуги",
+    "funding": "Финансирование",
+    "maAdvisory": "M&A консалтинг",
+    "dueDiligence": "Due Diligence",
+    "entityManagement": "Управление компаниями",
+    "employerOfRecord": "Employer of Record",
+    "corporateServices": "Корпоративные услуги",
+    "virtualOffice": "Виртуальный офис",
+    "tashkent": "Ташкент, Узбекистан"
+  },
+  "LanguageSwitcher": {
+    "label": "Язык",
+    "en": "Английский",
+    "ru": "Русский",
+    "uz": "Узбекский"
+  }
+}
