@@ -7,24 +7,23 @@ import MagneticButton from "@/components/MagneticButton";
 
 export default function HeroSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <section
       className="relative overflow-hidden flex flex-col items-center justify-center"
       style={{ minHeight: "100vh" }}
     >
       {/* Background image */}
-      <Image
-        src="/industries/Hero Background.png"
-        alt=""
-        fill
-        priority
-        unoptimized
-        className="object-cover"
-        style={{ objectPosition: "50% 0%", transform: "scale(1.4) translateY(-8%)", transformOrigin: "50% 50%" }}
-        aria-hidden
-      />
+      <div className="absolute inset-0 hero-image-enter">
+        <Image
+          src="/industries/Hero Background.png"
+          alt=""
+          fill
+          priority
+          unoptimized
+          className="object-cover"
+          style={{ objectPosition: "50% 0%", transform: "scale(1.4) translateY(-8%)", transformOrigin: "50% 50%" }}
+          aria-hidden
+        />
+      </div>
 
       {/* Dark overlay so text stays legible */}
       <div aria-hidden className="absolute inset-0 bg-black/50" />
@@ -65,6 +64,6 @@ export default function HeroSection() {
         </p>
         <div className="h-px w-8 bg-white/20" />
       </div>
-    </motion.section>
+    </section>
   );
 }
