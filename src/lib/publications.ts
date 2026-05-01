@@ -58,6 +58,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-09-15",
     pages: 9,
+    image: "/Articles Image/Franchising.webp",
     hasRead: true,
   },
   {
@@ -70,6 +71,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-08-30",
     pages: 11,
+    image: "/Articles Image/Payroll & Social Contributions.webp",
     hasRead: true,
   },
   {
@@ -82,6 +84,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-07-18",
     pages: 7,
+    image: "/Articles Image/Escrow Accounts.webp",
     hasRead: true,
   },
   {
@@ -118,6 +121,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-04-14",
     pages: 16,
+    image: "/Articles Image/Permanent Establishment Risk.webp",
     hasRead: true,
   },
   {
@@ -142,6 +146,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-02-19",
     pages: 12,
+    image: "/Articles Image/Crypto-Asset Service Providers.webp",
     hasRead: true,
   },
   {
@@ -202,6 +207,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-08-06",
     pages: 10,
+    image: "/Articles Image/Voluntary Liquidation.webp",
     hasRead: true,
   },
   {
