@@ -2,19 +2,81 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AdvisorySection from "@/components/expertise/AdvisorySection";
 import OperationsSection from "@/components/expertise/OperationsSection";
-import { industryGroups, allEngagements, heroStats } from "@/lib/industries";
+import { industryGroups, allEngagements } from "@/lib/industries";
 import regionImageLoader from "@/lib/image-loader";
 import { cn } from "@/lib/utils";
 
-// ─── Industries ─────────────────────────────────
+// ─── Stats ─────────────────────────────────
+
+const trackStats = [
+  { prefix: "$", numeric: 10, suffix: "B+", label: "Deals advised" },
+  { prefix: "",  numeric: 80, suffix: "+",  label: "Registrations" },
+  { prefix: "",  numeric: 30, suffix: "+",  label: "Due diligences" },
+  { prefix: "",  numeric: 3,  suffix: "",   label: "Laws shaped" },
+];
+
+function StatCounter({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1400;
+    const steps = 50;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const eased = 1 - Math.pow(1 - step / steps, 3);
+      setCount(Math.round(eased * to));
+      if (step >= steps) { setCount(to); clearInterval(timer); }
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [inView, to]);
+
+  return <span ref={ref}>{prefix}{count}{suffix}</span>;
+}
+
+function StatsSection() {
+  return (
+    <section className="py-16 md:py-20 bg-[#050505] border-b border-white/[0.05]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <p className="text-[10px] tracking-[0.28em] uppercase text-white/25 mb-10 md:mb-12">
+          Our track record
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 md:divide-x md:divide-white/[0.07]">
+          {trackStats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={cn("flex flex-col gap-2", i === 0 ? "md:pr-10" : i === trackStats.length - 1 ? "md:pl-10" : "md:px-10")}
+            >
+              <span className="font-serif text-4xl md:text-5xl lg:text-[3.25rem] text-foreground leading-none tracking-tight">
+                <StatCounter to={stat.numeric} prefix={stat.prefix} suffix={stat.suffix} />
+              </span>
+              <span className="text-[11px] tracking-[0.18em] uppercase text-white/35 mt-1">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Industries ────────────────────────────────
 
 function IndustriesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -226,7 +288,7 @@ function TrackRecord() {
                     </p>
                   </div>
                   {/* Sector */}
-                  <span className="inline-block text-xs tracking-[0.16em] uppercase text-red-400/70 mb-3">
+                  <span className="inline-block text-xs tracking-[0.16em] uppercase text-primary/70 mb-3">
                     {eng.sector}
                   </span>
                   {/* Headline */}
@@ -254,7 +316,7 @@ function TrackRecord() {
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────────────────
 
 export default function ExpertisePage() {
   return (
@@ -299,29 +361,11 @@ export default function ExpertisePage() {
                 practice built for the complexities of Central Asian markets.
               </p>
             </RevealLine>
-
-            <div className="mt-7 pt-7 border-t border-white/[0.08] flex flex-wrap gap-x-8 gap-y-4">
-              {heroStats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.65 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col gap-1.5"
-                >
-                  <span className="font-serif text-xl text-foreground font-light tabular-nums leading-none">
-                    {s.value}
-                  </span>
-                  <span className="text-xs tracking-[0.16em] uppercase text-white/40">
-                    {s.label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
       </div>
 
+      <StatsSection />
       <AdvisorySection />
       <OperationsSection />
       <IndustriesSection />
