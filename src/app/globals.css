@@ -133,3 +133,11 @@ select:-webkit-autofill:focus {
   border-color: rgba(255, 255, 255, 0.08) !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+
+@keyframes hero-entrance {
+  from { transform: scale(1.06); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+.hero-image-enter {
+  animation: hero-entrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
