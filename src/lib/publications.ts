@@ -12,15 +12,24 @@ export interface Publication {
   hasRead?: boolean;
 }
 
+export interface ArticleContentBlock {
+  type: "h2" | "h3" | "p" | "ul" | "blockquote" | "divider";
+  text?: string;
+  items?: string[];
+}
+
+export interface LocalizedArticle {
+  subtitle?: string;
+  author?: string;
+  readTime?: string;
+  content: ArticleContentBlock[];
+}
+
 export interface PublicationArticle extends Publication {
   subtitle?: string;
   author?: string;
   readTime?: string;
-  content: {
-    type: "h2" | "h3" | "p" | "ul" | "blockquote" | "divider";
-    text?: string;
-    items?: string[];
-  }[];
+  content: ArticleContentBlock[];
 }
 
 export const publications: Publication[] = [
