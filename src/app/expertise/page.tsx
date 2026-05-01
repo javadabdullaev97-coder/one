@@ -161,7 +161,7 @@ function IndustriesSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full h-36 md:h-40 rounded-xl overflow-hidden mb-5"
+                  className="relative w-full h-44 md:h-52 rounded-xl overflow-hidden mb-6"
                   style={{
                     background: `linear-gradient(145deg, rgba(${active.accent},0.2) 0%, #0d0d0d 55%, rgba(${active.accent},0.06) 100%)`,
                   }}
@@ -192,23 +192,6 @@ function IndustriesSection() {
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide leading-tight">
                     {active.name}
                   </h3>
-                </motion.div>
-
-                {/* Sector tags */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.13, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-wrap gap-1.5 mb-5"
-                >
-                  {active.sectors.map((s) => (
-                    <span
-                      key={s}
-                      className="text-[10px] tracking-[0.1em] uppercase text-white/40 border border-white/[0.07] px-2.5 py-1"
-                    >
-                      {s}
-                    </span>
-                  ))}
                 </motion.div>
 
                 {/* Description */}
