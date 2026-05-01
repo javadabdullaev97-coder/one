@@ -45,7 +45,7 @@ export default function InsightsSection() {
         </Parallax>
 
         {/* Grid */}
-        <div className="grid lg:grid-cols-[5fr_7fr] gap-6 lg:gap-8 items-stretch">
+        <div className="grid lg:grid-cols-[6fr_7fr] gap-6 lg:gap-8 items-stretch">
 
           {/* Featured — Doing Business */}
           <motion.div
