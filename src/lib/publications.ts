@@ -34,6 +34,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-11-10",
     pages: 8,
+    image: "/Articles Image/Outsourcing Operational Activities.webp",
     hasRead: true,
   },
   {
@@ -46,6 +47,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-10-22",
     pages: 10,
+    image: "/Articles Image/Accounting Policy for Tax Purposes.webp",
     hasRead: true,
   },
   {
@@ -97,6 +99,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-06-05",
     pages: 13,
+    image: "/Articles Image/Creative Industry Park.webp",
     hasRead: true,
   },
   {
@@ -161,6 +164,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-12-10",
     pages: 18,
+    image: "/Articles Image/Licensing Procedures.webp",
     hasRead: true,
   },
   {
@@ -186,6 +190,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-10-30",
     pages: 11,
+    image: "/Articles Image/Accounting Law in Uzbekistan.webp",
     hasRead: true,
   },
   {
@@ -224,6 +229,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-07-22",
     pages: 6,
+    image: "/Articles Image/PIT Refunds for Education.webp",
     hasRead: true,
   },
   {
