@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -260,13 +261,23 @@ export default function ExpertisePage() {
     <>
       <div
         className="relative overflow-hidden flex flex-col"
-        style={{
-          height: "65vh",
-          backgroundImage: "url('/Hero%20and%20CTA%20images/Expertise%20Hero.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        style={{ height: "65vh" }}
       >
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.06, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src="/Hero and CTA images/Expertise Hero.webp"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
         <div className="absolute inset-0 bg-black/55" />
         <section className="relative z-10 flex-1 flex items-end pt-24 pb-14 md:pt-28 md:pb-20">
           <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 relative">
