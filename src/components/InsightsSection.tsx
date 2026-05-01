@@ -82,7 +82,7 @@ export default function InsightsSection() {
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-transparent via-primary/70 to-transparent" />
 
                 {/* Content */}
-                <div className="relative h-full flex flex-col items-center text-center p-7 min-h-[420px]">
+                <div className="relative h-full flex flex-col p-7 min-h-[420px]">
 
                   {/* Top label */}
                   <div className="flex items-center gap-2">
@@ -94,22 +94,21 @@ export default function InsightsSection() {
                   <div className="flex-1" />
 
                   {/* Bottom content */}
-                  <div className="w-full">
-                    <div className="flex items-center justify-center gap-2.5 mb-5">
+                  <div className="w-[80%]">
+                    <div className="flex items-center gap-2.5 mb-5">
                       <div className="h-px w-6 bg-primary/60" />
                       <span className="text-[10px] tracking-[0.3em] uppercase text-primary">Flagship Guide</span>
-                      <div className="h-px w-6 bg-primary/60" />
                     </div>
 
                     <h3 className="heading-luxury text-2xl md:text-[1.75rem] leading-tight text-foreground mb-4 group-hover:text-white transition-colors duration-300">
                       Doing Business<br />in Uzbekistan
                     </h3>
 
-                    <p className="text-white/45 text-sm leading-relaxed mb-8 max-w-[300px] mx-auto">
+                    <p className="text-white/45 text-sm leading-relaxed mb-8">
                       The definitive guide for foreign investors — market entry, regulatory frameworks, and operational best practices.
                     </p>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-white/40 group-hover:text-primary transition-colors duration-300">
+                    <div className="flex items-center gap-2 text-xs text-white/40 group-hover:text-primary transition-colors duration-300">
                       <span className="tracking-[0.2em] uppercase">Read the guide</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                     </div>
