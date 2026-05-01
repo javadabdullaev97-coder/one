@@ -70,6 +70,7 @@ const ITEMS_PER_PAGE = 6;
 function ArticleCard({ pub }: { pub: Publication }) {
   const gradient = categoryGradients[pub.category] ?? "from-stone-900/70 to-black";
   const t = useTranslations("InsightsPage.publications");
+  const tPub = useTranslations("Publications");
 
   return (
     <div className="group flex flex-col rounded-xl border border-white/[0.07] overflow-hidden hover:border-white/[0.14] transition-colors duration-300 bg-white/[0.02] cursor-pointer h-full">
@@ -93,7 +94,7 @@ function ArticleCard({ pub }: { pub: Publication }) {
         )}
         {/* Tag badge */}
         <span className="absolute top-4 left-4 inline-block text-[10px] tracking-[0.14em] uppercase text-white/70 border border-white/[0.2] rounded-full px-2.5 py-0.5 bg-black/40 backdrop-blur-sm">
-          {pub.tag}
+          {tPub(`tags.${pub.tag}`)}
         </span>
       </div>
 
@@ -103,10 +104,10 @@ function ArticleCard({ pub }: { pub: Publication }) {
           {formatDate(pub.date, pub.year)}
         </p>
         <h3 className="font-serif text-base text-foreground/80 leading-snug mb-2 group-hover:text-foreground transition-colors duration-200 line-clamp-2">
-          {pub.title}
+          {tPub(`items.${pub.slug}.title`)}
         </h3>
         <p className="text-[12px] text-white/40 leading-relaxed line-clamp-2 flex-1">
-          {pub.description}
+          {tPub(`items.${pub.slug}.description`)}
         </p>
         <div className="mt-4 flex items-center gap-1.5 text-[11px] text-primary-light/70 group-hover:text-primary-light transition-colors duration-200">
           {t("readMore")}
@@ -127,6 +128,7 @@ export default function LibraryPage() {
   const tFlagship = useTranslations("InsightsPage.flagship");
   const tPubs = useTranslations("InsightsPage.publications");
   const tCta = useTranslations("InsightsPage.cta");
+  const tPub = useTranslations("Publications");
 
   const stats = [
     { value: "16", label: tHero("statPublications") },
@@ -356,7 +358,7 @@ export default function LibraryPage() {
                           : "text-white/40 hover:text-white/65",
                       )}
                     >
-                      {f}
+                      {f === "All" ? tPubs("filterAll") : tPub(`categories.${f}`)}
                     </span>
                   </button>
                 ))}

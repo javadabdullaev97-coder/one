@@ -78,6 +78,94 @@
       "secondary": "Tahlillarni ko'rish"
     }
   },
+  "Publications": {
+    "tags": {
+      "Advisory": "Konsalting",
+      "Tax Briefing": "Soliq sharhi",
+      "Legal Briefing": "Yuridik sharh",
+      "HR Briefing": "HR sharhi"
+    },
+    "categories": {
+      "Advisory": "Konsalting",
+      "Tax": "Soliq",
+      "Legal": "Huquq",
+      "HR": "HR"
+    },
+    "items": {
+      "outsourcing-operational-activities": {
+        "title": "O'zbekistonda operatsion faoliyatni autsorsing qilish",
+        "description": "O'zbekistondagi autsorsing kelishuvlarini boshqaruvchi me'yoriy bazaga amaliy ko'rinish, jumladan ruxsat etilgan tuzilmalar, mehnat oqibatlari va shartnoma talablari."
+      },
+      "accounting-policy-tax-purposes": {
+        "title": "O'zbekistonda soliq maqsadlari uchun hisob siyosati",
+        "description": "O'zbekiston soliq kodeksi hisob usullarini tanlash, aktivlarni klassifikatsiya qilish va vaqt farqlarini qanday boshqaradi — xorijiy investitsiyali sub'ektlar uchun amaliy qo'llanma bilan."
+      },
+      "franchising-uzbekistan": {
+        "title": "O'zbekistonda franchayzing: huquqiy asos va kirish tuzilmalari",
+        "description": "O'zbekistonning franchayzing qonunchiligi, ro'yxatga olish majburiyatlari, royalti repatriatsiya qoidalari va xalqaro franchayzerlar uchun asosiy shartnoma jihatlarining tahlili."
+      },
+      "payroll-social-contributions": {
+        "title": "Payroll va ijtimoiy badallar: O'zbekistonda ish beruvchi majburiyatlari",
+        "description": "Ish beruvchining payroll majburiyatlari haqida tuzilgan tahlil — JSh ushlab qolish, ijtimoiy sug'urta badallari, hisobot muddatlari va muvofiqlik buzilishi uchun jazolar."
+      },
+      "escrow-accounts-uzbekistan": {
+        "title": "O'zbekistonda eskrou hisoblari: huquqiy mexanika va foydalanish holatlari",
+        "description": "O'zbekistondagi eskrou hisoblarini tartibga solishga umumiy ko'rinish, M&A va ko'chmas mulk bitimlarida ruxsat etilgan foydalanish holatlari, bank talablari va ozod qilish mexanikasi."
+      },
+      "creative-industry-park-uzbekistan": {
+        "title": "Creative Industry Park: O'zbekistonning ijodiy iqtisodiyot uchun asosi",
+        "description": "Creative Industry Park rejimi bo'yicha batafsil qo'llanma — moslik mezonlari, soliq imtiyozlari, ro'yxatga olish jarayoni va malakali sub'ektlar uchun operatsion talablar."
+      },
+      "online-gambling-uzbekistan": {
+        "title": "O'zbekistonda onlayn qimor o'yinlarini tartibga solish",
+        "description": "O'zbekistondagi onlayn qimor o'yinlari operatorlari uchun me'yoriy muhit — litsenziya talablari, ruxsat etilgan o'yin turlari, texnik standartlar va AML muvofiqlik majburiyatlari."
+      },
+      "permanent-establishment-uzbekistan": {
+        "title": "O'zbekistonda doimiy vakolatxona xavfi",
+        "description": "O'zbek soliq qonuni va amaldagi soliq shartnomalari bo'yicha doimiy vakolatxona triggerlarining chuqur tahlili, PE ta'sirini kamaytirish uchun tuzilmalash strategiyalari bilan."
+      },
+      "self-employment-uzbekistan": {
+        "title": "O'zbekistonda o'zini-o'zi bandlik rejimi",
+        "description": "O'zbekistonning o'zini-o'zi bandlik soliq rejimi bo'yicha amaliy qo'llanma — moslik, ro'yxatga olish, badal stavkalari va mustaqil pudratchilar bilan ishlovchi biznes uchun oqibatlar."
+      },
+      "crypto-asset-service-providers-uzbekistan": {
+        "title": "Kripto-aktiv xizmatlari provayderlari: O'zbekistonda litsenziyalash",
+        "description": "O'zbekistonning kripto-aktiv xizmatlari provayderlari uchun asosi — NAFS litsenziya talablari, ruxsat etilgan faoliyatlar, kapital talablari va AML/KYC majburiyatlari."
+      },
+      "licensing-procedures-uzbekistan": {
+        "title": "O'zbekistonda tartibga solinadigan faoliyatlar uchun litsenziyalash tartiblari",
+        "description": "O'zbekistondagi litsenziya talablariga sektorga ko'ra ko'rinish, moliyaviy xizmatlar, sog'liqni saqlash, qurilish, ta'lim va mediani qamrab oladi — ariza muddatlari bilan."
+      },
+      "special-economic-zones-uzbekistan": {
+        "title": "O'zbekistonda erkin iqtisodiy zonalar: qiyosiy qo'llanma",
+        "description": "O'zbekistonning EIZ landshaftiga qiyosiy tahlil — erkin iqtisodiy zonalar, kichik sanoat zonalari va IT parklar — imtiyoz paketlari, kirish mezonlari va operatsion cheklovlarni qamrab oladi."
+      },
+      "accounting-law-uzbekistan": {
+        "title": "O'zbekistonda buxgalteriya qonuni: biznes uchun asosiy talablar",
+        "description": "O'zbekistonning buxgalteriya qonunchiligiga umumiy ko'rinish — majburiy hisoblar rejasi, moliyaviy hisobot talablari, audit chegaralari va MHHS qabul qilish uchun o'tish jihatlari."
+      },
+      "representative-offices-uzbekistan": {
+        "title": "O'zbekistonda vakolatxonalar: ro'yxatga olish va muvofiqlik",
+        "description": "O'zbekistonda xorijiy vakolatxonani tashkil etish va boshqarish bo'yicha amaliy qo'llanma — akkreditatsiya tartiblari, ruxsat etilgan faoliyatlar, soliq jihatlari va xodimlar qoidalari."
+      },
+      "voluntary-liquidation-uzbekistan": {
+        "title": "O'zbekistonda kompaniyalarni ixtiyoriy tugatish",
+        "description": "O'zbekistondagi MChJ va AJlar uchun ixtiyoriy tugatish tartiblariga bosqichma-bosqich qo'llanma — kengash qaroridan to kreditorlarni xabardor qilish va yakuniy ro'yxatdan chiqarishgacha."
+      },
+      "pit-refunds-education-uzbekistan": {
+        "title": "O'zbekistonda ta'lim xarajatlari uchun JSh qaytarish",
+        "description": "O'zbekistondagi ta'lim xarajatlari uchun JSh chegirma va qaytarish mexanizmiga qo'llanma — moslik instituutlari, ariza tartiblari va hujjat talablari."
+      },
+      "employer-of-record-central-asia": {
+        "title": "Markaziy Osiyoda Employer of Record: amaliy ko'rinish",
+        "description": "EOR tuzilmalari Qozog'iston, O'zbekiston va Qirg'izistonda qanday ishlaydi — huquqiy asoslar, xavf taqsimoti, onboarding muddatlari va xalqaro ish beruvchilar uchun xarajat benchmarklari."
+      },
+      "islamic-finance-uzbekistan": {
+        "title": "O'zbekistonda islom moliyasi: amaliy qo'llanma",
+        "description": "O'zbekistonning islom moliyasi asosi tushuntirilgan — qonuniy asosdan va ruxsat etilgan MFO vositalaridan to Maxsus Kengash talablari va Shariatga muvofiq jazo mexanikalarigacha."
+      }
+    }
+  },
   "StoreProducts": {
     "categories": {
       "All": "Barchasi",
@@ -179,6 +267,20 @@
       "description": "Bizning jamoamiz aniq bitim, struktura yoki yurisdiksiyangizga moslashtirilgan maxsus hujjatlarni tayyorlaydi.",
       "button": "Jamoa bilan bog'lanish"
     }
+  },
+  "ArticlePage": {
+    "back": "Tahlillar",
+    "contents": "Mundarija",
+    "ourServices": "Bizning xizmatlar",
+    "pages": "{count} sahifa",
+    "freeAccess": "{count} sahifa — Bepul kirish",
+    "downloadPdf": "PDF yuklab olish",
+    "downloadFullPdf": "To'liq PDF yuklab olish",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "ctaHeading": "Ekspert maslahati kerakmi?",
+    "ctaDescription": "Bizning konsalting jamoamiz O'zbekistonda ishlash murakkabliklarida sizga yordam berishga tayyor.",
+    "ctaButton": "Bog'lanish"
   },
   "InsightsPage": {
     "hero": {

@@ -16,6 +16,7 @@ const DOING_BUSINESS_COVER: string | null = "/Articles Image/DBU_cover.webp";
 
 export default function InsightsSection() {
   const t = useTranslations("InsightsSection");
+  const tPub = useTranslations("Publications");
   return (
     <section className="py-20 md:py-28 bg-black relative overflow-hidden">
       <div className="ambient-glow ambient-glow-warm w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
@@ -152,11 +153,11 @@ export default function InsightsSection() {
                     <div className="flex flex-col flex-1 px-6 py-4">
                       <div className="flex items-center gap-2.5 mb-3">
                         <span className="h-px w-5 bg-white/15 group-hover:bg-primary/50 transition-colors duration-500" />
-                        <span className="text-[10px] tracking-[0.28em] uppercase text-primary">{pub.tag}</span>
+                        <span className="text-[10px] tracking-[0.28em] uppercase text-primary">{tPub(`tags.${pub.tag}`)}</span>
                       </div>
 
                       <h3 className="font-serif text-lg leading-snug text-foreground mb-4 group-hover:text-white transition-colors duration-300 line-clamp-2">
-                        {pub.title}
+                        {tPub(`items.${pub.slug}.title`)}
                       </h3>
 
                       <div className="flex items-center gap-2 text-xs text-white/35 group-hover:text-primary transition-colors duration-300 mt-auto">

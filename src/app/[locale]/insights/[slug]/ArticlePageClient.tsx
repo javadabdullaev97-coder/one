@@ -11,6 +11,7 @@ import {
   User,
   BookOpen,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import TextReveal, { RevealLine } from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedSection, { HorizontalLine } from "@/components/AnimatedSection";
@@ -50,6 +51,9 @@ function ReadingProgress() {
 export default function ArticlePageClient({ slug }: { slug: string }) {
   /* Hooks must be declared before any early return */
   const [activeSection, setActiveSection] = useState<string>("");
+  const tArticle = useTranslations("ArticlePage");
+  const tPub = useTranslations("Publications");
+  const tServices = useTranslations("Services");
 
   const article = getArticleBySlug(slug);
 
@@ -144,17 +148,17 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                     className="group inline-flex items-center gap-2 text-sm font-bold text-white/50 hover:text-foreground transition-colors cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                    Insights
+                    {tArticle("back")}
                   </Link>
                   <span className="text-white/15">/</span>
                   <span className="text-sm tracking-luxury text-white/40">
-                    {article.tag}
+                    {tPub(`tags.${article.tag}`)}
                   </span>
                 </motion.div>
 
                 {/* Title */}
                 <TextReveal
-                  text={article.title}
+                  text={tPub(`items.${slug}.title`)}
                   as="h1"
                   mode="line"
                   className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.08]"
@@ -187,7 +191,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                     )}
                     <div className="flex items-center gap-2 text-white/40">
                       <BookOpen className="w-3.5 h-3.5" />
-                      <span className="text-sm">{article.pages} pages</span>
+                      <span className="text-sm">{tArticle("pages", { count: article.pages })}</span>
                     </div>
                     <span className="font-mono text-xs text-white/25 tabular-nums">
                       {article.year}
@@ -220,7 +224,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                 {toc.length > 0 && (
                   <div>
                     <p className="tracking-luxury text-white/40 mb-5">
-                      Contents
+                      {tArticle("contents")}
                     </p>
                     <nav className="space-y-0.5">
                       {toc.map((item, i) => {
@@ -283,7 +287,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                 {/* Related Services */}
                 <div>
                   <p className="tracking-luxury text-white/40 mb-5">
-                    Our Services
+                    {tArticle("ourServices")}
                   </p>
                   <nav className="space-y-0.5">
                     {relatedServices.map((service) => (
@@ -292,7 +296,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                         href={`/expertise/${service.slug}`}
                         className="group flex items-center justify-between rounded-sm px-2 py-2 text-[13px] text-white/40 hover:text-white/85 hover:bg-white/[0.03] transition-all duration-200"
                       >
-                        <span>{service.title}</span>
+                        <span>{tServices(`${service.slug}.title`)}</span>
                         <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shrink-0" />
                       </Link>
                     ))}
@@ -418,10 +422,10 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
           <div className="max-w-3xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <p className="text-foreground/85 font-serif text-lg mb-1">
-                Download the full PDF
+                {tArticle("downloadPdf")}
               </p>
               <p className="text-sm text-white/40">
-                {article.pages} pages — Free access
+                {tArticle("freeAccess", { count: article.pages })}
               </p>
             </div>
             <MagneticButton
@@ -430,7 +434,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
               href={`/downloads/${article.slug}.pdf`}
             >
               <Download className="w-4 h-4" />
-              Download PDF
+              {tArticle("downloadPdf")}
             </MagneticButton>
           </div>
         </section>
@@ -448,10 +452,10 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
                 <ArrowLeft className="w-5 h-5 text-white/25 group-hover:text-foreground group-hover:-translate-x-1 transition-all shrink-0" />
                 <div>
                   <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1">
-                    Previous
+                    {tArticle("previous")}
                   </p>
                   <p className="text-foreground/70 group-hover:text-foreground transition-colors text-sm">
-                    {prev.title}
+                    {tPub(`items.${prev.slug}.title`)}
                   </p>
                 </div>
               </Link>
@@ -465,10 +469,10 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
               >
                 <div className="text-right">
                   <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1">
-                    Next
+                    {tArticle("next")}
                   </p>
                   <p className="text-foreground/70 group-hover:text-foreground transition-colors text-sm">
-                    {next.title}
+                    {tPub(`items.${next.slug}.title`)}
                   </p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-foreground group-hover:translate-x-1 transition-all shrink-0" />
@@ -485,18 +489,17 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
             <TextReveal
-              text="Need expert guidance?"
+              text={tArticle("ctaHeading")}
               as="h2"
               className="heading-luxury text-3xl md:text-5xl text-foreground mb-8"
             />
             <RevealLine delay={0.2}>
               <p className="text-white/50 leading-relaxed mb-12 max-w-lg mx-auto">
-                Our advisory team is ready to help you navigate the complexities
-                of operating in Uzbekistan.
+                {tArticle("ctaDescription")}
               </p>
             </RevealLine>
             <MagneticButton variant="primary" as="a" href="/contact">
-              Get in touch
+              {tArticle("ctaButton")}
               <ArrowRight className="w-4 h-4" />
             </MagneticButton>
           </AnimatedSection>
