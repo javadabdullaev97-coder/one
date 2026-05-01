@@ -77,7 +77,7 @@ export default function OperationsSection() {
                   className="w-full flex items-center gap-5 md:gap-8 py-6 md:py-7 pl-6 pr-4 text-left"
                 >
                   <span className="font-serif text-xs tabular-nums text-white/18 w-5 shrink-0">
-                    {String(i + 1).padStart(2, "0")}
+                    {String(i + 1).padStart(2, "00")}
                   </span>
 
                   <span className={cn(
@@ -126,7 +126,7 @@ export default function OperationsSection() {
                       <div className="pb-10 pl-6 pr-4 md:pr-8">
                         <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 border-t border-white/[0.04] pt-7">
 
-                          {/* Left: description + CTA */}
+                          {/* Left: description */}
                           <div className="flex flex-col gap-5">
                             <motion.p
                               initial={{ opacity: 0, y: 6 }}
@@ -148,19 +148,6 @@ export default function OperationsSection() {
                               </motion.p>
                             )}
 
-                            <motion.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ duration: 0.2, delay: 0.18 }}
-                            >
-                              <Link
-                                href={`/expertise/${service.slug}`}
-                                className="group/link inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-white/35 hover:text-white/75 transition-colors duration-200"
-                              >
-                                Full service overview
-                                <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
-                              </Link>
-                            </motion.div>
                           </div>
 
                           {/* Right: capabilities + related article */}
