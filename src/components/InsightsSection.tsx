@@ -133,7 +133,7 @@ export default function InsightsSection() {
 
                     {/* Image */}
                     {pub.image && (
-                      <div className="relative h-44 overflow-hidden flex-shrink-0">
+                      <div className="relative h-56 overflow-hidden flex-shrink-0">
                         <Image
                           src={pub.image}
                           fill
