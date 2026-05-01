@@ -30,40 +30,60 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 w-full max-w-6xl mt-20">
-        <p className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[11px] tracking-[0.38em] uppercase text-white/70 mb-10"
+        >
           Business Advisory · Uzbekistan
-        </p>
+        </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="uppercase leading-none select-none"
           style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)", letterSpacing: "0.12em", fontFamily: "var(--font-hero), sans-serif", fontWeight: 400, color: "#D6CFC8" }}
         >
           ADVIZEN
         </motion.h1>
 
-        <p className="mt-8 text-[15px] text-white/75 max-w-sm mx-auto leading-relaxed">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 text-[15px] text-white/75 max-w-sm mx-auto leading-relaxed"
+        >
           Strategic counsel for businesses entering and operating across Central Asia.
-        </p>
+        </motion.p>
 
-        <div className="mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10"
+        >
           <MagneticButton variant="primary" as="a" href="/contact">
             Schedule a consultation
             <ArrowRight className="w-4 h-4" />
           </MagneticButton>
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom label */}
-      <div className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4"
+      >
         <div className="h-px w-8 bg-white/20" />
         <p className="text-[11px] tracking-[0.3em] uppercase text-white/40">
           Tashkent, Uzbekistan
         </p>
         <div className="h-px w-8 bg-white/20" />
-      </div>
+      </motion.div>
     </section>
   );
 }
