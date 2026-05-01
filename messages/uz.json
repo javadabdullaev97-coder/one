@@ -78,6 +78,104 @@
       "secondary": "Tahlillarni ko'rish"
     }
   },
+  "StorePage": {
+    "hero": {
+      "eyebrow": "Hujjatlar do'koni",
+      "heading": "O'zbekistonda biznes yuritish uchun tayyor hujjatlar",
+      "description": "O'zbekiston me'yoriy bazasi uchun yaratilgan, ingliz, rus va o'zbek tillarida mavjud bo'lgan professional ravishda tayyorlangan yuridik, soliq, HR va compliance shablonlari.",
+      "feature1": "Tezkor yuklab olish",
+      "feature2": "EN / RU / UZ",
+      "feature3": "2025 uchun yangilangan",
+      "feature4": "Yuristlar ko'rib chiqgan"
+    },
+    "filters": {
+      "categoryAll": "Barchasi",
+      "noResults": "Bu kombinatsiyaga mos hujjatlar yo'q.",
+      "clearFilters": "Filtrlarni tozalash",
+      "documentsCount": "{count, plural, one {# hujjat} other {# hujjat}}",
+      "documentsInCategory": " {category} sohasida",
+      "documentsLang": " · {language}"
+    },
+    "card": {
+      "includes": "Tarkibi",
+      "purchase": "Sotib olish"
+    },
+    "cta": {
+      "eyebrow": "Maxsus narsa kerakmi?",
+      "heading": "Izlagan narsangizni topmadingizmi?",
+      "description": "Bizning jamoamiz aniq bitim, struktura yoki yurisdiksiyangizga moslashtirilgan maxsus hujjatlarni tayyorlaydi.",
+      "button": "Jamoa bilan bog'lanish"
+    }
+  },
+  "InsightsPage": {
+    "hero": {
+      "eyebrow": "Tahlillar",
+      "heading": "O'zbekistonda biznes yuritish bo'yicha tadqiqotlar va tahlil",
+      "description": "Bizning konsalting jamoamizdan amaliy qo'llanmalar, me'yoriy brifinglar va tahliliy sharhlar."
+    },
+    "labels": {
+      "all": "Barchasi",
+      "search": "Maqolalarni qidirish",
+      "noResults": "So'rovga mos maqolalar yo'q.",
+      "clear": "Qidiruvni tozalash"
+    }
+  },
+  "ContactPage": {
+    "hero": {
+      "eyebrow": "Aloqa",
+      "heading": "Suhbatni boshlang",
+      "description": "Har bir loyiha tushunishdan boshlanadi. Biz bilan bog'laning — jamoamiz 24 soat ichida javob beradi."
+    },
+    "info": {
+      "office": "Bizning ofis",
+      "officeValue": "Toshkent, O'zbekiston",
+      "phone": "Telefon",
+      "email": "Email",
+      "workingHours": "Ish vaqti",
+      "workingHoursValue": "Du – Ju, 9:00 – 18:00"
+    },
+    "form": {
+      "eyebrow": "So'rov",
+      "heading": "Bizga xabar yuboring",
+      "description": "Batafsil so'rovlar uchun — loyiha kontekstini, muddatlarini va qiziqish sohasini ulashing. Biz sizga maxsus javob bilan qaytamiz.",
+      "firstName": "Ism",
+      "firstNamePlaceholder": "Akmal",
+      "lastName": "Familiya",
+      "lastNamePlaceholder": "Karimov",
+      "email": "Email",
+      "emailPlaceholder": "akmal@company.com",
+      "company": "Kompaniya",
+      "companyPlaceholder": "Kompaniya nomi",
+      "service": "Qiziqish sohasi",
+      "selectService": "Xizmatni tanlang",
+      "serviceTax": "Soliq konsaltingi",
+      "serviceLegal": "Yuridik konsalting",
+      "serviceFinance": "Buxgalteriya hisobi",
+      "serviceHr": "HR xizmatlari",
+      "serviceFunding": "Moliyalashtirish va grantlar",
+      "serviceOther": "Boshqa",
+      "message": "Xabar",
+      "messagePlaceholder": "Loyihangiz yoki savolingiz haqida ayting...",
+      "consentBefore": "Mening shaxsiy ma'lumotlarimni quyidagilarga muvofiq qayta ishlashga roziman:",
+      "consentPrivacy": "Maxfiylik siyosati",
+      "consentAnd": "va",
+      "consentTerms": "Foydalanish shartlari",
+      "consentAfter": ". Ushbu shaklni yuborish orqali siz taqdim etilgan ma'lumotlarni saqlash va qayta ishlashga roziligingizni tasdiqlaysiz.",
+      "send": "Yuborish"
+    },
+    "quick": {
+      "eyebrow": "Tezkor chat",
+      "heading": "Tezroq javob kerakmi?",
+      "description": "Shaklni o'tkazib yuboring — bizga to'g'ridan-to'g'ri Telegram yoki WhatsApp orqali yozing. Ish vaqtida o'rtacha javob 30 daqiqadan kam.",
+      "telegram": "Telegram",
+      "telegramHint": "@advizen  ·  Eng tez javob",
+      "whatsapp": "WhatsApp",
+      "whatsappHint": "Darhol xabar yuboring",
+      "businessHours": "Ish vaqti",
+      "hoursValue": "Du – Ju, 9:00 – 18:00",
+      "timezone": "UTC+5 · Toshkent, O'zbekiston"
+    }
+  },
   "AdvisorySection": {
     "eyebrow": "Konsalting",
     "heading": "Siz maslahat olasiz — biz yo'naltiramiz",

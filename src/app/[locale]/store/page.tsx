@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FileText, Users, Calculator, Scale, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import MagneticButton from "@/components/MagneticButton";
 import { cn } from "@/lib/utils";
 
@@ -194,6 +195,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const meta = CATEGORY_META[product.category];
   const { main, suffix } = formatPrice(product.price, currency);
+  const t = useTranslations("StorePage.card");
 
   return (
     <motion.div
@@ -253,7 +255,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
         {/* Separator */}
         <div className="flex items-center gap-3">
           <span className="h-[1px] flex-1 bg-white/[0.08]" />
-          <span className="shrink-0 text-[10px] tracking-[0.14em] uppercase text-white/25">Includes</span>
+          <span className="shrink-0 text-[10px] tracking-[0.14em] uppercase text-white/25">{t("includes")}</span>
           <span className="h-[1px] flex-1 bg-white/[0.08]" />
         </div>
 
@@ -272,7 +274,7 @@ function ProductCard({ product, index, currency }: { product: Product; index: nu
           href={`/contact?ref=${product.id}`}
           className="block w-full rounded-lg bg-primary hover:bg-primary-light py-2.5 text-center text-[11px] tracking-[0.18em] uppercase font-medium text-foreground/90 hover:text-white transition-all duration-200"
         >
-          Purchase
+          {t("purchase")}
         </Link>
       </div>
     </motion.div>
@@ -375,6 +377,9 @@ export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeLanguage, setActiveLanguage] = useState("All");
   const [currency, setCurrency] = useState<Currency>("USD");
+  const tHero = useTranslations("StorePage.hero");
+  const tFilters = useTranslations("StorePage.filters");
+  const tCta = useTranslations("StorePage.cta");
 
   const filtered = products.filter((p) => {
     const catMatch = activeCategory === "All" || p.category === activeCategory;
@@ -408,7 +413,7 @@ export default function StorePage() {
               transition={{ duration: 0.5 }}
               className="tracking-luxury text-white/50 mb-3"
             >
-              Document Store
+              {tHero("eyebrow")}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
@@ -416,7 +421,7 @@ export default function StorePage() {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="heading-luxury text-3xl md:text-4xl text-foreground leading-[1.05] max-w-3xl mb-4"
             >
-              Ready-to-use documents for doing business in Uzbekistan
+              {tHero("heading")}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -424,7 +429,7 @@ export default function StorePage() {
               transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-white/50 text-sm md:text-base max-w-xl leading-relaxed mb-6"
             >
-              Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan's regulatory framework, available in English, Russian, and Uzbek.
+              {tHero("description")}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -434,19 +439,19 @@ export default function StorePage() {
             >
               <div className="flex items-center gap-2 text-sm text-white/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-                Instant download
+                {tHero("feature1")}
               </div>
               <div className="flex items-center gap-2 text-sm text-white/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-                EN / RU / UZ
+                {tHero("feature2")}
               </div>
               <div className="flex items-center gap-2 text-sm text-white/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-                Updated for 2025
+                {tHero("feature3")}
               </div>
               <div className="flex items-center gap-2 text-sm text-white/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-                Lawyer-reviewed
+                {tHero("feature4")}
               </div>
             </motion.div>
           </div>
@@ -473,19 +478,19 @@ export default function StorePage() {
             >
               <div className="mb-8">
                 <p className="tracking-luxury text-white/40">
-                  {filtered.length} document{filtered.length !== 1 ? "s" : ""}
-                  {activeCategory !== "All" && ` in ${activeCategory}`}
-                  {activeLanguage !== "All" && ` · ${activeLanguage}`}
+                  {tFilters("documentsCount", { count: filtered.length })}
+                  {activeCategory !== "All" && tFilters("documentsInCategory", { category: activeCategory })}
+                  {activeLanguage !== "All" && tFilters("documentsLang", { language: activeLanguage })}
                 </p>
               </div>
               {filtered.length === 0 ? (
                 <div className="py-24 text-center">
-                  <p className="text-white/30 text-sm">No documents match this combination.</p>
+                  <p className="text-white/30 text-sm">{tFilters("noResults")}</p>
                   <button
                     onClick={() => { setActiveCategory("All"); setActiveLanguage("All"); }}
                     className="mt-4 text-xs text-primary-light/70 hover:text-primary-light underline underline-offset-4 transition-colors cursor-pointer"
                   >
-                    Clear filters
+                    {tFilters("clearFilters")}
                   </button>
                 </div>
               ) : (
@@ -510,15 +515,15 @@ export default function StorePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="tracking-luxury text-white/40 mb-4">Need something custom?</p>
+            <p className="tracking-luxury text-white/40 mb-4">{tCta("eyebrow")}</p>
             <h2 className="heading-luxury text-3xl md:text-5xl text-foreground mb-5">
-              Can&apos;t find what you&apos;re looking for?
+              {tCta("heading")}
             </h2>
             <p className="text-white/50 max-w-lg mx-auto leading-relaxed mb-10">
-              Our team drafts bespoke documents tailored to your specific transaction, structure, or jurisdiction.
+              {tCta("description")}
             </p>
             <MagneticButton variant="primary" as="a" href="/contact">
-              Talk to our team
+              {tCta("button")}
               <ArrowRight className="w-4 h-4" />
             </MagneticButton>
           </motion.div>

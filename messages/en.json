@@ -78,6 +78,104 @@
       "secondary": "Browse our insights"
     }
   },
+  "StorePage": {
+    "hero": {
+      "eyebrow": "Document Store",
+      "heading": "Ready-to-use documents for doing business in Uzbekistan",
+      "description": "Professionally drafted legal, tax, HR, and compliance templates — built for Uzbekistan's regulatory framework, available in English, Russian, and Uzbek.",
+      "feature1": "Instant download",
+      "feature2": "EN / RU / UZ",
+      "feature3": "Updated for 2025",
+      "feature4": "Lawyer-reviewed"
+    },
+    "filters": {
+      "categoryAll": "All",
+      "noResults": "No documents match this combination.",
+      "clearFilters": "Clear filters",
+      "documentsCount": "{count, plural, one {# document} other {# documents}}",
+      "documentsInCategory": " in {category}",
+      "documentsLang": " · {language}"
+    },
+    "card": {
+      "includes": "Includes",
+      "purchase": "Purchase"
+    },
+    "cta": {
+      "eyebrow": "Need something custom?",
+      "heading": "Can't find what you're looking for?",
+      "description": "Our team drafts bespoke documents tailored to your specific transaction, structure, or jurisdiction.",
+      "button": "Talk to our team"
+    }
+  },
+  "InsightsPage": {
+    "hero": {
+      "eyebrow": "Insights",
+      "heading": "Research & analysis on doing business in Uzbekistan",
+      "description": "Practical guides, regulatory briefings, and analytical commentary from our advisory team."
+    },
+    "labels": {
+      "all": "All",
+      "search": "Search articles",
+      "noResults": "No articles match this search.",
+      "clear": "Clear search"
+    }
+  },
+  "ContactPage": {
+    "hero": {
+      "eyebrow": "Contact",
+      "heading": "Begin a conversation",
+      "description": "Every engagement starts with understanding. Reach out and our team will respond within 24 hours."
+    },
+    "info": {
+      "office": "Our Office",
+      "officeValue": "Tashkent, Uzbekistan",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours",
+      "workingHoursValue": "Mon – Fri, 9:00 – 18:00"
+    },
+    "form": {
+      "eyebrow": "Inquiry",
+      "heading": "Send us a message",
+      "description": "For detailed inquiries — share project context, timeline, and area of interest. We'll get back to you with a tailored response.",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "John",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "service": "Area of Interest",
+      "selectService": "Select a service",
+      "serviceTax": "Tax Consulting",
+      "serviceLegal": "Legal Advisory",
+      "serviceFinance": "Accounting",
+      "serviceHr": "Human Resources",
+      "serviceFunding": "Funding & Grants",
+      "serviceOther": "Other",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project or question...",
+      "consentBefore": "I consent to the processing of my personal data in accordance with the",
+      "consentPrivacy": "Privacy Policy",
+      "consentAnd": "and",
+      "consentTerms": "Terms of Use",
+      "consentAfter": ". By submitting this form you confirm your agreement to the storage and processing of the provided data.",
+      "send": "Send message"
+    },
+    "quick": {
+      "eyebrow": "Quick chat",
+      "heading": "Need a faster reply?",
+      "description": "Skip the form — message us directly on Telegram or WhatsApp. Average response in under 30 minutes during business hours.",
+      "telegram": "Telegram",
+      "telegramHint": "@advizen  ·  Fastest response",
+      "whatsapp": "WhatsApp",
+      "whatsappHint": "Send a message instantly",
+      "businessHours": "Business hours",
+      "hoursValue": "Mon – Fri, 9:00 – 18:00",
+      "timezone": "UTC+5 · Tashkent, Uzbekistan"
+    }
+  },
   "AdvisorySection": {
     "eyebrow": "Advisory",
     "heading": "You consult — we counsel",

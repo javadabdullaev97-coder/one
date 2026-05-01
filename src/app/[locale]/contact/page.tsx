@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, ArrowRight, ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import AnimatedSection, {
   StaggerContainer,
@@ -24,33 +25,6 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   </svg>
 );
 
-const infoCards = [
-  {
-    icon: <MapPin className="w-8 h-8" strokeWidth={1.4} />,
-    title: "Our Office",
-    value: "Tashkent, Uzbekistan",
-    href: undefined,
-  },
-  {
-    icon: <Phone className="w-8 h-8" strokeWidth={1.4} />,
-    title: "Phone",
-    value: "+998 (33) 488 48 88",
-    href: "tel:+998334884888",
-  },
-  {
-    icon: <Mail className="w-8 h-8" strokeWidth={1.4} />,
-    title: "Email",
-    value: "info@advizenco.com",
-    href: "mailto:info@advizenco.com",
-  },
-  {
-    icon: <Clock className="w-8 h-8" strokeWidth={1.4} />,
-    title: "Working Hours",
-    value: "Mon – Fri, 9:00 – 18:00",
-    href: undefined,
-  },
-];
-
 const inputClass =
   "w-full px-4 py-3 bg-white/[0.02] border border-white/[0.08] rounded-lg text-foreground placeholder:text-white/25 focus:outline-none focus:border-white/25 focus:bg-white/[0.04] transition-all duration-200";
 const labelClass =
@@ -58,6 +32,37 @@ const labelClass =
 
 export default function ContactPage() {
   const [consent, setConsent] = useState(false);
+  const tHero = useTranslations("ContactPage.hero");
+  const tInfo = useTranslations("ContactPage.info");
+  const tForm = useTranslations("ContactPage.form");
+  const tQuick = useTranslations("ContactPage.quick");
+
+  const infoCards = [
+    {
+      icon: <MapPin className="w-8 h-8" strokeWidth={1.4} />,
+      title: tInfo("office"),
+      value: tInfo("officeValue"),
+      href: undefined,
+    },
+    {
+      icon: <Phone className="w-8 h-8" strokeWidth={1.4} />,
+      title: tInfo("phone"),
+      value: "+998 (33) 488 48 88",
+      href: "tel:+998334884888",
+    },
+    {
+      icon: <Mail className="w-8 h-8" strokeWidth={1.4} />,
+      title: tInfo("email"),
+      value: "info@advizenco.com",
+      href: "mailto:info@advizenco.com",
+    },
+    {
+      icon: <Clock className="w-8 h-8" strokeWidth={1.4} />,
+      title: tInfo("workingHours"),
+      value: tInfo("workingHoursValue"),
+      href: undefined,
+    },
+  ];
 
   return (
     <div className="font-onest">
@@ -85,10 +90,10 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="tracking-luxury text-white/50 mb-4"
             >
-              Contact
+              {tHero("eyebrow")}
             </motion.p>
             <TextReveal
-              text="Begin a conversation"
+              text={tHero("heading")}
               as="h1"
               mode="line"
               className="heading-luxury text-3xl md:text-4xl lg:text-5xl text-foreground leading-[1.08] max-w-3xl"
@@ -96,8 +101,7 @@ export default function ContactPage() {
             />
             <RevealLine delay={0.6}>
               <p className="text-base text-white/50 max-w-xl mt-5 leading-relaxed">
-                Every engagement starts with understanding. Reach out and our
-                team will respond within 24 hours.
+                {tHero("description")}
               </p>
             </RevealLine>
           </div>
@@ -147,73 +151,72 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
             <AnimatedSection className="lg:col-span-7">
-              <p className="tracking-luxury text-white/35 mb-4">Inquiry</p>
+              <p className="tracking-luxury text-white/35 mb-4">{tForm("eyebrow")}</p>
               <TextReveal
-                text="Send us a message"
+                text={tForm("heading")}
                 as="h2"
                 className="heading-luxury text-3xl md:text-4xl text-foreground mb-4"
               />
               <p className="text-white/45 leading-relaxed mb-10 max-w-xl">
-                For detailed inquiries — share project context, timeline, and
-                area of interest. We'll get back to you with a tailored response.
+                {tForm("description")}
               </p>
 
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className={labelClass}>
-                      First Name <span className="text-primary-light/80">*</span>
+                      {tForm("firstName")} <span className="text-primary-light/80">*</span>
                     </label>
-                    <input id="firstName" type="text" required className={inputClass} placeholder="John" />
+                    <input id="firstName" type="text" required className={inputClass} placeholder={tForm("firstNamePlaceholder")} />
                   </div>
                   <div>
                     <label htmlFor="lastName" className={labelClass}>
-                      Last Name <span className="text-primary-light/80">*</span>
+                      {tForm("lastName")} <span className="text-primary-light/80">*</span>
                     </label>
-                    <input id="lastName" type="text" required className={inputClass} placeholder="Doe" />
+                    <input id="lastName" type="text" required className={inputClass} placeholder={tForm("lastNamePlaceholder")} />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className={labelClass}>
-                      Email <span className="text-primary-light/80">*</span>
+                      {tForm("email")} <span className="text-primary-light/80">*</span>
                     </label>
-                    <input id="email" type="email" required className={inputClass} placeholder="john@company.com" />
+                    <input id="email" type="email" required className={inputClass} placeholder={tForm("emailPlaceholder")} />
                   </div>
                   <div>
-                    <label htmlFor="company" className={labelClass}>Company</label>
-                    <input id="company" type="text" className={inputClass} placeholder="Company name" />
+                    <label htmlFor="company" className={labelClass}>{tForm("company")}</label>
+                    <input id="company" type="text" className={inputClass} placeholder={tForm("companyPlaceholder")} />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="service" className={labelClass}>Area of Interest</label>
+                  <label htmlFor="service" className={labelClass}>{tForm("service")}</label>
                   <div className="relative">
                     <select
                       id="service"
                       className={`${inputClass} appearance-none pr-10 cursor-pointer`}
                       style={{ WebkitAppearance: "none", paddingLeft: "16px" }}
                     >
-                      <option value="" className="bg-surface">Select a service</option>
-                      <option value="tax" className="bg-surface">Tax Consulting</option>
-                      <option value="legal" className="bg-surface">Legal Advisory</option>
-                      <option value="finance" className="bg-surface">Accounting</option>
-                      <option value="hr" className="bg-surface">Human Resources</option>
-                      <option value="funding" className="bg-surface">Funding &amp; Grants</option>
-                      <option value="other" className="bg-surface">Other</option>
+                      <option value="" className="bg-surface">{tForm("selectService")}</option>
+                      <option value="tax" className="bg-surface">{tForm("serviceTax")}</option>
+                      <option value="legal" className="bg-surface">{tForm("serviceLegal")}</option>
+                      <option value="finance" className="bg-surface">{tForm("serviceFinance")}</option>
+                      <option value="hr" className="bg-surface">{tForm("serviceHr")}</option>
+                      <option value="funding" className="bg-surface">{tForm("serviceFunding")}</option>
+                      <option value="other" className="bg-surface">{tForm("serviceOther")}</option>
                     </select>
                     <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className={labelClass}>Message</label>
+                  <label htmlFor="message" className={labelClass}>{tForm("message")}</label>
                   <textarea
                     id="message"
                     rows={5}
                     className={`${inputClass} resize-none`}
-                    placeholder="Tell us about your project or question..."
+                    placeholder={tForm("messagePlaceholder")}
                   />
                 </div>
 
@@ -245,11 +248,11 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <label htmlFor="consent" className="text-[13px] text-white/45 leading-relaxed cursor-pointer select-none">
-                    I consent to the processing of my personal data in accordance with the{" "}
-                    <Link href="/privacy" className="text-white/65 underline underline-offset-2 hover:text-white/90 transition-colors">Privacy Policy</Link>{" "}
-                    and{" "}
-                    <Link href="/terms" className="text-white/65 underline underline-offset-2 hover:text-white/90 transition-colors">Terms of Use</Link>.
-                    {" "}By submitting this form you confirm your agreement to the storage and processing of the provided data.
+                    {tForm("consentBefore")}{" "}
+                    <Link href="/privacy" className="text-white/65 underline underline-offset-2 hover:text-white/90 transition-colors">{tForm("consentPrivacy")}</Link>{" "}
+                    {tForm("consentAnd")}{" "}
+                    <Link href="/terms" className="text-white/65 underline underline-offset-2 hover:text-white/90 transition-colors">{tForm("consentTerms")}</Link>
+                    {tForm("consentAfter")}
                   </label>
                 </div>
 
@@ -258,7 +261,7 @@ export default function ContactPage() {
                 }`}>
                   <MagneticButton variant="primary" type="submit">
                     <Send className="w-4 h-4" />
-                    Send message
+                    {tForm("send")}
                   </MagneticButton>
                 </div>
               </form>
@@ -266,13 +269,12 @@ export default function ContactPage() {
 
             <AnimatedSection delay={0.2} className="lg:col-span-5">
               <div className="lg:sticky lg:top-32">
-                <p className="tracking-luxury text-white/35 mb-4">Quick chat</p>
+                <p className="tracking-luxury text-white/35 mb-4">{tQuick("eyebrow")}</p>
                 <h2 className="heading-luxury text-3xl md:text-4xl text-foreground mb-4">
-                  Need a faster reply?
+                  {tQuick("heading")}
                 </h2>
                 <p className="text-white/50 leading-relaxed mb-10 max-w-xl">
-                  Skip the form — message us directly on Telegram or WhatsApp.
-                  Average response in under 30 minutes during business hours.
+                  {tQuick("description")}
                 </p>
 
                 <div className="space-y-4 mb-10">
@@ -286,8 +288,8 @@ export default function ContactPage() {
                       <TelegramIcon className="w-6 h-6" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">Telegram</p>
-                      <p className="text-xs text-white/40">@advizen  ·  Fastest response</p>
+                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">{tQuick("telegram")}</p>
+                      <p className="text-xs text-white/40">{tQuick("telegramHint")}</p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                   </a>
@@ -302,8 +304,8 @@ export default function ContactPage() {
                       <WhatsAppIcon className="w-6 h-6" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">WhatsApp</p>
-                      <p className="text-xs text-white/40">Send a message instantly</p>
+                      <p className="text-base font-medium text-foreground/90 group-hover:text-white transition-colors duration-300 mb-0.5">{tQuick("whatsapp")}</p>
+                      <p className="text-xs text-white/40">{tQuick("whatsappHint")}</p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-white/25 group-hover:text-white/55 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                   </a>
@@ -312,9 +314,9 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
                   <Clock className="w-4 h-4 text-white/35 shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-white/35 font-medium mb-1.5">Business hours</p>
-                    <p className="text-sm text-white/55">Mon – Fri, 9:00 – 18:00</p>
-                    <p className="text-xs text-white/35 mt-1">UTC+5 · Tashkent, Uzbekistan</p>
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-white/35 font-medium mb-1.5">{tQuick("businessHours")}</p>
+                    <p className="text-sm text-white/55">{tQuick("hoursValue")}</p>
+                    <p className="text-xs text-white/35 mt-1">{tQuick("timezone")}</p>
                   </div>
                 </div>
               </div>
