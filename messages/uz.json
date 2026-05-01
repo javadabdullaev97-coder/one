@@ -273,6 +273,49 @@
       "eyebrow": "Advizen Consulting · Yuridik ma'lumot",
       "lastUpdated": "Oxirgi yangilanish: 2026 yil aprel"
     },
+    "cookies": {
+      "title": "Cookie siyosati",
+      "subtitle": "advizenco.com saytida cookie va shunga o'xshash texnologiyalardan qanday foydalanamiz",
+      "footer": "Ushbu Cookie siyosati Advizen Consulting tomonidan boshqariladigan advizenco.com saytiga taalluqlidir. Oxirgi yangilanish: 2026 yil aprel.",
+      "sections": [
+        {
+          "title": "Cookie nima",
+          "body": "Cookie — bu siz saytni ziyorat qilganingizda qurilmangizga (kompyuter, planshet yoki mobil telefon) joylashtiriladigan kichik matnli fayllar. Ular saytlarning samaraliroq ishlashi, sizning afzalliklaringizni eslab qolish va sayt egalariga ma'lumot berish uchun keng qo'llaniladi.\n\nCookie o'zicha shaxsan identifikatsiyalovchi ma'lumotni o'z ichiga olmaydi, lekin siz bizga taqdim etgan yoki biz siz haqingizda to'plagan shaxsiy ma'lumot bilan bog'lanishi mumkin."
+        },
+        {
+          "title": "Cookie dan qanday foydalanamiz",
+          "body": "Advizen Consulting advizenco.com saytida cookie dan quyidagi maqsadlarda foydalanadi:\n\n— Saytning to'g'ri va xavfsiz ishlashini ta'minlash;\n— Tashriflar o'rtasida sizning afzalliklaringiz va sozlamalaringizni eslab qolish;\n— Tashrif buyuruvchilar saytdan qanday foydalanishini tushunish (tashrif buyurilgan sahifalar, sarflagan vaqt, trafik manbalari);\n— Sayt ishlashi va kontentini yaxshilash;\n— Aloqa shakllari va so'rov yuborish kabi ba'zi xususiyatlarni ta'minlash."
+        },
+        {
+          "title": "Foydalanadigan cookie turlari",
+          "body": "Qat'iy zarur cookie\nBu cookie sayt ishlashi uchun zarur. Ular sahifa navigatsiyasi va xavfsiz hududlarga kirish kabi asosiy xususiyatlarni ta'minlaydi. Sayt bu cookie larsiz to'g'ri ishlay olmaydi.\n\nIshlash va analitika cookie\nBu cookie tashrif buyuruvchilar saytdan qanday foydalanishi haqida anonim ma'lumot to'playdi — masalan, qaysi sahifalar eng ko'p tashrif buyuriladi. Bu ma'lumotlar saytni yaxshilashga yordam beradi. To'plangan barcha ma'lumotlar yig'ma va anonimdir.\n\nFunksional cookie\nBu cookie sayt sizning tanlovlaringizni (masalan afzal ko'rgan til yoki hudud) eslab qolishga va kengaytirilgan, shaxsiylashtirilgan xususiyatlarni taqdim etishga imkon beradi.\n\nAfzallik cookie\nBu cookie keyingi tashrifingiz qulay va shaxsiylashtirilgan bo'lishi uchun sizning sozlamalaringiz va afzalliklaringizni saqlaydi."
+        },
+        {
+          "title": "Uchinchi tomon cookie",
+          "body": "Biz qurilmangizga o'z cookie larini o'rnatadigan uchinchi tomon xizmatlaridan foydalanishimiz mumkin. Bularga quyidagilar kiradi:\n\n— Analitika provayderlari (masalan Google Analytics) sayt trafigini va foydalanish modellarini tushunishga yordam beradi;\n— O'rnatilgan kontent provayderlari (masalan xaritalar, videolar) ularning kontenti bilan o'zaro aloqada bo'lganingizda cookie o'rnatishi mumkin.\n\nBiz bu uchinchi tomon cookie larini nazorat qilmaymiz. Qo'shimcha ma'lumot uchun tegishli uchinchi tomon maxfiylik va cookie siyosatlariga murojaat qiling."
+        },
+        {
+          "title": "Cookie davomiyligi",
+          "body": "Sessiya cookie\nBu vaqtinchalik cookie bo'lib, brauzeringizni yopganingizda qurilmangizdan o'chiriladi. Ular saytni ko'rib chiqishingiz davomida sessiyangizni saqlash uchun ishlatiladi.\n\nDoimiy cookie\nBu cookie qurilmangizda belgilangan vaqt davomida (cookie da belgilangan) yoki siz qo'lda o'chirgunchaqcha qoladi. Ular ularni yaratgan saytga har tashrif buyurganingizda faollashadi."
+        },
+        {
+          "title": "Cookie ni boshqarish",
+          "body": "Siz cookie larni qabul qilish yoki rad etish huquqiga egasiz. Cookie afzalliklaringizni quyidagi yo'llar bilan boshqarishingiz mumkin:\n\nBrauzer sozlamalari\nKo'pchilik veb-brauzerlar sozlamalari orqali cookie larni boshqarishga imkon beradi. Brauzeringizni cookie ni rad etishi yoki cookie yuborilayotganda sizni ogohlantirishi uchun sozlashingiz mumkin. Cookie ni o'chirib qo'ysangiz saytimizning ba'zi xususiyatlari to'g'ri ishlamasligi mumkin.\n\nVoz kechish vositalari\nAnalitika cookie lari uchun tegishli uchinchi tomon xizmatlari taqdim etgan vositalardan foydalanib kuzatishdan voz kechishingiz mumkin (masalan Google Analytics Opt-out Browser Add-on).\n\nCookie ni o'chirish\nBrauzer sozlamalari orqali qurilmangizda allaqachon saqlangan cookie larni istalgan vaqtda o'chirishingiz mumkin."
+        },
+        {
+          "title": "Sizning roziligingiz",
+          "body": "Saytimizdan foydalanishni davom ettirib, ushbu Cookie siyosatiga muvofiq cookie ishlatishga rozilik bildirasiz.\n\nAmaldagi qonun talab qilgan joylarda biz qurilmangizga ixtiyoriy cookie larni joylashtirishdan oldin sizning aniq roziligingizni so'raymiz. Brauzer sozlamalarini sozlash yoki bizga to'g'ridan-to'g'ri murojaat qilish orqali roziligingizni istalgan vaqtda qaytarib olishingiz mumkin."
+        },
+        {
+          "title": "Ushbu siyosatdagi o'zgarishlar",
+          "body": "Texnologiya, qonunchilik yoki ma'lumotlar bilan ishlash amaliyotidagi o'zgarishlarni aks ettirish uchun ushbu Cookie siyosatini vaqti-vaqti bilan yangilab turishimiz mumkin. O'zgartirishlar kiritganda biz ushbu sahifaning pastki qismidagi sanani yangilaymiz.\n\nCookie dan qanday foydalanayotganimiz haqida xabardor bo'lib turish uchun siyosatni vaqti-vaqti bilan ko'rib chiqishni tavsiya qilamiz."
+        },
+        {
+          "title": "Biz bilan bog'lanish",
+          "body": "Cookie dan foydalanishimiz yoki ushbu Cookie siyosati bo'yicha savollaringiz bo'lsa, iltimos, biz bilan bog'laning:\n\nAdvizen Consulting\nYuridik manzil: Toshkent, O'zbekiston Respublikasi\nE-mail: info@advizenco.com\nTelefon: +998 33 488 4888\nSayt: advizenco.com"
+        }
+      ]
+    },
     "disclaimer": {
       "title": "Mas'uliyatdan voz kechish",
       "subtitle": "Saytdan foydalanish bo'yicha muhim cheklovlar va ogohlantirishlar",
