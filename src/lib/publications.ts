@@ -109,6 +109,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-05-20",
     pages: 14,
+    image: "/Articles Image/Online Gambling Regulation.webp",
     hasRead: true,
   },
   {
@@ -134,6 +135,7 @@ export const publications: Publication[] = [
     year: "2025",
     date: "2025-03-08",
     pages: 8,
+    image: "/Articles Image/Self-Employment.webp",
     hasRead: true,
   },
   {
@@ -171,6 +173,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-11-25",
     pages: 20,
+    image: "/Articles Image/Special Economic Zones.webp",
     hasRead: true,
   },
   {
@@ -195,6 +198,7 @@ export const publications: Publication[] = [
     year: "2024",
     date: "2024-09-12",
     pages: 9,
+    image: "/Articles Image/Representative Offices.webp",
     hasRead: true,
   },
   {
@@ -232,6 +236,7 @@ export const publications: Publication[] = [
     year: "2026",
     date: "2026-03-15",
     pages: 15,
+    image: "/Articles Image/Employer of Record.webp",
     hasRead: true,
   },
   {
